@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+a {
+    text-decoration: none;
+}
+p{
+    text-align: center;
+}
+.paintings-list {
+    list-style: none;
+    padding: 0;
+}
+
+.paintings-list li {
+    margin-bottom: 20px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paintings-list li img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.paintings-list li h2 {
+    margin-top: 10px;
+    text-align: center;
+}
+.center {
+    margin-left: 7.8%;
+}
