@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Gallery</title>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya:900|Cinzel:900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href= "css/normalize.css">
+</head>
+<style>
+  
+</style>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="gallary">
+    <div class="text">
+      <h1>Virtual Gallery</h1>
+      <!-- <p>private<span>.</span></p> -->
+      <a style="text-decoration: none; width: 50%;"  href="main.html"><p>entrar<span>.</span></p></a>
+    </div>
+    
+    <div class="image image1 image__text_1">  
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1135px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg">
+    </div>
+    <div class="image image2 image__text_2"> <!-- cambiada -->
+      <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/cwv189jpti1nnpc.jpg">
+    </div>
+    <div class="image image3 image__text_3"> <!-- cambiada -->
+      <img src="https://ih1.redbubble.net/image.2135483204.6162/flat,750x,075,f-pad,750x1000,f8f8f8.jpg">
+    </div>
+    <div class="image image4 image__text_4"> <!-- cambiada -->
+      <img src="https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg">
+    </div>
+    <div class="image image5 image__text_5"> <!-- cambiada -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Judit_decapitando_a_Holofernes%2C_por_Artemisia_Gentileschi.jpg/1200px-Judit_decapitando_a_Holofernes%2C_por_Artemisia_Gentileschi.jpg">
+    </div>
+    <div class="image image6 image__text_6"> <!-- cambiada -->
+      <img src="https://humanidades.com/wp-content/uploads/2018/07/arte-renacentista-e1571802362634.jpg">
+    </div>
+  </div>
+<!-- partial -->
+  <script  src="js/script.js"></script>
+  <style>
+    .gallary {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gallary.show {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    setTimeout(function() {
+      document.querySelector('.gallary').classList.add('show');
+    }, 2500); 
+  </script>
+  <script>
+    $(document).ready(function(){
+      setTimeout(function() {
+        $('.gallary').addClass('show');
+      }, 2500);
+
+      $('a').click(function(e){
+        e.preventDefault();
+        var href = $(this).attr('href');
+        $('.gallary').removeClass('show');
+        setTimeout(function(){
+          $('.gallary').load(href + ' .gallary > *', function(){
+            $('.gallary').addClass('show');
+          });
+        }, 2500);
+      });
+    });
+  </script>
+</body>
+</html>
