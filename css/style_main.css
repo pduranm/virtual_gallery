@@ -37,7 +37,14 @@ main.grid-container {
     max-width: 1200px;
     margin: 20px auto;
 }
-
+.h1_main {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    margin: 0.2rem 0;
+    border-top: 2px solid #776b5e;
+    border-bottom: 3px solid #ec8c8c;
+    color: #000000;
+}
 a {
     text-decoration: none;
 }
