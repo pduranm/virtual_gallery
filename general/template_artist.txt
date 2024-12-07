@@ -1,0 +1,4 @@
+Needed to complete:
+- [ ] Paintings (at least 5)
+- [ ] Biography 
+- [ ] Profile photo 
