@@ -37,6 +37,16 @@ main.grid-container {
     max-width: 1200px;
     margin: 20px auto;
 }
+
+.grid-container-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 2fr));
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
 .h1_main {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
