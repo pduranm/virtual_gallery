@@ -39,17 +39,38 @@
         const container = document.querySelector('.slide-container');
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-
-        function changeSlide(event) {
-            if (event.deltaY > 0) {
+        let startX = 0;
+        let endX = 0;
+    
+        function changeSlide(delta) {
+            if (delta > 0) {
                 currentSlide = (currentSlide + 1) % slides.length;
             } else {
                 currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             }
             container.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
-
-        window.addEventListener('wheel', changeSlide);
+    
+        function handleWheel(event) {
+            changeSlide(event.deltaY);
+        }
+    
+        function handleTouchStart(event) {
+            startX = event.touches[0].clientX;
+        }
+    
+        function handleTouchEnd(event) {
+            endX = event.changedTouches[0].clientX;
+            const deltaX = startX - endX;
+            if (Math.abs(deltaX) > 50) {  // Threshold to detect swipe
+                changeSlide(deltaX);
+            }
+        }
+    
+        window.addEventListener('wheel', handleWheel);
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchend', handleTouchEnd);
     </script>
+    
 </body>
 </html>
