@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides Showcase</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .slide-container {
+            display: flex;
+            height: 100vh;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/012/336/666/large/leonid-ilyukhin-diplom1-web.jpg?1534273650');">Courbet</div>
+        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');"> Millet</div>
+        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');"> Da Vinci</div>
+        <div class="slide" style="background-image: url('https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/1-thiasus-of-dionysus-1517-18-baldassarre-peruzzi.jpg');">Neoclasicismo</div>
+    </div>
+    <script>
+        const container = document.querySelector('.slide-container');
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function changeSlide(event) {
+            if (event.deltaY > 0) {
+                currentSlide = (currentSlide + 1) % slides.length;
+            } else {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            }
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        window.addEventListener('wheel', changeSlide);
+    </script>
+</body>
+</html>
