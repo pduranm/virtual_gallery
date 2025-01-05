@@ -8,10 +8,17 @@
         body {
             margin: 0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
         .slide-container {
             display: flex;
-            height: 100vh;
+            height: 80vh;
+            width: 100%;
             transition: transform 0.5s ease-in-out;
         }
         .slide {
@@ -26,6 +33,23 @@
             color: white;
             background-color: #333;
         }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +58,12 @@
         <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">Realismo</div>
         <div class="slide" style="background-image: url('https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/1-thiasus-of-dionysus-1517-18-baldassarre-peruzzi.jpg');">Neoclasicismo</div>
     </div>
+    
+    <div class="buttons">
+        <button class="btn" id="prevBtn">Anterior</button>
+        <button class="btn" id="nextBtn">Siguiente</button>
+    </div>
+
     <script>
         const container = document.querySelector('.slide-container');
         const slides = document.querySelectorAll('.slide');
@@ -74,7 +104,15 @@
             isDragging = false;
         }
 
-        
+        // Buttons logic
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            changeSlide(-1);
+        });
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            changeSlide(1);
+        });
+
+        window.addEventListener('wheel', handleWheel);
         container.addEventListener('touchstart', handleTouchStart);
         container.addEventListener('touchmove', handleTouchMove);
         container.addEventListener('touchend', handleTouchEnd);
