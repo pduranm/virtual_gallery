@@ -50,15 +50,23 @@
         .btn:hover {
             background-color: #555;
         }
+        .movimiento {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
     <div class="slide-container">
-        <div class="slide" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/012/336/666/large/leonid-ilyukhin-diplom1-web.jpg?1534273650');">Impresionismo</div>
-        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">Realismo</div>
-        <div class="slide" style="background-image: url('https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/1-thiasus-of-dionysus-1517-18-baldassarre-peruzzi.jpg');">Neoclasicismo</div>
+        <div class="slide" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/012/336/666/large/leonid-ilyukhin-diplom1-web.jpg?1534273650');"></div>
+        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');"></div>
+        <div class="slide" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg');"></div>
+        <div class="slide" style="background-image: url('https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg');"></div>
     </div>
-    
+    <div class="movimiento">
+        <p id="slideTitle">Impresionismo</p>
+    </div>
     <div class="buttons">
         <button class="btn" id="prevBtn">Anterior</button>
         <button class="btn" id="nextBtn">Siguiente</button>
@@ -67,6 +75,13 @@
     <script>
         const container = document.querySelector('.slide-container');
         const slides = document.querySelectorAll('.slide');
+        const titleElement = document.getElementById('slideTitle');
+        const slideTitles = [
+            'Impresionismo',
+            'Realismo',
+            'Romanticismo',
+            'Renacimiento'
+        ];
         let currentSlide = 0;
         let startX = 0;
         let isDragging = false;
@@ -78,6 +93,7 @@
                 currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             }
             container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            titleElement.textContent = slideTitles[currentSlide];  // Update title
         }
 
         function handleWheel(event) {
