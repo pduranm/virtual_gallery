@@ -31,18 +31,16 @@
 <body>
     <div class="slide-container">
         <div class="slide" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/012/336/666/large/leonid-ilyukhin-diplom1-web.jpg?1534273650');">Impresionismo</div>
-        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');"> Realismo</div>
+        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">Realismo</div>
         <div class="slide" style="background-image: url('https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/1-thiasus-of-dionysus-1517-18-baldassarre-peruzzi.jpg');">Neoclasicismo</div>
-        <div class="slide" style="background-image: url('https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/1-thiasus-of-dionysus-1517-18-baldassarre-peruzzi.jpg');">Neoclasicismo</div>
-
     </div>
     <script>
         const container = document.querySelector('.slide-container');
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         let startX = 0;
-        let endX = 0;
-    
+        let isDragging = false;
+
         function changeSlide(delta) {
             if (delta > 0) {
                 currentSlide = (currentSlide + 1) % slides.length;
@@ -51,27 +49,35 @@
             }
             container.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
-    
+
         function handleWheel(event) {
             changeSlide(event.deltaY);
         }
-    
+
         function handleTouchStart(event) {
             startX = event.touches[0].clientX;
+            isDragging = true;
         }
-    
-        function handleTouchEnd(event) {
-            endX = event.changedTouches[0].clientX;
-            const deltaX = startX - endX;
+
+        function handleTouchMove(event) {
+            if (!isDragging) return;
+            const currentX = event.touches[0].clientX;
+            const deltaX = startX - currentX;
+
             if (Math.abs(deltaX) > 50) {  // Threshold to detect swipe
                 changeSlide(deltaX);
+                isDragging = false;
             }
         }
-    
+
+        function handleTouchEnd() {
+            isDragging = false;
+        }
+
         window.addEventListener('wheel', handleWheel);
         container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchmove', handleTouchMove);
         container.addEventListener('touchend', handleTouchEnd);
     </script>
-    
 </body>
 </html>
