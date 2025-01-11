@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slides Showcase</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+
         body {
             margin: 0;
             overflow: hidden;
@@ -13,58 +16,89 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #333;
+            ;
         }
+
         .slide-container {
             display: flex;
             height: 80vh;
             width: 100%;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.9s ease-in-out;
         }
+
         .slide {
             min-width: 100%;
             height: 95%;
             background-size: cover;
             background-position: center;
             display: flex;
-            align-items: center;
+            align-items: top;
             justify-content: center;
             font-size: 2em;
             color: white;
             background-color: #333;
         }
+
         .buttons {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 10px;
         }
+
         .btn {
             padding: 10px 20px;
-            background-color: #333;
+            background-color: #ffffff;
             color: rgb(0, 0, 0);
             border: none;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 18px;
         }
+
         .btn:hover {
             background-color: #555;
         }
+
         .movimiento {
             text-align: center;
             margin-top: 20px;
             font-size: 1.5em;
+
+        }
+
+        .par-opts {
+            background-color: #333;
+            height: fit-content;
+            padding: 8px;
+            margin-top: -15%;
+            border-radius: 8px;
+            width: max-content;
         }
     </style>
 </head>
+
 <body>
     <div class="slide-container">
-        <div class="slide" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/012/336/666/large/leonid-ilyukhin-diplom1-web.jpg?1534273650');">Impresionismo</div>
-        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">Realismo</div>
-        <div class="slide" style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">Romanticismo</div>
-        <div class="slide" style="background-image: url('https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg');">Renacimiento</div>
+        <div class="slide"
+            style="background-image: url('https://lh3.googleusercontent.com/JwGlE0xUbhfPJIl9v7JfJEaxBdJGr_qvj3mb6U8AX251GIPL25_bID_3_oFu5ITnd6c=s1200');">
+            <p class="par-opts">Impresionismo</p>
+        </div>
+        <div class="slide"
+            style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">
+            <p class="par-opts">Realismo</p>
+        </div>
+        <div class="slide"
+            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/450px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg'); width: auto;">
+            <p class="par-opts">Impresionismo</p>
+        </div>
+        <div class="slide"
+            style="background-image: url('https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg');">
+            <p class="par-opts">Impresionismo</p>
+        </div>
     </div>
-    
+
     <div class="buttons" style="margin-top: -2px;">
         <button class="btn" id="prevBtn">Anterior</button>
         <button class="btn" id="nextBtn">Siguiente</button>
@@ -141,4 +175,5 @@
         container.addEventListener('touchend', handleTouchEnd);
     </script>
 </body>
+
 </html>
