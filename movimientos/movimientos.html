@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slides Showcase</title>
+    <title>Movimientos</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
         body {
             margin: 0;
@@ -17,7 +17,7 @@
             align-items: center;
             height: 100vh;
             background-color: #333;
-            ;
+            
         }
 
         .slide-container {
@@ -71,38 +71,60 @@
         .par-opts {
             background-color: #333;
             height: fit-content;
-            padding: 8px;
+            padding-top: 3px;
             margin-top: -15%;
             border-radius: 8px;
             width: max-content;
+            font-family: Lora;
+            font-weight: 400;
+            font-size: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+        .par-opts-btn {
+            font-size: 10px;
+            justify-content: center;
+            text-align: center;
+            border-radius: 8px;
+            /* z-index: 0; */
         }
     </style>
 </head>
-
 <body>
-    <div class="slide-container">
-        <div class="slide"
-            style="background-image: url('https://lh3.googleusercontent.com/JwGlE0xUbhfPJIl9v7JfJEaxBdJGr_qvj3mb6U8AX251GIPL25_bID_3_oFu5ITnd6c=s1200');">
-            <p class="par-opts">Impresionismo</p>
+   
+        <div class="slide-container">
+            <div class="slide" href="/artistas/camille/camille.html"
+                style="background-image: url('https://lh3.googleusercontent.com/JwGlE0xUbhfPJIl9v7JfJEaxBdJGr_qvj3mb6U8AX251GIPL25_bID_3_oFu5ITnd6c=s1200');">
+                <p class="par-opts">Impresionismo <br> <i>1860 - 1920</i></p>
+            </div>
+            <div class="slide"
+                style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">
+                <p class="par-opts">Realismo <br> <i>1860 - 1920</i></p>
+            </div>
+            <div class="slide"
+                style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/450px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg'); width: auto;">
+                <p class="par-opts">Romanticismo <br> <i>1770 - 1890</i></p>
+            </div>
+            <div class="slide"
+                style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/David-Oath_of_the_Horatii-1784.jpg/1200px-David-Oath_of_the_Horatii-1784.jpg');">
+                <p class="par-opts">Neoclasicismo <br> <i>1750 - 1860</i></p>
+            </div>
+            <div class="slide"
+                style="background-image: url('https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg');">
+                <p class="par-opts">Renacimiento <br> <i>XVI-XVII</i></p>
+                
+            </div>
         </div>
-        <div class="slide"
-            style="background-image: url('https://cdn.britannica.com/91/95791-050-BE17820E/Triumph-Bacchus-oil-canvas-Ciro-Ferri.jpg');">
-            <p class="par-opts">Realismo</p>
+        <div>
+            <button>
+                <p class="par-opts-btn">Entrar</p>
+            </button>
         </div>
-        <div class="slide"
-            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/450px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg'); width: auto;">
-            <p class="par-opts">Impresionismo</p>
+        <div class="buttons" style="margin-top: -2px;">
+            <button class="btn" id="prevBtn"><svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 6)"><path d="m4.499.497-3.999 4.002 4 4.001"/><path d="m13.5 4.5h-13"/></g></svg></button>
+            <button class="btn" id="nextBtn"><svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 6)"><path d="m9.5.497 4 4.002-4 4.001"/><path d="m.5 4.5h13"/></g></svg></button>
         </div>
-        <div class="slide"
-            style="background-image: url('https://cdn.britannica.com/46/198846-050-82EE84FC/Lady-Ermine-oil-panel-Leonardo-da-Vinci.jpg');">
-            <p class="par-opts">Impresionismo</p>
-        </div>
-    </div>
-
-    <div class="buttons" style="margin-top: -2px;">
-        <button class="btn" id="prevBtn">Anterior</button>
-        <button class="btn" id="nextBtn">Siguiente</button>
-    </div>
+    
 
     <script>
         const container = document.querySelector('.slide-container');
