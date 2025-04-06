@@ -43,7 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 
         {
             text: "Su obra más conocida, <i>La Libertad guiando al pueblo</i>, le valió la Cruz de la Legión de Honor y se convirtió en un símbolo de la <strong>Revolución de 1830 en Francia</strong>.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/1/1f/La_justice_de_Trajan.jpg", title: "La justicia de Trajano", year: "1840"
+            image: "https://upload.wikimedia.org/wikipedia/commons/1/1f/La_justice_de_Trajan.jpg", 
+            title: "La justicia de Trajano", 
+            year: "1840"
         }, 
         {
             text: "A su regreso, Delacroix recibió encargos oficiales para decorar diversos edificios públicos, como el <strong>Salón del rey del palacio de Borbón</strong> y el <strong>Palacio de Luxemburgo</strong>.",
