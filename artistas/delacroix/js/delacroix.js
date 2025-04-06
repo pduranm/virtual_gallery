@@ -4,8 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const data = [
         {
             text: "Ferdinand-Victor-Eugène Delacroix fue un destacado <strong>pintor y litógrafo francés</strong>, nacido el 26 de 1798 en Charenton- Saint - Maurice y fallecido el 13 de agosto de 1863 en París.",
-
-            image: "https://blogger.googleusercontent.com/img/a/AVvXsEhSwPwu2O7sZl9fokQkN5dFSMeUSLLe09Frlw6xZ8BT8FwzSHm-RmEMbNdNSEzuANtxU6a9ZCmksFSpH45CQUzt8v1PGsvjsBkpjhJkxoR19X-IL2o4fMugagijIBlnwoDbDjVHgOXFw8iTWvealeaYdoN2gWdhogtZ0dBTUCSwSs2s7hYlfOGKwkw2jLc", title: "La libertad guiando al pueblo", year: "1830"
+            image: "https://blogger.googleusercontent.com/img/a/AVvXsEhSwPwu2O7sZl9fokQkN5dFSMeUSLLe09Frlw6xZ8BT8FwzSHm-RmEMbNdNSEzuANtxU6a9ZCmksFSpH45CQUzt8v1PGsvjsBkpjhJkxoR19X-IL2o4fMugagijIBlnwoDbDjVHgOXFw8iTWvealeaYdoN2gWdhogtZ0dBTUCSwSs2s7hYlfOGKwkw2jLc", 
+            title: "La libertad guiando al pueblo", 
+            year: "1830",
+            redirect: "obras/libertad_delacroix.html"
         },
         {
             text: "Delacroix nació en el seno de una familia de artistas, siendo hijo del político <strong>Charles Delacroix y Victoire Oeben</strong>, perteneciente a una familia de ebanistas y dibujantes. Después de la muerte de su padre en 1806, se trasladó con su familia a <strong>París</strong>, donde comenzó sus estudios clásicos en el Liceo Imperial.",
@@ -15,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             text: "En 1815, siguiendo la recomendación de su tío, ingresó al taller del pintor neoclásico <strong>Pierre Narcisse Guérin</strong>, donde tuvo como maestros a <strong>Théodore Géricault y al Barón Gros</strong>",
 
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/WomenofAlgiers.JPG/1200px-WomenofAlgiers.JPG", title: "Mujer en Argel", year: "1834"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/WomenofAlgiers.JPG/1200px-WomenofAlgiers.JPG", 
+            title: "Mujer en Argel", 
+            year: "1834"
         },
         {
             text: "Durante este tiempo, Delacroix desarrolló un interés por el estudio de grandes maestros como <strong>Rubens</strong>, <strong>Velázquez</strong> y <strong>Rembrandt</strong>, así como por la <strong>litografía y la pintura de paisajes</strong>.",
@@ -30,7 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             text: "En <strong>1825</strong>, viajó a Inglaterra para estudiar a los pintores ingleses, como <strong>John Constable</strong>, lo que influyó en su técnica y uso del color.",
 
-            image: "https://uploads7.wikiart.org/images/eugene-delacroix/seated-nude-mademoiselle-rose-1824(1).jpg!Large.jpg", title: "Madame Rose", year: "1820"
+            image: "https://uploads7.wikiart.org/images/eugene-delacroix/seated-nude-mademoiselle-rose-1824(1).jpg!Large.jpg", 
+            title: "Madame Rose", 
+            year: "1820"
         },
         {
             text: "A los treinta años, Delacroix provocó controversia con su obra <i>La muerte de Sardanápalo</i> en el <strong>Salón de París en 1827</strong>, destacando por su uso del color y su representación <i>dramática</i>. Este período también marcó su interés por la música y la literatura, relacionándose con figuras como <strong>Stendhal, Mérimée, Victor Hugo y Baudelaire</strong>.",
@@ -68,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const divImage = document.createElement("div");
         divImage.className = "image-full";
         divImage.innerHTML = `
-            <a href="#">
+            <a href="${item.redirect}">
                 <img width="350" height="auto" src="${item.image}">
                 <p style="text-align: center;">${item.title} <br><i>${item.year}</i></p>
             </a>
