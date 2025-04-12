@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
     ];
-
+    const image_dt = [
+        {
+            image:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/La_tarde_-_Charles-Fran%C3%A7ois_Daubigny.jpg/800px-La_tarde_-_Charles-Fran%C3%A7ois_Daubigny.jpg"
+        },
+    ];
     const info = [
 
         {
@@ -38,11 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ];
 
-    const image_dt = [
-        {
-            image:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/La_tarde_-_Charles-Fran%C3%A7ois_Daubigny.jpg/800px-La_tarde_-_Charles-Fran%C3%A7ois_Daubigny.jpg"
-        },
-    ];
+
+
 
 
 
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         paragraph.innerHTML = item.text;
         content.appendChild(paragraph);
         });
-
+        
     image_dt.forEach((item, index) => {
         const divImage = document.createElement("div");
         divImage.className = "image-full";
