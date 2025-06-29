@@ -18,7 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             text:"Delacroix escribió en una carta a su hermano: <i>'Si no he luchado por mi país, al menos pintaré por él.'</i> <br> Para Delacroix, este cuadro no era solo una representación histórica, sino también una declaración personal de sus <strong>ideales románticos</strong>: <i>libertad, humanidad y lucha</i>."
         },
-        
+        {
+            text:" "
+        },
+        {
+            text:" "
+        },
+        {
+            text:" "
+        },
     ];
 
     const image = [

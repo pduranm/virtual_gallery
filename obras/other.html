@@ -70,12 +70,22 @@
         document.addEventListener("DOMContentLoaded", function () {
             const paintings = [
                 {
-                    name: "Impresión, sol naciente", year: 1872,
+                    name: "Impresión, sol naciente",
+                    year: 1872,
                     description: "'Impresión, sol naciente' de Claude Monet es una obra emblemática del Impresionismo, que captura un amanecer en el puerto de Le Havre. La pintura destaca por su uso innovador de la luz y el color, creando una atmósfera de neblina y reflejos que desafían las convenciones artísticas de su tiempo."
                 },
-                { name: "Mujer con sombrilla", year: 1875 },
-                { name: "Nenúfares", year: 1899 },
-                { name: "El puente japonés", year: 1920 }
+                {
+                    name: "Mujer con sombrilla",
+                    year: 1875
+                },
+                {
+                    name: "Nenúfares",
+                    year: 1899
+                },
+                {
+                    name: "El puente japonés",
+                    year: 1920
+                }
             ];
 
 
@@ -93,8 +103,8 @@
                     <p><i>${painting.year}<i></p>
                 `;
 
-                description.innerHTML = 
-                `<p>${painting.description}</p>`;
+                description.innerHTML =
+                    `<p>${painting.description}</p>`;
                 gallery.appendChild(div, description);
             });
         });
