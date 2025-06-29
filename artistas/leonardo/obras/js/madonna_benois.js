@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const content = document.getElementById("content");
 
+
+
+    const data = [
+        {
+            text: "&nbsp;"
+        },
+    ];
+
     const info = [
         {
             text: "Pintada alrededor de 1478-1480."
@@ -30,6 +38,20 @@ document.addEventListener("DOMContentLoaded", function () {
             text: "La mirada de la Virgen hacia el Niño transmite amor y devoción."
         }
     ];
+    const image = [
+        {
+            image: ""
+        },
+        {
+            image: ""
+        },
+
+
+
+
+
+    ];
+
     data.forEach((item, index) => {
         // Agregar párrafo de texto
         const paragraph = document.createElement("p");
