@@ -1,148 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Juan Bautista</title>
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-     @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
 
-html {
-box-sizing: border-box;
-font-size: 62.5%;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #000000;
+            color: #ffffff;
+            text-align: justify;
+            justify-content: justify;
+        }
 
-body {
-    font-family: 'Lora', serif;
-    font-size: 1.6rem;
-    line-height: 2;
-}
+        h1 {
+            text-align: center;
+        }
 
-img {
-    max-width: 100%;
-}
+        header.hero {
+            display: flex;
+            height: 100vh;
+        }
 
-h1 {
-    font-size: 4rem;
-}
+        .hero-text {
+            flex: 1;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
 
-/** CODIGO AQUI **/
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
 
-h2 {
-    font-size: 3.2rem;
-}
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
 
-p {
-    font-size: 2rem;
-}
+        .hero-text a {
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #fff;
+            transition: 0.3s;
+        }
 
-.contenedor {
-    max-width: 1200px;
-    width: 95%;
-    margin: 0 auto;
-}
+        .hero-text a:hover {
+            background: #ffffff;
+            color: #000000;
+        }
 
-.entrada-blog a {
-    display: inline-block;
-    background-color: #2196F3;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+        .hero-img {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
 
-/** CODIGO AQUI **/
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
 
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin: 0 0;
-}
-h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 0 0;
-}
+        .hero-img img.active {
+            opacity: 1;
+        }
 
-@media (min-width: 768px) {
-    h1 {
-        font-size: 6rem;
-        text-align: left;
-    }
-}
-@media (min-width: 768px) {
-    h2 {
-        font-size: 5rem;
-        text-align: left;
-    }
-}
-.curio {
-    background-color: antiquewhite;
-    font-size: 0.8rem;
-}
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img {
+                order: -1;
+                height: 40vh;
+            }
+
+            .hero-img img {
+                position: relative;
+                height: 100%;
+            }
+
+            .hero-text {
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                text-align: justify;
+
+            }
+
+            .text-full {
+                grid-column: span 2;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                overflow: hidden;
+                color: black;
+            }
+        }
     </style>
 </head>
-<header style="background-color: black; color: white;">
-    <h1>San Juan Bautista <h2>(1508 - 1516)</h2></h1>
-</header>
+
 <body>
-    <div class="contenedor">
-        <article class="entrada-blog">
-            <p class="text-full">
-                Es uno de los últimos cuadros del pintor datado entre 1508 y 1516 época en que el <strong>Alto Renacimiento</strong> estaba metamorfoseándose en el Manierismo. 
-                Está pintado al <strong>óleo</strong> sobre una tabla que mide 69x57. <br>Se conserva en el Museo del Louvre.
-            </p>
-             <img style="margin-left: 30px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leonardo_da_Vinci_-_Saint_John_the_Baptist_C2RMF_retouched.jpg/300px-Leonardo_da_Vinci_-_Saint_John_the_Baptist_C2RMF_retouched.jpg" >
+    <header class="hero">
+        <div class="hero-text">
+            <h1>San Juan Bautista</h1>
+            <h2>Leonardo Da Vinci</h2>
+            <h2><i>1508-1516</i></h2>
             <p>
-                Es una de sus obras más enigmáticas y sutiles, el cuadro muestra a un joven de sexualidad ambigua que emerge suavemente de la oscuridad gracias 
-                a la técnica del <strong>sfumato</strong>. <br>Con una tenue pero precisa luz ámbar, el rostro y el cuerpo del santo son revelados gradualmente.
+                Es uno de los últimos cuadros del pintor datado entre 1508 y 1516 época en que el <strong>Alto
+                Renacimiento</strong> estaba metamorfoseándose en el Manierismo.
+                Está pintado al <strong>óleo</strong> sobre una tabla que mide 69x57. <br>Se conserva en el Museo del
+                Louvre.
             </p>
-       
-        </article>
-    </div>
-
-    <div class="curio">
-        <article class="entrada-blog contenedor">
-            <h2 style="text-decoration: underline;">Curiosidades</h2>
-            <p>
-                El gesto de señalar al cielo sugiere la importancia de la <strong>salvación a través del bautismo</strong> que san Juan representa. 
-                La obra es a menudo repetida posteriormente, especialmente aquellos de las escuelas del <strong>renacimiento tardío y el manierismo</strong>.
-                La inclusión de un gesto similar al de Juan incrementaría la importancia de una obra con un sentido religioso.
-            </p>
-
-            <p>
-                Algunos han indicado, que la apariencia de san Juan es <strong>andrógina o hermafrodita</strong>, una teoría apoyada por un esbozo 
-                de Leonardo conocido como <i>"El ángel encarnado"</i> y <i>"Salvator Mundi"</i>.
-            </p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Leonardo_da_Vinci%2C_Salvator_Mundi%2C_c.1500%2C_oil_on_walnut%2C_45.4_%C3%97_65.6_cm.jpg/1200px-Leonardo_da_Vinci%2C_Salvator_Mundi%2C_c.1500%2C_oil_on_walnut%2C_45.4_%C3%97_65.6_cm.jpg">
             
             <p>
-
+                Es una de sus obras más enigmáticas y sutiles, el cuadro muestra a un joven de sexualidad ambigua que
+                emerge suavemente de la oscuridad gracias
+                a la técnica del <strong>sfumato</strong>. <br>Con una tenue pero precisa luz ámbar, el rostro y el
+                cuerpo del santo son revelados gradualmente.
             </p>
             <p>
-
+                El gesto de señalar al cielo sugiere la importancia de la <strong>salvación a través del
+                    bautismo</strong> que san Juan representa.
+                La obra es a menudo repetida posteriormente, especialmente aquellos de las escuelas del
+                <strong>renacimiento tardío y el manierismo</strong>.
+                La inclusión de un gesto similar al de Juan incrementaría la importancia de una obra con un sentido
+                religioso.
             </p>
-        </article>
-    </div>
-
-    </div>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-        <div class="text-full" style="background-color: #000000; color: white;" >
-          <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Atrás</p>
+            <p>
+                Algunos han indicado, que la apariencia de san Juan es <strong>andrógina o hermafrodita</strong>, una
+                teoría apoyada por un esbozo
+                de Leonardo conocido como <i>"El ángel encarnado"</i> y <i>"Salvator Mundi"</i>.
+            </p>
         </div>
-      </a>
-      <div>
-        <br>
-      </div>
+        <div class="hero-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leonardo_da_Vinci_-_Saint_John_the_Baptist_C2RMF_retouched.jpg/960px-Leonardo_da_Vinci_-_Saint_John_the_Baptist_C2RMF_retouched.jpg"
+                alt="San Juan Bautista" class="active">
+        </div>
+    </header>
+
+
+
+
+    <script>
+        const images = document.querySelectorAll('.hero-img img');
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 5000);
+    </script>
 </body>
+
 </html>
