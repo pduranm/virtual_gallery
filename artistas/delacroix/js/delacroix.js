@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             image: "https://blogger.googleusercontent.com/img/a/AVvXsEhSwPwu2O7sZl9fokQkN5dFSMeUSLLe09Frlw6xZ8BT8FwzSHm-RmEMbNdNSEzuANtxU6a9ZCmksFSpH45CQUzt8v1PGsvjsBkpjhJkxoR19X-IL2o4fMugagijIBlnwoDbDjVHgOXFw8iTWvealeaYdoN2gWdhogtZ0dBTUCSwSs2s7hYlfOGKwkw2jLc", 
             title: "La libertad guiando al pueblo", 
             year: "1830",
-            redirect: "obras/libertad_delacroix.html"
+            redirect: "obras/libertad_1830.html"
         },
         {
             text: "Delacroix nació en el seno de una familia de artistas, siendo hijo del político <strong>Charles Delacroix y Victoire Oeben</strong>, perteneciente a una familia de ebanistas y dibujantes. Después de la muerte de su padre en 1806, se trasladó con su familia a <strong>París</strong>, donde comenzó sus estudios clásicos en el Liceo Imperial.",
