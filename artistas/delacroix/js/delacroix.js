@@ -12,11 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             text: "Delacroix nació en el seno de una familia de artistas, siendo hijo del político <strong>Charles Delacroix y Victoire Oeben</strong>, perteneciente a una familia de ebanistas y dibujantes. Después de la muerte de su padre en 1806, se trasladó con su familia a <strong>París</strong>, donde comenzó sus estudios clásicos en el Liceo Imperial.",
 
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG/492px-Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG", title: "Joven en el cementerio", year: "1824"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG/492px-Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG", 
+            title: "Joven en el cementerio", 
+            year: "1824",
+            redirect: "obras/joven_cementerio.html"
         },
         {
             text: "En 1815, siguiendo la recomendación de su tío, ingresó al taller del pintor neoclásico <strong>Pierre Narcisse Guérin</strong>, donde tuvo como maestros a <strong>Théodore Géricault y al Barón Gros</strong>",
-
             image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/WomenofAlgiers.JPG/1200px-WomenofAlgiers.JPG", 
             title: "Mujer en Argel", 
             year: "1834"
@@ -24,12 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             text: "Durante este tiempo, Delacroix desarrolló un interés por el estudio de grandes maestros como <strong>Rubens</strong>, <strong>Velázquez</strong> y <strong>Rembrandt</strong>, así como por la <strong>litografía y la pintura de paisajes</strong>.",
 
-            image: "https://uploads5.wikiart.org/images/eugene-delacroix/bouquet-of-flowers-1843(1).jpg", title: "Bouquet de flores", year: "1843"
+            image: "https://uploads5.wikiart.org/images/eugene-delacroix/bouquet-of-flowers-1843(1).jpg", 
+            title: "Bouquet de flores", 
+            year: "1843"
         },
         {
             text: "En <strong>1822</strong>, Delacroix expuso por primera vez su obra <i>La barca de Dante</i> , seguida dos años más tarde por <i>La matanza de Quíos</i> , obras que reflejaban su ambivalencia entre el <strong>romanticismo y el clasicismo</strong>.",
 
-            image: "https://www.almendron.com/blog/wp-content/images/2020/12/retrospectiva-eugene-delacroix-1798-1863-300x458.jpg", title: "Ruinas de Missolonghi", year: "1826"
+            image: "https://www.almendron.com/blog/wp-content/images/2020/12/retrospectiva-eugene-delacroix-1798-1863-300x458.jpg", 
+            title: "Ruinas de Missolonghi", 
+            year: "1826"
         },
         {
             text: "En <strong>1825</strong>, viajó a Inglaterra para estudiar a los pintores ingleses, como <strong>John Constable</strong>, lo que influyó en su técnica y uso del color.",
@@ -45,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             text: "En <strong>1832</strong>, realizó un viaje de seis meses a Marruecos y Argelia, donde quedó fascinado por la luz, el color y la cultura del norte de África. Este viaje influyó profundamente en su obra posterior, reflejada en cuadros como <i>Mujeres de Argel en sus habitaciones</i>.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Eug%C3%A8ne_Ferdinand_Victor_Delacroix_021.jpg/1024px-Eug%C3%A8ne_Ferdinand_Victor_Delacroix_021.jpg", title:"Giaour y Hassan", year:"1826"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Eug%C3%A8ne_Ferdinand_Victor_Delacroix_021.jpg/1024px-Eug%C3%A8ne_Ferdinand_Victor_Delacroix_021.jpg", 
+            title:"Giaour y Hassan", 
+            year:"1826"
         }, 
         {
             text: "Su obra más conocida, <i>La Libertad guiando al pueblo</i>, le valió la Cruz de la Legión de Honor y se convirtió en un símbolo de la <strong>Revolución de 1830 en Francia</strong>.",
@@ -55,11 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 
         {
             text: "A su regreso, Delacroix recibió encargos oficiales para decorar diversos edificios públicos, como el <strong>Salón del rey del palacio de Borbón</strong> y el <strong>Palacio de Luxemburgo</strong>.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Hamlet_und_Horatio_auf_dem_Friedhof_%28Eug%C3%A8ne_Ferdinand_Victor_Delacroix%29.jpg/960px-Hamlet_und_Horatio_auf_dem_Friedhof_%28Eug%C3%A8ne_Ferdinand_Victor_Delacroix%29.jpg", title:"Hamlet y Horacio en el cementerio", year:"1839"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Hamlet_und_Horatio_auf_dem_Friedhof_%28Eug%C3%A8ne_Ferdinand_Victor_Delacroix%29.jpg/960px-Hamlet_und_Horatio_auf_dem_Friedhof_%28Eug%C3%A8ne_Ferdinand_Victor_Delacroix%29.jpg", 
+            title:"Hamlet y Horacio en el cementerio",
+            year:"1839"
         },
         {
             text: "En sus últimos años, Delacroix continuó pintando a pesar de su deterioro de salud, completando obras como <i>El cobro del impuesto árabe</i> y <i>Tobías y el Ángel</i> . Falleció el 13 de agosto de 1863, dejando un legado artístico revolucionario que influyó en generaciones posteriores de artistas.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/La_Barque_de_Dante_%28Delacroix_3820%29.jpg/1280px-La_Barque_de_Dante_%28Delacroix_3820%29.jpg", title:"La barca de Dante", year:"1822"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/La_Barque_de_Dante_%28Delacroix_3820%29.jpg/1280px-La_Barque_de_Dante_%28Delacroix_3820%29.jpg", 
+            title:"La barca de Dante", 
+            year:"1822"
         },
     ];
 
