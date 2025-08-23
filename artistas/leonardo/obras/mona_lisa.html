@@ -1,144 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <title>La Mona Lisa</title>
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mona LIsa</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
-        html {
-        box-sizing: border-box;
-        font-size: 62.5%;
-        }
 
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
         }
 
         body {
-            font-family: 'Lora', sans-serif;
-            font-size: 1.6rem;
-            line-height: 2;
-        }
-
-        img {
-            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #000000;
+            color: #ffffff;
+            text-align: justify;
+            justify-content: justify;
         }
 
         h1 {
-            font-size: 4rem;
-        }
-
-        /** CODIGO AQUI **/
-
-        h2 {
-            font-size: 3.2rem;
-        }
-
-        p {
-            font-size: 2rem;
-        }
-
-        .contenedor {
-            max-width: 1200px;
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        .entrada-blog a {
-            display: inline-block;
-            background-color: #2196F3;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /** CODIGO AQUI **/
-
-        h1 {
             text-align: center;
-            font-size: 3rem;
-            margin: 0 0;
         }
-        h2 {
-            text-align: center;
+
+        header.hero {
+            display: flex;
+            height: 100vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .hero-text h1 {
             font-size: 2.5rem;
-            margin: 0 0;
+            margin-bottom: 15px;
         }
 
-        @media (min-width: 768px) {
-            h1 {
-                font-size: 6rem;
-                text-align: left;
-            }
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
         }
-        @media (min-width: 768px) {
-            h2 {
-                font-size: 5rem;
-                text-align: left;
-            }
+
+        .hero-text a {
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #fff;
+            transition: 0.3s;
         }
-        .curio {
-            background-color: antiquewhite;
+
+        .hero-text a:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .hero-img {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-img img.active {
+            opacity: 1;
+        }
+
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img {
+                order: -1;
+                height: 40vh;
+            }
+
+            .hero-img img {
+                position: relative;
+                height: 100%;
+            }
+
+            .hero-text {
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                text-align: justify;
+
+            }
+
+            .text-full {
+                grid-column: span 2;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                overflow: hidden;
+                color: black;
+            }
         }
     </style>
 </head>
-<header style="background-color: black; color: white;">
-    <h1>Mona Lisa <h2>(1503 - 1506)</h2></h1>
-</header>
+
 <body>
-
-    <div class="contenedor">
-        
-            
-        <article class="entrada-blog">
-            <img src="  https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/1200px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg">
-
-            <p> La Mona Lisa, quien se cree que es <strong>Lisa Gherardini</strong>, esposa de un comerciante florentino, es una obra que
-                fue creada por Leonardo da Vinci entre 1503 y 1506, aunque algunos estudiosos creen que 
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Mona Lisa</h1>
+            <h2>Leonardo Da Vinci</h2>
+            <h2><i>1503-1506</i></h2>
+            <i>&nbsp;</i>
+            <p>
+                La Mona Lisa, quien se cree que es <strong>Lisa Gherardini</strong>, esposa de un comerciante
+                florentino, es una obra que
+                fue creada por Leonardo da Vinci entre 1503 y 1506, aunque algunos estudiosos creen que
                 Leonardo pudo haber trabajado en ella hasta 1517.
             </p>
-            <p> El cuadro muestra a una mujer sentada con las manos cruzadas sobre su regazo, vestida con ropajes sencillos pero elegantes. 
-                Su hierética sonrisa, parece cambiar de expresión según el ángulo desde el que se la observe, es una de las características 
-                más intrigantes de la obra. 
-            </p>    
-            <p>El fondo del retrato presenta un paisaje natural difuso, con montañas, ríos y un camino serpenteante que se funde en la bruma, 
-                lo que contribuye a la atmósfera misteriosa del cuadro. El uso del sfumato, una técnica que Leonardo perfeccionó para difuminar los 
-                contornos y crear una transición suave entre las luces y las sombras, otorga a la "Mona Lisa" una calidad etérea y tridimensional.
-            </p>    
-        </article>
-    </div>
+            <p>
+                El cuadro muestra a una mujer sentada con las manos cruzadas sobre su regazo, vestida con ropajes
+                sencillos pero elegantes.
+                Su hierética sonrisa, parece cambiar de expresión según el ángulo desde el que se la observe, es una de
+                las características
+                más intrigantes de la obra.
+            </p>
+            <h3></h3>
+            <p>
+                El fondo del retrato presenta un paisaje natural difuso, con montañas, ríos y un camino serpenteante que
+                se funde en la bruma,
+                lo que contribuye a la atmósfera misteriosa del cuadro. El uso del sfumato, una técnica que Leonardo
+                perfeccionó para difuminar los
+                contornos y crear una transición suave entre las luces y las sombras, otorga a la "Mona Lisa" una
+                calidad etérea y tridimensional.
+            </p>
 
-    <div class="curio">
-        <article class="entrada-blog contenedor">
-            <h2 style="text-decoration: underline;">Curiosidades</h2>
             <p>Algunas curiosidades: <br>
-                <strong>No tiene cejas ni pestañas:</strong> Uno de los detalles más intrigantes de este cuadro es que no tiene cejas ni pestañas visibles.
-                Algunos expertos creen que esto podría deberse al deterioro del tiempo, que Leonardo las quitase deliberadamente o quizá simplemente 
+                <strong>No tiene cejas ni pestañas:</strong> Uno de los detalles más intrigantes de este cuadro es que
+                no tiene cejas ni pestañas visibles.
+                Algunos expertos creen que esto podría deberse al deterioro del tiempo, que Leonardo las quitase
+                deliberadamente o quizá simplemente
                 que se hayan borrado tras las limpiezas a las que ha sometido.
             </p>
             <p>
-                <strong>Es pequeña en tamaño:</strong> Aunque es una de las pinturas más famosas del mundo, la Mona Lisa es sorprendentemente pequeña. 
-                Sus dimensiones son de aproximadamente 77x53, sorprende a quienes 
+                <strong>Es pequeña en tamaño:</strong> Aunque es una de las pinturas más famosas del mundo, la Mona Lisa
+                es sorprendentemente pequeña.
+                Sus dimensiones son de aproximadamente 77x53, sorprende a quienes
                 la ven en persona.
             </p>
             <p>
-                <strong>Ha sido robada:</strong> En 1911, la Mona Lisa fue robada del <strong>Louvre</strong> por un empleado, llamado <strong>Vincenzo Peruggia</strong>. 
-                Éste la mantuvo oculta durante dos años en su apartamento en París antes de intentar venderla a un comerciante de arte en <strong>Italia</strong>. 
-                Este acto hizo que la pintura se volviera aún más famosa cuando fue finalmente recuperada en <strong>1913</strong>.
+                <strong>Ha sido robada:</strong> En 1911, la Mona Lisa fue robada del <strong>Louvre</strong> por un
+                empleado, llamado <strong>Vincenzo Peruggia</strong>.
+                Éste la mantuvo oculta durante dos años en su apartamento en París antes de intentar venderla a un
+                comerciante de arte en <strong>Italia</strong>.
+                Este acto hizo que la pintura se volviera aún más famosa cuando fue finalmente recuperada en
+                <strong>1913</strong>.
             </p>
-        </article>
-    </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/1200px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg"
+                alt="Mona Lisa" class="active">
+        </div>
+    </header>
 
-    </div>
 
+
+
+    <script>
+        const images = document.querySelectorAll('.hero-img img');
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 5000);
+    </script>
 </body>
 
 </html>
