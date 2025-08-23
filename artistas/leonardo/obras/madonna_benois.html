@@ -4,25 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo Da Vinci </title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+    <title>Artista</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #000000;
+            color: #ffffff;
+            text-align: justify;
+            justify-content: justify;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        header.hero {
+            display: flex;
+            height: 100vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text a {
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #fff;
+            transition: 0.3s;
+        }
+
+        .hero-text a:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .hero-img {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            margin-top: 10px;
+            
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-img img.active {
+            opacity: 1;
+        }
+
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img {
+                order: -1;
+                margin-top: 10px;
+                height: 40vh;
+            }
+
+            .hero-img img {
+                position: relative;
+                height: 100%;
+            }
+
+            .hero-text {
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                text-align: justify;
+
+            }
+
+            .text-full {
+                grid-column: span 2;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                overflow: hidden;
+                color: black;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h2 style="margin-bottom: -20px;">Madonna Benois</h2>
-        <h3>(1480)</h3>
-    </header>
-    <img src="https://cdn.gallerix.asia/sr/V/369985082/311027006.jpg" alt="">
-    <main class="grid-container" id="content"></main>
-    
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-        <div class="text-full" style="background-color: #000000; color: white; margin-bottom: 12px; margin-top: 40px;">
-            <p style="text-align: center; padding: 5px 100px;">Inicio</p>
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Madonna Benois</h1>
+            <h2>Leonardo Da Vinci - <i>1480</i></h2><br>
+            <p>
+                La Madonna Benois, pintada por Leonardo Da Vinci alrededor de 1478-1480, es una obra <b>fundamental</b>
+                en la
+                carrera del artista y un hito en la historia de la pintura del <b>Renacimiento</b>.
+            </p>
+            <h3>Innovación en la composición</h3>
+            <p>
+                La obra rompe con la tradición de las Madonnas góticas y bizantinas, que solían representarlas de forma
+                rígida y ceremonial. Aquí, Leonardo presenta una escena de intimidad y ternura. La Virgen y el Niño no
+                están en un trono, sino en un ambiente doméstico, probablemente una habitación, lo que acerca la
+                divinidad a la esfera humana. Esta humanización de los personajes sagrados será una característica
+                distintiva del Alto Renacimiento.
+            </p>
+            <h3>Interacción entre elementos</h3>
+            <p>
+                La interacción entre María y el Niño Jesús es el corazón de la pintura. El Niño sostiene una flor, que a
+                menudo se ha interpretado como una flor de la cruz o una promesa de su futuro sacrificio. La Virgen
+                sonríe con dulzura, aunque su mirada también transmite una melancolía velada, como si presintiera el
+                destino de su hijo. Esta ambigüedad emocional es típica de Leonardo y añade una profunda carga
+                psicológica a la obra.
+            </p>
+            <h3>Técnica del claroscuro y el sfumato</h3>
+            <p>
+                Aunque no tan desarrollado como en sus obras posteriores, en la Madonna Benois se pueden ver los
+                primeros experimentos de Leonardo con el claroscuro (el uso de la luz y la sombra para crear volumen) y
+                el sfumato (la técnica de difuminar los contornos para suavizar las transiciones entre colores y tonos).
+                Los rostros de María y el Niño están delicadamente modelados, y la luz que entra por la ventana ilumina
+                la escena, creando una atmósfera de suave intimidad. El fondo oscuro, con una pequeña ventana que deja
+                ver un paisaje difuminado, concentra toda la atención en los personajes principales.
+            </p>
+            <h3>Simbolismo</h3>
+            <p>
+                La flor que el Niño sostiene es un elemento simbólico central. Se cree que podría ser una crucífera, una
+                planta con forma de cruz, que simboliza la Pasión y la Resurrección de Cristo. La sonrisa de la Virgen,
+                que se aleja de la seriedad tradicional, podría ser un reflejo de su aceptación de la voluntad divina.
+            </p>
+            <h3>Legado</h3>
+            <p>
+                Esta representación de la Madonna tuvo una gran influencia en artistas posteriores. Su enfoque en la
+                <b>humanización</b>, la interacción psicológica entre los personajes y el uso innovador de la luz y la sombra
+                sentaron las bases para el nuevo estilo pictórico del Renacimiento. Es una prueba del genio temprano de
+                Leonardo, que ya en su juventud estaba experimentando con las ideas que lo convertirían en uno de los
+                artistas más importantes de la historia.
+            </p>
         </div>
-    </a>
+        <div class="hero-img">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/311027006.jpg" alt="Madonna Benois" class="active">
+        </div>
+    </header>
 
-    <script src="/artistas/leonardo/obras/js/madonna_benois.js"></script>
+
+
+
+    <script>
+        const images = document.querySelectorAll('.hero-img img');
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 5000);
+    </script>
 </body>
 
 </html>
