@@ -133,3 +133,23 @@ a {
     text-decoration: none;
     color: white; /* Color del texto */
 }
+
+.realismo {
+    background-color: #e8ee6f;
+    color: black;
+    border-color: black;
+}
+.impresionismo {
+    background-color:#3d9aa8;;
+    color: black;
+    border-color: black;
+}
+.romanticismo {
+    background-color: #980000;
+    color: white;
+    
+}
+.neoclasicismo {
+    background-color: #265320;
+    color: white;
+}
