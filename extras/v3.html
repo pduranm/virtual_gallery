@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería ArteNova</title>
+  <style>
+    /* styles.css */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; color: #222; line-height: 1.6; background: #fff; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* Topbar */
+.topbar { background: #000; color: #fff; padding: 0.5rem; }
+.topbar__msg { font-size: 0.9rem; }
+.topbar__close { background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; float: right; }
+
+/* Header */
+.site-header { border-bottom: 1px solid #ddd; background: #fafafa; }
+.site-header__inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+.branding__logo { font-size: 1.5rem; font-weight: bold; color: #333; }
+.branding__tagline { font-size: 0.9rem; color: #777; margin-left: 0.5rem; }
+
+/* Search */
+.site-search { display: flex; gap: 0.5rem; }
+.site-search input { padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px; }
+.site-search button { border: none; background: #000; color: #fff; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; }
+
+/* Nav */
+.site-nav { background: #fff; border-top: 1px solid #ddd; }
+.site-nav__list { display: flex; flex-wrap: wrap; list-style: none; gap: 1rem; padding: 0.5rem 0; }
+.site-nav__list a { font-weight: 500; color: #444; }
+
+/* Hero */
+.hero { margin: 2rem 0; }
+.hero h2 { margin: 0.5rem 0; font-size: 1.5rem; }
+
+/* Cards */
+.cards__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; list-style: none; }
+.card { border: 1px solid #ddd; border-radius: 6px; background: #fff; transition: transform 0.2s; }
+.card:hover { transform: translateY(-5px); }
+.card h3 { margin: 0.5rem; font-size: 1.1rem; }
+.card p { margin: 0 0.5rem 0.5rem; color: #666; }
+
+/* Newsletter */
+.newsletter { margin: 3rem 0; padding: 2rem; background: #f5f5f5; text-align: center; border-radius: 6px; }
+.newsletter__form { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+.newsletter__form input { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+.newsletter__form button { background: #000; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+
+/* Footer */
+.site-footer { background: #111; color: #eee; padding: 2rem 0; margin-top: 3rem; }
+.site-footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.social { list-style: none; display: flex; gap: 1rem; }
+.social a { color: #eee; }
+
+  </style>
+</head>
+<body>
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="container">
+      <span class="topbar__msg">Bienvenido a ArteNova — Tu ventana al arte</span>
+      <button class="topbar__close" type="button" aria-label="Cerrar">×</button>
+    </div>
+  </div>
+
+  <!-- Encabezado -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <div class="branding">
+        <a href="/" class="branding__logo">ArteNova</a>
+        <span class="branding__tagline">Inspiración en cada obra</span>
+      </div>
+
+      <form class="site-search" role="search">
+        <label for="q" class="visually-hidden">Buscar</label>
+        <input type="search" id="q" placeholder="Buscar obras, artistas..." />
+        <button type="submit">🔍</button>
+      </form>
+
+      <button class="menu-toggle" aria-expanded="false">☰</button>
+    </div>
+
+    <nav id="site-nav" class="site-nav">
+      <ul class="site-nav__list container">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Obras</a></li>
+        <li><a href="#">Artistas</a></li>
+        <li><a href="#">Movimientos</a></li>
+        <li><a href="#">Museos</a></li>
+        <li><a href="#">Artículos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="site-content container">
+    <!-- Destacado -->
+    <article class="hero">
+      <a href="#">
+        <figure>
+          <img src="img/destacada.jpg" alt="Obra destacada" />
+        </figure>
+        <header>
+          <h2>La Obra del Día</h2>
+          <p>Autor Desconocido — 2025</p>
+        </header>
+      </a>
+    </article>
+
+    <!-- Grid de obras -->
+    <section class="cards">
+      <ul class="cards__grid">
+        <li class="card">
+          <a href="#">
+            <img src="img/obra1.jpg" alt="Obra 1" />
+            <h3>El Paisaje Azul</h3>
+            <p>Lucía Torres — 2021</p>
+          </a>
+        </li>
+        <li class="card">
+          <a href="#">
+            <img src="img/obra2.jpg" alt="Obra 2" />
+            <h3>Sombras en la Ciudad</h3>
+            <p>Carlos Méndez — 2019</p>
+          </a>
+        </li>
+        <li class="card">
+          <a href="#">
+            <img src="img/obra3.jpg" alt="Obra 3" />
+            <h3>Reflejos del Alma</h3>
+            <p>Ana Rodríguez — 2023</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <h2>Suscríbete a nuestro boletín</h2>
+      <form class="newsletter__form">
+        <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+        <button type="submit">Suscribirme</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© 2025 ArteNova — Todos los derechos reservados</p>
+      <ul class="social">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // scripts.js
+
+// Toggle menú
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNav = document.querySelector('#site-nav');
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    siteNav.classList.toggle('is-open');
+  });
+}
+
+// Cerrar barra superior
+const topbarClose = document.querySelector('.topbar__close');
+const topbar = document.querySelector('.topbar');
+if (topbarClose) {
+  topbarClose.addEventListener('click', () => {
+    topbar.style.display = 'none';
+  });
+}
+
+// Newsletter simple
+const newsletterForm = document.querySelector('.newsletter__form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = newsletterForm.querySelector('input[name="email"]').value;
+    if (!email.includes('@')) {
+      alert('Introduce un correo válido');
+      return;
+    }
+    alert('¡Gracias por suscribirte!');
+    newsletterForm.reset();
+  });
+}
+
+  </script>
+</body>
+</html>
