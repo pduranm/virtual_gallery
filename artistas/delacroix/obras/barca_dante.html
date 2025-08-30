@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artista</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #000000;
+            color: #ffffff;
+            text-align: justify;
+            justify-content: justify;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        header.hero {
+            display: flex;
+            height: 100vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* .hero-text a {
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #fff;
+            transition: 0.3s;
+        }
+
+        .hero-text a:hover {
+            background: #ffffff;
+            color: #000000;
+        } */
+
+        .hero-img {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-img img.active {
+            opacity: 1;
+        }
+
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img {
+                order: -1;
+                height: 40vh;
+            }
+
+            .hero-img img {
+                position: relative;
+                height: 100%;
+            }
+
+            .hero-text {
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                text-align: justify;
+
+            }
+
+            .text-full {
+                grid-column: span 2;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                overflow: hidden;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="hero-text">
+            <h1>La barca de Dante</h1>
+            <p>
+                La obra La barca de Dante, pintada por Eugène Delacroix en 1822, constituye una pieza fundacional en la
+                historia del
+                arte europeo, marcando el inicio formal del <b>Romanticismo</b> en la pintura francesa.
+            </p>
+            <p>
+                Creada por un artista de tan solo 24
+                años que comenzaba a forjar su <b>reputación</b>, la tela no es simplemente una ilustración de un pasaje
+                literario, sino una
+                audaz declaración artística que redefinió el canon pictórico de su tiempo.
+            </p>
+            <h3>Descripción</h3>
+            <p>
+                La obra se presenta como un manifiesto de la nueva sensibilidad romántica, fusionando la disciplina
+                estructural del academicismo con una expresividad emocional y un dinamismo visual que marcarían el
+                camino para las
+                generaciones futuras de artistas.
+            </p>
+            <p>
+                La pintura de Delacroix se inspira
+                directamente en el Canto VIII del Infierno de Dante Alighieri, un pasaje que narra el viaje de Dante y
+                su guía, el poeta
+                Virgilio, a través del quinto círculo infernal.
+            </p>
+            <h3>Contexto Histórico</h3>
+            <p>
+                Delacroix era un artista ambicioso que buscaba consolidar su
+                posición en el panorama artístico francés.
+
+                En aquel entonces, el camino hacia el reconocimiento hacía pasar por las exposiciones anuales que
+                dictaban el gusto y consagraban a los
+                talentos emergentes y Delacroix, consciente de esta realidad, concibió la obra como su gran oportunidad
+                para causar
+                impacto y forjar un prestigio duradero.
+            </p>
+            <p>
+                Su presentación en el <b>Salón de París de 1822</b>
+                no solo catapultó a Delacroix a la fama, sino que también estableció un nuevo lenguaje visual
+                caracterizado por una
+                intensidad emocional sin precedentes y una notable fusión de la estructura clásica con el drama y el
+                movimiento.
+            </p>
+            <h3>Influencias</h3>
+            <p>
+                A diferencia de muchos de sus contemporáneos, Delacroix se sentía más atraído por
+                la compañía de poetas y músicos como Charles Baudelaire, Frédéric Chopin, Victor Hugo y Alexandre Dumas,
+                que por la de
+                otros artistas plásticos.
+            </p>
+            <p>
+                Esta afinidad con las artes literarias y la música explica su profunda conexión con fuentes
+                narrativas que evocaban el drama humano, una tendencia que se manifestaría a lo largo de toda su
+                carrera.
+
+                La <i>Divina
+                    Comedia</i> de <b>Dante Alighieri</b> no fue una elección fortuita; era la fuente literaria
+                perfecta para su
+                codiciado debut
+                pictórico.
+            </p>
+            <p>Si quieres saber más sobre esta obra pincha <a href="/artistas/delacroix/obras/barca_dante_full.html">aquí</a></p>
+        </div>
+        <div class="hero-img">
+            <img src="https://kuadros.com/cdn/shop/products/103delac_d0edca1f-9808-46b8-ab14-7b135b00c42d.jpg?v=1686988615"
+                alt="" class="active">
+        </div>
+    </header>
+
+
+
+
+    <script>
+        const images = document.querySelectorAll('.hero-img img');
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 5000);
+    </script>
+</body>
+
+</html>
