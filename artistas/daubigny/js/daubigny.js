@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Agregar imagen con título y año
         const divImage = document.createElement("div");
-        divImage.className = "image-full";
+        divImage.className = "image-full realismo";
         divImage.innerHTML = `
-            <a href="${item.redirect}">
+            <a href="${item.redirect} style="color: black;">
                 <img width="350" height="auto" src="${item.image}">
                 <p style="text-align: center;">${item.title} <br><i>${item.year}</i></p>
             </a>
