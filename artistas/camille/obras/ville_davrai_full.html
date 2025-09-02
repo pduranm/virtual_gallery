@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camille Corot</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #000000;
+            color: #ffffff;
+            text-align: justify;
+            justify-content: justify;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        header.hero {
+            display: flex;
+            height: 100vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-img {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-img img.active {
+            opacity: 1;
+        }
+
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img {
+                order: -1;
+                height: 40vh;
+            }
+
+            .hero-img img {
+                position: relative;
+                height: 100%;
+            }
+
+            .hero-text {
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                text-align: justify;
+
+            }
+
+            .text-full {
+                grid-column: span 2;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                overflow: hidden;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Ville d'Avrai</h1>
+            <h2>Camille Corot</h2>
+            <h2><i>1867</i></h2>
+            <h3>Análisis</h3>
+            <p>
+                Un repaso composicional de la obra revela que Corot tomó "ciertas libertades" en su representación del
+                lugar,
+                especialmente con el árbol a la izquierda del centro. La pintura, en lugar de ser una descripción
+                realista, es una
+                representación de la propia visión de la naturaleza del artista. Un detalle revelador es que Corot había
+                incluido
+                inicialmente un niño con los brazos extendidos junto a una mujer campesina, pero eliminó este elemento
+                antes de la
+                exposición del Salón, aparentemente por considerarlo demasiado anecdótico. Esta decisión es crucial, ya
+                que muestra
+                el
+                interés de Corot en eliminar lo narrativo para centrarse en la atmósfera y la emoción del paisaje en sí
+                mismo. El
+                patrón
+                superficial de los árboles en esta pintura fue observado por críticos como un ejemplo de la "entrada de
+                Corot en el
+                reino de la pintura decorativa," un paso más allá de la mera mimesis de la naturaleza.
+            </p>
+
+
+            <h3>El estilo tardío de Corot</h3>
+            <p>
+                En su fase tardía, Corot desarrolló una paleta de colores distintiva, caracterizada por tonos neutros,
+                verdes suaves
+                y
+                ocres dorados. El papel de la luz en estas obras es fundamental. La luz en las representaciones de
+                Ville-d'Avray no
+                es
+                un foco de un estudio científico, como lo sería para los impresionistas, sino una luz poética y
+                subjetiva que
+                envuelve
+                la escena y suaviza los contornos. Este enfoque tiene como objetivo crear un "ambiente somnoliento de la
+                mañana" y
+                una
+                sensación de "disolución agraciada en la naturaleza.
+                La luz "plateada y suave" es un recurso compositivo que unifica la escena y permite al espectador
+                sumergirse en un
+                estado de ánimo de tranquilidad, reflejando una búsqueda espiritual y emocional en lugar de una
+                preocupación
+                puramente
+                técnica. Su tratamiento de la luz y la atmósfera no busca capturar un momento fugaz, sino un estado de
+                ánimo eterno,
+                un
+                sentimiento de paz que Corot encontraba en el familiar paisaje de su hogar.
+            </p>
+
+            <h3>Pincelada y textura</h3>
+            <p>
+                El estilo de Corot en esta etapa de su carrera se aleja del detallismo académico en favor de una
+                pincelada más
+                suelta y
+                menos precisa. Esta técnica no es un signo de descuido, sino el resultado de una búsqueda consciente de
+                "la forma,
+                el
+                todo, el valor de los tonos" sobre la precisión individual de cada elemento.Este desarrollo de la
+                pincelada suelta
+                es una reacción deliberada contra el detallismo academicista de la época. Corot
+                había dominado la técnica hasta el punto de que podía sugerir la realidad en lugar de simplemente
+                copiarla. Su
+                enfoque
+                prioriza la "armonía de los tonos" sobre los colores "estridentes," lo que lo distingue de la explosión
+                de color que
+                más
+                tarde caracterizaría a la generación de pintores impresionistas. Su pincelada permite que la obra
+                "respire y
+                evolucione," sugiriendo un movimiento y una emoción sutiles que contribuyen a la atmósfera general de la
+                pieza.
+            </p>
+
+
+
+            <h3>Contexto histórico y artístico</h3>
+            <p>
+                El trabajo de Corot, y en particular su serie de Ville-d'Avray, lo posiciona como una figura crucial en
+                la
+                transición
+                del arte decimonónico. Su enfoque en el paisaje natural y la práctica de la pintura al aire libre lo
+                vinculan
+                directamente con la Escuela de Barbizon, de la cual fue una figura central y un defensor activo. Su
+                admiración por
+                los
+                paisajistas ingleses, como Turner y Constable, lo liberó de las "formalidades" del Neoclasicismo,
+                sirviendo de
+                inspiración tanto para los artistas de Barbizon como para los futuros impresionistas.
+            </p>
+            <p>
+                Simultáneamente, su experimentación con la luz, la atmósfera y la pincelada suelta representó un
+                "impulso clave"
+                para el
+                desarrollo del movimiento impresionista. Corot no encaja perfectamente en una sola categoría. Su
+                entrenamiento
+                neoclásico le proporcionó una base de composición sólida que se refleja en la estructura de sus
+                paisajes. Al mismo
+                tiempo, su personal visión lírica y su técnica más libre sentaron las bases para los pintores que lo
+                siguieron.
+                Artistas
+                como Morisot, Renoir, Degas, Sisley, Cézanne y Van Gogh admiraron su trabajo, y su influencia en Claude
+                Monet fue
+                particularmente notable, ya que ambos trabajaron en las mismas áreas. Camille Pissarro, otro pilar del
+                Impresionismo,
+                incluso se listó como alumno de Corot en los catálogos del Salón de París, un testimonio de la
+                influencia directa y
+                reconocida del maestro.
+            </p>
+            <p>
+                La obra de Corot demuestra que los movimientos artísticos no son compartimentos estancos, sino un linaje
+                evolutivo
+                de
+                conversaciones fluidas entre generaciones. Su capacidad para conectar la tradición clásica y romántica
+                con las
+                nuevas
+                sensibilidades del Realismo e Impresionismo le otorga un lugar único en la historia del arte.
+            </p>
+
+        </div>
+    </header>
+
+
+
+
+    <script>
+        const images = document.querySelectorAll('.hero-img img');
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 5000);
+    </script>
+</body>
+
+</html>
