@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño con CSS Personalizado y Menú Lateral</title>
+    <!-- Carga de las fuentes Lora y Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================== */
+        /* CSS PROPORCIONADO POR EL USUARIO (Adaptado) */
+        /* ============================================== */
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f6f7;
+            color: #333;
+            /* Eliminamos 'display: flex' en body para no interferir con el menú fijo */
+        }
+
+        header.main-header {
+            background-color: #000000;
+            color: white;
+            width: 100%;
+            padding: 10px 0;
+            display: flex; /* Usamos flex para centrar y manejar el botón del menú */
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0px;
+            font-size: 2.5em;
+        }
+        header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        
+        /* Estilo para el título principal del artículo */
+        .h1_main {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin: 0.2rem 0;
+            border-top: 2px solid #776b5e;
+            border-bottom: 3px solid #ec8c8c;
+            color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        /* Estilo para el bloque de texto principal del artículo */
+        .text-full {
+            background-color: rgb(255, 255, 255);
+            /* Resetear estilos de grid para usarlo como texto normal en el artículo */
+            grid-column: unset; 
+            padding: 0 10px;
+            margin: 1.5em 0;
+            line-height: 1.7;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        .article-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para el sidebar que simulan los estilos de .grid-item */
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Estilo para figuras */
+        .grid-img {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 30px auto;
+            max-width: 90%;
+            text-align: center;
+        }
+        .grid-img img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        .caption-text {
+            font-size: 0.9em;
+            color: #666;
+            padding: 10px 15px;
+        }
+
+        /* ============================================== */
+        /* LAYOUT PRINCIPAL RESPONSIVE (Flexbox) */
+        /* ============================================== */
+        .wrapper {
+            max-width: 1200px;
+            width: 95%;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .article-layout {
+            display: flex;
+            gap: 30px; 
+            margin-top: 20px;
+        }
+
+        .main-content {
+            flex: 3; /* Ocupa 3/4 del espacio en PC */
+            min-width: 0;
+        }
+
+        .sidebar-container {
+            flex: 1; /* Ocupa 1/4 del espacio en PC */
+            min-width: 250px;
+        }
+        
+        /* MEDIA QUERY: Móvil (Apilar en una columna) */
+        @media (max-width: 900px) {
+            .article-layout {
+                flex-direction: column;
+            }
+            .sidebar-container {
+                order: -1; /* Mover el sidebar arriba del contenido en móvil */
+                min-width: 100%;
+            }
+        }
+        
+        /* ============================================== */
+        /* NAVEGACIÓN LATERAL (Off-Canvas - SOLO MÓVIL) */
+        /* ============================================== */
+
+        /* Botón de Menú (Hamburguesa) */
+        .hamburger-button {
+            display: block;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            padding: 0 15px;
+            z-index: 30;
+        }
+        /* Ocultar el botón en PC */
+        @media (min-width: 901px) {
+            .hamburger-button {
+                display: none;
+            }
+        }
+
+        /* Contenedor del Menú Lateral */
+        #off-canvas-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff; 
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            padding: 20px 0;
+        }
+
+        #off-canvas-menu.open {
+            transform: translateX(0);
+        }
+
+        #off-canvas-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #000;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+        }
+        #off-canvas-menu a:hover {
+            background-color: #e8f6f7;
+            color: #000;
+        }
+
+        /* Overlay (Fondo oscuro) */
+        #menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out;
+        }
+
+        #menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- NAVEGACIÓN LATERAL (Off-Canvas) -->
+    <nav id="off-canvas-menu">
+        <div style="padding: 0 20px 20px;">
+            <h3 style="margin-top: 0; color: #333;">Menú Principal</h3>
+            <!-- Botón de Cierre (Solo visible en el menú) -->
+             <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #555;">
+                &times;
+            </button>
+        </div>
+        
+        <a href="#">Actualidad</a>
+        <a href="#">Especiales</a>
+        <a href="#">Directorio</a>
+        <a href="#">Convocatorias</a>
+    </nav>
+    <div id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="main-header">
+        <button class="hamburger-button" onclick="toggleMenu()">☰</button>
+        <div class="header-content">
+            <h1>REVISTA DE ARTE</h1>
+            <h2>Información de exposiciones y artistas</h2>
+        </div>
+        <!-- Placeholder para mantener la alineación en PC si el botón está ausente -->
+        <div class="hamburger-button" style="visibility: hidden;">☰</div> 
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL (SOLO PC) -->
+    <nav class="wrapper" style="text-align: center; padding: 10px 0;">
+        <div class="main-nav" style="display: none; justify-content: center; gap: 25px; border-bottom: 1px solid #ddd;">
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Actualidad</a>
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Especiales</a>
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Directorio</a>
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Convocatorias</a>
+        </div>
+    </nav>
+
+
+    <!-- CONTENIDO DEL ARTÍCULO -->
+    <div class="wrapper">
+        <h1 class="h1_main">Mary Cassatt y las mujeres</h1>
+        
+        <!-- Diseño de Artículo y Sidebar -->
+        <div class="article-layout">
+            
+            <!-- COLUMNA PRINCIPAL DE CONTENIDO -->
+            <main class="main-content" role="main">
+                <article class="article-container">
+                    
+                    <p class="text-full" style="font-style: italic; color: #555;">
+                        <!-- Lead / Bajada -->
+                        A diferencia de algunas de sus contemporáneas, Mary Cassatt gozó de buenas expectativas profesionales, trasladándose a París en 1865 para continuar su formación.
+                    </p>
+
+                    <p class="text-full">
+                        Cassatt fue la única artista norteamericana en participar en varias de las muestras impresionistas. Su retrato de una <i>Mujer con collar de perlas en un palco</i> se presentó en la cuarta exposición del movimiento. Este cuadro fue uno de los pocos que se vendieron y fue adquirido por el coleccionista francés <strong>Alexis Rouart</strong>.
+                    </p>
+                    
+                    <figure class="grid-img">
+                        <img src="https://placehold.co/600x450/333333/FFFFFF?text=IMAGEN+PRINCIPAL+DEL+ARTICULO" alt="Mary Cassatt. Mujer con collar de perlas en un palco. Ejemplo de Figura">
+                        <figcaption class="caption-text">Mary Cassatt. <em>Mujer con collar de perlas en un palco</em>. Ejemplo de Pie de Foto.</figcaption>
+                    </figure>
+
+                    <p class="text-full">
+                        El contacto con los pintores impresionistas lo estableció sobre todo a través de <strong>Edgar Degas</strong>, que se convirtió en su amigo y mentor. Al igual que él, también Cassatt reprodujo los grandes teatros y la ópera de París como centros de la cultura y la vida modernas, concentrándose no en el escenario, sino en el <strong>público femenino</strong>.
+                    </p>
+                    
+                    <blockquote style="border-left: 5px solid #ec8c8c; padding-left: 15px; margin: 20px 0; font-style: italic; color: #555;">
+                        <p>
+                            La libertad es el bien supremo en este mundo y la liberación de la tiranía de un jurado es un objetivo por el que merece la pena luchar.
+                        </p>
+                    </blockquote>
+                </article>
+            </main>
+
+            <!-- COLUMNA LATERAL (SIDEBAR) -->
+            <aside class="sidebar-container" role="complementary">
+                <div class="sidebar">
+                    <h3 style="font-size: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0;">Lo más visto</h3>
+                    <ul style="list-style: none; padding-left: 0; font-size: 1em; line-height: 1.5;">
+                        <li style="margin-bottom: 10px;">1. <a href="#" style="color: #ec8c8c; font-weight: bold;">La exposición de Monet en Giverny</a></li>
+                        <li style="margin-bottom: 10px;">2. <a href="#" style="color: #ec8c8c; font-weight: bold;">El realismo de Degas en las bailarinas</a></li>
+                        <li style="margin-bottom: 10px;">3. <a href="#" style="color: #ec8c8c; font-weight: bold;">La influencia de Japón en el Impresionismo</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script>
+        // Función para alternar el menú lateral (Off-Canvas)
+        const sidebar = document.getElementById('off-canvas-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const navMain = document.querySelector('.main-nav');
+        
+        // Mostrar la navegación principal en PC
+        if (window.innerWidth > 900 && navMain) {
+            navMain.style.display = 'flex';
+        }
+
+        function toggleMenu() {
+            // Alternar la clase 'open' para deslizar el menú
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+            
+            // Prevenir el scroll del cuerpo cuando el menú está abierto
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
+        }
+        
+        // Asegurar que el menú se oculte si se redimensiona a PC
+        window.addEventListener('resize', () => {
+             if (window.innerWidth > 900) {
+                 sidebar.classList.remove('open');
+                 overlay.classList.remove('open');
+                 document.body.style.overflow = 'auto';
+                 if (navMain) navMain.style.display = 'flex';
+             } else {
+                 if (navMain) navMain.style.display = 'none';
+             }
+        });
+    </script>
+</body>
+</html>
