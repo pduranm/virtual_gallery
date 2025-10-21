@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Arte Clásico y Neoclásico | Minimalista</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Estilos Generales para Minimalismo y Arte Clásico */
+        :root {
+            /* Usamos fuentes de Google Fonts sugeridas, si no, usa las que vienen por defecto en el CSS */
+            --color-fondo: #f9f7f7;
+            --color-principal: #333333;
+            --color-acento: #a0a0a0;
+            --fuente-serif: 'Playfair Display', serif;
+            /* Más elegantes para el arte */
+            --fuente-sans: 'Montserrat', sans-serif;
+            /* Limpias y modernas */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--fuente-serif);
+            color: var(--color-principal);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Tipografía y Encabezados */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--fuente-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        /* Navegación - Limpia y discreta */
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-principal);
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-acento);
+        }
+
+        /* Contenedor Principal de Galería */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 40px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Imágenes - Foco visual */
+        .galeria-item {
+            text-align: center;
+            border: 1px solid var(--color-acento);
+            padding: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            padding-top: 10px;
+            font-size: 0.9em;
+            font-style: italic;
+            color: var(--color-principal);
+        }
+
+        /* Pie de Página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--color-acento);
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Claude Monet</h1>
+        <!-- <p style="text-align: center; margin-top: -10px; font-style: italic;"></p> -->
+        <nav>
+            <ul>
+                <li><a href="#clasico">Biografía</a></li>
+                <li><a href="#neoclasico">Escuelas</a></li>
+                <li><a href="#contacto">Artistas</a></li>
+            </ul>
+            <img class="galeria"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Claude_Monet_1899_Nadar_crop.jpg/500px-Claude_Monet_1899_Nadar_crop.jpg"
+                alt="">
+        </nav>
+    </header>
+    <section class="galeria">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem numquam facere libero reiciendis,
+            repudiandae rem recusandae at sit aut, soluta reprehenderit expedita nesciunt ad magnam aliquam fugiat
+            corrupti voluptatum perferendis.
+        </p>
+    </section>
+    <main class="galeria">
+
+        <section class="galeria-item" id="clasico">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/500px-Monet_-_Impression%2C_Sunrise.jpg"
+                alt="Estatua Clásica Griega o Romana">
+            <p class="caption">Impresión sol naciente <br> 1867</p>
+
+        </section>
+
+        <section class="galeria-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/3607_Paisaje_en_Port-Villez.jpg/500px-3607_Paisaje_en_Port-Villez.jpg"
+                alt="Pintura Neoclásica, Juramento de los Horacios">
+            <p class="caption">El Ideal de Virtud, Neoclasicismo.</p>
+        </section>
+
+        <section class="galeria-item">
+            <img src="https://uploads4.wikiart.org/images/claude-monet/hauling-a-boat-ashore-honfleur.jpg!PinterestSmall.jpg"
+                alt="">
+            <p class="caption">Estructura y Razón, La Estética de las Columnas.</p>
+        </section>
+
+        <section class="galeria-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Claude_Monet_-_Le_Grand_Canal_%28W1739%29.jpg/500px-Claude_Monet_-_Le_Grand_Canal_%28W1739%29.jpg"
+                alt="Busto de un Emperador Romano">
+            <p class="caption">El Retrato del Poder, Busto Romano.</p>
+        </section>
+
+        <section class="galeria-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Renoir-Monet_painting.png/500px-Renoir-Monet_painting.png"
+                alt="Busto de un Emperador Romano">
+            <p class="caption">El Retrato del Poder, Busto Romano.</p>
+        </section>
+        <section class="galeria-item">
+            <img src="https://uploads8.wikiart.org/images/claude-monet/a-farmyard-in-normandy(1).jpg!PinterestSmall.jpg"
+                alt="Busto de un Emperador Romano">
+            <p class="caption">El Retrato del Poder, Busto Romano.</p>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
