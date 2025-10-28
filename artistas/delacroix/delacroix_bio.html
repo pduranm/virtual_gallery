@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugène Delacroix</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+    /* Estilos Generales para Minimalismo y Arte Clásico */
+    :root {
+        /* Usamos fuentes de Google Fonts sugeridas, si no, usa las que vienen por defecto en el CSS */
+        --color-fondo: #f9f7f7;
+        --color-principal: #333333;
+        --color-acento: #a0a0a0;
+        --fuente-serif: 'Playfair Display', serif;
+        /* Más elegantes para el arte */
+        --fuente-sans: 'Montserrat', sans-serif;
+        /* Limpias y modernas */
+    }
+
+    /* Permite que strong y b sean inline por defecto, manteniendo el flujo */
+    strong, b {
+        font-weight: 700;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: var(--fuente-serif);
+        color: var(--color-principal);
+        background-color: var(--color-fondo);
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    /* Tipografía y Encabezados */
+    h1,
+    h2,
+    h3 {
+        font-family: var(--fuente-sans);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5em;
+    }
+
+    h1 {
+        font-size: 2.0em;
+        text-align: center;
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--color-acento);
+    }
+    
+    .galeria {
+        display: block;
+        text-align: justify;
+        max-width: 1200px;
+        margin: 20px auto; 
+        padding: 0 10px; 
+        text-align: left;
+    }
+
+
+    .galeria img {
+        display: block;
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .galeria-item {
+        text-align: center;
+        border: 1px solid var(--color-acento);
+        padding: 5px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .galeria-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .galeria-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .caption {
+        padding-top: 10px;
+        font-size: 0.9em;
+        font-style: italic;
+        color: var(--color-principal);
+    }
+
+    /* Pie de Página */
+    footer {
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid var(--color-acento);
+        font-size: 0.8em;
+        margin-top: 40px;
+    }
+</style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="font-size: medium;">Eugène Delacroix <br> 1798-1863</h1>
+        <img class="galeria"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg"
+            height="10%">
+    </header>
+    <main>
+    <p class="galeria">
+        Ferdinand-Victor-Eugène Delacroix fue un destacado pintor y litógrafo francés, nacido el 26 de abril de
+        1798 en Charenton-Saint-Maurice y fallecido el 13 de agosto de 1863 en París.
+
+        Delacroix nació en el seno de una familia de artistas, siendo hijo del político Charles Delacroix y
+        Victoire Oeben, perteneciente a una familia de ebanistas y dibujantes. <br> Después de la muerte de su padre
+        en 1806, se trasladó con su familia a París, donde comenzó sus estudios clásicos en el Liceo
+        Imperial.
+    </p>
+
+    <p class="galeria">
+        En 1815, siguiendo la recomendación de su tío, ingresó al taller del pintor neoclásico Pierre
+        Narcisse Guérin, donde tuvo como maestros a Théodore Géricault y al Barón Gros. Durante este tiempo, Delacroix
+        desarrolló un interés
+        por el estudio de grandes maestros como Rubens, Velázquez y Rembrandt, así como
+        por la litografía y la pintura de paisajes. En 1822, Delacroix expuso por primera vez su obra La barca de Dante,
+        seguida dos años más
+        tarde por La matanza de Quíos, obras que reflejaban su ambivalencia entre
+        el romanticismo y el clasicismo.
+    </p>
+    <p class="galeria">
+        En 1825, viajó a Inglaterra para estudiar a los pintores ingleses, como John Constable, lo que
+        influyó
+        en su técnica y uso del color. A los treinta años, Delacroix provocó controversia con su obra La
+        muerte
+        de Sardanápalo en el Salón de París en 1827, destacando por su uso del color y su representación
+        dramática. Este período también marcó su interés por la música y la literatura, relacionándose con
+        figuras como Stendhal, Mérimée, Victor Hugo y Baudelaire.
+    </p>
+
+    <p class="galeria">
+        En 1832, realizó un viaje de seis meses a Marruecos y Argelia, donde quedó fascinado por la luz, el
+        color y la cultura del norte de África. Este viaje influyó profundamente en su obra posterior, reflejada
+        en cuadros como Mujeres de Argel en sus habitaciones.
+
+    </p>
+    <p class="galeria">
+        Su obra más conocida, La Libertad guiando al pueblo, le valió la <b>Cruz de la legión de Honor</b> y se
+        convirtió en un símbolo de la Revolución de 1830 en Francia. A su regreso, Delacroix recibió encargos
+        oficiales para decorar diversos edificios públicos, como el Salón del rey del palacio de Borbón y el
+        Palacio de Luxemburgo.
+
+    </p>
+
+
+    </main>
+
+</body>
+
+</html>
