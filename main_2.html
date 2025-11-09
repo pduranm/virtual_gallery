@@ -1,236 +1,350 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Página Principal</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-    <link href="vendor/aos/aos.css" rel="stylesheet">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="css/style_vg_main.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño con CSS Personalizado y Menú Lateral</title>
+    <!-- Carga de las fuentes Lora y Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Variables y Reset Minimalista */
-        :root {
-            --color-fondo: #f9f7f7;
-            /* Blanco roto */
-            --color-principal: #333333;
-            /* Gris oscuro */
-            --color-acento: #a0a0a0;
-            /* Gris medio */
-            --fuente-serif: 'Playfair Display', serif;
-            --fuente-sans: 'Montserrat', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
+        /* ============================================== */
+        /* CSS PROPORCIONADO POR EL USUARIO (Adaptado) */
+        /* ============================================== */
+        body {
+            font-family: 'Lora', serif;
             margin: 0;
             padding: 0;
+            background-color: #e8f6f7;
+            color: #333;
+            /* Eliminamos 'display: flex' en body para no interferir con el menú fijo */
         }
 
-        body {
-            font-family: var(--fuente-serif);
-            color: var(--color-principal);
-            background-color: var(--color-fondo);
-            line-height: 1.6;
+        header.main-header {
+            background-color: #000000;
+            color: white;
+            width: 100%;
+            padding: 10px 0;
+            display: flex; /* Usamos flex para centrar y manejar el botón del menú */
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0px;
+            font-size: 2.5em;
+        }
+        header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        
+        /* Estilo para el título principal del artículo */
+        .h1_main {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin: 0.2rem 0;
+            border-top: 2px solid #776b5e;
+            border-bottom: 3px solid #ec8c8c;
+            color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        /* Estilo para el bloque de texto principal del artículo */
+        .text-full {
+            background-color: rgb(255, 255, 255);
+            /* Resetear estilos de grid para usarlo como texto normal en el artículo */
+            grid-column: unset; 
+            padding: 0 10px;
+            margin: 1.5em 0;
+            line-height: 1.7;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        .article-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para el sidebar que simulan los estilos de .grid-item */
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             padding: 20px;
         }
 
-        /* Tipografía y Encabezados */
-        h1,
-        h2,
-        h3 {
-            font-family: var(--fuente-sans);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            /* Más espaciado para un look elegante */
-            margin-bottom: 0.5em;
-            color: var(--color-principal) !important;
-            /* Sobrescribe colores de Bootstrap/vendor */
-        }
-
-        h1 {
-            font-size: 2.5em;
-            text-align: center;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--color-acento);
-            margin-bottom: 0;
-        }
-
-        h2 {
-            font-size: 1.2em;
-            text-align: center;
-            letter-spacing: 5px;
-            font-weight: 300;
-        }
-
-        /* Estilos de la Sección HERO (Cabecera) */
-        #hero {
-            /* Asegura que el contenido esté centrado verticalmente */
-            min-height: 50vh;
-            padding: 100px 0;
-            margin-top: 0 !important;
-            /* Anula el margin-top:-85px; */
-            background-color: var(--color-fondo);
-        }
-
-        /* Contenedor de Enlaces de Movimientos (Simplificado del 'icon-box') */
-        .row.gy-4.mt-5 {
-            margin-top: 50px !important;
-            /* Espacio después del título */
-        }
-
-        .icon-box {
-            /* Diseño minimalista para los botones/enlaces */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 10px;
-            margin-bottom: 15px;
-            border: 1px solid var(--color-acento);
-            background-color: transparent !important;
-            /* Elimina colores de fondo */
-            border-radius: 0 !important;
-            /* Elimina el borde redondeado */
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .icon-box:hover {
-            background-color: var(--color-acento);
-            /* Efecto hover sutil */
-            border-color: var(--color-principal);
-        }
-
-        .icon-box h3 {
-            margin: 0 !important;
-            font-size: 1.0em;
-            letter-spacing: 1px;
+        /* Estilo para figuras */
+        .grid-img {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 30px auto;
+            max-width: 90%;
             text-align: center;
         }
-
-        .icon-box a {
-            text-decoration: none;
-            color: var(--color-principal) !important;
-            /* Color de texto estándar */
-            display: block;
-            padding: 5px;
-            /* Hace el área de click más grande */
-        }
-
-        .icon-box:hover a {
-            color: var(--color-fondo) !important;
-            /* Texto blanco/claro al pasar el ratón */
-        }
-
-        /* Estilo para el back-to-top, solo si el bi-arrow-up-short es de bootstrap-icons */
-        .back-to-top {
-            background: var(--color-principal);
-            color: var(--color-fondo);
-            border: 1px solid var(--color-principal);
-        }
-
-        .back-to-top:hover {
-            background: var(--color-acento);
-        }
-
-        /* Ajustes específicos de la estructura del HTML original para aplicar el estilo */
-        .col-xl-6.col-lg-8 {
-            padding-bottom: 40px;
-        }
-
-        .col-xl-2.col-md-4 {
-            /* Ajuste para que todos los elementos de la lista fluyan en una línea si es posible */
-            max-width: 250px;
-            flex: 0 0 auto;
+        .grid-img img {
             width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        .caption-text {
+            font-size: 0.9em;
+            color: #666;
+            padding: 10px 15px;
+        }
+
+        /* ============================================== */
+        /* LAYOUT PRINCIPAL RESPONSIVE (Flexbox) */
+        /* ============================================== */
+        .wrapper {
+            max-width: 1200px;
+            width: 95%;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .article-layout {
+            display: flex;
+            gap: 30px; 
+            margin-top: 20px;
+        }
+
+        .main-content {
+            flex: 3; /* Ocupa 3/4 del espacio en PC */
+            min-width: 0;
+        }
+
+        .sidebar-container {
+            flex: 1; /* Ocupa 1/4 del espacio en PC */
+            min-width: 250px;
         }
         
-        /* Contenedor extra para Artistas (lo movemos a la fila de los otros) */
-        .artist-link-container {
-             /* Usamos la misma estructura de columna para consistencia */
-            max-width: 250px;
-            flex: 0 0 auto;
-            width: 100%;
-            margin-top: 15px; /* Separación de la fila superior */
+        /* MEDIA QUERY: Móvil (Apilar en una columna) */
+        @media (max-width: 900px) {
+            .article-layout {
+                flex-direction: column;
+            }
+            .sidebar-container {
+                order: -1; /* Mover el sidebar arriba del contenido en móvil */
+                min-width: 100%;
+            }
+        }
+        
+        /* ============================================== */
+        /* NAVEGACIÓN LATERAL (Off-Canvas - SOLO MÓVIL) */
+        /* ============================================== */
+
+        /* Botón de Menú (Hamburguesa) */
+        .hamburger-button {
+            display: block;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            padding: 0 15px;
+            z-index: 30;
+        }
+        /* Ocultar el botón en PC */
+        @media (min-width: 901px) {
+            .hamburger-button {
+                display: none;
+            }
         }
 
+        /* Contenedor del Menú Lateral */
+        #off-canvas-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff; 
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            padding: 20px 0;
+        }
+
+        #off-canvas-menu.open {
+            transform: translateX(0);
+        }
+
+        #off-canvas-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #000;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+        }
+        #off-canvas-menu a:hover {
+            background-color: #e8f6f7;
+            color: #000;
+        }
+
+        /* Overlay (Fondo oscuro) */
+        #menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out;
+        }
+
+        #menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
-
 <body>
-    <section id="hero" class="d-flex align-items-center justify-content-center">
-        <div class="container" data-aos="fade-up">
-
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-                <div class="col-xl-6 col-lg-8">
-                    <h1>Virtual Gallery<span>.</span></h1>
-                    <h2>Arte | Historia</h2>
-                </div>
-            </div>
-
-            <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/impresionismo.html">Impresionismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/realismo.html">Realismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/romanticismo.html">Romanticismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="artistList.html">Artistas</a>
-                        </h3>
-                    </div>
-                </div>
-
-            </div>
-            
+    
+    <!-- NAVEGACIÓN LATERAL (Off-Canvas) -->
+    <nav id="off-canvas-menu">
+        <div style="padding: 0 20px 20px;">
+            <h3 style="margin-top: 0; color: #333;">Menú Principal</h3>
+            <!-- Botón de Cierre (Solo visible en el menú) -->
+             <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #555;">
+                &times;
+            </button>
         </div>
-    </section><main id="main">
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a>
+        
+        <a href="#">Actualidad</a>
+        <a href="#">Especiales</a>
+        <a href="artistList.html">Artistas</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+    <div id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="">
+        <br>
+                <h1 class="h1_main">Virtual Gallery</h1>
+        <button class="hamburger-button" onclick="toggleMenu()">☰</button>
+
+        <div class="hamburger-button" style="visibility: hidden;">☰</div> 
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL (SOLO PC) -->
+    <nav class="wrapper" style="text-align: center; padding: 10px 0;">
+        <div class="main-nav" style="display: none; justify-content: center; gap: 25px; border-bottom: 1px solid #ddd;">
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Historias</a>
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Movimientos</a>
+            <a href="#" style="font-weight: bold; padding: 10px 0;">Artistas</a>
+            <a href="contacto.html" style="font-weight: bold; padding: 10px 0;">Contacto</a>
+        </div>
+    </nav>
 
 
-        <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="vendor/aos/aos.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="js/main.js"></script>
+    <!-- CONTENIDO DEL ARTÍCULO -->
+    <div class="wrapper">
+        <p>En Virtual Gallery puedes ver, descubrir y compartir la historia del arte</p>
+        
+        <!-- Diseño de Artículo y Sidebar -->
+        <div class="article-layout">
+            
+            <!-- COLUMNA PRINCIPAL DE CONTENIDO -->
+            <main class="main-content" role="main">
+                <article class="article-container">
+                    
+                    <p class="text-full" style="color: #555;">
+                        A diferencia de algunas webs que sólo incluyen información básica y contenido repetido de otras fuentes, en Virtual Gallery nos esforzamos por ofrecer artículos originales y bien investigados que aporten valor a nuestros lectores. Nuestro equipo de escritores y editores trabaja arduamente para crear contenido único que no encontrarás en ningún otro lugar.
+                    </p>
 
-    </main>
+                    <p class="text-full">
+                        Cassatt fue la única artista norteamericana en participar en varias de las muestras impresionistas. Su retrato de una <i>Mujer con collar de perlas en un palco</i> se presentó en la cuarta exposición del movimiento. Este cuadro fue uno de los pocos que se vendieron y fue adquirido por el coleccionista francés <strong>Alexis Rouart</strong>.
+                    </p>
+                    
+                    <figure class="grid-img">
+                        <img src="https://placehold.co/600x450/333333/FFFFFF?text=IMAGEN+PRINCIPAL+DEL+ARTICULO" alt="Mary Cassatt. Mujer con collar de perlas en un palco. Ejemplo de Figura">
+                        <figcaption class="caption-text">Mary Cassatt. <em>Mujer con collar de perlas en un palco</em>. Ejemplo de Pie de Foto.</figcaption>
+                    </figure>
 
+                    <p class="text-full">
+                        El contacto con los pintores impresionistas lo estableció sobre todo a través de <strong>Edgar Degas</strong>, que se convirtió en su amigo y mentor. Al igual que él, también Cassatt reprodujo los grandes teatros y la ópera de París como centros de la cultura y la vida modernas, concentrándose no en el escenario, sino en el <strong>público femenino</strong>.
+                    </p>
+                    
+                    <blockquote style="border-left: 5px solid #ec8c8c; padding-left: 15px; margin: 20px 0; font-style: italic; color: #555;">
+                        <p>
+                            La libertad es el bien supremo en este mundo y la liberación de la tiranía de un jurado es un objetivo por el que merece la pena luchar.
+                        </p>
+                    </blockquote>
+                </article>
+            </main>
+
+            <!-- COLUMNA LATERAL (SIDEBAR) -->
+            <aside class="sidebar-container" role="complementary">
+                <div class="sidebar">
+                    <h3 style="font-size: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0;">Movimientos</h3>
+                    <ul style="list-style: none; padding-left: 0; font-size: 1em; line-height: 1.5;">
+                        <li style="margin-bottom: 10px;">1. <a href="#" style="color: #ec8c8c; font-weight: bold;">Impresionismo</a></li>
+                        <li style="margin-bottom: 10px;">2. <a href="#" style="color: #ec8c8c; font-weight: bold;">Realismo</a></li>
+                        <li style="margin-bottom: 10px;">3. <a href="#" style="color: #ec8c8c; font-weight: bold;">Romanticismo</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script>
+        // Función para alternar el menú lateral (Off-Canvas)
+        const sidebar = document.getElementById('off-canvas-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const navMain = document.querySelector('.main-nav');
+        
+        // Mostrar la navegación principal en PC
+        if (window.innerWidth > 900 && navMain) {
+            navMain.style.display = 'flex';
+        }
+
+        function toggleMenu() {
+            // Alternar la clase 'open' para deslizar el menú
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+            
+            // Prevenir el scroll del cuerpo cuando el menú está abierto
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
+        }
+        
+        // Asegurar que el menú se oculte si se redimensiona a PC
+        window.addEventListener('resize', () => {
+             if (window.innerWidth > 900) {
+                 sidebar.classList.remove('open');
+                 overlay.classList.remove('open');
+                 document.body.style.overflow = 'auto';
+                 if (navMain) navMain.style.display = 'flex';
+             } else {
+                 if (navMain) navMain.style.display = 'none';
+             }
+        });
+    </script>
 </body>
-
 </html>
