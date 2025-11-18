@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Arte Dinámico - Inicio</title>
+
+    <style>
+        /* Estilos Globales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* 1. Galería Dinámica (Canvas) */
+        #galeria-dinamica {
+            position: relative;
+            /* Ocupa toda la altura de la vista */
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #lienzoArte {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .superposicion-texto {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Fondo semi-transparente para que el texto sea legible */
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            z-index: 10;
+        }
+
+        .superposicion-texto h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        .superposicion-texto button {
+            padding: 10px 20px;
+            background-color: #c93d3d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .superposicion-texto button:hover {
+            background-color: #a32c2c;
+        }
+
+        /* 2. Secciones de Navegación */
+        .secciones-container {
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .secciones-container h2 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .tarjetas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .tarjeta-seccion {
+            display: block;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tarjeta-seccion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #c93d3d;
+        }
+
+        .tarjeta-seccion h3 {
+            margin-top: 0;
+            color: #c93d3d;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="galeria-dinamica">
+        <canvas id="lienzoArte"></canvas>
+        <div class="superposicion-texto">
+            <h1>Virtual Gallery</h1>
+            <p>Arte | Historia</p>
+            <button onclick="hacerScrollASecciones()">Explorar Artículos</button>
+        </div>
+    </header>
+
+    <main id="secciones-navegacion" class="secciones-container">
+        <div class="tarjetas-grid">
+
+            <a href="/colecciones" class="tarjeta-seccion">
+                <h3>Galería de Colecciones</h3>
+                <p>Explora las obras por movimiento artístico y época.</p>
+            </a>
+
+            <a href="/artistas" class="tarjeta-seccion">
+                <h3>👤 Artistas Destacados</h3>
+                <p>Conoce biografías, obras principales y exposiciones.</p>
+            </a>
+
+            <a href="/noticias" class="tarjeta-seccion">
+                <h3>📰 Noticias y Eventos</h3>
+                <p>Mantente al día con lo último del mundo del arte.</p>
+            </a>
+
+            <a href="/tienda" class="tarjeta-seccion">
+                <h3>🛍️ Tienda de Arte</h3>
+                <p>Adquiere impresiones y artículos exclusivos.</p>
+            </a>
+
+            <a href="/recursos" class="tarjeta-seccion">
+                <h3>📚 Recursos y Educación</h3>
+                <p>Aprende sobre historia y técnica artística.</p>
+            </a>
+            <a href="/colecciones" class="tarjeta-seccion">
+                <h3>Galería de Colecciones</h3>
+                <p>Explora las obras por movimiento artístico y época.</p>
+            </a>
+
+            <a href="/artistas" class="tarjeta-seccion">
+                <h3>👤 Artistas Destacados</h3>
+                <p>Conoce biografías, obras principales y exposiciones.</p>
+            </a>
+
+            <a href="/noticias" class="tarjeta-seccion">
+                <h3>📰 Noticias y Eventos</h3>
+                <p>Mantente al día con lo último del mundo del arte.</p>
+            </a>
+
+            <a href="/tienda" class="tarjeta-seccion">
+                <h3>🛍️ Tienda de Arte</h3>
+                <p>Adquiere impresiones y artículos exclusivos.</p>
+            </a>
+
+            <a href="/recursos" class="tarjeta-seccion">
+                <h3>📚 Recursos y Educación</h3>
+                <p>Aprende sobre historia y técnica artística.</p>
+            </a>
+            <a href="/colecciones" class="tarjeta-seccion">
+                <h3>Galería de Colecciones</h3>
+                <p>Explora las obras por movimiento artístico y época.</p>
+            </a>
+
+            <a href="/artistas" class="tarjeta-seccion">
+                <h3>👤 Artistas Destacados</h3>
+                <p>Conoce biografías, obras principales y exposiciones.</p>
+            </a>
+
+            <a href="/noticias" class="tarjeta-seccion">
+                <h3>📰 Noticias y Eventos</h3>
+                <p>Mantente al día con lo último del mundo del arte.</p>
+            </a>
+
+            <a href="/tienda" class="tarjeta-seccion">
+                <h3>🛍️ Tienda de Arte</h3>
+                <p>Adquiere impresiones y artículos exclusivos.</p>
+            </a>
+
+            <a href="/recursos" class="tarjeta-seccion">
+                <h3>📚 Recursos y Educación</h3>
+                <p>Aprende sobre historia y técnica artística.</p>
+            </a>
+            <a href="/colecciones" class="tarjeta-seccion">
+                <h3>Galería de Colecciones</h3>
+                <p>Explora las obras por movimiento artístico y época.</p>
+            </a>
+
+            <a href="/artistas" class="tarjeta-seccion">
+                <h3>👤 Artistas Destacados</h3>
+                <p>Conoce biografías, obras principales y exposiciones.</p>
+            </a>
+
+            <a href="/noticias" class="tarjeta-seccion">
+                <h3>📰 Noticias y Eventos</h3>
+                <p>Mantente al día con lo último del mundo del arte.</p>
+            </a>
+
+            <a href="/tienda" class="tarjeta-seccion">
+                <h3>🛍️ Tienda de Arte</h3>
+                <p>Adquiere impresiones y artículos exclusivos.</p>
+            </a>
+
+            <a href="/recursos" class="tarjeta-seccion">
+                <h3>📚 Recursos y Educación</h3>
+                <p>Aprende sobre historia y técnica artística.</p>
+            </a>
+
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 VG. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // 🚨 IMPORTANTE: Asegúrate de tener imágenes llamadas 'arte1.jpg' y 'arte2.jpg' 
+        // en la misma carpeta que este archivo HTML para que el canvas funcione correctamente.
+
+        const canvas = document.getElementById('lienzoArte');
+        const ctx = canvas.getContext('2d');
+
+        // Array de imágenes para la galería dinámica
+        const obrasDeArte = [
+            // Obras originales:
+            { src: 'https://miro.medium.com/v2/resize:fit:1400/0*Q8RVZoVlEAPQ2PSQ', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Las_Meninas_01.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ5KsP3iiXAmDWaSmJ-V5vPSyeJ8jQRmEN4w&s', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Mona Lisa - Leonardo da Vinci
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // La Noche Estrellada - Van Gogh
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/43/El_grito.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // El Grito - Edvard Munch
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // El Nacimiento de Venus - Botticelli
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Michelangelo_Buonarroti_-_The_Creation_of_Adam_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // La Creación de Adán - Miguel Ángel
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg/800px-Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Retrato de Giovanni Arnolfini y su esposa - Van Eyck
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/La_libertad_guiando_al_pueblo.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // La Libertad guiando al pueblo - Delacroix
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Frida_Kahlo_Self_Portrait.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Autorretrato con Collar de Espinas - Frida Kahlo
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Impression%2C_soleil_levant.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Impresión, sol naciente - Monet
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Whistler%27s_Mother_by_James_McNeill_Whistler.JPG', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Arreglo en gris y negro nº 1 (Madre de Whistler) - Whistler
+        ];
+
+        let imagenActualIndex = 0;
+        let imagenActual = new Image();
+
+        // Asegurar que la primera imagen se carga y luego inicia la animación
+        imagenActual.onload = iniciarAnimacion;
+        imagenActual.src = obrasDeArte[imagenActualIndex].src;
+
+        // Redimensionar el canvas para que siempre ocupe el contenedor completo
+        function redimensionarCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', redimensionarCanvas);
+        redimensionarCanvas();
+
+        // Función de transición de imágenes
+        function cambiarImagen() {
+            imagenActualIndex = (imagenActualIndex + 1) % obrasDeArte.length;
+            imagenActual.src = obrasDeArte[imagenActualIndex].src;
+        }
+
+        // Intervalo para cambiar la imagen base (cada 8 segundos)
+        setInterval(cambiarImagen, 8000);
+
+        // Función principal de animación (bucle)
+        function animar() {
+            requestAnimationFrame(animar);
+
+            const data = obrasDeArte[imagenActualIndex];
+
+            // 1. Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Calcular el movimiento (Pan sutil)
+            data.xOffset = Math.sin(Date.now() * data.speed) * 20; // Movimiento horizontal de +/- 20px
+            data.yOffset = Math.cos(Date.now() * data.speed * 0.8) * 15; // Movimiento vertical de +/- 15px
+            data.scale = 1.05 + Math.sin(Date.now() * data.speed * 0.5) * 0.02; // Zoom sutil entre 1.03 y 1.07
+
+            // 3. Calcular las dimensiones de dibujo
+            const imgW = imagenActual.naturalWidth;
+            const imgH = imagenActual.naturalHeight;
+
+            // Para asegurar que la imagen cubra todo el canvas (aspect-ratio cover)
+            let ratio = Math.max(canvas.width / imgW, canvas.height / imgH);
+            let drawW = imgW * ratio * data.scale;
+            let drawH = imgH * ratio * data.scale;
+            let x = (canvas.width - drawW) / 2 + data.xOffset;
+            let y = (canvas.height - drawH) / 2 + data.yOffset;
+
+            // 4. Dibujar la imagen en el canvas
+            ctx.drawImage(imagenActual, x, y, drawW, drawH);
+        }
+
+        function iniciarAnimacion() {
+            animar();
+        }
+
+        // ===================================================
+        // FUNCIÓN: Scroll Suave al hacer clic en el botón
+        // ===================================================
+
+        function hacerScrollASecciones() {
+            const targetSection = document.getElementById('secciones-navegacion');
+
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
