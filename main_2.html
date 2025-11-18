@@ -2,235 +2,408 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Página Principal</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Gallery | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
-    <link href="vendor/aos/aos.css" rel="stylesheet">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="css/style_vg_main.css" rel="stylesheet">
-
     <style>
-        /* Variables y Reset Minimalista */
+        /* ============================================== */
+        /* VARIABLES Y ESTILOS BASE (Mismos que el estudio) */
+        /* ============================================== */
         :root {
-            --color-fondo: #f9f7f7;
-            /* Blanco roto */
-            --color-principal: #333333;
-            /* Gris oscuro */
-            --color-acento: #a0a0a0;
-            /* Gris medio */
-            --fuente-serif: 'Playfair Display', serif;
-            --fuente-sans: 'Montserrat', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            /* Sepia / Dorado */
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
         }
 
         body {
-            font-family: var(--fuente-serif);
-            color: var(--color-principal);
-            background-color: var(--color-fondo);
-            line-height: 1.6;
-            padding: 20px;
+            font-family: var(--font-serif-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            line-height: 1.7;
+            font-size: 1.15rem;
         }
 
-        /* Tipografía y Encabezados */
-        h1,
-        h2,
-        h3 {
-            font-family: var(--fuente-sans);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            /* Más espaciado para un look elegante */
-            margin-bottom: 0.5em;
-            color: var(--color-principal) !important;
-            /* Sobrescribe colores de Bootstrap/vendor */
-        }
-
-        h1 {
-            font-size: 2.5em;
-            text-align: center;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--color-acento);
-            margin-bottom: 0;
-        }
-
-        h2 {
-            font-size: 1.2em;
-            text-align: center;
-            letter-spacing: 5px;
-            font-weight: 300;
-        }
-
-        /* Estilos de la Sección HERO (Cabecera) */
-        #hero {
-            /* Asegura que el contenido esté centrado verticalmente */
-            min-height: 50vh;
-            padding: 100px 0;
-            margin-top: 0 !important;
-            /* Anula el margin-top:-85px; */
-            background-color: var(--color-fondo);
-        }
-
-        /* Contenedor de Enlaces de Movimientos (Simplificado del 'icon-box') */
-        .row.gy-4.mt-5 {
-            margin-top: 50px !important;
-            /* Espacio después del título */
-        }
-
-        .icon-box {
-            /* Diseño minimalista para los botones/enlaces */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 10px;
-            margin-bottom: 15px;
-            border: 1px solid var(--color-acento);
-            background-color: transparent !important;
-            /* Elimina colores de fondo */
-            border-radius: 0 !important;
-            /* Elimina el borde redondeado */
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .icon-box:hover {
-            background-color: var(--color-acento);
-            /* Efecto hover sutil */
-            border-color: var(--color-principal);
-        }
-
-        .icon-box h3 {
-            margin: 0 !important;
-            font-size: 1.0em;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .icon-box a {
+        a {
             text-decoration: none;
-            color: var(--color-principal) !important;
-            /* Color de texto estándar */
+            color: var(--color-primary);
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+            border-bottom: 1px solid var(--color-secondary);
+        }
+
+        .wrapper {
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        /* ============================================== */
+        /* CABECERA Y NAVEGACIÓN */
+        /* ============================================== */
+
+        header.main-header {
+            background-color: transparent;
+            width: 80%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 0;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.2em;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: var(--color-primary);
+            padding-left: 20px;
+            border-bottom: none;
+        }
+
+        /* NAVEGACIÓN PRINCIPAL (Solo PC) */
+        .main-nav {
+            display: none;
+            gap: 40px;
+            padding-right: 20px;
+        }
+
+        .main-nav a {
+            font-family: var(--font-serif-display);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* Botón hamburguesa (solo móvil) */
+        .hamburger-button {
+            color: var(--color-primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            padding: 0 15px;
+            z-index: 1001;
+        }
+
+        @media (min-width: 901px) {
+            .hamburger-button {
+                display: none;
+            }
+        }
+
+        /* ============================================== */
+        /* SECCIÓN PRINCIPAL HERO (Display del Título) */
+        /* ============================================== */
+        .hero-title-section {
+            padding: 100px 0 20px;
+            text-align: center;
+        }
+
+        .h1_main {
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin: 0;
+            padding: 0;
+            color: var(--color-primary);
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .subheading {
+            font-family: var(--font-serif-body);
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================== */
+        /* LAYOUT DE SECCIONES GRID (El corazón de la Home) */
+        /* ============================================== */
+        .sections-grid {
+            display: grid;
+            /* Cuadrícula asimétrica: 2 columnas, la primera más pequeña, la segunda grande */
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .grid-item {
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            /* Alinear el contenido al fondo */
+            padding: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Cubre el primer item en móvil */
+        @media (max-width: 768px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+                /* Una columna en móvil */
+            }
+        }
+
+        /* Modificador de ancho para elementos específicos */
+        .grid-item.wide {
+            grid-column: span 2;
+            /* Este elemento ocupa las dos columnas en PC */
+            min-height: 450px;
+        }
+
+        /* Media Query para el item ancho en móvil */
+        @media (max-width: 768px) {
+            .grid-item.wide {
+                grid-column: span 1;
+            }
+        }
+
+        /* Estilos del Contenido del Item */
+        .item-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .item-content h2 {
+            font-family: var(--font-serif-display);
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            line-height: 1;
+            color: #ffffff;
+            /* Texto en blanco para contraste con el fondo oscuro */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            /* Sombra sutil para legibilidad */
+        }
+
+        .item-content p {
+            font-size: 1.1rem;
+            color: var(--color-light);
+            margin: 0;
+        }
+
+        /* Efecto de Overlay Oscuro para imágenes */
+        .item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* Overlay inicial */
+            transition: background 0.3s ease;
+            z-index: 1;
+        }
+
+        .grid-item:hover .item-overlay {
+            background: rgba(0, 0, 0, 0.2);
+            /* Menos oscuro al pasar el ratón */
+        }
+
+        /* Fondos (usando imágenes de stock de arte/diseño) */
+        #item-artistas {
+            background: url('https://placehold.co/800x600/343434/b58d53?text=Artistas') center/cover no-repeat;
+        }
+
+        #item-movimientos {
+            background: url('https://placehold.co/1200x600/1a1a1a/e6e6e6?text=Movimientos') center/cover no-repeat;
+        }
+
+        #item-ensayos {
+            background: url('https://placehold.co/800x600/4d4d4d/fdfdfd?text=Crítica') center/cover no-repeat;
+        }
+
+        #item-colecciones {
+            background: url('https://placehold.co/800x600/000000/b58d53?text=Artículos de opinión') center/cover no-repeat;
+        }
+
+        /* Estilos del Off-Canvas (similares a la versión anterior) */
+        #off-canvas-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background-color: var(--color-background);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+        }
+
+        #off-canvas-menu.open {
+            transform: translateX(0);
+        }
+
+        #off-canvas-menu a {
             display: block;
-            padding: 5px;
-            /* Hace el área de click más grande */
+            padding: 10px 20px;
+            color: var(--color-primary);
+            border-bottom: 1px solid var(--color-light);
+            font-family: var(--font-serif-display);
+            font-size: 1.1em;
+            font-weight: 700;
         }
 
-        .icon-box:hover a {
-            color: var(--color-fondo) !important;
-            /* Texto blanco/claro al pasar el ratón */
+        #off-canvas-menu a:hover {
+            background-color: var(--color-light);
+            color: var(--color-secondary);
         }
 
-        /* Estilo para el back-to-top, solo si el bi-arrow-up-short es de bootstrap-icons */
-        .back-to-top {
-            background: var(--color-principal);
-            color: var(--color-fondo);
-            border: 1px solid var(--color-principal);
-        }
-
-        .back-to-top:hover {
-            background: var(--color-acento);
-        }
-
-        /* Ajustes específicos de la estructura del HTML original para aplicar el estilo */
-        .col-xl-6.col-lg-8 {
-            padding-bottom: 40px;
-        }
-
-        .col-xl-2.col-md-4 {
-            /* Ajuste para que todos los elementos de la lista fluyan en una línea si es posible */
-            max-width: 250px;
-            flex: 0 0 auto;
-            width: 100%;
-        }
-        
-        /* Contenedor extra para Artistas (lo movemos a la fila de los otros) */
-        .artist-link-container {
-             /* Usamos la misma estructura de columna para consistencia */
-            max-width: 250px;
-            flex: 0 0 auto;
-            width: 100%;
-            margin-top: 15px; /* Separación de la fila superior */
-        }
-
+        /* #menu-overlay {}
+            /* Estilos del Overlay */
     </style>
 </head>
 
 <body>
-    <section id="hero" class="d-flex align-items-center justify-content-center">
-        <div class="container" data-aos="fade-up">
 
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-                <div class="col-xl-6 col-lg-8">
-                    <h1>Virtual Gallery<span>.</span></h1>
-                    <h2>Arte | Historia</h2>
-                </div>
-            </div>
-
-            <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/impresionismo.html">Impresionismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/realismo.html">Realismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="movimientos/romanticismo.html">Romanticismo</a>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box">
-                        <h3>
-                            <a href="artistList.html">Artistas</a>
-                        </h3>
-                    </div>
-                </div>
-
-            </div>
-            
+    <nav id="off-canvas-menu">
+        <div style="padding: 0 20px 20px;">
+            <h3 style="margin-top: 0; color: var(--color-primary); font-family: var(--font-serif-display);">NAVEGACIÓN
+            </h3>
+            <button onclick="toggleMenu()"
+                style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.8em; cursor: pointer; color: #555;">
+                &times;
+            </button>
         </div>
-    </section><main id="main">
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a>
+
+        <a href="#">Actualidad</a>
+        <a href="#">Ensayos</a>
+        <a href="#">Artistas</a>
+        <a href="#">Contacto</a>
+    </nav>
+    <div id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <header class="main-header wrapper">
+        <div class="logo">
+            <a href="/">VIRTUAL GALLERY</a>
+        </div>
+
+        <nav class="main-nav">
+            <a href="#">HISTORIAS</a>
+            <a href="#">MOVIMIENTOS</a>
+            <a href="#">ARTISTAS</a>
+            <a href="#">CONTACTO</a>
+        </nav>
+
+        <button class="hamburger-button" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <div class="hero-title-section wrapper">
+        <h1 class="h1_main">El Arte como Experiencia Digital</h1>
+        <p class="subheading">Descubra narrativas visuales, explore movimientos históricos y profundice en el análisis
+            estético con nuestra colección digital de la historia del arte.</p>
+    </div>
 
 
-        <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="vendor/aos/aos.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="js/main.js"></script>
+    <div class="wrapper">
+        <div class="sections-grid">
 
-    </main>
+            <a href="artistList.html" class="grid-item" id="item-artistas">
+                <div class="item-overlay"></div>
+                <div class="item-content">
+                    <h2>Artistas</h2>
+                    <p>Retratos, biografías y obras esenciales.</p>
+                </div>
+            </a>
 
+            <a href="#" class="grid-item " id="item-movimientos">
+                <div class="item-overlay"></div>
+                <div class="item-content">
+                    <h2>Movimientos</h2>
+                    <p>Del Renacimiento a la Contemporaneidad. Explore los hitos que definieron la historia visual.</p>
+                </div>
+            </a>
+
+            <a href="#" class="grid-item" id="item-ensayos">
+                <div class="item-overlay"></div>
+                <div class="item-content">
+                    <h2>Ensayos</h2>
+                    <p>Análisis profundos y crítica estética.</p>
+                </div>
+            </a>
+
+            <a href="#" class="grid-item" id="item-colecciones" style="min-height: 300px;">
+                <div class="item-overlay"></div>
+                <div class="item-content">
+                    <h2>Colecciones</h2>
+                    <p>Curadurías temáticas y digitales.</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+    <footer class="main-footer">
+        <div class="wrapper">
+            <p class="footer-text" style="text-align: center;">
+                &copy; 2025 Virtual Gallery. Todos los derechos reservados.
+                <span class="separator">|</span>
+                Pedro Durán
+            </p>
+        </div>
+    </footer>
+    <script>
+        // Funcionalidad Off-Canvas (Sin cambios)
+        const sidebar = document.getElementById('off-canvas-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const navMain = document.querySelector('.main-nav');
+
+        if (window.innerWidth > 900 && navMain) {
+            navMain.style.display = 'flex';
+        }
+
+        function toggleMenu() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = 'auto';
+                if (navMain) navMain.style.display = 'flex';
+            } else {
+                if (navMain) navMain.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.hamburger-button').addEventListener('click', toggleMenu);
+    </script>
 </body>
 
 </html>
