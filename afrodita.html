@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje para Sara</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            transition: background 1.5s ease-in-out, color 1.5s ease-in-out;
+        }
+
+        #historia-mensaje {
+            max-width: 700px;
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 3px solid;
+            transition: border-color 1.5s ease-in-out, background-color 0.5s ease-in-out;
+        }
+
+        p.texto-principal {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s forwards ease-out;
+            transition: color 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        a.boton-siguiente {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            box-shadow: 0 4px;
+        }
+
+        a.boton-siguiente:hover {
+            transform: translateY(-2px);
+        }
+
+        a.boton-siguiente:active {
+            transform: translateY(0);
+        }
+
+        #gif-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeInScale 1s forwards ease-out 0.5s;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #contador {
+            margin-top: 30px;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 2px dashed;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: border-color 1.5s ease-in-out, color 1.5s ease-in-out;
+        }
+        #final-abrazo {
+            margin-top: 30px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            transition: color 1.5s ease-in-out;
+        }
+
+        body.etapa-mensaje1 {
+            background: linear-gradient(135deg, #ffc0cb 0%, #a8e0f9 100%);
+            color: #4a4a4a;
+        }
+        .etapa-mensaje1 #historia-mensaje {
+            border-color: #ff69b4;
+        }
+        .etapa-mensaje1 .boton-siguiente {
+            background-color: #ff69b4;
+            box-shadow: 0 4px #c2528c;
+        }
+
+        body.etapa-mensaje2 {
+            background: linear-gradient(45deg, #a7e9af 0%, #90d4ec 100%);
+            color: #3d3d3d;
+        }
+        .etapa-mensaje2 #historia-mensaje {
+            border-color: #4CAF50;
+        }
+        .etapa-mensaje2 .boton-siguiente {
+            background-color: #4CAF50;
+            box-shadow: 0 4px #388E3C;
+        }
+
+        body.etapa-mensaje3 {
+            background: linear-gradient(180deg, #ffd700 0%, #ff6347 100%);
+            color: #5a3e1c;
+        }
+        .etapa-mensaje3 #historia-mensaje {
+            border-color: #ff4500;
+        }
+        .etapa-mensaje3 .boton-siguiente {
+            background-color: #ff4500;
+            box-shadow: 0 4px #cd3700;
+        }
+
+        body.etapa-mensaje4 {
+            background: linear-gradient(-90deg, #add8e6 0%, #dda0dd 100%);
+            color: #333;
+        }
+        .etapa-mensaje4 #historia-mensaje {
+            border-color: #8a2be2;
+        }
+        .etapa-mensaje4 #contador {
+            border-color: #8a2be2;
+            color: #8a2be2;
+        }
+        .etapa-mensaje4 #final-abrazo {
+            color: #8a2be2;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="historia-mensaje">
+        <p class="texto-principal">Cargando la magia...</p>
+    </div>
+
+    <script>
+        const etapas = {
+            'mensaje1': {
+                texto: "Ya falta menos para vernos cariño, pero aún así hay que ponerle algo de magia a las cosas.",
+                opcion: { texto: "Siguiente", destino: "mensaje2" },
+                claseCSS: "etapa-mensaje1"
+            },
+            'mensaje2': {
+                texto: "Sabes que te quiero mucho mucho mucho, pero que mucho. Mucho más de lo que te puedes llegar a imaginar.",
+                opcion: { texto: "Siguiente", destino: "mensaje3" },
+                claseCSS: "etapa-mensaje2"
+            },
+            'mensaje3': {
+                texto: "Estoy muy orgulloso de ti y de todo el trabajo y empeño que pones porque salgan las cosas, y sobretodo que salgan de la mejor manera.",
+                gif: "https://i.pinimg.com/originals/e9/c4/2e/e9c42e162d7095d73968532fda857317.gif",
+                opcion: { texto: "Siguiente", destino: "mensaje4" },
+                claseCSS: "etapa-mensaje3"
+            },
+            'mensaje4': {
+                texto: "Aquí tienes mi regalo de hoy, estoy deseando verte el viernes",
+                final: true,
+                claseCSS: "etapa-mensaje4"
+            }
+        };
+
+        const contenedor = document.getElementById('historia-mensaje');
+
+        function cargarEtapa(etapaId) {
+            const etapa = etapas[etapaId];
+            
+            document.body.className = ''; 
+            document.body.classList.add(etapa.claseCSS);
+
+            contenedor.innerHTML = '';
+
+            contenedor.innerHTML += `<p class="texto-principal">${etapa.texto}</p>`;
+            
+            if (etapa.gif) {
+                contenedor.innerHTML += `
+                    <div id="gif-container">
+                        <img src="${etapa.gif}" alt="Un bonito GIF">
+                    </div>
+                `;
+            }
+
+            if (!etapa.final) {
+                const opcion = etapa.opcion;
+                contenedor.innerHTML += `
+                    <p>
+                        <a href="#" class="boton-siguiente" onclick="cargarEtapa('${opcion.destino}'); return false;">
+                            ${opcion.texto}
+                        </a>
+                    </p>
+                `;
+            } else {
+                contenedor.innerHTML += `
+                    <div id="contador">Calculando tiempo...</div>
+                    <div id="final-abrazo">Esto queda para nuestro abrazo. Te quiero 💖</div>
+                `;
+                startCountdown();
+            }
+        }
+
+        function startCountdown() {
+            
+            const targetDate = new Date("November 21, 2025 18:00:00").getTime();
+            const countdownElement = document.getElementById('contador');
+
+            const updateCountdown = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(updateCountdown);
+                    countdownElement.innerHTML = "¡Es hora de nuestro abrazo! ❤️";
+                } else {
+                    countdownElement.innerHTML = `
+                        ${days}D ${hours}H ${minutes}M ${seconds}S
+                    `;
+                }
+            }, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarEtapa('mensaje1');
+        });
+
+    </script>
+    
+</body>
+</html>

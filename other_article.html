@@ -41,8 +41,8 @@
         }
 
         .wrapper {
-            max-width: 1400px; /* Hacemos el contenedor más ancho */
-            width: 90%;
+            max-width: 1800px; /* Hacemos el contenedor más ancho */
+            width: 80%;
             margin: 0 auto;
             padding: 0 10px;
         }
@@ -53,14 +53,15 @@
 
         header.main-header {
             background-color: transparent; 
-            width: 100%;
+            width: 80%;
             padding: 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: absolute; /* Posición absoluta, flotando sobre el contenido */
+            position: relative; /* Posición absoluta, flotando sobre el contenido */
             top: 0;
             z-index: 20;
+            text-align: center;
         }
 
         .logo a {
@@ -90,31 +91,25 @@
             letter-spacing: 1px;
             font-weight: 400;
         }
-
-        /* ============================================== */
-        /* SECCIÓN DEL TÍTULO PRINCIPAL (El elemento de diseño) */
-        /* ============================================== */
         .hero-title-section {
-            padding: 150px 0 50px; /* Gran espacio superior */
+            padding: 90px 0 50px; /* Gran espacio superior */
         }
-        
+        .h1_artist_name,
         .h1_main {
             font-family: var(--font-serif-display);
-            font-size: 5rem; /* ¡Título gigante! */
+            font-size: 2.2rem; /* ¡Título gigante! */
             line-height: 1.1;
             margin: 0;
             padding: 0;
             color: var(--color-primary);
             font-weight: 400;
-            /* Desplazamos el título a la izquierda para el look moderno */
-            text-align: left; 
-            max-width: 800px;
+            text-align: center;
         }
 
         /* Subtítulo debajo del título principal */
         .subheading {
             font-family: var(--font-serif-body);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #555;
             margin-top: 20px;
             margin-bottom: 6px;
@@ -129,12 +124,12 @@
         .article-layout {
             display: grid;
             grid-template-columns: 2fr 1fr; /* Columna principal más ancha */
-            gap: 80px; /* Separación grande */
-            margin-top: 50px;
+            gap: 40px; /* Separación grande */
+            margin-top: 0px;
         }
 
         .main-content {
-            padding-right: 40px; /* Espacio extra a la derecha del contenido principal */
+            padding-right: 0px; /* Espacio extra a la derecha del contenido principal */
         }
 
         .article-container {
@@ -198,47 +193,11 @@
         .caption-text {
             font-size: 0.85em;
             color: #555;
-            padding: 10px 0;
+            padding: 0px 0;
             font-style: italic;
-            border-top: 1px solid var(--color-light); 
-            margin-top: 10px;
-        }
-
-        /* ============================================== */
-        /* MEDIA QUERY: Móvil (Volver a estructura apilada) */
-        /* ============================================== */
-        @media (max-width: 900px) {
-            .hero-title-section {
-                padding: 100px 0 30px; 
-            }
-            .h1_main {
-                font-size: 3rem; /* Título más pequeño en móvil */
-                text-align: center;
-            }
-            .subheading {
-                text-align: center;
-                border-left: none;
-                padding-left: 0;
-                border-top: 1px solid var(--color-secondary);
-                padding-top: 15px;
-            }
-            .article-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .main-content {
-                padding-right: 0;
-            }
-            .sidebar-container {
-                order: -1; 
-            }
-            .sidebar {
-                margin-top: 0;
-            }
-            .hamburger-button {
-                color: var(--color-primary);
-                z-index: 1001; /* Asegurar que esté encima del menú lateral */
-            }
+            border-top: 1px solid var(--color-secondary); 
+            margin-top: 5px;
+            text-align: center;
         }
     </style>
 </head>
@@ -261,7 +220,8 @@
     </header>
 
     <div class="hero-title-section wrapper">
-        <h1 class="h1_main">Mary Cassatt: La Mirada Femenina en el Impresionismo</h1>
+        <h1 class="h1_artist_name" style="font-size: 5rem;">Mary Cassatt</h1>
+        <h1 class="h1_main">la mirada femenina del impresionismo</h1>
         <p class="subheading">Un análisis profundo de la única artista norteamericana en exponer con el grupo impresionista y su foco en el público femenino en la ópera parisina.</p>
     </div>
 
@@ -282,7 +242,7 @@
                     </p>
                     
                     <figure class="grid-img">
-                        <img src="https://placehold.co/750x550/1a1a1a/b58d53?text=OBRA+PRINCIPAL" alt="Mary Cassatt. Mujer con collar de perlas en un palco. Obra de Arte">
+                        <img src="https://placehold.co/750x550/1a1a1a/b58d53?text=OBRA+PRINCIPAL">
                         <figcaption class="caption-text">Mary Cassatt. <em>Mujer con collar de perlas en un palco</em>. Óleo sobre lienzo.</figcaption>
                     </figure>
 
