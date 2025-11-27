@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obras - Géricault</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-fondo: #f9f7f7;
+            --color-principal: #333333;
+            --color-acento: #a0a0a0;
+            --fuente-serif: 'Playfair Display', serif;
+            --fuente-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--fuente-serif);
+            color: var(--color-principal);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            padding: 20px;
+            /* === TRANSICIÓN DE PÁGINA: Configuración inicial === */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out; 
+            /* La transición se extiende a 0.5s para un efecto más notorio */
+        }
+        
+        /* Clase para la transición de ENTRADA (se añade al cargar) */
+        body.fade-in {
+            opacity: 1;
+        }
+
+        /* Clase para la transición de SALIDA (se añade al hacer clic en un enlace) */
+        body.fade-out {
+            opacity: 0;
+        }
+
+        section {
+            height: min-content;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--fuente-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-principal);
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-acento);
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .galeria-item {
+            text-align: center;
+            border: 1px solid var(--color-acento);
+            padding: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* === NUEVA CLASE PARA ÍTEMS VERTICALES === */
+        .galeria-item.vertical {
+            /* Restringe el ancho para que el formato vertical se vea mejor en la cuadrícula */
+            max-width: 350px; 
+            margin: 0 auto; 
+        }
+
+
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            padding-top: 10px;
+            font-size: 0.9em;
+            font-style: italic;
+            color: var(--color-principal);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--color-acento);
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+
+        .active {
+            color: var(--color-acento);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="font-size: medium;">Théodore Géricault <br> 1791-1824</h1>
+
+        <nav>
+            <ul>
+                <li><a href="gericault.html">Biografía</a></li>
+                <li><a class="active" href="gericault_obras.html">Obras</a></li>
+                <li><a href="gericault_infl.html">Influencias</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="galeria">
+        <section class="galeria-item">
+            <a href="/artistas/gericault/obras/balsa_medusa.html" style="text-decoration: none;">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/1200px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg">
+                <p class="caption">La balsa de Medusa <br><i>1822</i></p>
+            </a>
+        </section>
+
+        <section class="galeria-item ">
+            <a href="/artistas/gericault/muerte_gericault.html" style="text-decoration: none;">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG/300px-Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG">
+                <p class="caption"> La muerte de Géricault<br><i>1824</i></p>
+            </a>
+        </section>
+        <section class="galeria-item">
+            <a href="">
+                <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/436455/796274/main-image">
+                <p class="caption">Paisaje con acueducto <br><i>1818</i></p>
+            </a>
+        </section>
+        <section class="galeria-item vertical">
+            <a href="/artistas/gericault/coracero.html">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Th%C3%A9odore_g%C3%A9ricault%2C_corazziere_ferito_che_abbandona_il_fuoco%2C_ante_1814%2C_01.jpg">
+                <p class="caption">Coracero Herido <br><i>1814</i></p>
+            </a>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const transitionDuration = 500; // 500ms = 0.5s
+
+            // 1. TRANSICIÓN DE ENTRADA: Aplica la clase para que el contenido se desvanezca al cargar
+            body.classList.add('fade-in');
+
+            // 2. TRANSICIÓN DE SALIDA: Maneja los clics en los enlaces
+            
+            // Selecciona todos los enlaces que tienen un 'href' y no son anclas internas (#) o enlaces de correo.
+            const internalLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([target="_blank"])');
+
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Solo aplica la transición si el enlace lleva a otra página (no es # o vacío)
+                    if (href && href !== '#') {
+                        // Previene la navegación inmediata del navegador
+                        e.preventDefault();
+
+                        // Remueve la clase de entrada y aplica la clase de salida (opacidad 1 a 0)
+                        body.classList.remove('fade-in');
+                        body.classList.add('fade-out'); 
+
+                        // Redirige al destino DESPUÉS de que la animación de 500ms termine
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, transitionDuration);
+                    }
+                });
+            });
+        });
+    </script>
+    </body>
+
+</html>

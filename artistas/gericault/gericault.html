@@ -4,106 +4,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Géricault</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+    <title>Théodore Géricault</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-fondo: #f9f7f7;
+            --color-principal: #333333;
+            --color-acento: #a0a0a0;
+            --fuente-serif: 'Playfair Display', serif;
+            --fuente-sans: 'Montserrat', sans-serif;
+        }
+
+        strong,
+        b {
+            font-weight: 700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--fuente-serif);
+            color: var(--color-principal);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--fuente-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-principal);
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-acento);
+        }
+
+        .galeria {
+            display: block;
+            text-align: justify;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 10px;
+            text-align: left;
+        }
+
+
+        .galeria img {
+            display: block;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .galeria-item {
+            text-align: center;
+            border: 1px solid var(--color-acento);
+            padding: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            padding-top: 10px;
+            font-size: 0.9em;
+            font-style: italic;
+            color: var(--color-principal);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--color-acento);
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+
+        .active {
+            color: var(--color-acento)
+        }
+    </style>
 </head>
 
 <body>
-    <header class="romanticismo">
-        <h1 style="font-size: 30px;"> Géricault</h1>
-        <h2>(1792 - 1824)</h2>
+
+    <header>
+        <h1 style="font-size: medium;">Théodore Géricault <br> 1791-1824</h1>
+
+        <nav>
+            <ul>
+                <li><a class="active" href="gericault.html">Biografía</a></li>
+                <li><a href="gericault_obras.html">Obras</a></li>
+                <li><a href="gericault_infl.html">Influencias</a></li>
+            </ul>
+            <img class="galeria"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
+                height="10%">
+        </nav>
     </header>
-    <main class="grid-container">
+    <main>
+        <p class="galeria">
+            Théodore Géricault (1791-1824), nacido en Rouen, fue una figura decisiva del primer Romanticismo
+            francés:
+            su obra introdujo una intensidad <strong>dramática</strong> y una preocupación por lo real y lo humano que
+            rompía con los
+            cánones académicos de su tiempo.
+        </p>
+        <p class="galeria">
+            Se formó en París en el ambiente artístico post-napoleónico, con un interés temprano por la representación
+            del movimiento y la potencia física —especialmente en caballos y escenas ecuestres— que marcaría sus
+            primeros éxitos en el Salón y su reputación entre críticos y colegas.</p>
+        <p class="galeria">
+            En 1812 expone en el Salón de París, la siguiente obra: <i>Oficial de cazadores a la carga</i>
+        </p>
+        <img class="galeria" style="height: 450px;"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/GericaultHorseman.jpg/960px-GericaultHorseman.jpg">
 
-        <p class="text-full">
-            Jean-Louis André Théodore Géricault, conocido como Théodore Géricault, fue un destacado pintor francés y una
-            figura pionera en la <strong>pintura romántica</strong>.
-            Nació en Ruan el 26 de septiembre de 1791 y falleció en París el 26 de enero de 1824.
+        <p class="galeria">
+            Le vale el éxito inmediato, y a día de hoy es considerada como una <strong>obra clave</strong> en la transición del neoclasicismo
+            al romanticismo francés.
         </p>
-
-        <div class="image-full romanticismo">
-            <a href="#">
-                <img width="350" height="300"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/1200px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg">
-                <p style="text-align: center;">La balsa de Medusa<br><i>1822</i></p>
-            </a>
-        </div>
-
-        <p class="text-full">
-            Estudió con el pintor académico <strong>Pierre-Narcisse Guérin</strong>, pero pronto rechazó el
-            neoclasicismo predominante y se interesó por artistas como <strong>Rubens</strong> y
-            <strong>Constable</strong>. Su obra más famosa, <i>"La Balsa de la Medusa"</i> , combina elementos del
-            <strong>barroco, el realismo romántico</strong> y la expresión desenfrenada de sentimientos.
-            Géricault se dedicó a pintar directamente del modelo, sin dibujos preparatorios, y su carrera, aunque breve,
-            fue muy influyente en el arte del siglo XIX.
+        <p class="galeria">
+            Desde sus estudios anatómicos hasta sus observaciones en hospitales y morgues, Géricault cultivó un
+            método <strong>riguroso</strong>: preparaba sus grandes composiciones con bocetos, estudios y apuntes
+            directos de la
+            realidad, lo que le permitió dotar a sus pinturas de una verosimilitud cruda y una fuerza expresiva poco
+            frecuentes entonces.
         </p>
-        <div class="image-full romanticismo">
-            <a href="#">
-                <img width="350" height="390"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG/300px-Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG">
-                <p style="text-align: center;"> La muerte de Géricault<br><i>1824</i></p>
-            </a>
-        </div>
-        <p class="text-full">
-            Géricault mostró un interés temprano por los caballos, que se convirtieron en un tema recurrente en su
-            obra. En 1810, se unió al estudio de <strong>Pierre Guérin</strong>,
-            donde comenzó a explorar sus propias inclinaciones artísticas fuera del <strong></strong>academicismo.
-            Viajó a Italia en 1816-1817, donde quedó impresionado por los maestros del <strong>Renacimiento
-                italiano</strong>, especialmente por <strong>Miguel Ángel</strong>.
-        </p>
-        <div class="image-full romanticismo">
-            <a href="#">
-                <img width="350" height="320"
-                    src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/436455/796274/main-image">
-                <p style="text-align: center;">Paisaje con acueducto<br><i>1818</i></p>
-            </a>
-        </div>
-        <p class="text-full">
-            A su regreso a Francia, continuó desarrollando un estilo independiente, alejado de las reglas del
-            neoclasicismo, y
-            exploró temas de la vida cotidiana elevados a la categoría de hechos heroicos.
-            <br><br>Durante sus últimos años, Géricault se dedicó a retratar a personas que sufrían de enfermedades
-            mentales,
-            buscando capturar una variedad de expresiones de la locura. Sin embargo, su carrera fue truncada por un
-            accidente en 1823 que lo dejó
-            postrado en cama.
-            <br>
-        </p>
-        <div class="image-full romanticismo">
-            <a href="#">
-                <img width="350" height="390"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Th%C3%A9odore_g%C3%A9ricault%2C_corazziere_ferito_che_abbandona_il_fuoco%2C_ante_1814%2C_01.jpg">
-                <p style="text-align: center;">Coracero Herido<br><i>1814</i></p>
-            </a>
-        </div>
-        <p class="text-full">
-            Murió el 26 de enero de 1824, después de una larga agonía, y fue enterrado en el cementerio de Pere
-            Lachaise en París, donde su tumba
-            presenta una escultura suya sosteniendo una paleta y un pincel, junto a una reproducción en relieve de
-            <i>"La Balsa de la Medusa"</i>.
-        </p>
-        <p class="text-full">
-            Artistas relacionados con Delacroix: <br>
-        </p>
+        <p class="galeria">
+            Su obra más célebre, "La balsa de la Medusa" (realizada entre 1818 y 1819), nació de una
+            documentación
+            exhaustiva sobre el desastre naval que conmocionó a Europa; presentado en el Salón, el cuadro impactó
+            por su monumentalidad, su crudeza moral y su carga política, y se convirtió en emblema del Romanticismo
+            comprometido.</p>
+        <p class="galeria">Además de escenas históricas y marinas, Géricault desarrolló series íntimas y
+            perturbadoras —como los
+            célebres retratos de enfermos mentales— y numerosos estudios de jinetes y caballos que revelan su
+            obsesión por la fisiología del movimiento y la expresión psicológica.</p>
+        <p class="galeria">Técnicamente, destacó por una pincelada enérgica, una paleta sobria pero dramática y una
+            composición
+            calculada para maximizar el impacto emocional: combinó la herencia de los grandes maestros con una
+            mirada moderna hacia la luz, la materia y la tensión narrativa.</p>
+        <p class="galeria">En la década de 1820 viajó a Londres, donde entró en contacto con colecciones y artistas
+            ingleses,
+            ampliando su visión y sus referencias; sin embargo, su carrera fue truncada por un declive de salud
+            derivado de una caída y de enfermedades, y murió en 1824 con apenas 32 años.</p>
+        <p class="galeria">A pesar de su vida breve, Géricault dejó una huella profunda: su audacia temática y
+            plástica inspiró a
+            generaciones posteriores —entre ellas figuras como Delacroix— y consolidó la posibilidad de una pintura
+            que no sólo representara la forma, sino que contara la condición humana con urgencia y verdad.</p>
     </main>
 
-    <a href="/artistas/delacroix/delacroix.html">
-        <div class="text-full romanticismo" style=" color: #ffffff;">
-            <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Eugène
-                Delacroix </p>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            body.classList.add('fade-in');
 
-        </div>
-    </a>
-    <br>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-        <div class="text-full" style="background-color: #000000; color: white;">
-            <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-        </div>
-    </a>
+            const internalLinks = document.querySelectorAll('a:not([href^="#"]):not([href^="mailto:"]):not([target="_blank"])');
 
-    <footer class="main-footer">
-        <p>&copy; Virtual Gallery 2025</p>
-    </footer>
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    e.preventDefault();
+
+                    body.classList.remove('fade-in');
+                    body.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -11,105 +11,107 @@
         rel="stylesheet">
 
     <style>
-    /* Estilos Generales para Minimalismo y Arte Clásico */
-    :root {
-        /* Usamos fuentes de Google Fonts sugeridas, si no, usa las que vienen por defecto en el CSS */
-        --color-fondo: #f9f7f7;
-        --color-principal: #333333;
-        --color-acento: #a0a0a0;
-        --fuente-serif: 'Playfair Display', serif;
-        /* Más elegantes para el arte */
-        --fuente-sans: 'Montserrat', sans-serif;
-        /* Limpias y modernas */
-    }
+        /* Estilos Generales para Minimalismo y Arte Clásico */
+        :root {
+            /* Usamos fuentes de Google Fonts sugeridas, si no, usa las que vienen por defecto en el CSS */
+            --color-fondo: #f9f7f7;
+            --color-principal: #333333;
+            --color-acento: #a0a0a0;
+            --fuente-serif: 'Playfair Display', serif;
+            /* Más elegantes para el arte */
+            --fuente-sans: 'Montserrat', sans-serif;
+            /* Limpias y modernas */
+        }
 
-    /* Permite que strong y b sean inline por defecto, manteniendo el flujo */
-    strong, b {
-        font-weight: 700;
-    }
+        /* Permite que strong y b sean inline por defecto, manteniendo el flujo */
+        strong,
+        b {
+            font-weight: 700;
+        }
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-        font-family: var(--fuente-serif);
-        color: var(--color-principal);
-        background-color: var(--color-fondo);
-        line-height: 1.6;
-        padding: 20px;
-    }
+        body {
+            font-family: var(--fuente-serif);
+            color: var(--color-principal);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            padding: 20px;
+        }
 
-    /* Tipografía y Encabezados */
-    h1,
-    h2,
-    h3 {
-        font-family: var(--fuente-sans);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 0.5em;
-    }
+        /* Tipografía y Encabezados */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--fuente-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
 
-    h1 {
-        font-size: 2.0em;
-        text-align: center;
-        padding-bottom: 5px;
-        border-bottom: 1px solid var(--color-acento);
-    }
-    
-    .galeria {
-        display: block;
-        text-align: justify;
-        max-width: 1200px;
-        margin: 20px auto; 
-        padding: 0 10px; 
-        text-align: left;
-    }
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        .galeria {
+
+            display: block;
+            text-align: justify;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 10px;
+            text-align: left;
+        }
 
 
-    .galeria img {
-        display: block;
-        max-width: 300px;
-        height: auto;
-        margin: 0 auto;
-    }
-    
-    .galeria-item {
-        text-align: center;
-        border: 1px solid var(--color-acento);
-        padding: 5px;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .galeria img {
+            display: block;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+        }
 
-    .galeria-item img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
+        .galeria-item {
+            text-align: center;
+            border: 1px solid var(--color-acento);
+            padding: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    .galeria-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .caption {
-        padding-top: 10px;
-        font-size: 0.9em;
-        font-style: italic;
-        color: var(--color-principal);
-    }
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Pie de Página */
-    footer {
-        text-align: center;
-        padding: 20px;
-        border-top: 1px solid var(--color-acento);
-        font-size: 0.8em;
-        margin-top: 40px;
-    }
-</style>
+        .caption {
+            padding-top: 10px;
+            font-size: 0.9em;
+            font-style: italic;
+            color: var(--color-principal);
+        }
+
+        /* Pie de Página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--color-acento);
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,53 +119,75 @@
     <header>
         <h1 style="font-size: medium;">Eugène Delacroix <br> 1798-1863</h1>
         <img class="galeria"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg"
+
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg"
             height="10%">
     </header>
     <main>
-    <p class="galeria">
-        Ferdinand-Victor-Eugène Delacroix fue un destacado pintor y litógrafo francés, nacido el 26 de abril de
-        1798 en Charenton-Saint-Maurice y fallecido el 13 de agosto de 1863 en París.
-
-        Delacroix nació en el seno de una familia de artistas, siendo hijo del político Charles Delacroix y
-        Victoire Oeben, perteneciente a una familia de ebanistas y dibujantes. <br> Después de la muerte de su padre
-        en 1806, se trasladó con su familia a París, donde comenzó sus estudios clásicos en el Liceo
-        Imperial.
-    </p>
-
-    <p class="galeria">
-        En 1815, siguiendo la recomendación de su tío, ingresó al taller del pintor neoclásico Pierre
-        Narcisse Guérin, donde tuvo como maestros a Théodore Géricault y al Barón Gros. Durante este tiempo, Delacroix
-        desarrolló un interés
-        por el estudio de grandes maestros como Rubens, Velázquez y Rembrandt, así como
-        por la litografía y la pintura de paisajes. En 1822, Delacroix expuso por primera vez su obra La barca de Dante,
-        seguida dos años más
-        tarde por La matanza de Quíos, obras que reflejaban su ambivalencia entre
-        el romanticismo y el clasicismo.
-    </p>
-    <p class="galeria">
-        En 1825, viajó a Inglaterra para estudiar a los pintores ingleses, como John Constable, lo que
-        influyó
-        en su técnica y uso del color. A los treinta años, Delacroix provocó controversia con su obra La
-        muerte
-        de Sardanápalo en el Salón de París en 1827, destacando por su uso del color y su representación
-        dramática. Este período también marcó su interés por la música y la literatura, relacionándose con
-        figuras como Stendhal, Mérimée, Victor Hugo y Baudelaire.
-    </p>
-
-    <p class="galeria">
-        En 1832, realizó un viaje de seis meses a Marruecos y Argelia, donde quedó fascinado por la luz, el
-        color y la cultura del norte de África. Este viaje influyó profundamente en su obra posterior, reflejada
-        en cuadros como Mujeres de Argel en sus habitaciones.
-
-    </p>
-    <p class="galeria">
-        Su obra más conocida, La Libertad guiando al pueblo, le valió la <b>Cruz de la legión de Honor</b> y se
-        convirtió en un símbolo de la Revolución de 1830 en Francia. A su regreso, Delacroix recibió encargos
-        oficiales para decorar diversos edificios públicos, como el Salón del rey del palacio de Borbón y el
-        Palacio de Luxemburgo.
-
-    </p>
+        <p class="galeria">
+            Eugène Delacroix (1798–1863) fue una de las figuras más influyentes del Romanticismo francés
+            y un motor
+            fundamental de la renovación pictórica del siglo XIX. Nacido en Charenton-Saint-Maurice y formado en el
+            ambiente intelectual y artístico del París posrevolucionario, creció rodeado de literatura, música y
+            política, elementos que más tarde impregnarían su obra con un dramatismo y una intensidad emocional inéditos
+            para su época. Desde joven demostró un talento extraordinario para el dibujo y el color, ingresando en el
+            taller de Pierre-Narcisse Guérin, donde conoció a artistas como Géricault, quien sería una influencia
+            decisiva.
+        </p>
+        <p class="galeria">
+            Su primera gran irrupción pública llegó con "La Barca de Dante" (1822), una obra que
+            escandalizó y fascinó al
+            público por su violencia cromática y su atmósfera turbulenta. Con ese cuadro inició una carrera marcada por
+            la exploración del dinamismo, el exotismo y la expresión emocional, alejándose conscientemente de la rigidez
+            neoclásica. A partir de allí, Delacroix se convirtió en la voz pictórica del Romanticismo francés,
+            desarrollando un lenguaje donde el color —más que la línea— se convertía en el eje generador de la forma y
+            del movimiento.
+        </p>
+        <p class="galeria">
+            Uno de sus momentos culminantes fue la exposición de "La Libertad guiando al pueblo" (1830),
+            un símbolo
+            visual de la revolución de julio que derrocó a Carlos X. Aunque la obra no retrata un hecho exacto,
+            encapsula el espíritu de lucha y sacrificio de aquel periodo, y consolidó la fama del pintor como cronista
+            emocional de su tiempo. Sin embargo, su relación con el poder y las instituciones fue ambigua: admirado como
+            creador, pero polémico como figura pública, Delacroix alternó el reconocimiento académico con periodos de
+            frialdad y rechazo institucional.
+        </p>
+        <p class="galeria">
+            En la década de 1830 viajó al norte de África como parte de una misión diplomática,
+            experiencia que
+            transformó profundamente su arte. En Marruecos descubrió una luz y una paleta vibrantes, junto con escenas
+            cotidianas y ceremoniales que influyeron en su producción durante el resto de su vida. El Oriente romántico
+            lo inspiró a crear composiciones cargadas de sensualidad, dinamismo y dramatismo, donde el uso del color
+            alcanzó una nueva sofisticación.
+        </p>
+        <p class="galeria">
+            Además de su obra de caballete, Delacroix fue un prolífico muralista. Decoró iglesias y
+            edificios públicos,
+            como la Biblioteca del Palacio del Luxemburgo, la Galería de Apolo del Louvre y la Iglesia de Saint-Sulpice,
+            donde pintó uno de sus conjuntos más impactantes: La lucha de Jacob con el ángel, una fusión de energía,
+            espiritualidad y experimentación cromática.
+        </p>
+        <p class="galeria">
+            Intelectualmente inquieto, mantuvo un diario a lo largo de su vida, en el que reflexionó
+            sobre estética,
+            música, literatura y técnica pictórica. Sus escritos revelan a un artista disciplinado, culto, obsesionado
+            con el color y admirador de maestros como Rubens, Veronés y los venecianos. Fue también cercano a escritores
+            como Baudelaire, quien lo consideraba el mayor pintor de la modernidad.
+        </p>
+        <p class="galeria">
+            En sus últimos años, pese a problemas de salud, continuó trabajando con una energía
+            excepcional. A lo largo
+            de su carrera creó más de nueve mil obras entre óleos, acuarelas, dibujos y bocetos. Murió en 1863 en París,
+            dejando una herencia que transformó la pintura europea. Su audacia cromática y su aproximación emocional al
+            arte influyeron directamente en los impresionistas —especialmente en Renoir y Monet— y más tarde en los
+            simbolistas y postimpresionistas.
+        </p>
+        <p class="galeria">
+            Delacroix encarnó la transición entre el mundo clásico y la sensibilidad moderna: un artista
+            que hizo del
+            color, el movimiento y la emoción el corazón de una nueva forma de ver y representar la realidad. Su legado
+            continúa siendo una piedra angular en la historia del arte occidental.
+        </p>
 
 
     </main>
