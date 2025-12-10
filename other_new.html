@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Théodore Géricault</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-fondo: #f9f7f7;
+            --color-principal: #333333;
+            --color-acento: #a0a0a0;
+            --fuente-serif: 'Playfair Display', serif;
+            --fuente-sans: 'Montserrat', sans-serif;
+        }
+
+        strong,
+        b {
+            font-weight: 700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--fuente-serif);
+            color: var(--color-principal);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--fuente-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-principal);
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-acento);
+        }
+
+        .galeria {
+            display: block;
+            text-align: justify;
+            max-width: 750px;
+            margin: 20px auto;
+            padding: 0 10px;
+            text-align: left;
+        }
+
+
+        .galeria img {
+            display: block;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .galeria-item {
+            text-align: center;
+            border: 1px solid var(--color-acento);
+            padding: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            padding-top: 10px;
+            font-size: 0.9em;
+            font-style: italic;
+            color: var(--color-principal);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--color-acento);
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+
+        .active {
+            color: var(--color-acento)
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="font-size: medium;">Mary Cassatt <br></h1>
+    </header>
+    <main>
+        <h3 style="text-align: center;"> Perspectiva femenina en el impresionismo</h3>
+        <p class="galeria">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ea fuga ipsam
+            asperiores inventore tempore quasi commodi, natus ullam, harum soluta et culpa fugit accusantium est quaerat
+            numquam. Atque, labore.
+        </p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            body.classList.add('fade-in');
+
+            const internalLinks = document.querySelectorAll('a:not([href^="#"]):not([href^="mailto:"]):not([target="_blank"])');
+
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    e.preventDefault();
+
+                    body.classList.remove('fade-in');
+                    body.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

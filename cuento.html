@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuento para Jimena</title>
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        background-image: url("textura_cuento.jpg");
+        background-size: cover;
+        background-position: center;
+        font-family: 'Patrick Hand', cursive;
+    }
+    #pagina {
+        width: 80vw;
+        max-width: 650px;
+        padding: 40px;
+        background: rgba(255, 248, 228, 0.9);
+        border-radius: 20px;
+        border: 6px solid #c49a6c;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        font-size: 4.8vw;
+        max-height: 70vh;
+        overflow: hidden;
+    }
+    @media (min-width: 600px){
+        #pagina { font-size: 28px; }
+    }
+    #imagen {
+        width: 65%;
+        margin-top: 20px;
+        border-radius: 15px;
+        border: 4px solid #c49a6c;
+    }
+    button {
+        margin-top: 25px;
+        padding: 15px 35px;
+        font-size: 6vw;
+        border: none;
+        border-radius: 20px;
+        background: #d49b42;
+        color: #fff8e2;
+        cursor: pointer;
+        font-family: 'Itim', cursive;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+    @media (min-width: 600px){
+        button { font-size: 30px; }
+    }
+    button:active {
+        transform: scale(0.95);
+    }
+</style>
+</head>
+<body>
+
+<div id="pagina" style="text-align: center;">
+    <div id="texto" style="text-align: center;"></div>
+    <img id="imagen" src="" alt="">
+</div>
+
+<button onclick="siguiente()">➡️</button>
+
+<script>
+    const paginas = [
+        { texto: "Hace no tanto tiempo, llegó al pueblo una niña.", img: "https://lh3.googleusercontent.com/p/AF1QipMaycJLL00SxYAKKl-Y1BGDNs0v7eQpfTRF2cp2=s1360-w1360-h1020-rw" },
+        { texto: "Su mamá la trajo en una mantita, muy calentita.", img: "img_cuento/2.png" },
+        { texto: "La niña al ser tan pequeñita, había hecho el viaje dormida, pero al llegar al pueblo se despertó.", img: "img_cuento/3.png" },
+        { texto: "Pedro, su hermanito, le preguntó a su mamá:", img:"img_cuento/5.png" },
+        { texto: "-¿La puedo coger?", img:"https://static.vecteezy.com/system/resources/previews/031/101/580/non_2x/cartoon-kid-boy-free-png.png" },
+        { texto: "Y su mamá le dijo:" },
+        { texto: "-Sí, pero con cuidadito porque todavía es pequeña.", img: "https://www.shutterstock.com/image-vector/illustration-boy-mothers-arms-day-600nw-2445445245.jpg" },
+        { texto: "Pero en cuanto Pedro cogió a Jimena, la niña se calmó. Y se puso muy contenta de que su hermano se preocupase por ella", img: "img_cuento/4.png" },
+        { texto: "Cuando la niña se despertó, la familia se dio cuenta de que le gustaba mucho que la cogieran en brazos", img: "OSO.png" },
+        { texto: "Que la cogiera mamá:", img:"img_cuento/6.png"},
+        { texto: "Que la cogiera tito Pedro:", img:"img_cuento/10.jpg"},
+        { texto: "Se dejaba dormir encima de la yeya:", img:"img_cuento/7.png"},
+        { texto: "Que la cogiera otra vez mamá:", img:"img_cuento/8.png"},
+        { texto: "Que la cogiera tita Sara:", img:"img_cuento/12.jpg"},
+        { texto: "Que la cogiera tito Jose:", img:"img_cuento/9.png"},
+        { texto: "Pero lo que más le ha gustado siempre, es que la coja en brazos su hermanito PEDRO:", img:"img_cuento/13.jpg"},
+        { texto: "", img:"https://media.istockphoto.com/id/2177169453/es/v%C3%ADdeo/fin-de-los-dibujos-animados-franceses-4k-stock-video.jpg?s=640x640&k=20&c=j6clSEseZTblLVeFRZgsvsCd3pVxBbzS_uSADJ0oXos="},
+];
+    let indice = 0;
+
+    function mostrarPagina() {
+        document.getElementById("texto").textContent = paginas[indice].texto;
+        document.getElementById("imagen").src = paginas[indice].img;
+    }
+
+    function siguiente() {
+        indice = (indice + 1) % paginas.length;
+        mostrarPagina();
+    }
+
+    mostrarPagina();
+</script>
+
+</body>
+</html>

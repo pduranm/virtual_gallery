@@ -26,6 +26,7 @@
             color: var(--color-primary);
             line-height: 1.7;
             font-size: 1.15rem; 
+            max-width: fit-content;
         }
 
         a {
@@ -41,8 +42,8 @@
         }
 
         .wrapper {
-            max-width: 1800px; /* Hacemos el contenedor más ancho */
-            width: 80%;
+            max-width: 1700px; /* Hacemos el contenedor más ancho */
+            width: 75%;
             margin: 0 auto;
             padding: 0 10px;
         }
@@ -122,10 +123,11 @@
         /* LAYOUT PRINCIPAL ASIMÉTRICO (Grid) */
         /* ============================================== */
         .article-layout {
-            display: grid;
+            display: flex;
             grid-template-columns: 2fr 1fr; /* Columna principal más ancha */
             gap: 40px; /* Separación grande */
             margin-top: 0px;
+            text-align: center;
         }
 
         .main-content {
@@ -188,7 +190,7 @@
             border: 1px solid var(--color-primary); 
             padding: 10px; 
             margin: 60px 0; /* Más espacio */
-            max-width: 100%;
+            max-width: 70%;
         }
         .caption-text {
             font-size: 0.85em;
@@ -212,7 +214,7 @@
         <nav class="main-nav">
             <a href="#">HISTORIAS</a>
             <a href="#">MOVIMIENTOS</a>
-            <a href="#">ARTISTAS</a>
+            <a href="article_grid.html">ARTISTAS</a>
             <a href="contacto.html">CONTACTO</a>
         </nav>
 
@@ -221,7 +223,7 @@
 
     <div class="hero-title-section wrapper">
         <h1 class="h1_artist_name" style="font-size: 5rem;">Mary Cassatt</h1>
-        <h1 class="h1_main">la mirada femenina del impresionismo</h1>
+        <h1 class="h1_main">perspectiva femenina en el impresionismo</h1>
         <p class="subheading">Un análisis profundo de la única artista norteamericana en exponer con el grupo impresionista y su foco en el público femenino en la ópera parisina.</p>
     </div>
 
@@ -242,8 +244,8 @@
                     </p>
                     
                     <figure class="grid-img">
-                        <img src="https://placehold.co/750x550/1a1a1a/b58d53?text=OBRA+PRINCIPAL">
-                        <figcaption class="caption-text">Mary Cassatt. <em>Mujer con collar de perlas en un palco</em>. Óleo sobre lienzo.</figcaption>
+                        <img style="height: 400px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Mary_Cassatt_-_The_Boating_Party_-_Google_Art_Project.jpg/1200px-Mary_Cassatt_-_The_Boating_Party_-_Google_Art_Project.jpg">
+                        <figcaption class="caption-text">Mary Cassatt. <em>La fiesta en el bote</em>. Óleo sobre lienzo.</figcaption>
                     </figure>
 
                     <p class="text-full">
@@ -258,7 +260,7 @@
                 </article>
             </main>
 
-            <aside class="sidebar-container" role="complementary">
+            <!-- <aside class="sidebar-container" role="complementary">
                 <div class="sidebar">
                     <h3>EXPLORAR CONTEXTO</h3>
                     <ul style="list-style: none; padding-left: 0; font-size: 1.05em; line-height: 2;">
@@ -268,7 +270,7 @@
                         <li>4. <a href="#">Coleccionistas Privados</a></li>
                     </ul>
                 </div>
-            </aside>
+            </aside> -->
         </div>
     </div>
     

@@ -44,7 +44,7 @@
         }
 
         .wrapper {
-            max-width: 1400px;
+            max-width: 1200px;
             width: 90%;
             margin: 0 auto;
             padding: 0 10px;
@@ -113,7 +113,7 @@
         /* SECCIÓN PRINCIPAL HERO (Display del Título) */
         /* ============================================== */
         .hero-title-section {
-            padding: 100px 0 20px;
+            padding: 80px 0 20px;
             text-align: center;
         }
 
@@ -138,27 +138,23 @@
             margin-left: auto;
             margin-right: auto;
         }
-
-        /* ============================================== */
-        /* LAYOUT DE SECCIONES GRID (El corazón de la Home) */
-        /* ============================================== */
         .sections-grid {
             display: grid;
             /* Cuadrícula asimétrica: 2 columnas, la primera más pequeña, la segunda grande */
             grid-template-columns: 1fr 2fr;
             gap: 20px;
-            margin-top: 40px;
+            margin-top: 15px;
             padding-bottom: 20px;
         }
 
         .grid-item {
             position: relative;
-            min-height: 350px;
+            min-height: 80px;
             overflow: hidden;
             display: flex;
             align-items: flex-end;
             /* Alinear el contenido al fondo */
-            padding: 30px;
+            padding: 10px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -181,7 +177,7 @@
         .grid-item.wide {
             grid-column: span 2;
             /* Este elemento ocupa las dos columnas en PC */
-            min-height: 450px;
+            min-height: 80px;
         }
 
         /* Media Query para el item ancho en móvil */
@@ -321,12 +317,6 @@
 
         <button class="hamburger-button" onclick="toggleMenu()">☰</button>
     </header>
-
-    <div class="hero-title-section wrapper">
-        <h1 class="h1_main">El Arte como Experiencia Digital</h1>
-        <p class="subheading">Descubra narrativas visuales, explore movimientos históricos y profundice en el análisis
-            estético con nuestra colección digital de la historia del arte.</p>
-    </div>
 
 
     <div class="wrapper">
