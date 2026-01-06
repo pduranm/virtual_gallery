@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSFW | Filthy Tees Empire</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --neon-pink: #ff007f;
+            --neon-red: #ff0000;
+            --neon-purple: #9d00ff; /* Color morado para el hover */
+            --bg-dark: #000000;
+            --card-bg: #1a1a1a;
+            --text-gray: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* --- UTILIDADES NEÓN --- */
+        .neon-text-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .neon-text-red {
+            color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red);
+        }
+
+        /* --- AGE GATE --- */
+        #age-gate {
+            position: fixed;
+            inset: 0;
+            background: black;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--neon-pink);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-pink);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--neon-red);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            gap: 40px;
+            background: radial-gradient(circle at 20% 50%, #ff007f15, transparent);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--neon-pink);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            filter: grayscale(0.5) contrast(1.2);
+            box-shadow: 20px 20px 0px var(--neon-red);
+        }
+
+        /* --- SECCIONES --- */
+        .view {
+            display: none;
+            padding: 80px 5%;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- PRODUCT GRID --- */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.3s ease;
+            position: relative;
+        }
+
+        /* Hover sin desplazamiento y con borde morado */
+        .product-card:hover {
+            border-color: var(--neon-purple);
+            transform: none;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: #111;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- DETALLE DE PRODUCTO --- */
+        #product-content {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* La imagen no es sticky para que desaparezca con el scroll */
+        .detail-image-container {
+            width: 100%;
+        }
+
+        .detail-image-container img {
+            width: 100%;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- CARRITO --- */
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            padding: 60px 5%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; height: auto; padding-top: 60px; text-align: center; }
+            .hero-image-container { justify-content: center; margin-top: 40px; }
+            .hero-content h1 { font-size: 4rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Age Gate -->
+    <div id="age-gate">
+        <div class="age-gate-content">
+            <h1 class="neon-text-pink" style="font-family: 'Outfit'; font-weight: 900; font-style: italic;">FILTHY TEES</h1>
+            <p style="font-weight: 400; letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase;">18+ SOLAMENTE. ENTRA SI TE ATREVES.</p>
+            <button class="cta-button" onclick="verifyAge()">Verificar Edad</button>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo" onclick="showView('home')">NSFW</div>
+        <ul class="nav-links">
+            <li><a href="javascript:void(0)" onclick="showView('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="showView('shop')">Colección</a></li>
+            <li><a href="javascript:void(0)" onclick="showView('about')">Manifiesto</a></li>
+        </ul>
+        <div class="cart-icon" onclick="showView('cart')">
+            <i data-lucide="shopping-bag" class="neon-text-red"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home View -->
+        <section id="home" class="view active">
+            <header class="hero">
+                <div class="hero-content">
+                    <h1>NO SUITABLE <br> FOR WORK</h1>
+                    <p>Ropa para quienes no siguen las reglas. Humor ácido, estética cruda.</p>
+                    <a href="javascript:void(0)" onclick="showView('shop')" class="cta-button">Ver Colección</a>
+                </div>
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000" alt="Hero Image" class="hero-img">
+                </div>
+            </header>
+            
+            <div style="padding: 100px 0 40px 0;">
+                <h2 class="section-title">Nuevos Lanzamientos</h2>
+                <div class="product-grid" id="featured-products">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop View -->
+        <section id="shop" class="view">
+            <h2 class="section-title">Colección Completa</h2>
+            <div class="product-grid" id="all-products">
+                <!-- Dinámico -->
+            </div>
+        </section>
+
+        <!-- Product Detail View -->
+        <section id="product-detail" class="view">
+            <div id="product-content">
+                <!-- Dinámico -->
+            </div>
+        </section>
+
+        <!-- Cart View -->
+        <section id="cart" class="view">
+            <h2 class="section-title">Tu Botín</h2>
+            <div id="cart-items-list" style="max-width: 800px; margin: 0 auto;">
+                <!-- Dinámico -->
+            </div>
+            <div id="cart-summary" style="max-width: 800px; margin: 40px auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <!-- Dinámico -->
+            </div>
+        </section>
+
+        <!-- About View -->
+        <section id="about" class="view">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; padding-top: 60px;">
+                <h2 class="neon-text-pink" style="font-size: 4rem; font-weight: 900; font-style: italic; margin-bottom: 40px;">MANIFIESTO</h2>
+                <p style="font-size: 1.4rem; color: var(--text-gray); font-weight: 300; line-height: 1.8;">
+                    Filthy Tees Empire no es moda para todos. Es una bofetada visual. Es para los que entienden que lo "políticamente correcto" es el nuevo aburrimiento. Fabricamos camisetas con actitud, sarcasmo y una estética que grita NSFW.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Filthy Tees Empire. All rights ignored.</p>
+    </footer>
+
+    <script>
+        // --- DATOS ---
+        const PRODUCTS = [
+            { id: 1, name: 'Camiseta Chaos', price: 29.99, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800', desc: 'Desorden visual absoluto. 100% algodón hilado en anillo.' },
+            { id: 2, name: 'Sudadera Void', price: 59.99, img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800', desc: 'Minimalismo oscuro. Tejido premium de alta densidad.' },
+            { id: 3, name: 'Gorra Glitch', price: 24.99, img: 'https://images.unsplash.com/photo-1588850567047-1845a9ee0280?q=80&w=800', desc: 'Error en la matriz. Ajustable y de perfil bajo.' },
+            { id: 4, name: 'Pantalón Cargo X', price: 69.99, img: 'https://images.unsplash.com/photo-1565084888279-aff99672046d?q=80&w=800', desc: 'Utilidad máxima para el explorador urbano.' }
+        ];
+
+        let cart = [];
+
+        // --- INICIALIZACIÓN ---
+        window.onload = () => {
+            lucide.createIcons();
+            renderProducts();
+            if(localStorage.getItem('age_verified')) {
+                document.getElementById('age-gate').style.display = 'none';
+            }
+        };
+
+        function verifyAge() {
+            localStorage.setItem('age_verified', 'true');
+            document.getElementById('age-gate').style.display = 'none';
+        }
+
+        // --- SISTEMA DE NAVEGACIÓN ---
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- RENDER ---
+        function renderProducts() {
+            const featuredContainer = document.getElementById('featured-products');
+            const shopContainer = document.getElementById('all-products');
+            
+            const html = PRODUCTS.map(p => `
+                <div class="product-card">
+                    <div class="product-image" onclick="viewDetail(${p.id})">
+                        <img src="${p.img}" alt="${p.name}">
+                    </div>
+                    <h3>${p.name}</h3>
+                    <p class="price">€${p.price}</p>
+                    <button class="add-to-cart" onclick="addToCart(${p.id})">Añadir al carrito</button>
+                </div>
+            `).join('');
+
+            featuredContainer.innerHTML = html;
+            shopContainer.innerHTML = html;
+        }
+
+        // Función corregida para mostrar el detalle del producto
+        function viewDetail(id) {
+            const p = PRODUCTS.find(prod => prod.id === id);
+            const container = document.getElementById('product-content');
+            
+            container.innerHTML = `
+                <div class="detail-image-container">
+                    <img src="${p.img}" alt="${p.name}">
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 30px;">
+                    <h2 class="neon-text-pink" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; font-style: italic; line-height: 1;">${p.name}</h2>
+                    <p style="font-size: 2rem; font-weight: 900;">€${p.price}</p>
+                    <p style="color: var(--text-gray); font-size: 1.2rem; font-weight: 300;">${p.desc}</p>
+                    <div style="display: flex; gap: 20px;">
+                        <button class="cta-button" onclick="addToCart(${p.id})">Añadir al Botín</button>
+                        <button class="add-to-cart" style="width: auto; padding: 0 30px;" onclick="showView('shop')">Volver</button>
+                    </div>
+                </div>
+            `;
+            showView('product-detail');
+        }
+
+        // --- CARRITO ---
+        function addToCart(id) {
+            const p = PRODUCTS.find(prod => prod.id === id);
+            cart.push({ ...p, cartId: Date.now() });
+            updateUI();
+            showView('cart');
+        }
+
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
+            updateUI();
+        }
+
+        function updateUI() {
+            // Contador en la navegación
+            document.getElementById('cart-count').innerText = cart.length;
+            
+            // Lista de items en la vista de carrito
+            const list = document.getElementById('cart-items-list');
+            const summary = document.getElementById('cart-summary');
+            
+            if (cart.length === 0) {
+                list.innerHTML = `<p style="text-align: center; color: var(--text-gray); margin-top: 40px;">Tu carrito está vacío. Ve a buscar algo de caos.</p>`;
+                summary.innerHTML = "";
+                return;
+            }
+
+            list.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.img}">
+                    <div style="flex: 1;">
+                        <h4 style="font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">${item.name}</h4>
+                        <p style="font-weight: 400; color: var(--text-gray);">€${item.price}</p>
+                    </div>
+                    <button style="background: none; border: none; color: var(--neon-red); cursor: pointer; font-weight: 900; font-size: 0.7rem;" onclick="removeFromCart(${item.cartId})">QUITAR</button>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((acc, item) => acc + item.price, 0);
+            summary.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">Total</span>
+                    <span class="neon-text-pink" style="font-size: 3rem; font-weight: 900;">€${total.toFixed(2)}</span>
+                </div>
+                <button class="cta-button" style="width: 100%; margin-top: 30px; border: none; cursor: pointer;" onclick="alert('Pedido simulado enviado a Printful')">Proceder al pago</button>
+            `;
+        }
+    </script>
+</body>
+</html>
