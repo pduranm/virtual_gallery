@@ -2,189 +2,401 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impresionismo</title>
-  <link rel="stylesheet" href="/css/movimiento_style.css">
-  <style>
-    .impresionismo {
-      background-color: #3d9aa8;
-      color: white;
-      border-color: black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresionismo | Virtual Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        /* HEADER */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 3000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HERO SECCIÓN */
+        .collection-hero {
+            margin-top: var(--header-height);
+            padding: 80px 50px 40px;
+            text-align: center;
+        }
+
+        .collection-hero h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+        }
+
+        .collection-hero span {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            letter-spacing: 3px;
+        }
+
+        /* GRID PRINCIPAL */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 30px;
+            padding: 0 50px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
+        .text-separator {
+            grid-column: 1 / -1;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .text-separator p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* TARJETAS DE ARTE */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .art-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            text-align: center;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover .quick-view {
+            transform: translateY(0);
+        }
+
+        .art-meta {
+            text-align: left;
+        }
+
+        .art-artist {
+            font-family: var(--font-serif-display);
+            font-size: 0.65rem;
+            color: var(--color-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .art-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .art-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .collection-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header style="background-color: #3d9aa8; color: #fff;">
-    <h1>Impresionismo</h1>
-    <h2>1860-1890</h2>
-  </header>
-  <br>
 
+    <header class="main-header">
+        <div class="logo"><a href="../main.html">VIRTUAL GALLERY</a></div>
+        <div style="font-family: var(--font-serif-display); font-size: 0.7rem; letter-spacing: 1px;">MOVIMIENTOS</div>
+    </header>
 
-  <main class="grid-container">
-    <p class="text-full" style="margin-top: -10px;">
-      El espíritu de rebeldía se gestó mucho antes de la formalización del propio movimiento, con artistas como
-      <strong>Gustave
-        Courbet</strong> que, a través del <strong>Realismo</strong>, influyeron en los futuros impresionistas al
-      desatender la narración y el modelo académico.
-    </p>
-    <div class="image-full impresionismo">
-      <img width="100%" height="250" fetchpriority="high"
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaq35cBQGuvRbXPKto7x1SVV65LRqmWmC3z17QcbFS8sXQQFLbdypcNzfITfNgF5CqAfaCVDKS8PLP5mw3FfD6PVdeB8On84-chCpikA88uZOfPTQHPU2dPMThtUkn4O4QTO02vUrM5gg5j_WwvauOC7NT8cH9SJwnVoHGqut-vbCTvMBSKijdQSnUxmM/w1684-h1069-p-k-no-nu/Monet_-_Monets_Garten_in_Giverny.jpg">
-      <p style="text-align: center;"> El jardín del artista en Giverny</p>
-    </div>
-    <p class="text-full">
-      No obstante, el principal catalizador fue <strong>Édouard
-        Manet</strong>, quien en la década de <strong>1860</strong> se erigió como un símbolo del antiacademicismo,
-      desafiando las normas con obras temáticamente controvertidas, allanando el camino para la ruptura radical.
-    </p>
-    <div class="image-full impresionismo">
-      <img src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg"
-        width="100%" height="300">
-      <p style="text-align: center;">El banco del jardín de Versailles</p>
-    </div>
+    <main>
+        <header class="collection-hero">
+            <h1>IMPRESIONISMO</h1>
+            <span>1860 — 1890</span>
+        </header>
 
-    <p class="text-full">
-      El cisma con la autoridad artística se formalizó en <strong>1863</strong>, cuando el rechazo masivo de obras por
-      parte del Jurado del Salón condujo a la histórica inauguración del <strong>Salon des Refusés</strong>.
-    </p>
-    <div class="image-full impresionismo">
-      <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg" width="100%" height="300">
-      <p style="text-align: center;">Almuerzo sobre la hierba </p>
-    </div>
-    <p class="text-full">
-      En este
-      evento, que legitimó la exposición independiente y se convirtió en un símbolo de la modernidad, <strong>Édouard
-        Manet</strong> exhibió su controversial obra <i>"Le déjeuner sur l'herbe"</i> (pintada entre
-      <strong>1862</strong> y <strong>1863</strong>), desatando un escándalo público que confirmó la necesidad de
-      canales de exhibición completamente autónomos para los artistas innovadores.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg "
-        width="100%" height="300">
-      <p style="text-align: center;">Paseo por el acantilado de Pourville</p>
-    </div>
-    <p class="text-full">
-      Tras el trauma de la Guerra Franco-Prusiana (1870-1871), el núcleo de artistas liderado por Monet y Degas se
-      organizó para asegurar su independencia. La formalización se dio con la creación de la <strong>Sociedad
-        Anónima</strong> en <strong>1873</strong>, culminando con la Primera Exposición el <strong>15 de abril de
-        1874</strong>.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://www.churchtimes.co.uk/media/5692763/ponies_in_a_sandpit_1909_by_sir_alfred_munnings_copyright_the_estate_of_sir_alfred_munnings_20211-20230921153119009_web.jpg?anchor=center&mode=crop&width=818&height=500&rnd=133403764990000000"
-        width="100%" height="240">
-      <p style="text-align: center;">Ponies en el arenal</p>
-    </div>
-    <p class="text-full">
-      Fue en este evento, celebrado en el estudio de Nadar, donde la obra de Claude Monet,
-      <i>"Impression, Soleil Levant"</i> (pintada en <strong>1872</strong>), inspiró a un crítico a acuñar el término
-      <strong>Impresionismo</strong>, consolidando una nueva identidad para el grupo.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=w1684-h1069-p-k-no-nu"
-        width="100%" height="300">
-      <p style="text-align: center;">Tres Bailarinas</p>
-    </div>
-    <p class="text-full">
-      El periodo de apogeo del movimiento se extiende de <strong>1874</strong> a <strong>1886</strong>,
-      abarcando la serie de las <strong>ocho exposiciones impresionistas</strong>, un esfuerzo colectivo para eludir la
-      discriminación académica.
-    </p>
-    <div class="image-full impresionismo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG" width="100%" height="380">
-      <p style="text-align: center;">La calle Montorgueil</p>
-    </div>
-    <p class="text-full">
-      Durante esta etapa, artistas como <strong>Pierre-Auguste Renoir</strong>, con su
-      sensual <i>"Baile en el Moulin de la Galette"</i>, y <strong>Edgar Degas</strong>, experto en capturar el
-      movimiento en el ballet, definieron diversas facetas de la vida moderna. Sin embargo, las fricciones y el desgaste
-      crítico, como los comentarios de Zola hacia <strong>1880</strong>, llevaron a la progresiva fragmentación del
-      grupo.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://blogger.googleusercontent.com/img/a/AVvXsEiYYP-kEAkIZAiyMFD8BwarfW_4GxY38R0kITJewVK2xeJfbqAG3eBMpHRzMhGJUeC2kWgYUZi9Snw7BDW2wRNLgDfhjAuYSANIIjY1MFkwFFwi3mHyUAUdPJ8kJN5kox5GQZKd8kU19TXPQrhgsWlv3tFxuQS4jmokx3ZrG16BURkhHU-TVWCZZnJGUdw=w1684-h1069-p-k-no-nu"
-        width="100%" height="300">
-      <p style="text-align: center;">Nenúfar a la luz del sol </p>
-    </div>
+        <section class="art-grid">
 
-    <p class="text-full">
-      La última exposición del grupo impresionista en <strong>1886</strong> marcó la crisis y la disolución formal,
-      dando paso al <strong>Postimpresionismo</strong> (extendido hasta 1900)[8], un movimiento que buscó reintroducir
-      el orden y la estructura.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000(dame_laura_knight_ra_rws_at_the_edge_of_the_cliff102633).jpg?mode=max"
-        width="100%" height="300">
-      <p style="text-align: center;">El borde del acantilado </p>
-    </div>
-    <p class="text-full">
-      Esta divergencia se hizo evidente en la misma exposición con la monumental obra <i>"A
-        Sunday on La Grande Jatte"</i> (Un domingo por la tarde en la isla de la Grande Jatte), creada por
-      <strong>Georges Seurat</strong> entre <strong>1884</strong> y <strong>1886</strong>, la cual empleó el puntillismo
-      como una alternativa Neo-Impresionista.
-    </p>
-    <div class="image-full impresionismo">
-      <img
-        src="https://www.meisterdrucke.es/kunstwerke/1260px/Claude_Monet_-_The_Manneporte_%28tretat%29_1883_-_%28MeisterDrucke-382127%29.jpg"
-        width="100%" height="300">
-      <p style="text-align: center;"> La Manneporte</p>
-    </div>
-    <p class="text-full">
-      Finalmente, figuras como <strong>Paul Cézanne</strong> se
-      separaron, con sus obras exhibiendo formas y colores precursores del <strong>Cubismo</strong> y el arte
-      moderno, consolidando el legado transformador del movimiento.
-    </p>
+            <div class="text-separator">
+                <p>El Impresionismo fue el movimiento de vanguardia más disruptivo de finales del siglo XIX, marcando el
+                    nacimiento del arte moderno. Surgido en Francia en la década de 1870, su filosofía se basaba en la
+                    captura de la "impresión" fugaz de la luz y el color sobre los objetos, rompiendo con el
+                    academicismo que priorizaba el dibujo perfecto y los temas históricos o mitológicos.</p>
+            </div>
 
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaq35cBQGuvRbXPKto7x1SVV65LRqmWmC3z17QcbFS8sXQQFLbdypcNzfITfNgF5CqAfaCVDKS8PLP5mw3FfD6PVdeB8On84-chCpikA88uZOfPTQHPU2dPMThtUkn4O4QTO02vUrM5gg5j_WwvauOC7NT8cH9SJwnVoHGqut-vbCTvMBSKijdQSnUxmM/s1600/Monet_-_Monets_Garten_in_Giverny.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">El jardín del artista en Giverny</h2>
+                    <p class="art-year">1900</p>
+                </div>
+            </a>
 
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">El banco del jardín de Versailles</h2>
+                    <p class="art-year">1881</p>
+                </div>
+            </a>
 
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
+                    <p class="art-year">1863</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
+                    <p class="art-year">1863</p>
+                </div>
+            </a>
 
-    <!-- <div class="image-full">
-      <img src="" width="100%" height="300">
-      <p style="text-align: center;"> </p>
-    </div>
-    <p class="text-full"></p> -->
+            <div class="text-separator">
+                <p>Profesionalmente, se caracteriza por la pincelada suelta y matérica, la ausencia del color negro para
+                    las sombras —sustituido por azules y violetas— y la práctica del plenairismo (pintura al aire
+                    libre), facilitada por la invención de los tubos de pintura portátiles que permitieron a los
+                    artistas abandonar el estudio.
+                </p>
+            </div>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">Paseo por el acantilado</h2>
+                    <p class="art-year">1882</p>
+                </div>
+            </a>
 
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La calle Montorgueil</h2>
+                    <p class="art-year">1878</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La calle Montorgueil</h2>
+                    <p class="art-year">1878</p>
+                </div>
+            </a>
 
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Camille Corot</p>
+                    <h2 class="art-title">Ville d'Avray</h2>
+                    <p class="art-year">1867</p>
+                </div>
+            </a>
 
+            <div class="text-separator">
+                <p>En Francia, epicentro y laboratorio técnico del movimiento, el enfoque principal fue la
+                    disolución de la forma a través de la atmósfera. Claude Monet se consolidó como el máximo
+                    exponente con sus series sobre la luz, mientras que Pierre-Auguste Renoir aportó un enfoque
+                    social centrado en la figura humana y Edgar Degas revolucionó la composición mediante encuadres
+                    influenciados por la naciente fotografía.
+                </p>
 
+            </div>
 
-
-
-
-
-  </main>
-<!-- 
-  <br>
-  <section class="grid-container-main">
-    <a href="#">
-      <div class="grid-img" style="background-color:#3d9aa8; color: rgb(255, 255, 255); min-height: 20px;">
-        <p style="text-align: center; padding: 0px 50px; font-size: 1.2em;">Glosario</p>
-      </div>
-    </a>
-    <br>
-    <div>
-      <a href="#">
-        <div class="grid-img" style="background-color: #3d9aa8; color: rgb(255, 255, 255); min-height: 20px;">
-          <p style="text-align: center; padding: 0px 50px; font-size: 1.2em;">Cronología</p>
-        </div>
-      </a>
-    </div>
-    <br>
-  </section> -->
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Edgar Degas</p>
+                    <h2 class="art-title">Tres Bailarinas</h2>
+                    <p class="art-year">1879</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Edgar Degas</p>
+                    <h2 class="art-title">Tres Bailarinas</h2>
+                    <p class="art-year">1879</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
+            <br>
+            <br>
+            <section>INGLATERRA</section>
+            <div class="text-separator">
+                <p>El Impresionismo británico, por su parte, tuvo una carga más atmosférica y romántica,
+                    profundamente influenciado por la tradición del paisaje de J.M.W. Turner. Artistas como Philip
+                    Wilson Steer destacaron por sus escenas de playas saturadas de luz, mientras que Walter Sickert
+                    aplicó la técnica de pincelada fragmentada a escenas sombrías de la vida urbana londinense.
+                </p>
+            </div>
+            <br>
+            <br>
+            <section>ALEMANIA</section>
+            <div class="text-separator">
+                <p>En Alemania, el movimiento mantuvo un vínculo más estrecho con el realismo social antes de derivar
+                    hacia
+                    el expresionismo. Max Liebermann fue el pilar fundamental, evolucionando desde un realismo austero
+                    hacia
+                    escenas de jardines llenas de dinamismo lumínico, seguido por Lovis Corinth, cuya obra poseía una
+                    vitalidad en el trazo que combinaba la luz impresionista con una potente carga emocional.
+                </p>
+            </div>
+            <br>
+            <br>
+            <section>Italia</section>
+            <div class="text-separator">
+                <p>Finalmente, en Italia el movimiento influyó en la evolución de los "Macchiaioli" hacia el
+                    Divisionismo. Federico Zandomeneghi, tras mudarse a París, fusionó el colorismo veneciano con la
+                    elegancia compositiva francesa, mientras que Giuseppe De Nittis alcanzó una sofisticación técnica
+                    extraordinaria capturando la bruma y el asfalto mojado de las grandes metrópolis europeas.
+                </p>
+            </div>
+        </section>
+    </main>
 
 </body>
 
 </html>
-<!-- 
-
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->

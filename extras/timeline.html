@@ -1,291 +1,373 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresionismo | Virtual Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+        }
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Lora', serif;
-            background-color: white;
+            font-family: var(--font-serif-body);
+            background: var(--color-background);
+            color: var(--color-primary);
         }
 
-        
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: black;
+        /* HEADER */
+        .main-header {
+            position: fixed;
             top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        
-        .container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        
-        .container::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: black;
-            border: 4px solid #3d9aa8;
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        
-        .left {
-            left: 0;
-        }
-
-        
-        .right {
-            left: 50%;
-        }
-
-        
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid #3d9aa8;
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent #3d9aa8;
-        }
-
-        
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid #3d9aa8;
-            border-width: 10px 10px 10px 0;
-            border-color: transparent #3d9aa8 transparent transparent;
-        }
-
-        
-        .right::after {
-            left: -16px;
-        }
-
-        
-        .content {
-            padding: 20px 30px;
-            background-color: #3d9aa8;
-            position: relative;
-            border-radius: 6px;
-        }
-
-        a {
-            color: #3d9aa8;
-            text-decoration: none;
-        }
-
-        h2 {
-            color: #3d9aa8
-        }
-
-        b {
-            color: #3d9aa8;
-            text-decoration: none;
-        }
-
-        p {
-            color: black;
-            margin-top: -10px;
-            text-align: left;
-            width: 90%;
-            margin-left: 5%;
-            text-decoration: none;
-        }
-
-        header {
-            background-color: #000000;
-            color: white;
             width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 3000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HERO SECCIÓN */
+        .collection-hero {
+            margin-top: var(--header-height);
+            padding: 80px 50px 40px;
             text-align: center;
-            padding: 20px 0;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
+        .collection-hero h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
         }
 
-        header h2 {
-            margin: 0;
-            font-size: 1.5em;
+        .collection-hero span {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            letter-spacing: 3px;
+        }
+
+        /* GRID PRINCIPAL */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 30px;
+            padding: 0 50px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
+        .text-separator {
+            grid-column: 1 / -1;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .text-separator p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* TARJETAS DE ARTE */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .art-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            text-align: center;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover .quick-view {
+            transform: translateY(0);
+        }
+
+        .art-meta {
+            text-align: left;
+        }
+
+        .art-artist {
+            font-family: var(--font-serif-display);
+            font-size: 0.65rem;
+            color: var(--color-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .art-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .art-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .collection-hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div>
-        <div style="color: #3d9aa8;">
-            <div style="text-align: center; color: white; background-color: #3d9aa8; padding: 10px;">
-                <h3>Cronología del impresionismo</h3>
-            </div>
-            <br>
-            <div style="text-align: center;">
-                <h2>1830</h2>
-                <p>
-                    <a href="/escuelas/realismo/barbizon/index.html"><b>La Escuela de Barbizon</b></a>, con pintores
-                    paisajistas como <a href="/artistas/theo-rousseau/theo-rousseau.html"><b>Théodore Rousseau</b></a>
-                    y <a href="/artistas/millet/index.html"><b>Jean-François Millet</b></a>,
-                    practican la pintura al aire libre y la observación de la naturaleza, influyendo en los futuros
-                    impresionistas.
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1839</h2>
-                <p>
-                    Invención de la fotografía, que inspira a los impresionistas a capturar
-                    momentos fugaces y experimentar con encuadres y composiciones no tradicionales.
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1860</h2>
-                <p>Comienza el movimiento impresionista. Completar con más detalles</p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1862-1863</h2>
-                <p>
-                    Édouard Manet pinta <a href="#"><b>Almuerzo en la hierba</b></a> , una obra que causa controversia y
-                    se
-                    expone en el
-                    <a href="#"><b>Salón de los Rechazados</b></a>.
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1863</h2>
-                <p>
-                    Édouard Manet pinta <a href="#"><b>Olympia</b></a>, otra obra que escandaliza a las élites
-                    artísticas.
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1865</h2>
-                <p>
-                    Comienza el período más específico de desarrollo del Impresionismo. Completar con más detalles
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2>1866</h2>
-                <p>
-                    Édouard Manet pinta "El pífano"
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2> </h2>
-                <p>
+    <header class="main-header">
+        <div class="logo"><a href="index.html">VIRTUAL GALLERY</a></div>
+        <div style="font-family: var(--font-serif-display); font-size: 0.7rem; letter-spacing: 1px;">MOVIMIENTOS</div>
+    </header>
 
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div style="text-align: center;">
-                <h2> </h2>
-                <p>
+    <main>
+        <header class="collection-hero">
+            <h1>IMPRESIONISMO</h1>
+            <span>1860 — 1890</span>
+        </header>
 
-                </p>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div>
-            <div class="">
-                <h2> </h2>
-                <p>
+        <section class="art-grid">
 
-                </p>
+            <div class="text-separator">
+                <p>El espíritu de rebeldía se gestó mucho antes de la formalización del propio movimiento, con artistas
+                    como <strong>Gustave Courbet</strong> que, a través del <strong>Realismo</strong>, influyeron en los
+                    futuros impresionistas al desatender la narración y el modelo académico. No obstante, el principal
+                    catalizador fue <strong>Édouard Manet</strong>, quien en la década de <strong>1860</strong> se
+                    erigió como un símbolo del antiacademicismo, desafiando las normas con obras temáticamente
+                    controvertidas, allanando el camino para la ruptura radical.</p>
             </div>
-        </div>
-        <div>
-            <div class="">
-                <h2> </h2>
-                <p>
 
-                </p>
-            </div>
-        </div>
-        <div>
-            <div class="">
-                <h2> </h2>
-                <p>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaq35cBQGuvRbXPKto7x1SVV65LRqmWmC3z17QcbFS8sXQQFLbdypcNzfITfNgF5CqAfaCVDKS8PLP5mw3FfD6PVdeB8On84-chCpikA88uZOfPTQHPU2dPMThtUkn4O4QTO02vUrM5gg5j_WwvauOC7NT8cH9SJwnVoHGqut-vbCTvMBSKijdQSnUxmM/s1600/Monet_-_Monets_Garten_in_Giverny.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">El jardín del artista en Giverny</h2>
+                    <p class="art-year">1900</p>
+                </div>
+            </a>
 
-                </p>
-            </div>
-        </div>
-        <div>
-            <div class="">
-                <h2> </h2>
-                <p>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">El banco del jardín de Versailles</h2>
+                    <p class="art-year">1881</p>
+                </div>
+            </a>
 
-                </p>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
+                    <p class="art-year">1863</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Édouard Manet</p>
+                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
+                    <p class="art-year">1863</p>
+                </div>
+            </a>
+
+            <div class="text-separator">
+                <p>El cisma con la autoridad artística se formalizó en <strong>1863</strong>, cuando el rechazo masivo
+                    de obras por parte del Jurado del Salón condujo a la histórica inauguración del <strong>Salon des
+                        Refusés</strong>. En este evento, que legitimó la exposición independiente, <strong>Édouard
+                        Manet</strong> exhibió su controversial obra <i>"Le déjeuner sur l'herbe"</i>, desatando un
+                    escándalo público que confirmó la necesidad de canales de exhibición autónomos.</p>
             </div>
-        </div>
-    </div>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">Paseo por el acantilado</h2>
+                    <p class="art-year">1882</p>
+                </div>
+            </a>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La calle Montorgueil</h2>
+                    <p class="art-year">1878</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La calle Montorgueil</h2>
+                    <p class="art-year">1878</p>
+                </div>
+            </a>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Camille Corot</p>
+                    <h2 class="art-title">Ville d'Avray</h2>
+                    <p class="art-year">1867</p>
+                </div>
+            </a>
+
+            <div class="text-separator">
+                <p>El periodo de apogeo se extiende de <strong>1874</strong> a <strong>1886</strong>, abarcando las ocho
+                    exposiciones impresionistas. Durante esta etapa, artistas como <strong>Renoir</strong> y
+                    <strong>Degas</strong> definieron facetas de la vida moderna. Sin embargo, hacia 1886 la última
+                    exposición marcó la crisis y disolución formal, dando paso al <strong>Postimpresionismo</strong> y a
+                    la búsqueda de nuevo orden estructural.</p>
+            </div>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Edgar Degas</p>
+                    <h2 class="art-title">Tres Bailarinas</h2>
+                    <p class="art-year">1879</p>
+                </div>
+            </a>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Claude_Monet_-_The_Manneporte_%28tretat%29_1883.jpg/798px-Claude_Monet_-_The_Manneporte_%28tretat%29_1883.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La Manneporte (Étretat)</h2>
+                    <p class="art-year">1883</p>
+                </div>
+            </a>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
+
+        </section>
+    </main>
 
 </body>
 
