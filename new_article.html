@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Diseño Arte | Virtual Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================== */
+        /* VARIABLES Y ESTILOS BASE (DISEÑO ORIGINAL) */
+        /* ============================================== */
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            line-height: 1.7;
+            font-size: 1.15rem;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            border-bottom: 1px solid transparent;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+            border-bottom: 1px solid var(--color-secondary);
+        }
+
+        /* ============================================== */
+        /* ESTRUCTURA RESPONSIVE */
+        /* ============================================== */
+
+        .wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        header.main-header {
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 20;
+        }
+
+        .main-nav {
+            display: none;
+            gap: 40px;
+        }
+
+        .article-layout {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .main-content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .article-container {
+            width: 100% !important;
+            max-width: 720px;
+            margin: 0 auto !important;
+            padding: 0;
+        }
+
+        .article-container p,
+        .article-container blockquote {
+            text-align: justify;
+        }
+
+        /* ============================================== */
+        /* HERO */
+        /* ============================================== */
+
+        .hero-title-section {
+            padding: 90px 0 50px;
+            text-align: center;
+        }
+
+        .h1_artist_name,
+        .h1_main {
+            font-family: var(--font-serif-display);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .h1_artist_name {
+            font-size: 5rem;
+        }
+
+        .h1_main {
+            font-size: 2.2rem;
+        }
+
+        /* ============================================== */
+        /* CONTENIDO */
+        /* ============================================== */
+
+        blockquote {
+            border-left: 5px solid var(--color-secondary);
+            padding-left: 25px;
+            margin: 40px 0;
+            font-style: italic;
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        /* ============================================== */
+        /* RESPONSIVE */
+        /* ============================================== */
+
+        @media (min-width: 900px) {
+            .main-nav {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 0 16px;
+            }
+
+            .h1_artist_name {
+                font-size: 3rem;
+            }
+
+            .h1_main {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 1rem;
+            }
+
+            .h1_artist_name {
+                font-size: 2.4rem;
+            }
+
+            .h1_main {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="main-header wrapper">
+    <div class="logo">
+        <a href="/">VIRTUAL GALLERY</a>
+    </div>
+
+    <nav class="main-nav">
+        <a href="#">HISTORIAS</a>
+        <a href="#">MOVIMIENTOS</a>
+        <a href="article_grid.html">ARTISTAS</a>
+        <a href="contacto.html">CONTACTO</a>
+    </nav>
+</header>
+
+<section class="hero-title-section wrapper">
+    <h1 class="h1_artist_name">Mary Cassatt</h1>
+    <h1 class="h1_main">perspectiva femenina en el impresionismo</h1>
+</section>
+
+<div class="wrapper">
+    <div class="article-layout">
+        <main class="main-content">
+            <article class="article-container">
+                
+
+            </article>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+```html
+El Impresionismo y la Influencia del Arte Japonés (Japonismo)
+Análisis de un movimiento clave en la segunda mitad del siglo XIX, su técnica y sus influencias orientales.
+
+Contexto y Orígenes del Impresionismo
+El Impresionismo comenzó en París en la década de 1860, extendiéndose por Europa y llegando finalmente a Estados Unidos.
+El movimiento se vio profundamente influenciado por los **descubrimientos científicos de la época sobre la óptica y la luz**, lo que impulsó la revolución creativa en la pintura.
+Los impresionistas buscaban capturar el **efecto momentáneo y fugaz** de una escena en el ojo del espectador.
+Debido a su interés por la luz cambiante, los artistas dejaron el estudio y comenzaron a pintar al aire libre (*Plein air*), lo que resultó en un trabajo con pinceladas sueltas o desordenadas.
+El término "impresionista" fue utilizado como un insulto por un crítico de arte en 1874, haciendo referencia a la obra *Impresión, Sol Naciente* (1872) de Claude Monet.
+Artistas clave asociados incluyen a Claude Monet, Edgar Degas, Auguste Renoir, Berthe Morisot y Mary Cassatt.
+Características Técnicas: El Color y la Luz
+Los impresionistas exageraban la temperatura y pureza del color, utilizando colores fríos y cálidos de manera contrastante para intensificar el efecto del color.
+Se aplicó la **teoría de los colores** de científicos como Eugéne Chevreul, según la cual los colores solo existen en relación con los colores más próximos, buscando que el ojo percibiera los colores compuestos sin mezclarlos en la paleta.
+Se descubrió que los colores no son inmutables y que la incidencia de la luz es determinante, lo que llevó a los pintores a plasmar los colores tal y como los veían, sin importar el color objetivo de las cosas.
+Se practicó la **coloración de sombras** en detrimento del claroscuro, usando tonalidades complementarias; por ejemplo, luces amarillas y sombras violáceas.
+Claude Monet, en sus series como las de la Catedral de Ruan o Los Almiares, buscó representar las apariencias sucesivas bajo diferentes condiciones de luz y clima, capturando incluso el tiempo, una “cuarta dimensión”.
+Monet, por ejemplo, descartó los colores tierra y para 1886 había dejado de usar el negro, al menos para agrisar otros colores.
+El Impacto del Japonismo
+Tras la reapertura de los puertos japoneses al comercio con Occidente en 1853, una ola de importaciones inundó Europa, incluyendo los **grabados en madera *Ukiyo-e***, que transformaron el arte impresionista.
+Los *Ukiyo-e* se popularizaron por demostrar que los temas cotidianos y simples podían presentarse de manera decorativa y atractiva.
+**Temática:** El arte japonés influyó en la elección de iconografía cotidiana, como se ve en las representaciones de escenas de la vida diaria o las series de mujeres bañándose de Edgar Degas, inspiradas en representaciones voyeristas japonesas.
+**Perspectiva:** Impresionistas adoptaron la perspectiva única del *Ukiyo-e*, a menudo utilizando un **punto de vista desde arriba (vista de pájaro)** y posicionado en un ligero ángulo.
+**Composiciones Planas:** Los grabados japoneses se caracterizaban por ser composiciones planas, con bloques sólidos de color y líneas audaces, una estética que Mary Cassatt adoptó en su obra.
+Caso de Estudio: *El baño* (Mary Cassatt, 1893)
+La obra, también conocida como *El baño del niño*, es un óleo sobre lienzo realizado en 1893.
+El tema central es la dignidad de la maternidad, capturando un momento íntimo como el baño diario de un niño.
+El arte japonés influyó directamente en esta obra, tanto en el **tema** como en la **perspectiva a vista de pájaro** utilizada.
+Cassatt quedó cautivada por una exposición de grabados en madera japoneses en París en 1890, sintiéndose atraída por la simplicidad, la claridad de los patrones y el uso de bloques de color.
+La composición es audaz, con un **plano pictórico dramáticamente aplanado**, patrones decorativos y una paleta brillante, reflejando la estética japonesa.
+Al igual que su contemporáneo Degas, Cassatt evitaba las posturas estereotipadas de la academia, prefiriendo posturas inusuales y naturales, como se ve en la figura de la madre que sostiene al niño con firmeza y ternura.
+La pintura se encuentra en el Instituto de Arte de Chicago (Estados Unidos), que la adquirió en 1910.
+```
