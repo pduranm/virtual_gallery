@@ -1,333 +1,536 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Principal - Revista de Arte</title>
-    <!-- Carga de las fuentes Lora y Cinzel -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <title>Virtual Gallery</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* ============================================== */
-        /* CSS PROPORCIONADO POR EL USUARIO (INTEGRADO) */
-        /* ============================================== */
-        body {
-            font-family: 'Lora', serif;
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* Reset */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #e8f6f7;
-            color: #333;
-            /* body ya no tiene display: flex para evitar conflictos con el menú fijo */
-            overflow-x: hidden; /* Evita el scroll horizontal del menú off-canvas */
+            box-sizing: border-box;
         }
 
-        header.main-header {
-            background-color: #000000;
-            color: white;
-            width: 100%;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+        }
+
+        .main-header {
+            position: fixed;
             top: 0;
-            z-index: 20;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .header-content {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0px;
-            font-size: 2.5em;
-        }
-        header h2 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        
-        /* Layout de Galería (Grid Container) */
-        main.grid-container {
-            display: grid;
-            /* La rejilla usa auto-fill para ser responsive y colocar tarjetas de min. 150px */
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; /* Aumentado a 25px para mejor separación visual */
-            padding: 20px;
-            width: 95%;
-            max-width: 1200px;
-            margin: 20px auto;
-        }
-
-        /* Se mantienen las clases del CSS original para los elementos internos del grid */
-        .grid-item {
-            break-inside: avoid;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .grid-item:hover {
-            transform: scale(1.03); /* Ligero aumento al pasar el ratón */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .grid-item img {
             width: 100%;
-            height: 200px; /* Altura fija para miniaturas de artículos */
-            display: block;
-            object-fit: cover;
-        }
-        
-        .item-content {
-            padding: 15px;
-        }
-
-        .item-content h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 5px;
-            color: #ec8c8c; /* Color del borde inferior del h1_main */
-        }
-        
-        .item-content p {
-            font-size: 0.9em;
-            color: #555;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
         }
 
-        /* Título de la sección principal */
-        .h1_main {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 30px auto 20px;
-            padding: 15px 0;
-            border-top: 2px solid #776b5e;
-            border-bottom: 3px solid #ec8c8c;
-            color: #000000;
-            max-width: 900px;
-            width: 90%;
-        }
-        
-        a {
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
             text-decoration: none;
+            color: var(--color-primary);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Mega Menu */
+        .mega-menu {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: #fff;
+            visibility: hidden;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: var(--transition-smooth);
+            transform: translateY(-10px);
+        }
+
+        .nav-item:hover .mega-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-content {
+            width: 90%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .menu-column h3 {
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            color: var(--color-secondary);
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .menu-column ul {
+            list-style: none;
+        }
+
+        .menu-column li {
+            margin-bottom: 12px;
+        }
+
+        .menu-column a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .menu-column a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Overlay al abrir menú */
+        .site-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        body.menu-open .site-overlay {
+            opacity: 1;
         }
 
         /* ============================================== */
-        /* NAVEGACIÓN LATERAL Y HAMBURGUESA (Movilidad) */
+        /* HERO GRID (Estado Hover Permanente) */
         /* ============================================== */
-        .hamburger-button {
-            display: block;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            padding: 0 15px;
-            z-index: 30;
+        .main-content {
+            margin-top: var(--header-height);
         }
-        /* Ocultar el botón en PC */
-        @media (min-width: 901px) {
-            .hamburger-button {
+
+        .hero-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 600px;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .grid-card {
+            position: relative;
+            overflow: hidden;
+            background-color: #111;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .grid-card.wide {
+            grid-column: span 2;
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            /* EFECTO PERMANENTE: Zoom y opacidad reducida */
+            transform: scale(1.05);
+            opacity: 0.8;
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 70%);
+            z-index: 2;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 4;
+            background: #fff;
+            color: #000;
+            padding: 6px 15px;
+            font-family: var(--font-serif-display);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .card-info {
+            position: relative;
+            z-index: 3;
+            padding: 50px;
+            color: #fff;
+            /* EFECTO PERMANENTE: Sin desplazamiento vertical */
+            transform: translateY(0);
+            transition: var(--transition-smooth);
+        }
+
+        .card-info h2 {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 0.9;
+        }
+
+        .card-info p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 30px;
+            /* EFECTO PERMANENTE: Visible */
+            opacity: 0.9;
+            transition: var(--transition-smooth);
+        }
+
+        .card-cta {
+            display: inline-block;
+            border: 1px solid #fff;
+            padding: 12px 30px;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            /* EFECTO PERMANENTE: Fondo blanco y texto negro */
+            background: #fff;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+
+            .nav-container,
+            .header-actions {
                 display: none;
             }
-            .main-nav {
-                display: flex !important;
-                justify-content: center;
-                gap: 25px;
-                border-bottom: 1px solid #ddd;
-                padding: 10px 0;
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 500px;
             }
-        }
 
-        /* Contenedor del Menú Lateral */
-        #off-canvas-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100%;
-            background-color: #ffffff; 
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-out;
-            z-index: 1000;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            padding: 20px 0;
-        }
+            .grid-card.wide {
+                grid-column: span 1;
+            }
 
-        #off-canvas-menu.open {
-            transform: translateX(0);
-        }
-
-        #off-canvas-menu a {
-            display: block;
-            padding: 10px 20px;
-            color: #000;
-            font-weight: bold;
-            border-bottom: 1px solid #eee;
-        }
-        #off-canvas-menu a:hover {
-            background-color: #e8f6f7;
-            color: #000;
-        }
-
-        /* Overlay (Fondo oscuro) */
-        #menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-out;
-        }
-
-        #menu-overlay.open {
-            opacity: 1;
-            visibility: visible;
+            .card-info h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    
-    <!-- NAVEGACIÓN LATERAL (Off-Canvas - SOLO MÓVIL) -->
-    <nav id="off-canvas-menu">
-        <div style="padding: 0 20px 20px;">
-            <h3 style="margin-top: 0; color: #333; font-family: 'Cinzel', serif;">Menú Principal</h3>
-            <!-- Botón de Cierre -->
-             <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #555;">
-                &times;
-            </button>
-        </div>
-        
-        <a href="#">Inicio</a>
-        <a href="#">Actualidad</a>
-        <a href="#">Especiales</a>
-        <a href="#">Directorio</a>
-        <a href="#">Convocatorias</a>
-    </nav>
-    <div id="menu-overlay" onclick="toggleMenu()"></div>
 
-    <!-- CABECERA PRINCIPAL (Con Logo/Título) -->
+    <div class="site-overlay" id="siteOverlay"></div>
+
     <header class="main-header">
-        <button class="hamburger-button" onclick="toggleMenu()">☰</button>
-        <div class="header-content">
-            <h1>REVISTA DE ARTE</h1>
-            <h2>Menú Principal</h2>
+        <div class="logo">
+            <a href="./main.html">VIRTUAL GALLERY</a>
         </div>
-        <!-- Placeholder para mantener la alineación en PC -->
-        <div class="hamburger-button" style="visibility: hidden;">☰</div> 
+
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="#" class="nav-link">Artistas</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="menu-column">
+                            <h3>CRONOLOGÍA</h3>
+                            <ul>
+                                <li><a href="#">Renacimiento</a></li>
+                                <li><a href="#">Barroco</a></li>
+                                <li><a href="movimientos/impresionismo.html">Impresionismo</a></li>
+                                <li><a href="#">Vanguardias</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>GÉNEROS</h3>
+                            <ul>
+                                <li><a href="#">Retrato</a></li>
+                                <li><a href="#">Paisajismo</a></li>
+                                <li><a href="#">Abstracción</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>DESTACADOS</h3>
+                            <ul>
+                                <li><a href="#">Claude Monet</a></li>
+                                <li><a href="#">JMW Turner</a></li>
+                                <li><a href="#">Rubens</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <div
+                                style="background: #f4f4f4; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+                                <p
+                                    style="font-family: var(--font-serif-display); font-size: 0.6rem; letter-spacing: 2px;">
+                                    DESTACADO</p>
+                                <strong style="font-size: 1.1rem; margin: 10px 0;">FRIDA KAHLO</strong>
+                                <a href="#" style="font-size: 0.7rem; text-decoration: underline; color: #000;">Ver
+                                    Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class="nav-link">Movimientos</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="menu-column">
+                            <h3>MODERNOS</h3>
+                            <ul>
+                                <li><a href="movimientos/impresionismo.html">Impresionismo</a></li>
+                                <li><a href="movimientos/realismo.html">Realismo</a></li>
+                                <li><a href="movimientos/romanticismo.html">Romanticismo</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>CLÁSICOS</h3>
+                            <ul>
+                                <li><a href="movimientos/neoclasicismo.html">Neoclasicismo</a></li>
+                                <li><a href="#">Barroco</a></li>
+                                <li><a href="#">Renacimiento</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>CONTEMPORÁNEO</h3>
+                            <ul>
+                                <li><a href="#">Minimalismo</a></li>
+                                <li><a href="#">Conceptual</a></li>
+                                <li><a href="#">Street Art</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=400"
+                                alt="Movimientos" style="width: 100%; height: 150px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class="nav-link">Ensayos</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="menu-column">
+                            <h3>TEMÁTICAS</h3>
+                            <ul>
+                                <li><a href="#">Filosofía del Arte</a></li>
+                                <li><a href="#">Teoría del Color</a></li>
+                                <li><a href="#">Sociología</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>AUTORES</h3>
+                            <ul>
+                                <li><a href="#">Críticos Invitados</a></li>
+                                <li><a href="#">Columnistas</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>ARCHIVO</h3>
+                            <ul>
+                                <li><a href="#">Ediciones 2025</a></li>
+                                <li><a href="#">Lo más leído</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <div
+                                style="border: 1px solid #ddd; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                                <h4 style="font-family: var(--font-serif-display); font-size: 0.8rem;">LECTURA
+                                    RECOMENDADA</h4>
+                                <p style="font-size: 0.85rem; margin-top: 10px;">"El aura en la era digital"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class="nav-link">Sobre Nosotros</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="menu-column">
+                            <h3>LA GALERÍA</h3>
+                            <ul>
+                                <li><a href="#">Nuestra Historia</a></li>
+                                <li><a href="#">Manifiesto</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>COMUNIDAD</h3>
+                            <ul>
+                                <li><a href="contacto.html">Nuevas ideas</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <p style="font-size: 0.85rem; color: #777; line-height: 1.4;">Virtual Gallery es un espacio
+                                dedicado a la preservación y difusión del pensamiento visual y la crítica estética.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-
-    <!-- NAVEGACIÓN PRINCIPAL (SOLO PC) -->
-    <nav class="wrapper" style="text-align: center;">
-        <div class="main-nav" style="display: none;">
-            <a href="#" style="font-weight: bold; color: #000;">Inicio</a>
-            <a href="#" style="font-weight: bold; color: #000;">Actualidad</a>
-            <a href="#" style="font-weight: bold; color: #000;">Especiales</a>
-            <a href="#" style="font-weight: bold; color: #000;">Directorio</a>
-        </div>
-    </nav>
-    
-    <!-- TÍTULO DE LA SECCIÓN -->
-    <h1 class="h1_main">Lo más Reciente en Arte</h1>
-
-    <!-- CONTENIDO PRINCIPAL: GALERÍA DE ARTÍCULOS -->
-    <main class="grid-container">
-
-        <!-- TARJETA 1 -->
-        <a href="estructura_web_personalizada.html" class="grid-item">
-            <img src="https://placehold.co/400x200/5d54a4/ffffff?text=Mary+Cassatt" alt="Miniatura del artículo Mary Cassatt">
-            <div class="item-content">
-                <h3>Mary Cassatt y el Público Femenino</h3>
-                <p>Análisis de las obras impresionistas de Cassatt, enfocadas en la vida de las mujeres en París.</p>
-            </div>
-        </a>
-
-        <!-- TARJETA 2 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/776b5e/ffffff?text=Monet+Giverny" alt="Miniatura del artículo Monet Giverny">
-            <div class="item-content">
-                <h3>La luz de Giverny: Monet</h3>
-                <p>Un recorrido por la casa y jardines de Claude Monet y su impacto en su serie de Nenúfares.</p>
-            </div>
-        </a>
-
-        <!-- TARJETA 3 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/ec8c8c/000000?text=Arte+Contemporaneo" alt="Miniatura del artículo Arte Contemporáneo">
-            <div class="item-content">
-                <h3>Tendencias del Arte Digital</h3>
-                <p>Exploramos las nuevas fronteras del arte contemporáneo y la realidad virtual en museos.</p>
-            </div>
-        </a>
-
-        <!-- TARJETA 4 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/000000/ffffff?text=Edgar+Degas" alt="Miniatura del artículo Edgar Degas">
-            <div class="item-content">
-                <h3>El Realismo de Degas</h3>
-                <p>Las bailarinas y la vida cotidiana plasmadas con la técnica singular de Edgar Degas.</p>
-            </div>
-        </a>
-        
-        <!-- TARJETA 5 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/333333/ffffff?text=Arquitectura" alt="Miniatura del artículo Arquitectura">
-            <div class="item-content">
-                <h3>La Nueva Bauhaus</h3>
-                <p>Revisión de los principios arquitectónicos de la Bauhaus aplicados a la sostenibilidad moderna.</p>
-            </div>
-        </a>
-
-        <!-- TARJETA 6 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/5d54a4/ffffff?text=Renacimiento" alt="Miniatura del artículo Renacimiento">
-            <div class="item-content">
-                <h3>Secretos de Miguel Ángel</h3>
-                <p>Análisis de los bocetos y estudios preliminares del artista antes de la Capilla Sixtina.</p>
-            </div>
-        </a>
-
+    <main class="main-content">
+        <section class="hero-grid">
+            <a href="#" class="grid-card">
+                <div class="card-badge">COLECCIÓN</div>
+                <div class="card-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <h2>Impresionismo</h2>
+                    <p></p>
+                    <div class="card-cta">EXPLORAR</div>
+                </div>
+            </a>
+            <a href="#" class="grid-card">
+                <div class="card-badge">COLECCIÓN</div>
+                <div class="card-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <h2>Realismo</h2>
+                    <p></p>
+                    <div class="card-cta">EXPLORAR</div>
+                </div>
+            </a>
+            <a href="#" class="grid-card">
+                <div class="card-badge">COLECCIÓN</div>
+                <div class="card-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <h2>Romanticismo</h2>
+                    <p></p>
+                    <div class="card-cta">EXPLORAR</div>
+                </div>
+            </a>
+            <a href="#" class="grid-card">
+                <div class="card-badge">COLECCIÓN</div>
+                <div class="card-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1600')">
+                </div>
+                <div class=""></div>
+                <div class="card-info">
+                    <h2>GRANDES MAESTROS</h2>
+                    <p>Una curaduría exclusiva de las piezas que definieron el canon de la belleza occidental.</p>
+                    <div class="card-cta">VER COLECCIÓN</div>
+                </div>
+            </a>
+            <a href="#" class="grid-card">
+                <div class="card-badge">Nuevo</div>
+                <div class="card-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1576769971861-6893f8e5898c?q=80&w=1000')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <h2>CRÍTICA</h2>
+                    <p>Análisis semanales sobre el estado del arte contemporáneo.</p>
+                    <div class="card-cta">LEER MÁS</div>
+                </div>
+            </a>
+        </section>
     </main>
-    
-    <script>
-        // Lógica del menú lateral (Off-Canvas)
-        const sidebar = document.getElementById('off-canvas-menu');
-        const overlay = document.getElementById('menu-overlay');
-        const navMain = document.querySelector('.main-nav');
-        
-        // Función para abrir/cerrar el menú
-        function toggleMenu() {
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
-            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-        }
-        
-        // Lógica de visualización del menú principal en PC
-        const checkWindowSize = () => {
-             if (window.innerWidth > 900) {
-                 // Ocultar el menú lateral de móvil y mostrar el de PC
-                 sidebar.classList.remove('open');
-                 overlay.classList.remove('open');
-                 document.body.style.overflow = 'auto';
-                 if (navMain) navMain.style.display = 'flex';
-             } else {
-                 // Ocultar el menú de PC en móvil
-                 if (navMain) navMain.style.display = 'none';
-             }
-        };
 
-        // Ejecutar al cargar y redimensionar
-        window.onload = checkWindowSize;
-        window.addEventListener('resize', checkWindowSize);
+    <script>
+        const navItems = document.querySelectorAll('.nav-item');
+        const overlay = document.getElementById('siteOverlay');
+
+        navItems.forEach(item => {
+            // Detectar cuando el mouse entra en un item que tiene mega menú
+            item.addEventListener('mouseenter', () => {
+                const hasMenu = item.querySelector('.mega-menu');
+                if (hasMenu) {
+                    document.body.classList.add('menu-open');
+                }
+            });
+
+            // Detectar cuando el mouse sale
+            item.addEventListener('mouseleave', () => {
+                document.body.classList.remove('menu-open');
+            });
+        });
     </script>
+
 </body>
+
 </html>

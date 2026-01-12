@@ -4,107 +4,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista General</title>
-    <link rel="stylesheet" href="/css/movimiento_style.css">
-
+    <title>Galería de Arte Dinámico - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style_grid.css">
 </head>
 
 <body>
-    <header style="background-color: #c9b2c7; color: black;">
-        <h2>Listado de Artistas</h2>
+
+    <header id="galeria-dinamica">
+        <canvas id="lienzoArte"></canvas>
+        <div class="superposicion-texto">
+            <h1>virtual gallery</h1>
+            <p>Arte | Historia | Curiosidades</p>
+            <button onclick="hacerScrollASecciones()">Explorar Artistas</button>
+        </div>
     </header>
-    <br>
 
+    <main id="secciones-navegacion" class="secciones-container">
+        <h2>Artistas Destacados</h2>
+        <div class="tarjetas-grid">
 
-    <main class="grid-container">
-        <div class="image-full">
-            <a href="artistas/camille/camille.html">
-                <img width="100%" height="450"
+            <a href="artistas/camille/camille.html" class="tarjeta-seccion">
+                <h3>Camille Corot</h3>
+                <img
                     src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPgyZuVURtKpqcMWzFPdrXORIwx6srxgzKRKKrdeQiajhAYMwKhRHtDznae4tYnkmf2KIr3g">
-                <p style="text-align: center;">Camille Corot <br> <i>1796 - 1875</i></p>
+                <p>Maestro del paisaje pre-impresionista y la Escuela de Barbizon. Sus obras son un puente entre el
+                    clasicismo y el arte moderno.</p>
             </a>
-        </div>
 
-        <div class="image-full">
-            <a href="artistas/courbet/courbet.html">
-                <img width="100%" height="450"
+            <a href="artistas/courbet/courbet.html" class="tarjeta-seccion">
+                <h3> Gustave Courbet</h3>
+                <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg/220px-Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg">
-                <p style="text-align: center;">Gustave Courbet <br><i>1819 - 1877</i></p>
+                <p>Líder del movimiento Realista, conocido por su audacia y su compromiso con la representación sin
+                    adornos de la vida cotidiana.</p>
             </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/goya/goya.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg/220px-Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg">
-                <p style="text-align: center;"> Francisco de Goya <br> <i>1764 - 1828</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/millet/index.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jean-FrancoisMillet%28Nadar%29.jpg/250px-Jean-FrancoisMillet%28Nadar%29.jpg">
-                <p style="text-align: center;"> Jean François Millet <br> <i>1814 - 1875</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/daubigny/daubigny.html">
-                <img width="100%" height="450"
+
+            <a href="artistas/daubigny/daubigny.html" class="tarjeta-seccion">
+                <h3>Daugbigny</h3>
+                <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Charles_francois_daubigny.jpg/473px-Charles_francois_daubigny.jpg">
-                <p style="text-align: center;"> Charles F. Daubigny <br> <i>1814 - 1875</i></p>
+                <p>Clave entre el naturalismo poético y la sensibilidad luminista, refinó el paisaje al aire libre hasta
+                    volverlo casi musical.</p>
             </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/gerard/index.html">
-                <img width="100%" height="400"
-                    src="https://upload.wikimedia.org/wikipedia/commons/1/18/Thomas_Lawrence_-_Francois_Gerard.jpg"
-                    alt="">
-                <p style="text-align: center;"> François Gérard <br> <i>1770 - 1837</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/delacroix/delacroix.html">
-                <img width="100%" height="450"
+
+            <a href="artistas/delacroix/delacroix_bio.html" class="tarjeta-seccion">
+                <h3>Delacroix</h3>
+                <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg">
-                <p style="text-align: center;"> Eugène Delacroix <br> <i>1798 - 1863</i></p>
+                <p>Creó revolución basada en el color y la energía emocional y tendió un arco entre la tradición
+                    pictórica europea y las búsquedas expresivas.</p>
             </a>
-            <div class="image-full">
-                <a href="artistas/dupre/index.html">
-                    <img width="100%" height="450"
-                        src="https://uploads8.wikiart.org/temp/ae6fe7e9-d13e-43a2-998e-02e5b129231b.jpg!Portrait.jpg">
-                    <p style="text-align: center;"> Jules Dupré <br> <i>1812 - 1889</i></p>
-                </a>
-            </div>
-        </div>
-        <div class="image-full">
-            <a href="artistas/theo-rousseau/theo-rousseau.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Theodore_Rousseau.jpg">
-                <p style="text-align: center;">Théodore Rousseau <br><i>1817 - 1867</i></p>
+
+            <a href="artistas/gerard/gerard.html" class="tarjeta-seccion">
+                <h3>François Gérard</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Thomas_Lawrence_-_Francois_Gerard.jpg">
+                <p>Refinó la elegancia cortesana con una precisión idealizada que actuó
+                    como puente entre la solemnidad clásica y la sensibilidad más emotiva.</p>
             </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/scheffer/scheffer.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg/220px-Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg">
-                <p style="text-align: center;"> Ary Scheffer <br> <i>1795 - 1858</i></p>
+            <a href="artistas/dupre/dupre.html" class="tarjeta-seccion">
+                <h3>Jules Dupré</h3>
+                <img src="https://uploads8.wikiart.org/temp/ae6fe7e9-d13e-43a2-998e-02e5b129231b.jpg!Portrait.jpg">
+                <p>Llevó la observación de la naturaleza hacia una expresividad atmosférica, enlazando realismo rural y
+                    libertad luminosa.</p>
             </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/thomas_cole/thomas_cole.html">
-                <img width="100%" height="400"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Thomascole2.jpg/220px-Thomascole2.jpg">
-                <p style="text-align: center;"> Thomas Cole <br> <i>1801 - 1848</i></p>
+
+            <a href="artistas/millet/" class="tarjeta-seccion">
+                <h3>Millet</h3>
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jean-FrancoisMillet%28Nadar%29.jpg/250px-Jean-FrancoisMillet%28Nadar%29.jpg">
+                <p>Convirtió la vida campesina en una expresión poética de digna y fuerte, enlazando el realismo rural
+                    con la sensibilidad humanista.</p>
             </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/leonardo/leonardo.html">
-                <img width="100%" height="400"
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQgAgPpQ3XkIvdohs4895lMgXWc2otUhvFp07duEkuDxrPzZ84uos0qsCyF1PnCS6MY6D7glQrO_smPV5zb9ip5gA">
-                <p style="text-align: center;"> Leonardo Da Vinci <br> <i>1452 - 1519</i></p>
+
+            <a href="artistas/goya/goya.html" class="tarjeta-seccion">
+                <h3>Goya</h3>
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg/220px-Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg">
+                <p>Transforma lo real en una visión inquietante y profundamente humana, unió el dramatismo ilustrado con
+                    una libertad expresiva que abrió el camino hacia la modernidad</p>
+            </a>
+
+            <a href="artistas/gericault/gericault.html" class="tarjeta-seccion">
+                <h3>Géricault</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
+                    alt="">
+                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
+                    movimiento a un nuevo extremo.</p>
+            </a>
+
+            <a href="artistas/theo-rousseau/theo-rousseau.html" class="tarjeta-seccion">
+                <h3>Rousseau</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Theodore_Rousseau.jpg" alt="">
+                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
+                    movimiento a un nuevo extremo.</p>
+            </a>
+
+            <a href="artistas/scheffer/scheffer.html" class="tarjeta-seccion">
+                <h3>Ary Scheffer</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg/220px-Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg">
+                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
+                    movimiento a un nuevo extremo.</p>
+            </a>
+            <a href="artistas/thomas_cole/thomas_cole.html" class="tarjeta-seccion">
+                <h3>Thomas Cole</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Thomascole2.jpg/220px-Thomascole2.jpg">
+                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
+                    movimiento a un nuevo extremo.</p>
+            </a>
+            <a href="artistas/leonardo/" class="tarjeta-seccion">
+                <h3>Leonardo Da Vinci</h3>
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQgAgPpQ3XkIvdohs4895lMgXWc2otUhvFp07duEkuDxrPzZ84uos0qsCyF1PnCS6MY6D7glQrO_smPV5zb9ip5gA">
+                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
+                    movimiento a un nuevo extremo.</p>
             </a>
         </div>
     </main>
 
+    <footer>
+        <p>&copy; 2025 Virtual Gallery. Todos los derechos reservados. | Diseño por Estudio de Arte</p>
+    </footer>
+
+<script>
+        const canvas = document.getElementById('lienzoArte');
+        const ctx = canvas.getContext('2d');
+
+        // Array de imágenes actualizado con URLs más estables y accesibles
+        const obrasDeArte = [
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Las_Meninas_01.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/43/El_grito.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Michelangelo_Buonarroti_-_The_Creation_of_Adam_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg/800px-Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/La_libertad_guiando_al_pueblo.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Frida_Kahlo_Self_Portrait.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Impression%2C_soleil_levant.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
+            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Whistler%27s_Mother_by_James_McNeill_Whistler.JPG', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }
+        ];
+
+        let imagenActualIndex = 0;
+        let imagenActual = new Image();
+        let imagenSiguiente = new Image();
+        let cargando = false;
+
+        // Configuración inicial de carga
+        imagenActual.crossOrigin = "anonymous"; // Para evitar problemas de CORS
+        imagenActual.onload = () => {
+            redimensionarCanvas();
+            animar();
+        };
+        imagenActual.src = obrasDeArte[imagenActualIndex].src;
+
+        function redimensionarCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', redimensionarCanvas);
+
+        function cambiarImagen() {
+            if (cargando) return;
+            cargando = true;
+            
+            let siguienteIndex = (imagenActualIndex + 1) % obrasDeArte.length;
+            imagenSiguiente = new Image();
+            imagenSiguiente.crossOrigin = "anonymous";
+            
+            imagenSiguiente.onload = () => {
+                imagenActualIndex = siguienteIndex;
+                imagenActual = imagenSiguiente;
+                cargando = false;
+            };
+
+            imagenSiguiente.onerror = () => {
+                console.warn("Error cargando imagen: " + obrasDeArte[siguienteIndex].src);
+                cargando = false;
+                imagenActualIndex = siguienteIndex; // Salta a la siguiente aunque falle
+                cambiarImagen(); 
+            };
+
+            imagenSiguiente.src = obrasDeArte[siguienteIndex].src;
+        }
+
+        setInterval(cambiarImagen, 8000);
+
+        function animar() {
+            requestAnimationFrame(animar);
+            if (!imagenActual.complete) return;
+
+            const data = obrasDeArte[imagenActualIndex];
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Animación sutil
+            const tiempo = Date.now() * data.speed;
+            const xOffset = Math.sin(tiempo) * 20;
+            const yOffset = Math.cos(tiempo * 0.8) * 15;
+            const scale = 1.05 + Math.sin(tiempo * 0.5) * 0.02;
+
+            const imgW = imagenActual.naturalWidth;
+            const imgH = imagenActual.naturalHeight;
+
+            if (imgW === 0 || imgH === 0) return;
+
+            let ratio = Math.max(canvas.width / imgW, canvas.height / imgH);
+            let drawW = imgW * ratio * scale;
+            let drawH = imgH * ratio * scale;
+            let x = (canvas.width - drawW) / 2 + xOffset;
+            let y = (canvas.height - drawH) / 2 + yOffset;
+
+            ctx.drawImage(imagenActual, x, y, drawW, drawH);
+        }
+
+        function hacerScrollASecciones() {
+            const targetSection = document.getElementById('secciones-navegacion');
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
 </body>
 
 </html>
