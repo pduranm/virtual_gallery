@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impresionismo | Virtual Gallery</title>
+    <title>Artículo | Mary Cassatt</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
@@ -21,12 +21,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            text-decoration: none;
         }
 
         body {
             font-family: var(--font-serif-body);
             background: var(--color-background);
             color: var(--color-primary);
+        }
+
+        a {
+            color: #000;
+            font-weight: 700;
         }
 
         /* HEADER */
@@ -166,6 +172,13 @@
             color: #888;
         }
 
+        .art-item-single {
+            grid-column: 1 / -1;
+            max-width: 450px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .art-grid {
                 grid-template-columns: 1fr;
@@ -188,238 +201,167 @@
 
     <main>
         <header class="collection-hero">
-            <h1>IMPRESIONISMO</h1>
-            <span>1860 — 1890</span>
+            <h1>MARY CASSATT</h1>
+            <span style="color: #000; font-weight: 400;">La perspectiva femenina del impresionismo</span>
         </header>
 
         <section class="art-grid">
+            <div class="text-separator">
+                <p>
+                    El Impresionismo que comenzó en París en la década de 1860, se extendió por Europa y finalmente
+                    llegó a Estados Unidos.
+                    El movimiento se vio profundamente influenciado por los descubrimientos científicos de la época
+                    sobre la óptica y fotografía.
+                    Estos inventos y los hallazgos en que resultaron de ellos, impulsó una revolución creativa en la
+                    pintura. Obsérvese el caso de los tubos de pintura.
+                    <br><br>
+                    Tras el velo de la influencia claramente realista de los maestros <strong>Boudin</strong> o
+                    <strong>Rousseau</strong> en el resto de impresionistas, yace siempre olvidada, una perspectiva
+                    femenina.
+                    <br><br>
+                    <strong>Mary Cassatt</strong> (1844-1926), quien se consolida en la historia como esa nueva luz que
+                    ilumina
+                    al movimiento impresionista.
+                    Ofrece obras, carácter y renombre. En Estados Unidos vende la imagen de una Europa abierta a las
+                    influencias extranjeras, y por tanto a la inversión mecénica.
+                </p>
+            </div>
+
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Mary_Cassatt_-_The_Letter.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Mary Cassatt</p>
+                    <h2 class="art-title">La Carta</h2>
+                    <p class="art-year">1891</p>
+                </div>
+            </a>
 
             <div class="text-separator">
                 <p>
-                    El Impresionismo fue el movimiento de vanguardia más disruptivo de finales del siglo XIX, marcando
-                    el nacimiento del arte moderno. Surgido en Francia en la década de 1860, su filosofía se basaba en
-                    la técnica fugaz, rompiendo con el academicismo.
+                    Pero, ¿de dónde viene Mary Cassatt? Hagamos un poco de repaso por su historia: <br>
+                    Venía de una familia adinerada y cuando era pequeña, no paraba entre América y Europa. Eso le sirvió
+                    para aprender idiomas y empezar con el dibujo y la música. Con solo 11 años ya estaba viendo en
+                    París las obras de los grandes maestros franceses. Curiosamente, en esa misma época andaban por allí
+                    <strong>Degas</strong> y <strong>Pissarro</strong>, quienes años después terminarían siendo sus
+                    amigos y maestros.
                     <br>
-                    Los impresionistas, dado el nombre por pintar una impresión, podría considerarse como un fotograma,
-                    tal y como lo haría la cámara fotográfica.
-                    La escena se vuelve rápida, el mínimo cambio de perspectiva convierte una obra en diez diferentes.
-                    La luz cambia, es fugaz y desaparece.
-                    Esa luz que cambia, hace que el pintar se transforme una vez más, dejando atrás los estudios y las
-                    academias para salir a pintar al aire libre.
-                    Eso hace que la pincelada sea rápida y desordenada.
-                    Los colores, siempre se habla de cómo parecían diferentes, y así lo eran. Exageradas temperaturas y
-                    alta pureza pictórica.
-                    Para intensificar el efecto que produce el color, los artistas usaban colores cálidos y fríos, para
-                    aumentar el contraste.
+                    A ella se le metió en la cabeza ser artista y, aunque sus padres no estaban muy de acuerdo, se
+                    apuntó a la academia. Allí ya dejaban entrar a mujeres, aunque las miraban un poco raro. Ella no era
+                    una chica "normal" para su época: se metía en debates feministas y tenía un aire bohemio que no
+                    gustaba nada en su casa, sobre todo cuando se iba de juerga con sus compañeros (como el pintor
+                    Thomas Eakins).
                 </p>
-
             </div>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNjZhYzgwMmViZjE3MS5qcGciLCJyZXNpemUsMTUwMHxmb3JtYXQsd2VicCJdfQ.RN16vJdiMBLmugzCmDRteDe010EjSJZjS7fzgwOX73c.webp">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Mary Cassatt</p>
+                    <h2 class="art-title">Desayuno en la cama</h2>
+                    <p class="art-year">1897</p>
+                </div>
+            </a>
 
             <a href="#" class="art-item">
                 <div class="art-image-container">
                     <img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaq35cBQGuvRbXPKto7x1SVV65LRqmWmC3z17QcbFS8sXQQFLbdypcNzfITfNgF5CqAfaCVDKS8PLP5mw3FfD6PVdeB8On84-chCpikA88uZOfPTQHPU2dPMThtUkn4O4QTO02vUrM5gg5j_WwvauOC7NT8cH9SJwnVoHGqut-vbCTvMBSKijdQSnUxmM/s1600/Monet_-_Monets_Garten_in_Giverny.jpg">
+                        src="https://www.womanessentia.com/wp-content/uploads/2023/04/8.-Mary-Cassatt-mother-combing-her-child.jpeg">
                     <div class="quick-view">DETALLES</div>
                 </div>
                 <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">El jardín del artista en Giverny</h2>
+                    <p class="art-artist">Mary Cassatt</p>
+                    <h2 class="art-title">Madre y su hija</h2>
+                    <p class="art-year"></p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Mary_Cassatt_-_Antoinette_at_her_dressing_table_-_1909.jpg"
+                        alt="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Mary Cassatt</p>
+                    <h2 class="art-title">Antoniette en su vestidor</h2>
+                    <p class="art-year">1909</p>
+                </div>
+            </a>
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Young_Mother_Sewing_MET_DP139632.jpg/960px-Young_Mother_Sewing_MET_DP139632.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Mary Cassatt</p>
+                    <h2 class="art-title">Madre joven cosiendo</h2>
                     <p class="art-year">1900</p>
                 </div>
             </a>
 
+            <div class="text-separator">
+
+
+            </div>
+
             <a href="#" class="art-item">
                 <div class="art-image-container">
                     <img
-                        src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg">
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
                     <div class="quick-view">DETALLES</div>
                 </div>
                 <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">El banco del jardín de Versailles</h2>
-                    <p class="art-year">1881</p>
-                </div>
-            </a>
-
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
-                    <p class="art-year">1863</p>
+                    <p class="art-artist">Edgar Degas</p>
+                    <h2 class="art-title">Tres Bailarinas</h2>
+                    <p class="art-year">1879</p>
                 </div>
             </a>
             <a href="#" class="art-item">
                 <div class="art-image-container">
-                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
+                    <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
                     <div class="quick-view">DETALLES</div>
                 </div>
                 <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
-                    <p class="art-year">1863</p>
+                    <p class="art-artist">Edgar Degas</p>
+                    <h2 class="art-title">Tres Bailarinas</h2>
+                    <p class="art-year">1879</p>
                 </div>
             </a>
-
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Laura Knight</p>
+                    <h2 class="art-title">Al borde del acantilado</h2>
+                    <p class="art-year">1910</p>
+                </div>
+            </a>
             <div class="text-separator">
                 <p>
-                    La investigación y el arte siempre han estado unidas, un claro ejemplo fue la invención de los tubos
-                    de pintura permitiendo esa pintura <i>au plein air</i>.
-                    Se aplicó la <strong>Teoría de los Colores</strong>, de científicos como Eugéne Chevreul, según la
-                    cual los colores
-                    solo existen en relación con los colores más próximos, buscando que el ojo perciba los colores
-                    compuestos sin mezclarlos en la paleta.Se descubrió que los colores no son inmutables y que la
-                    incidencia de la luz es determinante, lo que llevó a los pintores a plasmar los colores tal y como
-                    los veían, sin importar el color objetivo de las cosas.
-                    Se practicó la coloración de sombras en detrimento del <strong>claroscuro</strong>, usando
-                    tonalidades
-                    complementarias; por ejemplo, luces amarillas y sombras violáceas.
 
                 </p>
-            </div>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">Paseo por el acantilado</h2>
-                    <p class="art-year">1882</p>
-                </div>
-            </a>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">La calle Montorgueil</h2>
-                    <p class="art-year">1878</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">La calle Montorgueil</h2>
-                    <p class="art-year">1878</p>
-                </div>
-            </a>
-
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Camille Corot</p>
-                    <h2 class="art-title">Ville d'Avray</h2>
-                    <p class="art-year">1867</p>
-                </div>
-            </a>
-
-            <div class="text-separator">
-                <p>En Francia, epicentro y laboratorio técnico del movimiento, el enfoque principal fue la
-                    disolución de la forma a través de la atmósfera. Claude Monet se consolidó como el máximo
-                    exponente con sus series sobre la luz, mientras que Pierre-Auguste Renoir aportó un enfoque
-                    social centrado en la figura humana y Edgar Degas revolucionó la composición mediante encuadres
-                    influenciados por la naciente fotografía y el llamado <strong>japonismo</strong>. 
-                    <br><br>
-                    Monet, en sus series <i>Catedral de Ruan</i> y <i>los Almiares</i>, representaba las
-                    apariencias sucesivas bajo diferentes condiciones de luz y clima.
-                    El artista también descartó los colores tierra y para 1886 había dejado de usar el negro.
-                </p>
-
-            </div>
-
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Edgar Degas</p>
-                    <h2 class="art-title">Tres Bailarinas</h2>
-                    <p class="art-year">1879</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Edgar Degas</p>
-                    <h2 class="art-title">Tres Bailarinas</h2>
-                    <p class="art-year">1879</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Laura Knight</p>
-                    <h2 class="art-title">Al borde del acantilado</h2>
-                    <p class="art-year">1910</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Laura Knight</p>
-                    <h2 class="art-title">Al borde del acantilado</h2>
-                    <p class="art-year">1910</p>
-                </div>
-            </a>
-            <br>
-            <br>
-            <section>INGLATERRA</section>
-            <div class="text-separator">
-                <p>El Impresionismo británico, por su parte, tuvo una carga más atmosférica y romántica,
-                    profundamente influenciado por la tradición del paisaje de J.M.W. Turner. Artistas como Philip
-                    Wilson Steer destacaron por sus escenas de playas saturadas de luz, mientras que Walter Sickert
-                    aplicó la técnica de pincelada fragmentada a escenas sombrías de la vida urbana londinense.
-                </p>
-            </div>
-            <br>
-            <br>
-            <section>ALEMANIA</section>
-            <div class="text-separator">
-                <p>En Alemania, el movimiento mantuvo un vínculo más estrecho con el realismo social antes de derivar
-                    hacia
-                    el expresionismo. Max Liebermann fue el pilar fundamental, evolucionando desde un realismo austero
-                    hacia
-                    escenas de jardines llenas de dinamismo lumínico, seguido por Lovis Corinth, cuya obra poseía una
-                    vitalidad en el trazo que combinaba la luz impresionista con una potente carga emocional.
-                </p>
-            </div>
-            <br>
-            <br>
-            <section>Italia</section>
-            <div class="text-separator">
-                <p>Finalmente, en Italia el movimiento influyó en la evolución de los "Macchiaioli" hacia el
-                    Divisionismo. Federico Zandomeneghi, tras mudarse a París, fusionó el colorismo veneciano con la
-                    elegancia compositiva francesa, mientras que Giuseppe De Nittis alcanzó una sofisticación técnica
-                    extraordinaria capturando la bruma y el asfalto mojado de las grandes metrópolis europeas.
-                </p>
             </div>
         </section>
     </main>
@@ -427,3 +369,30 @@
 </body>
 
 </html>
+
+
+
+El Impacto del Japonismo
+Tras la reapertura de los puertos japoneses al comercio con Occidente en 1853, una ola de importaciones inundó Europa,
+incluyendo los **grabados en madera *Ukiyo-e***, que transformaron el arte impresionista.
+Los *Ukiyo-e* se popularizaron por demostrar que los temas cotidianos y simples podían presentarse de manera decorativa
+y atractiva.
+**Temática:** El arte japonés influyó en la elección de iconografía cotidiana, como se ve en las representaciones de
+escenas de la vida diaria o las series de mujeres bañándose de Edgar Degas, inspiradas en representaciones voyeristas
+japonesas.
+**Perspectiva:** Impresionistas adoptaron la perspectiva única del *Ukiyo-e*, a menudo utilizando un **punto de vista
+desde arriba (vista de pájaro)** y posicionado en un ligero ángulo.
+**Composiciones Planas:** Los grabados japoneses se caracterizaban por ser composiciones planas, con bloques sólidos de
+color y líneas audaces, una estética que Mary Cassatt adoptó en su obra.
+Caso de Estudio: *El baño* (Mary Cassatt, 1893)
+La obra, también conocida como *El baño del niño*, es un óleo sobre lienzo realizado en 1893.
+El tema central es la dignidad de la maternidad, capturando un momento íntimo como el baño diario de un niño.
+El arte japonés influyó directamente en esta obra, tanto en el **tema** como en la **perspectiva a vista de pájaro**
+utilizada.
+
+La composición es audaz, con un **plano pictórico dramáticamente aplanado**, patrones decorativos y una paleta
+brillante, reflejando la estética japonesa.
+Al igual que su contemporáneo Degas, Cassatt evitaba las posturas estereotipadas de la academia, prefiriendo posturas
+inusuales y naturales, como se ve en la figura de la madre que sostiene al niño con firmeza y ternura.
+La pintura se encuentra en el Instituto de Arte de Chicago (Estados Unidos), que la adquirió en 1910.
+```

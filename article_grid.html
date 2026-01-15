@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresionismo | Virtual Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        /* HEADER */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 3000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HERO SECCIÓN */
+        .collection-hero {
+            margin-top: var(--header-height);
+            padding: 80px 50px 40px;
+            text-align: center;
+        }
+
+        .collection-hero h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+        }
+
+        .collection-hero span {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            letter-spacing: 3px;
+        }
+
+        /* GRID PRINCIPAL */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 30px;
+            padding: 0 50px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
+        .text-separator {
+            grid-column: 1 / -1;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .text-separator p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* TARJETAS DE ARTE */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .art-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            text-align: center;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover .quick-view {
+            transform: translateY(0);
+        }
+
+        .art-meta {
+            text-align: left;
+        }
+
+        .art-artist {
+            font-family: var(--font-serif-display);
+            font-size: 0.65rem;
+            color: var(--color-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .art-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .art-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .collection-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo"><a href="../main.html">VIRTUAL GALLERY</a></div>
+        <div style="font-family: var(--font-serif-display); font-size: 0.7rem; letter-spacing: 1px;">MOVIMIENTOS</div>
+    </header>
+
+    <main>
+        <header class="collection-hero">
+            <h1>MARY CASSATT</h1>
+            <span style="color: #000;">La perspectiva femenina del impresionismo</span>
+        </header>
+
+        <section class="art-grid">
+            <div class="text-separator">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, minima. Perspiciatis minus nisi
+                consequatur. Sapiente nesciunt sit nemo ea deserunt tempore eos modi, consectetur, numquam eum
+                exercitationem error consequatur asperiores.
+            </div>
+
+
+            <a href="#" class="art-item">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
