@@ -4,10 +4,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Arte Dinámico - Inicio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/style_grid.css">
+    <title>Galería de Arte Dinámico - Impresionismo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body {
+            margin: 0;
+            font-family: 'Lora', serif;
+            background-color: #f4f4f9;
+            color: #333;
+            overflow-x: hidden; /* Evita scroll horizontal accidental */
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .secciones-container {
+            max-width: 1200px;
+            width: 90%; /* Ancho fluido para móviles */
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        /* --- GRID RESPONSIVE (Líneas Clave) --- */
+        .tarjetas-grid {
+            display: grid;
+            /* Por defecto (PC): 2 columnas */
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+        }
+
+        /* MEDIA QUERY: Para Tablets y Móviles (menos de 768px) */
+        @media (max-width: 768px) {
+            .tarjetas-grid {
+                /* Cambia a 1 sola columna para que se vea bien en vertical */
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+
+            h2 {
+                font-size: 2rem; /* Título de sección más pequeño */
+            }
+            
+            .secciones-container {
+                width: 95%; /* Aprovecha más el ancho en pantallas pequeñas */
+            }
+        }
+
+        /* --- ESTILO DE TARJETAS --- */
+        .tarjeta-seccion {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #3498db;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-seccion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .tarjeta-seccion h3 {
+            font-family: 'Cinzel', serif;
+            color: #2980b9;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .foto-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #e2e8f0;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: sans-serif;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- HEADER Y CANVAS RESPONSIVE --- */
+        header {
+            position: relative;
+            height: 60vh;
+            min-height: 400px; /* Altura mínima para que no se aplaste en móviles */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+            width: 100%;
+            height: 100%;
+        }
+        .superposicion-texto {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 20px; /* Margen lateral para que el texto no toque bordes */
+        }
+        .superposicion-texto h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem; /* Tamaño PC */
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+        
+        /* Ajuste del título del header para móviles */
+        @media (max-width: 600px) {
+            .superposicion-texto h1 {
+                font-size: 2.5rem; /* Tamaño Móvil */
+            }
+            .superposicion-texto p {
+                font-size: 1rem;
+            }
+        }
+
+        .superposicion-texto p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 25px;
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: white;
+            color: black;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,122 +181,82 @@
     <header id="galeria-dinamica">
         <canvas id="lienzoArte"></canvas>
         <div class="superposicion-texto">
-            <h1>virtual gallery</h1>
-            <p>Arte | Historia | Curiosidades</p>
-            <button onclick="hacerScrollASecciones()">Explorar Artistas</button>
+            <h1>Impresionismo</h1>
+            <p>Luz | Color | Momento</p>
+            <button onclick="hacerScrollASecciones()">Ver Artistas</button>
         </div>
     </header>
 
     <main id="secciones-navegacion" class="secciones-container">
-        <h2>Artistas Destacados</h2>
+        <h2>Maestros del Impresionismo</h2>
+        
         <div class="tarjetas-grid">
-
-            <a href="artistas/camille/camille.html" class="tarjeta-seccion">
-                <h3>Camille Corot</h3>
-                <img
-                    src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPgyZuVURtKpqcMWzFPdrXORIwx6srxgzKRKKrdeQiajhAYMwKhRHtDznae4tYnkmf2KIr3g">
-                <p>Maestro del paisaje pre-impresionista y la Escuela de Barbizon. Sus obras son un puente entre el
-                    clasicismo y el arte moderno.</p>
+            <!-- Tarjeta 1: Monet -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Claude Monet</h3>
+                <div class="foto-placeholder">[FOTO MONET]</div>
+                <p>Padre del impresionismo. Sus series de nenúfares y la Catedral de Ruan capturan la luz cambiante.</p>
             </a>
 
-            <a href="artistas/courbet/courbet.html" class="tarjeta-seccion">
-                <h3> Gustave Courbet</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg/220px-Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg">
-                <p>Líder del movimiento Realista, conocido por su audacia y su compromiso con la representación sin
-                    adornos de la vida cotidiana.</p>
+            <!-- Tarjeta 2: Renoir -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Auguste Renoir</h3>
+                <div class="foto-placeholder">[FOTO RENOIR]</div>
+                <p>El pintor de la felicidad. Famoso por sus vibrantes escenas sociales y retratos llenos de vida.</p>
             </a>
 
-            <a href="artistas/daubigny/daubigny.html" class="tarjeta-seccion">
-                <h3>Daugbigny</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Charles_francois_daubigny.jpg/473px-Charles_francois_daubigny.jpg">
-                <p>Clave entre el naturalismo poético y la sensibilidad luminista, refinó el paisaje al aire libre hasta
-                    volverlo casi musical.</p>
+            <!-- Tarjeta 3: Pissarro -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Camille Pissarro</h3>
+                <div class="foto-placeholder">[FOTO PISSARRO]</div>
+                <p>El "decano" del grupo. Fue mentor de Cézanne y Gauguin, uniendo generaciones de artistas.</p>
             </a>
 
-            <a href="artistas/delacroix/delacroix_bio.html" class="tarjeta-seccion">
-                <h3>Delacroix</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg">
-                <p>Creó revolución basada en el color y la energía emocional y tendió un arco entre la tradición
-                    pictórica europea y las búsquedas expresivas.</p>
+            <!-- Tarjeta 4: Degas -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Edgar Degas</h3>
+                <div class="foto-placeholder">[FOTO DEGAS]</div>
+                <p>Maestro del movimiento. Sus bailarinas de ballet y carreras de caballos estudian la anatomía en acción.</p>
             </a>
 
-            <a href="artistas/gerard/gerard.html" class="tarjeta-seccion">
-                <h3>François Gérard</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Thomas_Lawrence_-_Francois_Gerard.jpg">
-                <p>Refinó la elegancia cortesana con una precisión idealizada que actuó
-                    como puente entre la solemnidad clásica y la sensibilidad más emotiva.</p>
-            </a>
-            <a href="artistas/dupre/dupre.html" class="tarjeta-seccion">
-                <h3>Jules Dupré</h3>
-                <img src="https://uploads8.wikiart.org/temp/ae6fe7e9-d13e-43a2-998e-02e5b129231b.jpg!Portrait.jpg">
-                <p>Llevó la observación de la naturaleza hacia una expresividad atmosférica, enlazando realismo rural y
-                    libertad luminosa.</p>
+            <!-- Tarjeta 5: Morisot -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Berthe Morisot</h3>
+                <div class="foto-placeholder">[FOTO MORISOT]</div>
+                <p>Pionera femenina. Su pincelada etérea capturó la intimidad doméstica con una modernidad única.</p>
             </a>
 
-            <a href="artistas/millet/" class="tarjeta-seccion">
-                <h3>Millet</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jean-FrancoisMillet%28Nadar%29.jpg/250px-Jean-FrancoisMillet%28Nadar%29.jpg">
-                <p>Convirtió la vida campesina en una expresión poética de digna y fuerte, enlazando el realismo rural
-                    con la sensibilidad humanista.</p>
+            <!-- Tarjeta 6: Sisley -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Alfred Sisley</h3>
+                <div class="foto-placeholder">[FOTO SISLEY]</div>
+                <p>El paisajista puro. Se mantuvo fiel a la pintura al aire libre, capturando cielos y ríos franceses.</p>
             </a>
 
-            <a href="artistas/goya/goya.html" class="tarjeta-seccion">
-                <h3>Goya</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg/220px-Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg">
-                <p>Transforma lo real en una visión inquietante y profundamente humana, unió el dramatismo ilustrado con
-                    una libertad expresiva que abrió el camino hacia la modernidad</p>
+            <!-- Tarjeta 7: Cassatt -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Mary Cassatt</h3>
+                <div class="foto-placeholder">[FOTO CASSATT]</div>
+                <p>La mirada americana en París. Revolucionó el retrato materno con una sensibilidad psicológica profunda.</p>
             </a>
 
-            <a href="artistas/gericault/gericault.html" class="tarjeta-seccion">
-                <h3>Géricault</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
-                    alt="">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
-            </a>
-
-            <a href="artistas/theo-rousseau/theo-rousseau.html" class="tarjeta-seccion">
-                <h3>Rousseau</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Theodore_Rousseau.jpg" alt="">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
-            </a>
-
-            <a href="artistas/scheffer/scheffer.html" class="tarjeta-seccion">
-                <h3>Ary Scheffer</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg/220px-Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
-            </a>
-            <a href="artistas/thomas_cole/thomas_cole.html" class="tarjeta-seccion">
-                <h3>Thomas Cole</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Thomascole2.jpg/220px-Thomascole2.jpg">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
-            </a>
-            <a href="artistas/leonardo/" class="tarjeta-seccion">
-                <h3>Leonardo Da Vinci</h3>
-                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQgAgPpQ3XkIvdohs4895lMgXWc2otUhvFp07duEkuDxrPzZ84uos0qsCyF1PnCS6MY6D7glQrO_smPV5zb9ip5gA">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
+            <!-- Tarjeta 8: Manet -->
+            <a href="#" class="tarjeta-seccion">
+                <h3>Édouard Manet</h3>
+                <div class="foto-placeholder">[FOTO MANET]</div>
+                <p>El precursor moderno. Aunque no expuso con ellos, su libertad técnica inspiró todo el movimiento.</p>
             </a>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Virtual Gallery. Todos los derechos reservados. | Diseño por Estudio de Arte</p>
+        <p>&copy; 2025 Virtual Gallery. Todos los derechos reservados.</p>
     </footer>
 
-<script>
+    <script>
         const canvas = document.getElementById('lienzoArte');
         const ctx = canvas.getContext('2d');
 
-        // Array de imágenes actualizado con URLs más estables y accesibles
         const obrasDeArte = [
             { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
             { src: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Las_Meninas_01.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
@@ -150,8 +276,7 @@
         let imagenSiguiente = new Image();
         let cargando = false;
 
-        // Configuración inicial de carga
-        imagenActual.crossOrigin = "anonymous"; // Para evitar problemas de CORS
+        imagenActual.crossOrigin = "anonymous";
         imagenActual.onload = () => {
             redimensionarCanvas();
             animar();
@@ -181,7 +306,7 @@
             imagenSiguiente.onerror = () => {
                 console.warn("Error cargando imagen: " + obrasDeArte[siguienteIndex].src);
                 cargando = false;
-                imagenActualIndex = siguienteIndex; // Salta a la siguiente aunque falle
+                imagenActualIndex = siguienteIndex; 
                 cambiarImagen(); 
             };
 
@@ -197,7 +322,6 @@
             const data = obrasDeArte[imagenActualIndex];
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Animación sutil
             const tiempo = Date.now() * data.speed;
             const xOffset = Math.sin(tiempo) * 20;
             const yOffset = Math.cos(tiempo * 0.8) * 15;
@@ -225,5 +349,4 @@
         }
     </script>
 </body>
-
 </html>

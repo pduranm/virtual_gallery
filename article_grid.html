@@ -28,7 +28,10 @@
             background: var(--color-background);
             color: var(--color-primary);
         }
-
+        a {
+            text-decoration: none;
+            color: #000;
+        }
         /* HEADER */
         .main-header {
             position: fixed;
@@ -166,6 +169,13 @@
             color: #888;
         }
 
+        .art-item-single {
+            grid-column: 1 / -1;
+            max-width: 450px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .art-grid {
                 grid-template-columns: 1fr;
@@ -188,8 +198,8 @@
 
     <main>
         <header class="collection-hero">
-            <h1>MARY CASSATT</h1>
-            <span style="color: #000;">La perspectiva femenina del impresionismo</span>
+            <h1>NOMBRE ARTISTA</h1>
+            <span style="color: #000;">TEXTO SUBTITULO</span>
         </header>
 
         <section class="art-grid">
@@ -200,7 +210,64 @@
             </div>
 
 
-            <a href="#" class="art-item">
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
                 <div class="art-image-container">
                     <img src="">
                     <div class="quick-view">DETALLES</div>

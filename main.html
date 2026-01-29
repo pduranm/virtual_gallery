@@ -81,7 +81,7 @@
             position: relative;
         }
 
-        /* Mega Menu */
+        /* Mega Menu (Desktop) */
         .mega-menu {
             position: absolute;
             top: var(--header-height);
@@ -140,7 +140,7 @@
             color: var(--color-secondary);
         }
 
-        /* Overlay al abrir menú */
+        /* Overlay general */
         .site-overlay {
             position: fixed;
             top: 0;
@@ -160,7 +160,124 @@
         }
 
         /* ============================================== */
-        /* HERO GRID (Estado Hover Permanente) */
+        /* ESTILOS MENU MOVIL LATERAL                     */
+        /* ============================================== */
+        
+        /* Botón Hamburguesa */
+        .menu-toggle {
+            display: none; /* Oculto en PC */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        /* Contenedor Lateral (Izquierda) */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0; /* Anclado a la izquierda */
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2200;
+            transform: translateX(-100%); /* Oculto hacia la izquierda */
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            padding: 80px 30px;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1); /* Sombra hacia la derecha */
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .mobile-sidebar.active {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
+        /* --- ESTILOS ACORDEÓN (SUBMENÚS MÓVIL) --- */
+        .mobile-nav-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            cursor: pointer;
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Girar la cruz al abrir */
+        .mobile-nav-item.open .toggle-icon {
+            transform: rotate(45deg);
+            color: var(--color-secondary);
+        }
+
+        .mobile-sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            padding: 0 10px;
+        }
+
+        .mobile-sub-menu a {
+            display: block;
+            font-family: var(--font-serif-body);
+            font-size: 0.95rem;
+            color: #555;
+            padding: 12px 0;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-sub-menu strong {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            font-family: var(--font-serif-display);
+            letter-spacing: 1px;
+        }
+
+        /* ============================================== */
+        /* HERO GRID                                      */
         /* ============================================== */
         .main-content {
             margin-top: var(--header-height);
@@ -199,7 +316,6 @@
             background-size: cover;
             background-position: center;
             z-index: 1;
-            /* EFECTO PERMANENTE: Zoom y opacidad reducida */
             transform: scale(1.05);
             opacity: 0.8;
             transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
@@ -232,9 +348,8 @@
         .card-info {
             position: relative;
             z-index: 3;
-            padding: 50px;
+            padding: 20px;
             color: #fff;
-            /* EFECTO PERMANENTE: Sin desplazamiento vertical */
             transform: translateY(0);
             transition: var(--transition-smooth);
         }
@@ -250,7 +365,6 @@
             font-size: 1.1rem;
             max-width: 500px;
             margin-bottom: 30px;
-            /* EFECTO PERMANENTE: Visible */
             opacity: 0.9;
             transition: var(--transition-smooth);
         }
@@ -262,23 +376,23 @@
             font-family: var(--font-serif-display);
             font-size: 0.7rem;
             letter-spacing: 2px;
-            /* EFECTO PERMANENTE: Fondo blanco y texto negro */
             background: #fff;
             color: #000;
             transition: all 0.3s ease;
         }
 
-        /* Mobile */
+        /* Mobile Responsive */
         @media (max-width: 900px) {
+            
+            /* Ajustes Header */
+            .nav-container { display: none; }
+            .menu-toggle { display: flex; }
+            .main-header { padding: 0 20px; }
 
-            .nav-container,
-            .header-actions {
-                display: none;
-            }
-
+            /* Ajustes Grid - Imágenes Grandes */
             .hero-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: 500px;
+                grid-template-columns: 1fr; /* Una sola columna */
+                grid-auto-rows: 500px;      /* Altura grande original */
             }
 
             .grid-card.wide {
@@ -297,6 +411,13 @@
     <div class="site-overlay" id="siteOverlay"></div>
 
     <header class="main-header">
+        
+        <button class="menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <div class="logo">
             <a href="./main.html">VIRTUAL GALLERY</a>
         </div>
@@ -326,20 +447,16 @@
                         <div class="menu-column">
                             <h3>DESTACADOS</h3>
                             <ul>
-                                <li><a href="#">Claude Monet</a></li>
-                                <li><a href="#">JMW Turner</a></li>
-                                <li><a href="#">Rubens</a></li>
+                                <li><a href="artistas/delacroix/delacroix_bio.html">Eugene Delacroix</a></li>
+                                <li><a href="artistas/daubigny/daubigny.html">Charles Daubigny</a></li>
+                                <li><a href="artistas/gericault/gericault.html">Théodore Géricault</a></li>
                             </ul>
                         </div>
                         <div class="menu-column">
-                            <div
-                                style="background: #f4f4f4; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
-                                <p
-                                    style="font-family: var(--font-serif-display); font-size: 0.6rem; letter-spacing: 2px;">
-                                    DESTACADO</p>
-                                <strong style="font-size: 1.1rem; margin: 10px 0;">FRIDA KAHLO</strong>
-                                <a href="#" style="font-size: 0.7rem; text-decoration: underline; color: #000;">Ver
-                                    Perfil</a>
+                            <div style="background: #f4f4f4; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+                                <p style="font-family: var(--font-serif-display); font-size: 0.6rem; letter-spacing: 2px;">DESTACADO</p>
+                                <strong style="font-size: 1.1rem; margin: 10px 0;">Mary Cassatt</strong>
+                                <a href="maryCassat_article_1.html" style="font-size: 0.7rem; text-decoration: underline; color: #000;">Ver Perfil</a>
                             </div>
                         </div>
                     </div>
@@ -371,12 +488,10 @@
                             <ul>
                                 <li><a href="#">Prerrafaelismo</a></li>
                                 <li><a href="#">Luminismo</a></li>
-                                <li><a href="#"></a></li>
                             </ul>
                         </div>
                         <div class="menu-column">
-                            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=400"
-                                alt="Movimientos" style="width: 100%; height: 150px; object-fit: cover;">
+                            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=400" alt="Movimientos" style="width: 100%; height: 150px; object-fit: cover;">
                         </div>
                     </div>
                 </div>
@@ -409,10 +524,8 @@
                             </ul>
                         </div>
                         <div class="menu-column">
-                            <div
-                                style="border: 1px solid #ddd; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                                <h4 style="font-family: var(--font-serif-display); font-size: 0.8rem;">LECTURA
-                                    RECOMENDADA</h4>
+                            <div style="border: 1px solid #ddd; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                                <h4 style="font-family: var(--font-serif-display); font-size: 0.8rem;">LECTURA RECOMENDADA</h4>
                                 <p style="font-size: 0.85rem; margin-top: 10px;">"El aura en la era digital"</p>
                             </div>
                         </div>
@@ -438,21 +551,19 @@
                             </ul>
                         </div>
                         <div class="menu-column">
-                            <p style="font-size: 0.85rem; color: #777; line-height: 1.4;">Virtual Gallery es un espacio
-                                dedicado a la preservación y difusión del pensamiento visual y la crítica estética.</p>
+                            <p style="font-size: 0.85rem; color: #777; line-height: 1.4;">Virtual Gallery es un espacio dedicado a la preservación y difusión del pensamiento visual y la crítica estética.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <main class="main-content">
         <section class="hero-grid">
             <a href="main_movimientos.html" class="grid-card">
                 <div class="card-badge">Historia</div>
-                <div class="card-bg"
-                    style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000')">
-                </div>
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000')"></div>
                 <div class="card-overlay"></div>
                 <div class="card-info">
                     <h2>MOVIMIENTOS</h2>
@@ -462,9 +573,7 @@
             </a>
             <a href="#" class="grid-card">
                 <div class="card-badge">COLECCIÓN</div>
-                <div class="card-bg"
-                    style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1600')">
-                </div>
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1600')"></div>
                 <div class=""></div>
                 <div class="card-info">
                     <h2>GRANDES MAESTROS</h2>
@@ -474,9 +583,7 @@
             </a>
             <a href="#" class="grid-card">
                 <div class="card-badge">Nuevo</div>
-                <div class="card-bg"
-                    style="background-image: url('https://images.unsplash.com/photo-1576769971861-6893f8e5898c?q=80&w=1000')">
-                </div>
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1576769971861-6893f8e5898c?q=80&w=1000')"></div>
                 <div class="card-overlay"></div>
                 <div class="card-info">
                     <h2>Escuelas</h2>
@@ -486,9 +593,7 @@
             </a>
             <a href="#" class="grid-card">
                 <div class="card-badge">Archivo</div>
-                <div class="card-bg"
-                    style="background-image: url('https://images.unsplash.com/photo-1576769971861-6893f8e5898c?q=80&w=1000')">
-                </div>
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1576769971861-6893f8e5898c?q=80&w=1000')"></div>
                 <div class="card-overlay"></div>
                 <div class="card-info">
                     <h2>CRÍTICA</h2>
@@ -499,22 +604,140 @@
         </section>
     </main>
 
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+        <nav class="mobile-nav-links">
+            
+            <div class="mobile-nav-item">
+                <div class="mobile-nav-header">
+                    <span>Artistas</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="mobile-sub-menu">
+                    <strong>Cronología</strong>
+                    <a href="#">Renacimiento</a>
+                    <a href="#">Barroco</a>
+                    <a href="movimientos/impresionismo.html">Impresionismo</a>
+                    <a href="#">Vanguardias</a>
+                    
+                    <strong>Géneros</strong>
+                    <a href="#">Esteticismo</a>
+                    <a href="#">Paisajismo</a>
+                    
+                    <strong>Destacados</strong>
+                    <a href="artistas/delacroix/delacroix_bio.html">Eugene Delacroix</a>
+                    <a href="artistas/daubigny/daubigny.html">Charles Daubigny</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <div class="mobile-nav-header">
+                    <span>Movimientos</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="mobile-sub-menu">
+                    <strong>Modernos</strong>
+                    <a href="movimientos/impresionismo.html">Impresionismo</a>
+                    <a href="movimientos/realismo.html">Realismo</a>
+                    <a href="movimientos/romanticismo.html">Romanticismo</a>
+                    
+                    <strong>Clásicos</strong>
+                    <a href="movimientos/neoclasicismo.html">Neoclasicismo</a>
+                    <a href="#">Barroco</a>
+                    <a href="#">Renacimiento</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <div class="mobile-nav-header">
+                    <span>Ensayos</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="mobile-sub-menu">
+                    <strong>Temáticas</strong>
+                    <a href="#">Filosofía del Arte</a>
+                    <a href="#">Teoría del Color</a>
+                    <a href="#">Sociología</a>
+                    
+                    <strong>Coleccionistas y Crítica</strong>
+                    <a href="#">Críticos</a>
+                    <a href="#">Periódicos</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <a href="contacto.html" class="mobile-nav-header" style="text-decoration: none;">
+                    <span>Sobre Nosotros</span>
+                </a>
+            </div>
+
+        </nav>
+    </div>
+
     <script>
+        // LÓGICA DESKTOP
         const navItems = document.querySelectorAll('.nav-item');
         const overlay = document.getElementById('siteOverlay');
 
         navItems.forEach(item => {
-            // Detectar cuando el mouse entra en un item que tiene mega menú
             item.addEventListener('mouseenter', () => {
                 const hasMenu = item.querySelector('.mega-menu');
                 if (hasMenu) {
                     document.body.classList.add('menu-open');
                 }
             });
-
-            // Detectar cuando el mouse sale
             item.addEventListener('mouseleave', () => {
                 document.body.classList.remove('menu-open');
+            });
+        });
+
+        // LÓGICA MENU LATERAL MÓVIL
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const sidebar = document.getElementById('mobileSidebar');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            
+            if (sidebar.classList.contains('active')) {
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }
+
+        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+        
+        // Cerrar al hacer click fuera
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+        });
+
+        // LÓGICA ACORDEÓN (DESPLIEGUE SUBMENÚS)
+        const accordionHeaders = document.querySelectorAll('.mobile-nav-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', (e) => {
+                // Si es un enlace directo (<a>), no hacemos acordeón
+                if(header.tagName === 'A') return;
+
+                const parent = header.parentElement;
+                const content = parent.querySelector('.mobile-sub-menu');
+                
+                // Toggle clase 'open' para girar icono
+                parent.classList.toggle('open');
+
+                // Toggle altura
+                if (parent.classList.contains('open')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0";
+                }
             });
         });
     </script>
