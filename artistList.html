@@ -4,349 +4,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Arte Dinámico - Impresionismo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>Impresionismo | Virtual Gallery</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primary: #1a1a1a;
+            --color-background: #ffffff;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.4s ease;
+        }
+
+        /* --- RESET Y BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            font-family: 'Lora', serif;
-            background-color: #f4f4f9;
-            color: #333;
-            overflow-x: hidden; /* Evita scroll horizontal accidental */
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .secciones-container {
-            max-width: 1200px;
-            width: 90%; /* Ancho fluido para móviles */
-            margin: 0 auto;
-            padding: 40px 0;
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER (Igual que antes) --- */
+        .main-header {
+            position: fixed; top: 0; width: 100%; height: var(--header-height);
+            background: #fff; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 50px; border-bottom: 1px solid #eee; z-index: 2000;
         }
 
-        h2 {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            font-size: 2.5rem;
+        .logo a {
+            font-family: var(--font-serif-display); font-size: 1.4rem; font-weight: 700; letter-spacing: 4px;
         }
 
-        /* --- GRID RESPONSIVE (Líneas Clave) --- */
-        .tarjetas-grid {
-            display: grid;
-            /* Por defecto (PC): 2 columnas */
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px; 
+        .nav-container { display: flex; height: 100%; }
+        .nav-item { display: flex; align-items: center; padding: 0 25px; height: 100%; }
+        .nav-link {
+            font-family: var(--font-serif-display); font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 700;
         }
 
-        /* MEDIA QUERY: Para Tablets y Móviles (menos de 768px) */
-        @media (max-width: 768px) {
-            .tarjetas-grid {
-                /* Cambia a 1 sola columna para que se vea bien en vertical */
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
+        /* --- MENÚ MÓVIL --- */
+        .menu-toggle {
+            display: none; flex-direction: column; justify-content: space-between;
+            width: 30px; height: 20px; background: transparent; border: none; cursor: pointer; z-index: 2100;
+        }
+        .menu-toggle span { width: 100%; height: 2px; background-color: var(--color-primary); transition: 0.3s; }
 
-            h2 {
-                font-size: 2rem; /* Título de sección más pequeño */
-            }
-            
-            .secciones-container {
-                width: 95%; /* Aprovecha más el ancho en pantallas pequeñas */
-            }
+        .mobile-sidebar {
+            position: fixed; top: 0; left: 0; width: 85%; max-width: 350px; height: 100vh;
+            background: #fff; z-index: 2200; transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            padding: 80px 30px; box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column;
         }
-
-        /* --- ESTILO DE TARJETAS --- */
-        .tarjeta-seccion {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid #3498db;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tarjeta-seccion:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .tarjeta-seccion h3 {
-            font-family: 'Cinzel', serif;
-            color: #2980b9;
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .foto-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #e2e8f0;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-family: sans-serif;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        /* --- HEADER Y CANVAS RESPONSIVE --- */
-        header {
-            position: relative;
-            height: 60vh;
-            min-height: 400px; /* Altura mínima para que no se aplaste en móviles */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.6;
-            width: 100%;
-            height: 100%;
-        }
-        .superposicion-texto {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            padding: 0 20px; /* Margen lateral para que el texto no toque bordes */
-        }
-        .superposicion-texto h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem; /* Tamaño PC */
-            margin: 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            line-height: 1.1;
-        }
+        .mobile-sidebar.active { transform: translateX(0); }
         
-        /* Ajuste del título del header para móviles */
-        @media (max-width: 600px) {
-            .superposicion-texto h1 {
-                font-size: 2.5rem; /* Tamaño Móvil */
-            }
-            .superposicion-texto p {
-                font-size: 1rem;
-            }
+        .close-menu {
+            position: absolute; top: 25px; right: 25px; font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--color-primary);
+        }
+        .mobile-nav-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+        .mobile-nav-header { font-family: var(--font-serif-display); font-weight: 700; display: block; }
+        .site-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1500; opacity: 0; pointer-events: none; transition: opacity 0.4s;
         }
 
-        .superposicion-texto p {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
+        /* --- HERO --- */
+        .page-hero {
+            margin-top: var(--header-height); height: 40vh; min-height: 300px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            background-color: #f4f4f4; overflow: hidden;
         }
-        button {
-            margin-top: 25px;
-            padding: 12px 35px;
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-            font-family: 'Cinzel', serif;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1rem;
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1600'); 
+            background-size: cover; background-position: center; opacity: 0.8; filter: grayscale(30%);
         }
-        button:hover {
-            background: white;
-            color: black;
+        .hero-content {
+            position: relative; z-index: 2; text-align: center; background: rgba(255, 255, 255, 0.85);
+            padding: 30px 50px; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.1);
         }
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 50px;
-            font-size: 0.9rem;
+        .hero-content h1 { font-family: var(--font-serif-display); font-size: 2.5rem; margin-bottom: 5px; letter-spacing: 5px; }
+        .hero-content p { font-family: var(--font-serif-display); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #b58d53; }
+
+        /* --- GRID ARTISTAS (Solo Foto y Nombre) --- */
+        .content-wrapper { max-width: 1400px; margin: 0 auto; padding: 60px 30px; }
+        .intro-text { max-width: 700px; margin: 0 auto 60px auto; text-align: center; font-size: 1rem; color: #555; line-height: 1.7; }
+
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 Columnas pequeñas */
+            gap: 30px 20px;
+        }
+
+        .artist-card {
+            display: flex; flex-direction: column; cursor: pointer;
+            text-decoration: none; /* Asegura que no parezca un enlace subrayado */
+        }
+
+        .image-container {
+            width: 100%; aspect-ratio: 1 / 1; /* Cuadrado */
+            overflow: hidden; background: #eee; margin-bottom: 12px;
+        }
+
+        .image-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.5s;
+            filter: grayscale(100%);
+        }
+
+        .artist-card:hover .image-container img { transform: scale(1.05); filter: grayscale(0%); }
+
+        .artist-info { text-align: center; }
+        .artist-info h3 {
+            font-family: var(--font-serif-display); font-size: 0.9rem; /* Nombre discreto */
+            letter-spacing: 1px; color: var(--color-primary); font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid #eee; margin-top: 40px; }
+        footer p { font-size: 0.7rem; color: #999; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1300px) { .artists-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 950px) {
+            .artists-grid { grid-template-columns: repeat(3, 1fr); }
+            .main-header { padding: 0 20px; } .nav-container { display: none; } .menu-toggle { display: flex; }
+        }
+        @media (max-width: 650px) {
+            .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 15px; } /* 2 columnas en móvil */
+            .hero-content h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <header id="galeria-dinamica">
-        <canvas id="lienzoArte"></canvas>
-        <div class="superposicion-texto">
-            <h1>Impresionismo</h1>
-            <p>Luz | Color | Momento</p>
-            <button onclick="hacerScrollASecciones()">Ver Artistas</button>
-        </div>
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <header class="main-header">
+        <button class="menu-toggle" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        <div class="logo"><a href="main.html">VIRTUAL GALLERY</a></div>
+        <nav class="nav-container">
+            <div class="nav-item"><a href="#" class="nav-link">Artistas</a></div>
+            <div class="nav-item"><a href="#" class="nav-link">Movimientos</a></div>
+            <div class="nav-item"><a href="#" class="nav-link">Ensayos</a></div>
+        </nav>
     </header>
 
-    <main id="secciones-navegacion" class="secciones-container">
-        <h2>Maestros del Impresionismo</h2>
-        
-        <div class="tarjetas-grid">
-            <!-- Tarjeta 1: Monet -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Claude Monet</h3>
-                <div class="foto-placeholder">[FOTO MONET]</div>
-                <p>Padre del impresionismo. Sus series de nenúfares y la Catedral de Ruan capturan la luz cambiante.</p>
-            </a>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Artistas</a></div>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Movimientos</a></div>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Ensayos</a></div>
+        <div class="mobile-nav-item"><a href="contacto.html" class="mobile-nav-header">Contacto</a></div>
+    </div>
 
-            <!-- Tarjeta 2: Renoir -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Auguste Renoir</h3>
-                <div class="foto-placeholder">[FOTO RENOIR]</div>
-                <p>El pintor de la felicidad. Famoso por sus vibrantes escenas sociales y retratos llenos de vida.</p>
-            </a>
+    <section class="page-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>IMPRESIONISMO</h1>
+            <p>1860 — 1890</p>
+        </div>
+    </section>
 
-            <!-- Tarjeta 3: Pissarro -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Camille Pissarro</h3>
-                <div class="foto-placeholder">[FOTO PISSARRO]</div>
-                <p>El "decano" del grupo. Fue mentor de Cézanne y Gauguin, uniendo generaciones de artistas.</p>
-            </a>
+    <main class="content-wrapper">
+        <p class="intro-text">
+            Un movimiento que redefinió la percepción visual. Capturando el instante efímero, 
+            la luz cambiante y la vida moderna a través de pinceladas sueltas y colores puros.
+        </p>
 
-            <!-- Tarjeta 4: Degas -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Edgar Degas</h3>
-                <div class="foto-placeholder">[FOTO DEGAS]</div>
-                <p>Maestro del movimiento. Sus bailarinas de ballet y carreras de caballos estudian la anatomía en acción.</p>
-            </a>
+        <div class="artists-grid">
+            
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet">
+                </div>
+                <div class="artist-info">
+                    <h3>Claude Monet</h3>
+                </div>
+            </div>
 
-            <!-- Tarjeta 5: Morisot -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Berthe Morisot</h3>
-                <div class="foto-placeholder">[FOTO MORISOT]</div>
-                <p>Pionera femenina. Su pincelada etérea capturó la intimidad doméstica con una modernidad única.</p>
-            </a>
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Pierre-Auguste_Renoir%2C_c._1910.jpg/800px-Pierre-Auguste_Renoir%2C_c._1910.jpg" alt="Auguste Renoir">
+                </div>
+                <div class="artist-info">
+                    <h3>Auguste Renoir</h3>
+                </div>
+            </div>
 
-            <!-- Tarjeta 6: Sisley -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Alfred Sisley</h3>
-                <div class="foto-placeholder">[FOTO SISLEY]</div>
-                <p>El paisajista puro. Se mantuvo fiel a la pintura al aire libre, capturando cielos y ríos franceses.</p>
-            </a>
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Camille_Pissarro_01.jpg" alt="Camille Pissarro">
+                </div>
+                <div class="artist-info">
+                    <h3>Camille Pissarro</h3>
+                </div>
+            </div>
 
-            <!-- Tarjeta 7: Cassatt -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Mary Cassatt</h3>
-                <div class="foto-placeholder">[FOTO CASSATT]</div>
-                <p>La mirada americana en París. Revolucionó el retrato materno con una sensibilidad psicológica profunda.</p>
-            </a>
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Edgar_Degas_self_portrait_1855.jpeg" alt="Edgar Degas">
+                </div>
+                <div class="artist-info">
+                    <h3>Edgar Degas</h3>
+                </div>
+            </div>
 
-            <!-- Tarjeta 8: Manet -->
-            <a href="#" class="tarjeta-seccion">
-                <h3>Édouard Manet</h3>
-                <div class="foto-placeholder">[FOTO MANET]</div>
-                <p>El precursor moderno. Aunque no expuso con ellos, su libertad técnica inspiró todo el movimiento.</p>
-            </a>
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Berthe_Morisot_with_a_Bouquet_of_Violets_%28Edouard_Manet%29.jpg" alt="Berthe Morisot">
+                </div>
+                <div class="artist-info">
+                    <h3>Berthe Morisot</h3>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Alfred_Sisley_photo.jpg" alt="Alfred Sisley">
+                </div>
+                <div class="artist-info">
+                    <h3>Alfred Sisley</h3>
+                </div>
+            </div>
+            
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Mary_Cassatt_Self-Portrait_c._1880.jpg" alt="Mary Cassatt">
+                </div>
+                <div class="artist-info">
+                    <h3>Mary Cassatt</h3>
+                </div>
+            </div>
+
+             <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Edouard_Manet.jpg" alt="Édouard Manet">
+                </div>
+                <div class="artist-info">
+                    <h3>Édouard Manet</h3>
+                </div>
+            </div>
+
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Virtual Gallery. Todos los derechos reservados.</p>
+        <p>&copy; 2025 VIRTUAL GALLERY</p>
     </footer>
 
     <script>
-        const canvas = document.getElementById('lienzoArte');
-        const ctx = canvas.getContext('2d');
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('siteOverlay');
 
-        const obrasDeArte = [
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Las_Meninas_01.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/43/El_grito.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Michelangelo_Buonarroti_-_The_Creation_of_Adam_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg/800px-Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/La_libertad_guiando_al_pueblo.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Frida_Kahlo_Self_Portrait.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Impression%2C_soleil_levant.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Whistler%27s_Mother_by_James_McNeill_Whistler.JPG', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }
-        ];
-
-        let imagenActualIndex = 0;
-        let imagenActual = new Image();
-        let imagenSiguiente = new Image();
-        let cargando = false;
-
-        imagenActual.crossOrigin = "anonymous";
-        imagenActual.onload = () => {
-            redimensionarCanvas();
-            animar();
-        };
-        imagenActual.src = obrasDeArte[imagenActualIndex].src;
-
-        function redimensionarCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', redimensionarCanvas);
-
-        function cambiarImagen() {
-            if (cargando) return;
-            cargando = true;
-            
-            let siguienteIndex = (imagenActualIndex + 1) % obrasDeArte.length;
-            imagenSiguiente = new Image();
-            imagenSiguiente.crossOrigin = "anonymous";
-            
-            imagenSiguiente.onload = () => {
-                imagenActualIndex = siguienteIndex;
-                imagenActual = imagenSiguiente;
-                cargando = false;
-            };
-
-            imagenSiguiente.onerror = () => {
-                console.warn("Error cargando imagen: " + obrasDeArte[siguienteIndex].src);
-                cargando = false;
-                imagenActualIndex = siguienteIndex; 
-                cambiarImagen(); 
-            };
-
-            imagenSiguiente.src = obrasDeArte[siguienteIndex].src;
-        }
-
-        setInterval(cambiarImagen, 8000);
-
-        function animar() {
-            requestAnimationFrame(animar);
-            if (!imagenActual.complete) return;
-
-            const data = obrasDeArte[imagenActualIndex];
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            const tiempo = Date.now() * data.speed;
-            const xOffset = Math.sin(tiempo) * 20;
-            const yOffset = Math.cos(tiempo * 0.8) * 15;
-            const scale = 1.05 + Math.sin(tiempo * 0.5) * 0.02;
-
-            const imgW = imagenActual.naturalWidth;
-            const imgH = imagenActual.naturalHeight;
-
-            if (imgW === 0 || imgH === 0) return;
-
-            let ratio = Math.max(canvas.width / imgW, canvas.height / imgH);
-            let drawW = imgW * ratio * scale;
-            let drawH = imgH * ratio * scale;
-            let x = (canvas.width - drawW) / 2 + xOffset;
-            let y = (canvas.height - drawH) / 2 + yOffset;
-
-            ctx.drawImage(imagenActual, x, y, drawW, drawH);
-        }
-
-        function hacerScrollASecciones() {
-            const targetSection = document.getElementById('secciones-navegacion');
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            if (sidebar.classList.contains('active')) {
+                overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
+            } else {
+                overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
             }
         }
+
+        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+        if(overlay) overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+        });
     </script>
 </body>
 </html>
