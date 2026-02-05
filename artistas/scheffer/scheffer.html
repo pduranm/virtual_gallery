@@ -1,84 +1,427 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artista</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+    <title>Ary Scheffer | Virtual Gallery</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER STYLES --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-secondary);
+        }
+
+        /* Mobile Sidebar */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .detail-portrait {
+            width: 100%;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
+        }
+
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
+
+        .detail-main {
+            padding-top: 10px;
+        }
+
+        .detail-name {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .detail-text {
+            column-count: 2;
+            column-gap: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 60px;
+            text-align: justify;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 15px;
+            color: var(--color-secondary);
+        }
+
+        .works-section-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+        }
+
+        .works-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .work-mini-item {
+            aspect-ratio: 1;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .work-mini-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-mini-item:hover {
+            opacity: 0.9;
+        }
+
+        .work-mini-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn-back-detail {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .btn-back-detail:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .detail-text {
+                column-count: 1;
+            }
+
+            .works-grid-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-name {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header class="romanticismo">  
-        <h1>Ary Scheffer</h1>
-        <h2>(1795 - 1858)</h2>
+
+    <!-- Header -->
+    <header class="main-header">
+        <button class="menu-toggle">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="../../main.html">VIRTUAL GALLERY</a>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="../../artistList.html" class="nav-link">Artistas</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
+        </nav>
     </header>
-    
-    <main class="grid-container">
-      <p class="text-full"> 
-        Destaca como pintor por su estilo clásico con influencias románticas, su enfoque en temas literarios y 
-        religiosos, y su notable talento como retratista de figuras prominentes de su tiempo.
-        <br>
-        <br>Fue un pintor, grabador y escultor francés de origen 
-            neerlandés, hermano del también pintor <strong>Henry Scheffer </strong>y representante del <strong>clasicismo</strong>. 
-        </p>
-        
-        <div class="image-full romanticismo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/1835_Ary_Scheffer_-_The_Ghosts_of_Paolo_and_Francesca_Appear_to_Dante_and_Virgil.jpg" width="100%" height="300"/>
-            <p style="text-align: center;"> Los fantasmas de Paolo y Francesca se aparecen a Dante y Virgilio  <br> <i> 1835 </i> </p>
-        </div>
-        
-        <p class="text-full">
-            En 1797, Scheffer se trasladó con su familia a 
-            La Haya, residiendo allí hasta 1808, y posteriormente en Ámsterdam hasta 1810.
-        </p>
 
-        <div class="image-full romanticismo">
-            <img src=" https://upload.wikimedia.org/wikipedia/commons/d/dc/Ary_Scheffer_-_The_Death_of_G%C3%A9ricault_-_WGA20979.jpg " width="100%" height="300"/>
-            <p style="text-align: center;"> La muerte de Géricault  <br> <i>  1824  </i> </p>
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="detail-layout">
+
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+                <!-- Using Self-Portrait or representative work as portrait (no direct self-portrait in prev file, using a crop or suitable placeholder from wikimedia if not present) 
+             Actually, let's use a known portrait of Ary Scheffer -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ary_Scheffer_-_Self-Portrait.jpg/440px-Ary_Scheffer_-_Self-Portrait.jpg"
+                    alt="Ary Scheffer" class="detail-portrait">
+
+                <div class="detail-metadata">
+                    <h4>FICHA TÉCNICA</h4>
+                    <div class="meta-row"><span class="meta-label">Origen:</span> <span>Países Bajos / Francia</span>
+                    </div>
+                    <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1795 - 1858</span></div>
+                    <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Romanticismo</span></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="detail-main">
+                <span class="detail-subtitle">ROMANTICISMO FRANCÉS</span>
+                <h2 class="detail-name">Ary Scheffer</h2>
+
+                <div class="detail-text">
+                    <p><span class="drop-cap">A</span>ry Scheffer (1795-1858) fue un pintor, grabador y escultor francés
+                        de origen neerlandés, hermano del también pintor <strong>Henry Scheffer</strong>. Destaca como
+                        pintor por su estilo clásico con influencias románticas, su enfoque en temas literarios y
+                        religiosos, y su notable talento como retratista de figuras prominentes de su tiempo.</p>
+
+                    <p>En 1797, Scheffer se trasladó con su familia a La Haya, residiendo allí hasta 1808, y
+                        posteriormente en Ámsterdam hasta 1810. A los 17 años, en <strong>1812</strong>, se mudó a
+                        París, donde se convirtió en discípulo de <strong>Pierre Narcisse Guérin</strong>. En el estudio
+                        de Guérin, recibió la influencia de otros dos destacados discípulos: <strong>Théodore Géricault
+                            y Eugène Delacroix</strong>.</p>
+
+                    <p>Durante su estancia en París, Scheffer trabajó como maestro de arte para los hijos del duque de
+                        Orleans, el futuro <strong>Luis Felipe I de Francia</strong>, lo que le permitió establecer una
+                        relación cercana con la familia real, obteniendo encargos de retratos de esta.</p>
+
+                    <p>La llegada de Scheffer a París coincidió con los inicios del <strong>Romanticismo
+                            pictórico</strong>. Sin embargo, no simpatizaba con la dirección que tomaban algunos de sus
+                        contemporáneos, buscado un estilo propio que algunos críticos han descrito como <i>"fríamente
+                            clásico"</i>.</p>
+
+                    <p>Scheffer falleció a los 63 años en 1858. La mayoría de su legado artístico se conserva en el
+                        <strong>Museum Ary Scheffer</strong> en Dordrecht, y un conjunto menor de sus obras se encuentra
+                        en el <strong>Museo de la Vida Romántica</strong> de París.</p>
+                </div>
+
+                <h4 class="works-section-title">Catálogo Razonado</h4>
+                <div class="works-grid-mini">
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/1835_Ary_Scheffer_-_The_Ghosts_of_Paolo_and_Francesca_Appear_to_Dante_and_Virgil.jpg"
+                            alt="Los fantasmas de Paolo y Francesca">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Ary_Scheffer_-_The_Death_of_G%C3%A9ricault_-_WGA20979.jpg"
+                            alt="La muerte de Géricault">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ary_Scheffer_-_Death_of_Malvina.jpg/794px-Ary_Scheffer_-_Death_of_Malvina.jpg"
+                            alt="La muerte de Malvina">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://d3d00swyhr67nd.cloudfront.net/w800h800/collection/NTIV/WADD/NTIV_WADD_3348-001.jpg"
+                            alt="Baronesa Anselm de Rothschild">
+                    </div>
+                    <!-- Adding classic August & Monica usually associated with him -->
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ary_Scheffer_-_Saint_Augustine_and_Saint_Monica_-_Google_Art_Project.jpg/800px-Ary_Scheffer_-_Saint_Augustine_and_Saint_Monica_-_Google_Art_Project.jpg"
+                            alt="San Agustín y Santa Mónica">
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <p class="text-full">
-            A los 17 años, en <strong>1812</strong>, Scheffer se mudó a París, donde se convirtió en discípulo de <strong>Pierre Narcisse Guérin</strong>. En el estudio de Guérin, 
-            recibió la influencia de otros dos destacados discípulos: <strong>Théodore Géricault y Eugène Delacroix</strong>. Durante su estancia en París, Scheffer
-            trabajó como maestro de arte para los hijos del duque de Orleans, el futuro <strong>Luis Felipe I de Francia</strong>, lo que le permitió establecer una 
-            relación cercana con la familia real, obteniendo encargos de retratos de esta.
-        </p>
-        <div class="image-full romanticismo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ary_Scheffer_-_Death_of_Malvina.jpg/794px-Ary_Scheffer_-_Death_of_Malvina.jpg" width="100%" height="300"/>
-            <p style="text-align: center;">La muerte de Malvina   <br> <i> 1811 </i> </p>
-        </div>
-        <p class="text-full">
-            Scheffer falleció a los 63 años en 1858. La mayoría de su legado <strong>artístico</strong> se conserva en el Museum Ary Scheffer en Dordrecht, y un conjunto
-            menor de sus obras se encuentra en el Museo de la Vida Romántica de París, ubicado en la casa que Scheffer habitó en la capital francesa,
-            en el número 19 de la calle Chaptal, en el noveno distrito. Su hija, Cornelia Scheffer (1830-1899), fue una escultora reconocida.
-        </p>
-        <div class="image-full romanticismo">
-            <img src="https://d3d00swyhr67nd.cloudfront.net/w800h800/collection/NTIV/WADD/NTIV_WADD_3348-001.jpg " width="100%" height="auto"/>
-            <p style="text-align: center;"> Baronesa Anselm de Rothschild  <br> <i> 1827  </i> </p>
-        </div>
-        <p class="text-full">
-            La llegada de Scheffer a París coincidió con los inicios del <strong>Romanticismo pictórico</strong>. Sin embargo, no simpatizaba con la dirección que tomaban
-            algunos de sus contemporáneos, como <strong>Sigalon, Delacroix y Géricault</strong>. Después de varios intentos, Scheffer encontró su propio estilo, que 
-            algunos críticos han descrito como <i>"fríamente clásico"</i>.
-        </p>
-        <div id="fullscreen-view" class="hidden">
-          <img id="fullscreen-image" />
-        </div>
+
     </main>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-      <div class="text-full" style="background-color: #000000; color: white;" >
-        <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-      </div>
-    </a>
-    <div>
-      <br>
-    </div>
-    <footer class="main-footer">
-      <p>&copy; Virtual Gallery 2024</p>
-    </footer>
-</body>
-</html>
-<!-- 
 
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+    </footer>
+
+</body>
+
+</html>

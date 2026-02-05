@@ -1,67 +1,432 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artista</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rembrandt van Rijn | Virtual Gallery</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #b58d53;
+      --color-background: #fdfdfd;
+      --color-light: #e6e6e6;
+      --font-serif-display: 'Cinzel', serif;
+      --font-serif-body: 'Lora', serif;
+      --header-height: 80px;
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-serif-body);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER STYLES --- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
+    .logo a {
+      font-family: var(--font-serif-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .nav-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-secondary);
+    }
+
+    /* Mobile Sidebar */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .main-content {
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .detail-portrait {
+      width: 100%;
+      border: 10px solid #fff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      object-fit: cover;
+    }
+
+    .detail-metadata {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border: 1px solid #eee;
+    }
+
+    .detail-metadata h4 {
+      font-family: var(--font-serif-display);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: #888;
+    }
+
+    .detail-main {
+      padding-top: 10px;
+    }
+
+    .detail-name {
+      font-family: var(--font-serif-display);
+      font-size: 3.5rem;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .detail-subtitle {
+      font-family: var(--font-serif-display);
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .detail-text {
+      column-count: 2;
+      column-gap: 40px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 60px;
+      text-align: justify;
+    }
+
+    .drop-cap {
+      float: left;
+      font-family: var(--font-serif-display);
+      font-size: 4rem;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--color-secondary);
+    }
+
+    .works-section-title {
+      font-family: var(--font-serif-display);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--color-secondary);
+      padding-left: 20px;
+    }
+
+    .works-grid-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .work-mini-item {
+      aspect-ratio: 1;
+      background-color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .work-mini-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .work-mini-item:hover {
+      opacity: 0.9;
+    }
+
+    .work-mini-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .btn-back-detail {
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #888;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .btn-back-detail:hover {
+      color: var(--color-primary);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main-header {
+        padding: 0 20px;
+      }
+
+      .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+      }
+
+      .detail-text {
+        column-count: 1;
+      }
+
+      .works-grid-mini {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .detail-name {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header>  
-        <h1> NOMBRE DE ARTISTA</h1>
-        <h2>( - )</h2>
-    </header>
-    
-    <main class="grid-container">
-      <p class="text-full"> 
-        
-      </p>
-        
-        <div class="image-full">
-            <img src="  " width="100%" height="300"/>
-            <p style="text-align: center;">   <br> <i>  </i> </p>
-        </div>
-        <p class="text-full">
-        </p>
-        
-        <div class="image-full">
-            <img src="  " width="100%" height="300"/>
-            <p style="text-align: center;">   <br> <i>  </i> </p>
-        </div>
-        
-        <p class="text-full">
-          
-        </p>
 
-        <div class="image-full">
-            <img src="  " width="100%" height="300"/>
-            <p style="text-align: center;">   <br> <i>  </i> </p>
-        </div>
-
-        <div class="image-full">
-            <img src="  " width="100%" height="300"/>
-            <p style="text-align: center;">   <br> <i>  </i> </p>
-        </div>
-        <div id="fullscreen-view" class="hidden">
-          <img id="fullscreen-image" />
-        </div>
-    </main>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-      <div class="text-full" style="background-color: #000000; color: white;" >
-        <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-      </div>
-    </a>
-    <div>
-      <br>
+  <!-- Header -->
+  <header class="main-header">
+    <button class="menu-toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">
+      <a href="../../main.html">VIRTUAL GALLERY</a>
     </div>
-    <footer class="main-footer">
-      <p>&copy; Virtual Gallery 2024</p>
-    </footer>
-</body>
-</html>
-<!-- 
+    <nav class="nav-container">
+      <div class="nav-item">
+        <a href="../../artistList.html" class="nav-link">Artistas</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../main.html" class="nav-link">Colección</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+      </div>
+    </nav>
+  </header>
 
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="detail-layout">
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar">
+        <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+        <!-- Self-Portrait with Two Circles (Kenwood House) -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg/800px-Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg"
+          alt="Rembrandt van Rijn" class="detail-portrait">
+
+        <div class="detail-metadata">
+          <h4>FICHA TÉCNICA</h4>
+          <div class="meta-row"><span class="meta-label">Origen:</span> <span>Países Bajos</span></div>
+          <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1606 - 1669</span></div>
+          <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Barroco</span></div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="detail-main">
+        <span class="detail-subtitle">EDAD DE ORO HOLANDESA</span>
+        <h2 class="detail-name">Rembrandt van Rijn</h2>
+
+        <div class="detail-text">
+          <p><span class="drop-cap">R</span>embrandt Harmenszoon van Rijn (1606–1669) es considerado uno de los mayores
+            genios visuales de la historia del arte. Maestro indiscutible del <strong>Barroco</strong> y de la Edad de
+            Oro holandesa, su obra destaca por una penetración psicológica excepcional y un dominio insuperable del
+            claroscuro (<i>chiaroscuro</i>), utilizando la luz y la sombra para modelar formas y emociones con
+            dramatismo teatral.</p>
+
+          <p>A diferencia de muchos de sus contemporáneos, Rembrandt nunca viajó a Italia, pero asimiló las lecciones de
+            Caravaggio a través de grabados y de los caravaggistas de Utrecht. Su carrera abarcó el retrato de grupo
+            —revolucionándolo al dotar a las figuras de acción y narrativa, como en <i>"La ronda de noche"</i>—, la
+            pintura histórica y bíblica, y una incansable producción de autorretratos que documentan sin vanidad su
+            proceso de envejecimiento y sus estados anímicos.</p>
+
+          <p>A pesar de su éxito temprano y su riqueza, su vida estuvo marcada por la tragedia personal y la ruina
+            financiera. Sin embargo, estas dificultades infundieron a su obra tardía una profundidad espiritual y una
+            libertad técnica conmovedoras. Su pincelada se volvió más suelta, empastada y táctil, anticipándose siglos a
+            las corrientes modernas.</p>
+
+          <p>Rembrandt no solo pintaba cuerpos o rostros; pintaba el alma humana, con todas sus imperfecciones y su
+            dignidad. Su legado como pintor, dibujante y grabador sigue siendo una cumbre inalcanzable de la expresión
+            artística occidental.</p>
+        </div>
+
+        <h4 class="works-section-title">Catálogo Razonado</h4>
+        <div class="works-grid-mini">
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg/1200px-The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg"
+              alt="La ronda de noche">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg/1200px-Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg"
+              alt="Lección de anatomía del Dr. Nicolaes Tulp">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Rembrandt_Van_Rijn_-_The_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg/671px-Rembrandt_Van_Rijn_-_The_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg"
+              alt="El retorno del hijo pródigo">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Rembrandt_-_The_Jewish_Bride_%28Rijksmuseum%29.jpg/1200px-Rembrandt_-_The_Jewish_Bride_%28Rijksmuseum%29.jpg"
+              alt="La novia judía">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bl/Rembrandt_Harmensz._van_Rijn_014.jpg/1200px-Rembrandt_Harmensz._van_Rijn_014.jpg"
+              alt="Tormenta en el mar de Galilea">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/The_Syndics_of_the_Clothmakers%27_Guild_%28De_Staalmeesters%29%2C_by_Rembrandt.jpg/1200px-The_Syndics_of_the_Clothmakers%27_Guild_%28De_Staalmeesters%29%2C_by_Rembrandt.jpg"
+              alt="Los síndicos de los pañeros">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+  </footer>
+
+</body>
+
+</html>

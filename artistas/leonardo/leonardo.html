@@ -4,168 +4,445 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artista</title>
-  <link rel="stylesheet" href="/css/artista_style.css">
+  <title>Leonardo da Vinci | Virtual Gallery</title>
 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet">
 
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #b58d53;
+      --color-background: #fdfdfd;
+      --color-light: #e6e6e6;
+      --font-serif-display: 'Cinzel', serif;
+      --font-serif-body: 'Lora', serif;
+      --header-height: 80px;
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-serif-body);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER STYLES --- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
+    .logo a {
+      font-family: var(--font-serif-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .nav-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-secondary);
+    }
+
+    /* Mobile Sidebar */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .main-content {
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .detail-portrait {
+      width: 100%;
+      border: 10px solid #fff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      object-fit: cover;
+    }
+
+    .detail-metadata {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border: 1px solid #eee;
+    }
+
+    .detail-metadata h4 {
+      font-family: var(--font-serif-display);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: #888;
+    }
+
+    .detail-main {
+      padding-top: 10px;
+    }
+
+    .detail-name {
+      font-family: var(--font-serif-display);
+      font-size: 3.5rem;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .detail-subtitle {
+      font-family: var(--font-serif-display);
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .detail-text {
+      column-count: 2;
+      column-gap: 40px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 60px;
+      text-align: justify;
+    }
+
+    .drop-cap {
+      float: left;
+      font-family: var(--font-serif-display);
+      font-size: 4rem;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--color-secondary);
+    }
+
+    .works-section-title {
+      font-family: var(--font-serif-display);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--color-secondary);
+      padding-left: 20px;
+    }
+
+    .works-grid-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .work-mini-item {
+      aspect-ratio: 1;
+      background-color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .work-mini-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .work-mini-item:hover {
+      opacity: 0.9;
+    }
+
+    .work-mini-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .btn-back-detail {
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #888;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .btn-back-detail:hover {
+      color: var(--color-primary);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main-header {
+        padding: 0 20px;
+      }
+
+      .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+      }
+
+      .detail-text {
+        column-count: 1;
+      }
+
+      .works-grid-mini {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .detail-name {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Leonardo Da Vinci</h1>
-    <h2>(1452-1519)</h2>
+
+  <!-- Header -->
+  <header class="main-header">
+    <button class="menu-toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">
+      <a href="../../main.html">VIRTUAL GALLERY</a>
+    </div>
+    <nav class="nav-container">
+      <div class="nav-item">
+        <a href="../../artistList.html" class="nav-link">Artistas</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../main.html" class="nav-link">Colección</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+      </div>
+    </nav>
   </header>
 
-  <main class="grid-container">
-    <p class="text-full">
-      Leonardo fue uno de los genios más destacados del <strong>Renacimiento italiano</strong>, conocido no solo por su
-      talento artístico,
-      sino también por su increíble versatilidad. Nacido en <strong>Vinci</strong>, cerca de Florencia, fue hijo
-      ilegítimo de un notario y una campesina.
-      Desde joven mostró un talento excepcional para el dibujo y la observación de la naturaleza.
-    </p>
-    <div class="image-full" >
-      <a href="obras/mona_lisa.html"><img width="100%" height="450" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/1200px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg"></a>
-      <p style="text-align: center;"> La Mona Lisa </p>
-    </div>
-        <div class="image-full" >
-      <a href=""><img width="100%" height="450" src="https://cdn.gallerix.asia/sr/V/369985082/1480861609.jpg">
-      <p style="text-align: center;"> La belle Ferronière </p>
-    </div>
-    <p class="text-full">
-      Su vida transcurrió entre Florencia, Milán, Mantua, Roma, Venecia y finalmente en Francia, donde murió en
-      <strong>1519</strong>, a los 67 años.
-      La única fortuna que dejó fueron algunos de sus cuadros, entre ellos la Gioconda, sus apuntes y sus bocetos.
-      Estuvo al servicio de los más poderosos señores de su tiempo: <strong>Lorenzo de Médicis, Ludovico Sforza, César
-        Borgia y Francisco I de Francia</strong>.
-    </p>
-    <a href="/artistas/leonardo/obras/sanJuan_bautista.html">
-      <div class="grid-img">
-        <img src="https://cdn.gallerix.asia/sr/V/369985082/955956996.jpg  " width="auto" height="150">
-        <p style="text-align: center;">San Juan Bautista </p>
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="detail-layout">
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar">
+        <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+        <!-- Famous Turin Self-Portrait for authenticity -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leonardo_da_Vinci_-_self-portrait.jpg/363px-Leonardo_da_Vinci_-_self-portrait.jpg"
+          alt="Leonardo da Vinci" class="detail-portrait">
+
+        <div class="detail-metadata">
+          <h4>FICHA TÉCNICA</h4>
+          <div class="meta-row"><span class="meta-label">Origen:</span> <span>Italia</span></div>
+          <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1452 - 1519</span></div>
+          <div class="meta-row"><span class="meta-label">Movimiento:</span> <span>Renacimiento</span></div>
+        </div>
       </div>
-    </a>
-    <div class="grid-img">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/1855224707.jpg " width="auto" height="150">
-      <p style="text-align: center;">San Jerónimo </p>
-    </div>
-    <div class="grid-img">
-      <img src="https://cdn.gallerix.asia/sr/V/369985082/24877171.jpg  " width="auto" height="150">
-      <p style="text-align: center;">Madonna Litta </p>
-    </div>
-    <a href="/artistas/leonardo/obras/madonna_benois.html">
-    <div class="grid-img">
-      <img src="https://cdn.gallerix.asia/sr/V/369985082/311027006.jpg  " width="auto" height="150">
-      <p style="text-align: center;"> Madonna Benois </p>
-    </div>
-    </a>
-    <p class="bio">
-      Sus obras destacan por su belleza por la <strong>innovación técnica</strong> y la profundidad emocional que
-      transmiten.
-      Sin embargo, su curiosidad no se limitaba al arte: fue también un prolífico <strong>inventor, científico,
-        anatomista, ingeniero y músico.</strong>
-    </p>
-    <div class="grid-img">
-      <img src="https://cdn.gallerix.asia/sr/V/369985082/411228900.jpg  " width="auto" height="150">
-      <p style="text-align: center;">San Juan </p>
-    </div>
-    <div class="grid-img">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/19241135.jpg " width="auto" height="150">
-      <p style="text-align: center;">Bautismo de Cristo </p>
-    </div>
-    <div class="grid-img">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/1267290729.jpg " width="auto" height="150">
-      <p style="text-align: center;"> Virgen de las Rocas </p>
-    </div>
-    <!-- <div class="grid-img">
-          <img src="https://cdn.gallerix.asia/sr/V/369985082/60424690.jpg" width="auto" height="150">
-          <p style="text-align: center;">Busto de hombre de perfil </p>
-        </div> -->
-    <p class="text-full">
-      Su <strong>enfoque</strong> multidisciplinario, donde ciencia y arte se entrelazaban,
-      lo convirtió en un verdadero símbolo del <strong>Renacimiento</strong>.
-      <br>
-      <br>Aunque muchas de sus ideas quedaron inacabadas,
-      su legado ha influido profundamente en la historia de la humanidad, dejando una huella que perdura hasta nuestros
-      días.
-    </p>
-    <div class="image-full">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/421538776.jpg " width="100%" height="300">
-      <p style="text-align: center;">Adoración de los magos </p>
-    </div>
-    <p class="text-full">
-      Todos admiraron y alabaron su genio e inventiva, pero su vida interior siempre fue desconocida.
-      Nunca se casó, quizás porque no tenía tiempo para dedicarlo a una familia, nunca profesó mucho la
-      religión y sus discípulos decían de él que se dedicaba a las artes ocultas, o a cosas aún más prohibidas,
-      como diseccionar cadáveres para sus estudios anatómicos, lo cual era cierto.
-    </p>
-    <div class="grid-img">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Statue_of_Leda_and_the_Swan_-_Getty_Museum_%2870.AA.110%29.jpg/1200px-Statue_of_Leda_and_the_Swan_-_Getty_Museum_%2870.AA.110%29.jpg  ">
-      <p style="text-align: center;"> Leda y el cisne </p>
-    </div>
-    <div class="grid-img">
-      <img width="auto" height="auto"
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhggClCuZsiJkh-vAyNT6ZYgejq395TLFOBy7BEv0_7fOiRLdWqL-QzmuC4Gk9RYyBvdXl1ia-gn5TkDpqUzmHBeFGHcoMv21hnpXCCG_8Gia3ZuIG0nCvlhNhDkwB5AKSyUaKzpCqG89U/s1600/Dama+del+Armi%25C3%25B1o+de+Leonardo.jpg  "
-        width="auto" height="auto">
-      <p style="text-align: center;"> Dama y el armiño </p>
-    </div>
-    <p class="text-full">
-      No hay más que sus apuntes reunidos en cuadernos, que nos hablan sobre sus <strong>investigaciones, inventos y
-        descubrimientos</strong>.
-      Hay muy poca correspondencia y ésta siempre es de carácter profesional.
-      Hay algunas reflexiones, todas valiosas y certeras, pero <strong>generales</strong>.
-    </p>
-    <div class="grid-img">
-      <img src="https://cdn.gallerix.asia/sr/V/369985082/21706426.jpg  " width="auto" height="150">
-      <p style="text-align: center;">La bella principessa </p>
+
+      <!-- Main Content -->
+      <div class="detail-main">
+        <span class="detail-subtitle">ALTO RENACIMIENTO</span>
+        <h2 class="detail-name">Leonardo da Vinci</h2>
+
+        <div class="detail-text">
+          <p><span class="drop-cap">L</span>eonardo fue uno de los genios más destacados del <strong>Renacimiento
+              italiano</strong>, conocido no solo por su talento artístico, sino también por su increíble versatilidad.
+            Nacido en <strong>Vinci</strong>, cerca de Florencia, fue hijo ilegítimo de un notario y una campesina.
+            Desde joven mostró un talento excepcional para el dibujo y la observación de la naturaleza.</p>
+
+          <p>Su vida transcurrió entre Florencia, Milán, Mantua, Roma, Venecia y finalmente en Francia, donde murió en
+            <strong>1519</strong>, a los 67 años. La única fortuna que dejó fueron algunos de sus cuadros, entre ellos
+            la Gioconda, sus apuntes y sus bocetos. Estuvo al servicio de los más poderosos señores de su tiempo:
+            <strong>Lorenzo de Médicis, Ludovico Sforza, César Borgia y Francisco I de Francia</strong>.</p>
+
+          <p>Sus obras destacan por su belleza por la <strong>innovación técnica</strong> y la profundidad emocional que
+            transmiten. Sin embargo, su curiosidad no se limitaba al arte: fue también un prolífico <strong>inventor,
+              científico, anatomista, ingeniero y músico.</strong></p>
+
+          <p>Su <strong>enfoque</strong> multidisciplinario, donde ciencia y arte se entrelazaban, lo convirtió en un
+            verdadero símbolo del <strong>Renacimiento</strong>. Aunque muchas de sus ideas quedaron inacabadas, su
+            legado ha influido profundamente en la historia de la humanidad, dejando una huella que perdura hasta
+            nuestros días.</p>
+
+          <p>Todos admiraron y alabaron su genio e inventiva, pero su vida interior siempre fue desconocida. Nunca se
+            casó, quizás porque no tenía tiempo para dedicarlo a una familia, nunca profesó mucho la religión y sus
+            discípulos decían de él que se dedicaba a las artes ocultas, o a cosas aún más prohibidas, como diseccionar
+            cadáveres para sus estudios anatómicos, lo cual era cierto.</p>
+
+          <p>No hay más que sus apuntes reunidos en cuadernos, que nos hablan sobre sus <strong>investigaciones,
+              inventos y descubrimientos</strong>. Hay muy poca correspondencia y ésta siempre es de carácter
+            profesional. Su pintura muestra personajes llenos de ambigüedad, misteriosos como él. Inventó el sfumatto,
+            una técnica de tenue gradación lumínica que envuelve sus modelos y su entorno.</p>
+        </div>
+
+        <h4 class="works-section-title">Catálogo Razonado</h4>
+        <div class="works-grid-mini">
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/1200px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg"
+              alt="La Mona Lisa">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg/300px-The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg"
+              alt="La última cena">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/1480861609.jpg" alt="La belle Ferronière">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/955956996.jpg" alt="San Juan Bautista">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/1855224707.jpg" alt="San Jerónimo">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/24877171.jpg" alt="Madonna Litta">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/311027006.jpg" alt="Madonna Benois">
+          </div>
+          <div class="work-mini-item">
+            <img src="https://cdn.gallerix.asia/sr/V/369985082/1191823619.jpg" alt="El hombre de Vitruvio">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Statue_of_Leda_and_the_Swan_-_Getty_Museum_%2870.AA.110%29.jpg/1200px-Statue_of_Leda_and_the_Swan_-_Getty_Museum_%2870.AA.110%29.jpg"
+              alt="Leda y el cisne">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhggClCuZsiJkh-vAyNT6ZYgejq395TLFOBy7BEv0_7fOiRLdWqL-QzmuC4Gk9RYyBvdXl1ia-gn5TkDpqUzmHBeFGHcoMv21hnpXCCG_8Gia3ZuIG0nCvlhNhDkwB5AKSyUaKzpCqG89U/s1600/Dama+del+Armi%25C3%25B1o+de+Leonardo.jpg"
+              alt="Dama del armiño">
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="grid-img">
-      <img src="https://cdn.gallerix.asia/sr/V/369985082/77144201.jpg" width="auto" height="150">
-      <p style="text-align: center;">La columbine </p>
-    </div>
-    <p class="text-full">
-      Su pintura muestra personajes llenos de ambigüedad, misteriosos como él. Inventó el sfumatto, una técnica de tenue
-      gradación lumínica
-      que envuelve sus modelos y su entorno, convirtiéndolos en vaporosos y, a
-      pesar del dibujo preciso, sus contornos se escapan hacia el fondo o, según se considere, emergen de
-      <strong>él</strong> como apariciones.
-    </p>
-    <div class="image-full">
-      <img width="350" height="150"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg/300px-The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg  ">
-      <p style="text-align: center;"> La última cena </p>
-    </div>
-
-    <div class="image-full">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/578431862.jpg " width="350" height="150">
-      <p style="text-align: center;"> Anunciación </p>
-    </div>
-
-    <div class="image-full" width="auto" height="150">
-      <img src=" https://cdn.gallerix.asia/sr/V/369985082/1191823619.jpg  " width="100%" height="350">
-      <p style="text-align: center;">El hombre de Vitruvio </p>
-    </div>
-
-
-    <!-- <button class="btn-catalogo text-full">Obras</button> -->
   </main>
-  <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-    <div class="text-full" style="background-color: #000000; color: white;">
-      <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-    </div>
-  </a>
-  <div>
-    <br>
-  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+  </footer>
 
 </body>
 
 </html>
-<!-- 
-
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->

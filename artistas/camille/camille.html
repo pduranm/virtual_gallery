@@ -4,105 +4,425 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artista</title>
-  <link rel="stylesheet" href="/css/artista_style.css">
+  <title>Camille Corot | Virtual Gallery</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #b58d53;
+      --color-background: #fdfdfd;
+      --color-light: #e6e6e6;
+      --font-serif-display: 'Cinzel', serif;
+      --font-serif-body: 'Lora', serif;
+      --header-height: 80px;
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-serif-body);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER STYLES --- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
+    .logo a {
+      font-family: var(--font-serif-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .nav-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-secondary);
+    }
+
+    /* Mobile Sidebar */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .main-content {
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .detail-portrait {
+      width: 100%;
+      border: 10px solid #fff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      object-fit: cover;
+    }
+
+    .detail-metadata {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border: 1px solid #eee;
+    }
+
+    .detail-metadata h4 {
+      font-family: var(--font-serif-display);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: #888;
+    }
+
+    .detail-main {
+      padding-top: 10px;
+    }
+
+    .detail-name {
+      font-family: var(--font-serif-display);
+      font-size: 3.5rem;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .detail-subtitle {
+      font-family: var(--font-serif-display);
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .detail-text {
+      column-count: 2;
+      column-gap: 40px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 60px;
+      text-align: justify;
+    }
+
+    .drop-cap {
+      float: left;
+      font-family: var(--font-serif-display);
+      font-size: 4rem;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--color-secondary);
+    }
+
+    .works-section-title {
+      font-family: var(--font-serif-display);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--color-secondary);
+      padding-left: 20px;
+    }
+
+    .works-grid-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .work-mini-item {
+      aspect-ratio: 1;
+      background-color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .work-mini-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .work-mini-item:hover {
+      opacity: 0.9;
+    }
+
+    .work-mini-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .btn-back-detail {
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #888;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .btn-back-detail:hover {
+      color: var(--color-primary);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main-header {
+        padding: 0 20px;
+      }
+
+      .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+      }
+
+      .detail-text {
+        column-count: 1;
+      }
+
+      .works-grid-mini {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .detail-name {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="realismo">
-    <h1> Camille Corot</h1>
-    <h2>(1796-1875)</h2>
+
+  <!-- Header -->
+  <header class="main-header">
+    <button class="menu-toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">
+      <a href="../../main.html">VIRTUAL GALLERY</a>
+    </div>
+    <nav class="nav-container">
+      <div class="nav-item">
+        <a href="../../artistList.html" class="nav-link">Artistas</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../main.html" class="nav-link">Colección</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+      </div>
+    </nav>
   </header>
 
-  <main class="grid-container">
-    <p class="text-full">
-      La pintura de Camille Corot se caracteriza por su estilo romántico y su habilidad para capturar
-      la belleza natural y la atmósfera tranquila de paisajes rurales.
-    </p>
-    
-      <div class="image-full realismo">
-        <a href="obras/ville_davrai.html" class="realismo">
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="detail-layout">
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar">
+        <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+        <!-- Using "Mujer con perla" as portrait since standard portrait wasn't explicit -->
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg"
-          width="100%" height="300">
-        <p style="text-align: center;">Ville d'Avray<br><i> 1867 </i> </p>
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Camille_Corot_-_Woman_with_a_Pearl.jpg/423px-Camille_Corot_-_Woman_with_a_Pearl.jpg"
+          alt="Camille Corot" class="detail-portrait">
+
+        <div class="detail-metadata">
+          <h4>FICHA TÉCNICA</h4>
+          <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
+          <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1796 - 1875</span></div>
+          <div class="meta-row"><span class="meta-label">Técnica:</span> <span>Pintura al aire libre</span></div>
+        </div>
       </div>
-    </a>
-    <p class="text-full">
-      <strong>Jean-Baptiste-Camille Corot</strong>, el paisajista más famoso de Francia.
-      Él y el resto de artistas de la escuela de Barbizon fueron los culpables del nacimiento del
-      <strong>impresionismo</strong>, y por consiguiente, de todo el arte moderno tal y como lo conocemos.
-      Corot nació en París, en una familia acaudalada que le proporcionó una educación burguesa.
-      <br><br>
-      Su padre quería que fuese algo en la vida y lo puso a trabajar en el aburrido negocio familiar, pero el joven
-      Camille dedicó casi toda su jornada laboral a dibujar, por lo que la familia terminó por aceptar su vocación y
-      financió su formación artística.
-      <br>Desde el primer momento se interesó por la <strong>pintura al aire libre</strong> («plein air») algo que lo
-      convertirá en referencia inexcusable de los impresionistas.
-    </p>
 
-    <div class="image-full realismo">
-      <img width="100%" height="450" class="preview-image"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Camille_Corot_-_Woman_with_a_Pearl.jpg/423px-Camille_Corot_-_Woman_with_a_Pearl.jpg" />
-      <p style="text-align: center;"> Mujer con perla <br> <i>1868</i> </p>
+      <!-- Main Content -->
+      <div class="detail-main">
+        <span class="detail-subtitle">REALISMO / PRE-IMPRESIONISMO</span>
+        <h2 class="detail-name">Camille Corot</h2>
+
+        <div class="detail-text">
+          <p><span class="drop-cap">L</span>a pintura de Camille Corot se caracteriza por su estilo romántico y su
+            habilidad para capturar la belleza natural y la atmósfera tranquila de paisajes rurales.</p>
+
+          <p><strong>Jean-Baptiste-Camille Corot</strong>, el paisajista más famoso de Francia. Él y el resto de
+            artistas de la escuela de Barbizon fueron los culpables del nacimiento del <strong>impresionismo</strong>, y
+            por consiguiente, de todo el arte moderno tal y como lo conocemos. Corot nació en París, en una familia
+            acaudalada que le proporcionó una educación burguesa.</p>
+
+          <p>Su padre quería que fuese algo en la vida y lo puso a trabajar en el aburrido negocio familiar, pero el
+            joven Camille dedicó casi toda su jornada laboral a dibujar, por lo que la familia terminó por aceptar su
+            vocación y financió su formación artística. Desde el primer momento se interesó por la <strong>pintura al
+              aire libre</strong> («plein air») algo que lo convertirá en referencia inexcusable de los impresionistas.
+          </p>
+
+          <p>Francia, Italia, país que pisaba, país que dejaba documentado en sus paisajes (muy pocas veces hacía
+            retratos), aunque casi siempre metía a alguna figura humana en la composición, a veces diminuta. Muchos
+            criticaron que los cuadros de <strong>Corot</strong> parecían esbozos de poca importancia, de gran frescura,
+            pero casi una coartada de una insuficiente destreza y de carencia de recursos técnicos. Sin embargo, como
+            sabemos, ese sería el <strong>paisaje del futuro</strong>.</p>
+
+          <p>La influencia de Corot fue decisiva en los primeros pasos de <strong>Monet, Renoir, Pissarro </strong>y más
+            artistas de la época. Les llamó precisamente la atención esa rebeldía "antiinstitucional". <strong>La
+              revolución impresionista </strong>radicaba precisamente en la fidelidad a la sensación óptica obtenida
+            ante la naturaleza en determinadas condiciones de atmósfera y luz, y Corot fue el <strong>primer</strong>
+            pintor que expresó esas sensaciones en sus cuadros.</p>
+        </div>
+
+        <h4 class="works-section-title">Catálogo Razonado</h4>
+        <div class="works-grid-mini">
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg"
+              alt="Ville d'Avray">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Camille_Corot_-_A_Velha_Ponte_de_Mantes%2C_c._1855.jpg/715px-Camille_Corot_-_A_Velha_Ponte_de_Mantes%2C_c._1855.jpg"
+              alt="El puente de Mantes">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/L%27%C3%A9tang_de_Ville-d%27Avray_-_Jean-Baptiste_Camille_Corot.jpg/800px-L%27%C3%A9tang_de_Ville-d%27Avray_-_Jean-Baptiste_Camille_Corot.jpg"
+              alt="El estanque de la Ville d'Avray">
+          </div>
+          <!-- Re-using images to fill grid since original file had only 4 distinct images -->
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg"
+              alt="Ville d'Avray Detail">
+          </div>
+        </div>
+      </div>
+
     </div>
 
-
-    <p class="text-full">
-      Francia, Italia, país que pisaba, país que dejaba documentado en sus paisajes (muy pocas veces hacía retratos),
-      aunque casi siempre metía a alguna figura humana en la composición, a veces diminuta.
-      Muchos criticaron que los cuadros de <strong>Corot</strong> parecían esbozos de poca importancia, de gran
-      frescura, pero casi una coartada de una insuficiente destreza y de carencia de recursos técnicos.
-      Sin embargo, como sabemos, ese sería el <strong>paisaje del futuro</strong>.
-    </p>
-
-    <div class="image-full realismo">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Camille_Corot_-_A_Velha_Ponte_de_Mantes%2C_c._1855.jpg/715px-Camille_Corot_-_A_Velha_Ponte_de_Mantes%2C_c._1855.jpg"
-        width="100%" height="300" />
-      <p style="text-align: center;">El puente de Mantes<br><i>1855</i></p>
-    </div>
-
-    <p class="text-full">
-      La influencia de Corot fue decisiva en los primeros pasos de <strong>Monet, Renoir, Pissarro </strong>y más
-      artistas de la época.
-      Les llamó precisamente la atención esa rebeldía "antiinstitucional".
-      <strong>La revolución impresionista </strong>radicaba precisamente en la fidelidad a la sensación óptica obtenida
-      ante la naturaleza en determinadas condiciones de atmósfera y luz, y Corot fue el <strong>primer</strong> pintor
-      que expresó esas sensaciones en sus cuadros.
-
-    </p>
-    <div class="image-full realismo">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/L%27%C3%A9tang_de_Ville-d%27Avray_-_Jean-Baptiste_Camille_Corot.jpg/800px-L%27%C3%A9tang_de_Ville-d%27Avray_-_Jean-Baptiste_Camille_Corot.jpg"
-        width="100%" height="300" />
-      <p style="text-align: center;">El estanque de la Ville d'Avray<br> <i> 1865 </i> </p>
-
-
-
-    </div>
-    <div id="fullscreen-view" class="hidden">
-      <img id="fullscreen-image" />
-    </div>
-    <!-- <button class="btn-catalogo text-full">Obras</button> -->
   </main>
-  <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-    <div class="text-full" style="background-color: #000000; color: white;">
-      <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-    </div>
-  </a>
-  <div>
-    <br>
-  </div>
-  <footer class="main-footer">
-    <p>&copy; Virtual Gallery 2024</p>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
   </footer>
+
 </body>
 
 </html>
-<!-- 
-
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->

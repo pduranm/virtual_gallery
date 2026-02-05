@@ -4,234 +4,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Théodore Géricault</title>
+    <title>Théodore Géricault | Virtual Gallery</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
 
     <style>
         :root {
-            --color-fondo: #f9f7f7;
-            --color-principal: #333333;
-            --color-acento: #a0a0a0;
-            --fuente-serif: 'Playfair Display', serif;
-            --fuente-sans: 'Montserrat', sans-serif;
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        strong,
-        b {
-            font-weight: 700;
-        }
-
+        /* Reset */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--fuente-serif);
-            color: var(--color-principal);
-            background-color: var(--color-fondo);
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
             line-height: 1.6;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
         }
 
-        body.fade-in {
-            opacity: 1;
+        /* --- HEADER STYLES --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
         }
 
-        body.fade-out {
-            opacity: 0;
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--color-primary);
+            cursor: pointer;
         }
 
-        h1,
-        h2,
-        h3 {
-            font-family: var(--fuente-sans);
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 0.5em;
-        }
-
-        h1 {
-            font-size: 2.0em;
-            text-align: center;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--color-acento);
-        }
-
-        nav ul {
-            list-style: none;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
             text-decoration: none;
-            color: var(--color-principal);
-            font-weight: normal;
-            transition: color 0.3s;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
         }
 
-        nav ul li a:hover {
-            color: var(--color-acento);
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-secondary);
         }
 
-        .galeria {
-            display: block;
-            text-align: justify;
-            max-width: 750px;
-            margin: 20px auto;
-            padding: 0 10px;
-            text-align: left;
+        /* Mobile Sidebar */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
         }
 
-
-        .galeria img {
-            display: block;
-            max-width: 300px;
-            height: auto;
-            margin: 0 auto;
-        }
-
-        .galeria-item {
-            text-align: center;
-            border: 1px solid var(--color-acento);
-            padding: 5px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .galeria-item img {
+        .menu-toggle span {
             width: 100%;
-            height: auto;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .detail-portrait {
+            width: 100%;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
+        }
+
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
+
+        .detail-main {
+            padding-top: 10px;
+        }
+
+        .detail-name {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
             display: block;
         }
 
-        .galeria-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .detail-text {
+            column-count: 2;
+            column-gap: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 60px;
+            text-align: justify;
         }
 
-        .caption {
-            padding-top: 10px;
-            font-size: 0.9em;
-            font-style: italic;
-            color: var(--color-principal);
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 15px;
+            color: var(--color-secondary);
         }
 
+        .works-section-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+        }
+
+        .works-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .work-mini-item {
+            aspect-ratio: 1;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .work-mini-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-mini-item:hover {
+            opacity: 0.9;
+        }
+
+        .work-mini-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn-back-detail {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .btn-back-detail:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
         footer {
+            background-color: #f9f9f9;
+            padding: 60px;
             text-align: center;
-            padding: 20px;
-            border-top: 1px solid var(--color-acento);
-            font-size: 0.8em;
-            margin-top: 40px;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
         }
 
-        .active {
-            color: var(--color-acento)
+        footer p {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .detail-text {
+                column-count: 1;
+            }
+
+            .works-grid-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-name {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1 style="font-size: medium;">Théodore Géricault <br> 1791-1824</h1>
-
-        <nav>
-            <ul>
-                <li><a class="active" href="gericault.html">Biografía</a></li>
-                <li><a href="gericault_obras.html">Obras</a></li>
-                <li><a href="gericault_infl.html">Influencias</a></li>
-            </ul>
-            <img class="galeria"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
-                height="10%">
+    <!-- Header -->
+    <header class="main-header">
+        <button class="menu-toggle">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="../../main.html">VIRTUAL GALLERY</a>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="../../artistList.html" class="nav-link">Artistas</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
         </nav>
     </header>
-    <main>
-        <p class="galeria">
-            Théodore Géricault (1791-1824), nacido en Rouen, fue una figura decisiva del primer Romanticismo
-            francés:
-            su obra introdujo una intensidad <strong>dramática</strong> y una preocupación por lo real y lo humano que
-            rompía con los
-            cánones académicos de su tiempo.
-        </p>
-        <p class="galeria">
-            Se formó en París en el ambiente artístico post-napoleónico, con un interés temprano por la representación
-            del movimiento y la potencia física —especialmente en caballos y escenas ecuestres— que marcaría sus
-            primeros éxitos en el Salón y su reputación entre críticos y colegas.</p>
-        <p class="galeria">
-            En 1812 expone en el Salón de París, la siguiente obra: <i>Oficial de cazadores a la carga</i>.
-        </p>
-        <img class="galeria" style="height: 450px;"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/GericaultHorseman.jpg/960px-GericaultHorseman.jpg">
 
-        <p class="galeria">
-            Le vale el éxito inmediato, y a día de hoy es considerada como una <strong>obra clave</strong> en la transición del neoclasicismo
-            al romanticismo francés.
-        </p>
-        <p class="galeria">
-            Desde sus estudios anatómicos hasta sus observaciones en hospitales y morgues, <strong>Géricault</strong> cultivó un
-            método <strong>riguroso</strong>: preparaba sus grandes composiciones con bocetos, estudios y apuntes
-            directos de la realidad, lo que le permitió dotar a sus pinturas de una <strong><i>verosimilitud cruda</i></strong> y una <strong><i>fuerza expresiva</i></strong> poco
-            frecuentes entonces.
-        </p>
-        <p class="galeria">
-            Su obra más célebre, "La balsa de la Medusa" (realizada entre 1818 y 1819), nació de una
-            documentación
-            exhaustiva sobre el desastre naval que conmocionó a Europa; presentado en el Salón, el cuadro impactó
-            por su monumentalidad, su crudeza moral y su carga política, y se convirtió en emblema del Romanticismo
-            comprometido.</p>
-        <p class="galeria">Además de escenas históricas y marinas, Géricault desarrolló series íntimas y
-            perturbadoras —como los
-            célebres retratos de enfermos mentales— y numerosos estudios de jinetes y caballos que revelan su
-            obsesión por la fisiología del movimiento y la expresión psicológica.</p>
-        <p class="galeria">Técnicamente, destacó por una pincelada enérgica, una paleta sobria pero dramática y una
-            composición
-            calculada para maximizar el impacto emocional: combinó la herencia de los grandes maestros con una
-            mirada moderna hacia la luz, la materia y la tensión narrativa.</p>
-        <p class="galeria">En la década de 1820 viajó a Londres, donde entró en contacto con colecciones y artistas
-            ingleses,
-            ampliando su visión y sus referencias; sin embargo, su carrera fue truncada por un declive de salud
-            derivado de una caída y de enfermedades, y murió en 1824 con apenas 32 años.</p>
-        <p class="galeria">A pesar de su vida breve, Géricault dejó una huella profunda: su audacia temática y
-            plástica inspiró a
-            generaciones posteriores —entre ellas figuras como Delacroix— y consolidó la posibilidad de una pintura
-            que no sólo representara la forma, sino que contara la condición humana con urgencia y verdad.</p>
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="detail-layout">
+
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
+                    alt="Théodore Géricault" class="detail-portrait">
+
+                <div class="detail-metadata">
+                    <h4>FICHA TÉCNICA</h4>
+                    <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
+                    <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1791 - 1824</span></div>
+                    <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Romanticismo</span></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="detail-main">
+                <span class="detail-subtitle">ROMANTICISMO</span>
+                <h2 class="detail-name">Théodore Géricault</h2>
+
+                <div class="detail-text">
+                    <p><span class="drop-cap">T</span>héodore Géricault (1791-1824), nacido en Rouen, fue una figura
+                        decisiva del primer Romanticismo francés: su obra introdujo una intensidad dramática y una
+                        preocupación por lo real y lo humano que rompía con los cánones académicos de su tiempo.</p>
+
+                    <p>Se formó en París en el ambiente artístico post-napoleónico, con un interés temprano por la
+                        representación del movimiento y la potencia física —especialmente en caballos y escenas
+                        ecuestres— que marcaría sus primeros éxitos en el Salón y su reputación entre críticos y
+                        colegas.</p>
+
+                    <p>En 1812 expone en el Salón de París, la siguiente obra: <i>Oficial de cazadores a la carga</i>.
+                        Le vale el éxito inmediato, y a día de hoy es considerada como una <strong>obra clave</strong>
+                        en la transición del neoclasicismo al romanticismo francés.</p>
+
+                    <p>Desde sus estudios anatómicos hasta sus observaciones en hospitales y morgues, Géricault cultivó
+                        un método riguroso: preparaba sus grandes composiciones con bocetos, estudios y apuntes directos
+                        de la realidad, lo que le permitió dotar a sus pinturas de una <i>verosimilitud cruda</i> y una
+                        <i>fuerza expresiva</i> poco frecuentes entonces.</p>
+
+                    <p>Su obra más célebre, "La balsa de la Medusa" (realizada entre 1818 y 1819), nació de una
+                        documentación exhaustiva sobre el desastre naval que conmocionó a Europa; presentado en el
+                        Salón, el cuadro impactó por su monumentalidad, su crudeza moral y su carga política.</p>
+
+                    <p>En la década de 1820 viajó a Londres, donde entró en contacto con colecciones y artistas
+                        ingleses, ampliando su visión y sus referencias; sin embargo, su carrera fue truncada por un
+                        declive de salud derivado de una caída y de enfermedades, y murió en 1824 con apenas 32 años.
+                    </p>
+                </div>
+
+                <h4 class="works-section-title">Catálogo Razonado</h4>
+                <div class="works-grid-mini">
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/GericaultHorseman.jpg/960px-GericaultHorseman.jpg"
+                            alt="Oficial de cazadores a la carga">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/1200px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg"
+                            alt="La balsa de Medusa">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/436455/796274/main-image"
+                            alt="Paisaje con acueducto">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Th%C3%A9odore_g%C3%A9ricault%2C_corazziere_ferito_che_abbandona_il_fuoco%2C_ante_1814%2C_01.jpg"
+                            alt="Coracero Herido">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG/300px-Ary_Scheffer_-_La_Mort_de_G%C3%A9ricault_%281824%29.JPG"
+                            alt="La muerte de Géricault (por Ary Scheffer)">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            body.classList.add('fade-in');
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+    </footer>
 
-            const internalLinks = document.querySelectorAll('a:not([href^="#"]):not([href^="mailto:"]):not([target="_blank"])');
-
-            internalLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    e.preventDefault();
-
-                    body.classList.remove('fade-in');
-                    body.classList.add('fade-out');
-
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 500);
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>

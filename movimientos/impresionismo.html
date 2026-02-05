@@ -5,18 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impresionismo | Virtual Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
+
     <style>
         :root {
             --color-primary: #1a1a1a;
             --color-secondary: #b58d53;
             --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
             --font-serif-display: 'Cinzel', serif;
             --font-serif-body: 'Lora', serif;
             --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
@@ -25,11 +31,13 @@
 
         body {
             font-family: var(--font-serif-body);
-            background: var(--color-background);
+            background-color: var(--color-background);
             color: var(--color-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* HEADER */
+        /* --- HEADER STYLES --- */
         .main-header {
             position: fixed;
             top: 0;
@@ -41,139 +49,263 @@
             justify-content: space-between;
             padding: 0 50px;
             border-bottom: 1px solid #eee;
-            z-index: 3000;
+            z-index: 2000;
         }
 
         .logo a {
             font-family: var(--font-serif-display);
             font-size: 1.4rem;
+            font-weight: 700;
             letter-spacing: 4px;
             text-decoration: none;
-            color: #000;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
             font-weight: 700;
+            position: relative;
         }
 
-        /* HERO SECCIÓN */
-        .collection-hero {
-            margin-top: var(--header-height);
-            padding: 80px 50px 40px;
-            text-align: center;
-        }
-
-        .collection-hero h1 {
-            font-family: var(--font-serif-display);
-            font-size: 3rem;
-            letter-spacing: 8px;
-            margin-bottom: 10px;
-        }
-
-        .collection-hero span {
-            font-family: var(--font-serif-display);
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--color-secondary);
-            letter-spacing: 3px;
         }
 
-        /* GRID PRINCIPAL */
-        .art-grid {
+        /* Mobile Sidebar */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+        .detail-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px 30px;
-            padding: 0 50px 100px;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
             max-width: 1400px;
             margin: 0 auto;
-            align-items: start;
+            padding: 60px 40px;
         }
 
-        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
-        .text-separator {
-            grid-column: 1 / -1;
-            max-width: 850px;
-            margin: 40px auto;
-            text-align: justify;
-            padding: 0 20px;
-        }
-
-        .text-separator p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        /* TARJETAS DE ARTE */
-        .art-item {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .art-image-container {
+        .detail-portrait {
             width: 100%;
-            aspect-ratio: 4/5;
-            background-color: #f5f5f5;
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .art-image-container img {
-            width: 100%;
-            height: 100%;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
             object-fit: cover;
-            transition: transform 0.8s ease;
         }
 
-        .art-item:hover img {
-            transform: scale(1.05);
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
         }
 
-        .quick-view {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 12px;
-            text-align: center;
+        .detail-metadata h4 {
             font-family: var(--font-serif-display);
-            font-size: 0.7rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .art-item:hover .quick-view {
-            transform: translateY(0);
-        }
-
-        .art-meta {
-            text-align: left;
-        }
-
-        .art-artist {
-            font-family: var(--font-serif-display);
-            font-size: 0.65rem;
-            color: var(--color-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
             letter-spacing: 1px;
-            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
         }
 
-        .art-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 5px 0;
-        }
-
-        .art-year {
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
             font-size: 0.85rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
             color: #888;
         }
 
-        @media (max-width: 768px) {
-            .art-grid {
-                grid-template-columns: 1fr;
-                padding: 20px;
+        .detail-main {
+            padding-top: 10px;
+        }
+
+        .detail-name {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .detail-text {
+            column-count: 2;
+            column-gap: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 60px;
+            text-align: justify;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 15px;
+            color: var(--color-secondary);
+        }
+
+        .works-section-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+        }
+
+        .works-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .work-mini-item {
+            aspect-ratio: 1;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .work-mini-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-mini-item:hover {
+            opacity: 0.9;
+        }
+
+        .work-mini-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn-back-detail {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .btn-back-detail:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
             }
 
-            .collection-hero h1 {
-                font-size: 2rem;
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .detail-text {
+                column-count: 1;
+            }
+
+            .works-grid-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-name {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -181,248 +313,158 @@
 
 <body>
 
+    <!-- Header -->
     <header class="main-header">
-        <div class="logo"><a href="../main.html">VIRTUAL GALLERY</a></div>
-        <div style="font-family: var(--font-serif-display); font-size: 0.7rem; letter-spacing: 1px;">MOVIMIENTOS</div>
+        <button class="menu-toggle">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="../main.html">VIRTUAL GALLERY</a>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="../artistList.html" class="nav-link">Artistas</a>
+            </div>
+            <div class="nav-item">
+                <a href="../main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="../contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
+        </nav>
     </header>
 
-    <main>
-        <header class="collection-hero">
-            <h1>IMPRESIONISMO</h1>
-            <span>1860 — 1890</span>
-        </header>
+    <!-- Main Content -->
+    <main class="main-content">
 
-        <section class="art-grid">
+        <div class="detail-layout">
 
-            <div class="text-separator">
-                <p>
-                    El Impresionismo fue el movimiento de vanguardia más disruptivo de finales del siglo XIX, marcando
-                    el nacimiento del arte moderno. Surgido en Francia en la década de 1860, su filosofía se basaba en
-                    la técnica fugaz, rompiendo con el academicismo.
-                    <br>
-                    Los impresionistas, dado el nombre por pintar una impresión, podría considerarse como un fotograma,
-                    tal y como lo haría la cámara fotográfica.
-                    La escena se vuelve rápida, el mínimo cambio de perspectiva convierte una obra en diez diferentes.
-                    La luz cambia, es fugaz y desaparece.
-                    Esa luz que cambia, hace que el pintar se transforme una vez más, dejando atrás los estudios y las
-                    academias para salir a pintar al aire libre.
-                    Eso hace que la pincelada sea rápida y desordenada.
-                    Los colores, siempre se habla de cómo parecían diferentes, y así lo eran. Exageradas temperaturas y
-                    alta pureza pictórica.
-                    Para intensificar el efecto que produce el color, los artistas usaban colores cálidos y fríos, para
-                    aumentar el contraste.
-                </p>
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <a href="../main.html" class="btn-back-detail">&larr; Volver al Inicio</a>
+                <!-- Main Movement Image -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/1200px-Monet_-_Impression%2C_Sunrise.jpg"
+                    alt="Impresión, sol naciente" class="detail-portrait">
 
+                <div class="detail-metadata">
+                    <h4>FICHA TÉCNICA</h4>
+                    <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
+                    <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1860 - 1890</span></div>
+                    <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Luz y Color</span></div>
+                </div>
             </div>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaq35cBQGuvRbXPKto7x1SVV65LRqmWmC3z17QcbFS8sXQQFLbdypcNzfITfNgF5CqAfaCVDKS8PLP5mw3FfD6PVdeB8On84-chCpikA88uZOfPTQHPU2dPMThtUkn4O4QTO02vUrM5gg5j_WwvauOC7NT8cH9SJwnVoHGqut-vbCTvMBSKijdQSnUxmM/s1600/Monet_-_Monets_Garten_in_Giverny.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">El jardín del artista en Giverny</h2>
-                    <p class="art-year">1900</p>
-                </div>
-            </a>
+            <!-- Main Content -->
+            <div class="detail-main">
+                <span class="detail-subtitle">MOVIMIENTO VANGUARDISTA</span>
+                <h2 class="detail-name">Impresionismo</h2>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">El banco del jardín de Versailles</h2>
-                    <p class="art-year">1881</p>
-                </div>
-            </a>
+                <div class="detail-text">
+                    <p><span class="drop-cap">E</span>l Impresionismo fue el movimiento de vanguardia más disruptivo de
+                        finales del siglo XIX, marcando el nacimiento del arte moderno. Surgido en Francia en la década
+                        de 1860, su filosofía se basaba en la captura del instante fugaz, rompiendo con el academicismo
+                        rígido de la época.</p>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
-                    <p class="art-year">1863</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/hwu1butuy12ezr4.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Édouard Manet</p>
-                    <h2 class="art-title">Almuerzo sobre la hierba</h2>
-                    <p class="art-year">1863</p>
-                </div>
-            </a>
+                    <p>Los impresionistas, llamados así peyorativamente por la crítica tras ver el cuadro <i>"Impresión,
+                            sol naciente"</i> de Monet, buscaban pintar la "impresión" retiniana, tal y como lo haría
+                        una cámara fotográfica. La escena se vuelve dinámica; el mínimo cambio de perspectiva o de luz
+                        convierte una obra en diez diferentes. Esa luz cambiante y fugaz obligó a los artistas a
+                        abandonar los estudios para pintar <i>au plein air</i> (al aire libre), resultando en una
+                        pincelada rápida, desordenada y vibrante.</p>
 
-            <div class="text-separator">
-                <p>
-                    La investigación y el arte siempre han estado unidas, un claro ejemplo fue la invención de los tubos
-                    de pintura permitiendo esa pintura <i>au plein air</i>.
-                    Se aplicó la <strong>Teoría de los Colores</strong>, de científicos como Eugéne Chevreul, según la
-                    cual los colores
-                    solo existen en relación con los colores más próximos, buscando que el ojo perciba los colores
-                    compuestos sin mezclarlos en la paleta.Se descubrió que los colores no son inmutables y que la
-                    incidencia de la luz es determinante, lo que llevó a los pintores a plasmar los colores tal y como
-                    los veían, sin importar el color objetivo de las cosas.
-                    Se practicó la coloración de sombras en detrimento del <strong>claroscuro</strong>, usando
-                    tonalidades
-                    complementarias; por ejemplo, luces amarillas y sombras violáceas.
+                    <p><strong>La Ciencia del Color:</strong> La investigación científica influyó notablemente en el
+                        movimiento. Se aplicó la <strong>Teoría de los Colores</strong> de Chevreul, buscando que el ojo
+                        perciba los colores compuestos mediante la mezcla óptica en la retina, en lugar de mezclarlos en
+                        la paleta. Se descubrió que los colores no son inmutables y que la incidencia de la luz es
+                        determinante, llevando a la eliminación de los negros y tierras en favor de sombras coloreadas
+                        con tonos complementarios.</p>
 
-                </p>
-            </div>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg">
-                    <div class="quick-view">DETALLES</div>
+                    <p><strong>Expansión Internacional:</strong><br>
+                        En <strong>Francia</strong>, Monet se consolidó como el máximo exponente del paisaje, mientras
+                        Renoir se centró en la figura humana y Degas en la composición moderna influenciada por la
+                        fotografía y el japonismo.<br>
+                        El <strong>Impresionismo Británico</strong>, influenciado por Turner, tuvo una carga más
+                        atmosférica y romántica con artistas como Philip Wilson Steer y Walter Sickert.<br>
+                        En <strong>Alemania</strong>, Max Liebermann evolucionó del realismo social hacia escenas de
+                        jardines llenas de dinamismo lumínico.<br>
+                        Y en <strong>Italia</strong>, el movimiento influyó en la evolución de los "Macchiaioli" hacia
+                        el Divisionismo, con figuras como Giuseppe De Nittis.</p>
                 </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">Paseo por el acantilado</h2>
-                    <p class="art-year">1882</p>
-                </div>
-            </a>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">La calle Montorgueil</h2>
-                    <p class="art-year">1878</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Monet-montorgueil.JPG">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Claude Monet</p>
-                    <h2 class="art-title">La calle Montorgueil</h2>
-                    <p class="art-year">1878</p>
-                </div>
-            </a>
+                <h4 class="works-section-title">Colección Destacada</h4>
+                <div class="works-grid-mini">
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Corot.villedavray.750pix.jpg/798px-Corot.villedavray.750pix.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Camille Corot</p>
-                    <h2 class="art-title">Ville d'Avray</h2>
-                    <p class="art-year">1867</p>
-                </div>
-            </a>
+                    <!-- Monet -->
+                    <div class="work-mini-item">
+                        <img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/xyc1butnyf0zue8.jpg"
+                            alt="Les Roches de Bèlle Île - Monet">
+                    </div>
 
-            <div class="text-separator">
-                <p>En Francia, epicentro y laboratorio técnico del movimiento, el enfoque principal fue la
-                    disolución de la forma a través de la atmósfera. Claude Monet se consolidó como el máximo
-                    exponente con sus series sobre la luz, mientras que Pierre-Auguste Renoir aportó un enfoque
-                    social centrado en la figura humana y Edgar Degas revolucionó la composición mediante encuadres
-                    influenciados por la naciente fotografía y el llamado <strong>japonismo</strong>. 
-                    <br><br>
-                    Monet, en sus series <i>Catedral de Ruan</i> y <i>los Almiares</i>, representaba las
-                    apariencias sucesivas bajo diferentes condiciones de luz y clima.
-                    El artista también descartó los colores tierra y para 1886 había dejado de usar el negro.
-                </p>
+                    <!-- Manet -->
+                    <div class="work-mini-item">
+                        <img src="https://www.reprodart.com/kunst/edouard_manet_739/The-Bench-in-the-Garden-of-Versailles.jpg"
+                            alt="El banco del jardín - Manet">
+                    </div>
 
+                    <!-- Degas -->
+                    <div class="work-mini-item">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600"
+                            alt="Tres Bailarinas - Degas">
+                    </div>
+
+                    <!-- Levy -->
+                    <div class="work-mini-item">
+                        <img src="https://image.invaluable.com/housePhotos/artcurial/19/553619/H1118-L62536092.jpg"
+                            alt="En el jardín - Lévy">
+                    </div>
+
+                    <!-- Monet 2 -->
+                    <div class="work-mini-item">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL_QhOlgPLXuMt0_OTgRSILFDd5yREfCqAUWiCojKYoGLKLaHj-T1cp7Ztl2oIEbw3BjrQ9hWlOFsyv2SbX9RkiFX-HdGUD7UZzyqP3G5bnNfZX1UYxjwkI1yBrBCEgr5DTZqBhowq8rm61S_ueRUmMUOkOMTu9uxL7XelrVJfviQ3WhArduVvXHuiPs8/s1122/images.jpg"
+                            alt="Paseo por el acantilado - Monet">
+                    </div>
+
+                    <!-- Sisley -->
+                    <div class="work-mini-item">
+                        <img src="https://www.meisterdrucke.es/kunstwerke/1000px/Alfred_Sisley_-_t_Bougival_Summer_at_Bougival_1876_-_(MeisterDrucke-732260).jpg"
+                            alt="Verano en Bougival - Sisley">
+                    </div>
+
+                    <!-- Renoir -->
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Pierre-Auguste_Renoir_-_Portrait_de_l%27actrice_Jeanne_Samary.jpg"
+                            alt="Retrato de Jean Sammary - Renoir">
+                    </div>
+
+                    <!-- Blanche Hoschedé Monet -->
+                    <div class="work-mini-item">
+                        <img src="https://static.wixstatic.com/media/58d503_c386d610ed904aab95b00839f05df464~mv2.jpg/v1/fill/w_925,h_734,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/58d503_c386d610ed904aab95b00839f05df464~mv2.jpg"
+                            alt="Jardín en Giverny - Blanche Monet">
+                    </div>
+
+                    <!-- Nittis -->
+                    <div class="work-mini-item">
+                        <img src="https://media.posterlounge.com/img/products/410000/405454/405454_poster.jpg"
+                            alt="Westminster - Nittis">
+                    </div>
+
+                    <!-- Signorini -->
+                    <div class="work-mini-item">
+                        <img src="https://cdn.finestresullarte.info/rivista/immagini/2018/832/telemaco-signorini-limite-sull-arno.jpg"
+                            alt="Orilla del Arno - Signorini">
+                    </div>
+
+                </div>
             </div>
 
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Edgar Degas</p>
-                    <h2 class="art-title">Tres Bailarinas</h2>
-                    <p class="art-year">1879</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEio-JhI9ONbFOJwzsIuAIqrGsA66u6LpSLCm_dOhX7hfDPbVEYE6E4C59so9ot8sUml_XHCPAGM0p7_jhdrr20lYqIcztAQTHKSNfexfmK23L9iMdactR4g4i6Rpj_HE4R8qWIjSuJOCp1NZk5Monv8_axiJbenwWFo6YkSjP3c8zk_BDkenV2hcA4d_RA=s1600">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Edgar Degas</p>
-                    <h2 class="art-title">Tres Bailarinas</h2>
-                    <p class="art-year">1879</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Laura Knight</p>
-                    <h2 class="art-title">Al borde del acantilado</h2>
-                    <p class="art-year">1910</p>
-                </div>
-            </a>
-            <a href="#" class="art-item">
-                <div class="art-image-container">
-                    <img src="https://www.christies.com/img/LotImages/2022/CKS/2022_CKS_21038_0016_000.jpg">
-                    <div class="quick-view">DETALLES</div>
-                </div>
-                <div class="art-meta">
-                    <p class="art-artist">Laura Knight</p>
-                    <h2 class="art-title">Al borde del acantilado</h2>
-                    <p class="art-year">1910</p>
-                </div>
-            </a>
-            <br>
-            <br>
-            <section>INGLATERRA</section>
-            <div class="text-separator">
-                <p>El Impresionismo británico, por su parte, tuvo una carga más atmosférica y romántica,
-                    profundamente influenciado por la tradición del paisaje de J.M.W. Turner. Artistas como Philip
-                    Wilson Steer destacaron por sus escenas de playas saturadas de luz, mientras que Walter Sickert
-                    aplicó la técnica de pincelada fragmentada a escenas sombrías de la vida urbana londinense.
-                </p>
-            </div>
-            <br>
-            <br>
-            <section>ALEMANIA</section>
-            <div class="text-separator">
-                <p>En Alemania, el movimiento mantuvo un vínculo más estrecho con el realismo social antes de derivar
-                    hacia
-                    el expresionismo. Max Liebermann fue el pilar fundamental, evolucionando desde un realismo austero
-                    hacia
-                    escenas de jardines llenas de dinamismo lumínico, seguido por Lovis Corinth, cuya obra poseía una
-                    vitalidad en el trazo que combinaba la luz impresionista con una potente carga emocional.
-                </p>
-            </div>
-            <br>
-            <br>
-            <section>Italia</section>
-            <div class="text-separator">
-                <p>Finalmente, en Italia el movimiento influyó en la evolución de los "Macchiaioli" hacia el
-                    Divisionismo. Federico Zandomeneghi, tras mudarse a París, fusionó el colorismo veneciano con la
-                    elegancia compositiva francesa, mientras que Giuseppe De Nittis alcanzó una sofisticación técnica
-                    extraordinaria capturando la bruma y el asfalto mojado de las grandes metrópolis europeas.
-                </p>
-            </div>
-        </section>
+        </div>
+
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+    </footer>
 
 </body>
 
