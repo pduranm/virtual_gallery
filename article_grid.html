@@ -4,249 +4,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Arte Dinámico - Inicio</title>
+    <title>Impresionismo | Virtual Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style_grid.css">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background: var(--color-background);
+            color: var(--color-primary);
+        }
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+        /* HEADER */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 3000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HERO SECCIÓN */
+        .collection-hero {
+            margin-top: var(--header-height);
+            padding: 80px 50px 40px;
+            text-align: center;
+        }
+
+        .collection-hero h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+        }
+
+        .collection-hero span {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            letter-spacing: 3px;
+        }
+
+        /* GRID PRINCIPAL */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 30px;
+            padding: 0 50px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
+        .text-separator {
+            grid-column: 1 / -1;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .text-separator p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* TARJETAS DE ARTE */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .art-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            text-align: center;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover .quick-view {
+            transform: translateY(0);
+        }
+
+        .art-meta {
+            text-align: left;
+        }
+
+        .art-artist {
+            font-family: var(--font-serif-display);
+            font-size: 0.65rem;
+            color: var(--color-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .art-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .art-item-single {
+            grid-column: 1 / -1;
+            max-width: 450px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .art-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .collection-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header id="galeria-dinamica">
-        <canvas id="lienzoArte"></canvas>
-        <div class="superposicion-texto">
-            <h1>virtual gallery</h1>
-            <p>Arte | Historia | Curiosidades</p>
-            <button onclick="hacerScrollASecciones()">Explorar Artistas</button>
-        </div>
+    <header class="main-header">
+        <div class="logo"><a href="../main.html">VIRTUAL GALLERY</a></div>
+        <div style="font-family: var(--font-serif-display); font-size: 0.7rem; letter-spacing: 1px;">MOVIMIENTOS</div>
     </header>
 
-    <main id="secciones-navegacion" class="secciones-container">
-        <h2>Artistas Destacados</h2>
-        <div class="tarjetas-grid">
+    <main>
+        <header class="collection-hero">
+            <h1>NOMBRE ARTISTA</h1>
+            <span style="color: #000;">TEXTO SUBTITULO</span>
+        </header>
 
-            <a href="artistas/camille/camille.html" class="tarjeta-seccion">
-                <h3>Camille Corot</h3>
-                <img
-                    src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPgyZuVURtKpqcMWzFPdrXORIwx6srxgzKRKKrdeQiajhAYMwKhRHtDznae4tYnkmf2KIr3g">
-                <p>Maestro del paisaje pre-impresionista y la Escuela de Barbizon. Sus obras son un puente entre el
-                    clasicismo y el arte moderno.</p>
-            </a>
-
-            <a href="artistas/courbet/courbet.html" class="tarjeta-seccion">
-                <h3> Gustave Courbet</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg/220px-Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg">
-                <p>Líder del movimiento Realista, conocido por su audacia y su compromiso con la representación sin
-                    adornos de la vida cotidiana.</p>
-            </a>
-
-            <a href="artistas/daubigny/daubigny.html" class="tarjeta-seccion">
-                <h3>Daugbigny</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Charles_francois_daubigny.jpg/473px-Charles_francois_daubigny.jpg">
-                <p>Clave entre el naturalismo poético y la sensibilidad luminista, refinó el paisaje al aire libre hasta
-                    volverlo casi musical.</p>
-            </a>
-
-            <a href="artistas/delacroix/delacroix_bio.html" class="tarjeta-seccion">
-                <h3>Delacroix</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg">
-                <p>Creó revolución basada en el color y la energía emocional y tendió un arco entre la tradición
-                    pictórica europea y las búsquedas expresivas.</p>
-            </a>
-
-            <a href="artistas/gerard/gerard.html" class="tarjeta-seccion">
-                <h3>François Gérard</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Thomas_Lawrence_-_Francois_Gerard.jpg">
-                <p>Refinó la elegancia cortesana con una precisión idealizada que actuó
-                    como puente entre la solemnidad clásica y la sensibilidad más emotiva.</p>
-            </a>
-            <a href="artistas/dupre/dupre.html" class="tarjeta-seccion">
-                <h3>Jules Dupré</h3>
-                <img src="https://uploads8.wikiart.org/temp/ae6fe7e9-d13e-43a2-998e-02e5b129231b.jpg!Portrait.jpg">
-                <p>Llevó la observación de la naturaleza hacia una expresividad atmosférica, enlazando realismo rural y
-                    libertad luminosa.</p>
-            </a>
-
-            <a href="artistas/millet/" class="tarjeta-seccion">
-                <h3>Millet</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jean-FrancoisMillet%28Nadar%29.jpg/250px-Jean-FrancoisMillet%28Nadar%29.jpg">
-                <p>Convirtió la vida campesina en una expresión poética de digna y fuerte, enlazando el realismo rural
-                    con la sensibilidad humanista.</p>
-            </a>
-
-            <a href="artistas/goya/goya.html" class="tarjeta-seccion">
-                <h3>Goya</h3>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg/220px-Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg">
-                <p>Transforma lo real en una visión inquietante y profundamente humana, unió el dramatismo ilustrado con
-                    una libertad expresiva que abrió el camino hacia la modernidad</p>
-            </a>
-
-            <a href="artistas/gericault/gericault.html" class="tarjeta-seccion">
-                <h3>Géricault</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg/330px-Horace_Vernet%2C_Jean-Louis-Andr%C3%A9-Th%C3%A9odore_Gericault%2C_probably_1822_or_1823%2C_1998.84%2C_MET.jpg"
-                    alt="">
-                <p>Impulsor decisivo del primer Romanticismo francés, llevó el dramatismo humano y la fuerza del
-                    movimiento a un nuevo extremo.</p>
-            </a>
-
-            <a href="/recursos" class="tarjeta-seccion">
-                <h3>📚 Recursos y Educación</h3>
-                <p>Aprende sobre historia y técnica artística.</p>
-            </a>
-            <a href="/colecciones" class="tarjeta-seccion">
-                <h3>Galería de Colecciones</h3>
-                <p>Explora las obras por movimiento artístico y época.</p>
-            </a>
-
-            <a href="/artistas" class="tarjeta-seccion">
-                <h3>👤 Artistas Destacados</h3>
-                <p>Conoce biografías, obras principales y exposiciones.</p>
-            </a>
-
-            <a href="/noticias" class="tarjeta-seccion">
-                <h3>📰 Noticias y Eventos</h3>
-                <p>Mantente al día con lo último del mundo del arte.</p>
-            </a>
-
-            <a href="/tienda" class="tarjeta-seccion">
-                <h3>🛍️ Tienda de Arte</h3>
-                <p>Adquiere impresiones y artículos exclusivos.</p>
-            </a>
-
-            <a href="/recursos" class="tarjeta-seccion">
-                <h3>📚 Recursos y Educación</h3>
-                <p>Aprende sobre historia y técnica artística.</p>
-            </a>
-            <a href="/colecciones" class="tarjeta-seccion">
-                <h3>Galería de Colecciones</h3>
-                <p>Explora las obras por movimiento artístico y época.</p>
-            </a>
-
-            <a href="/artistas" class="tarjeta-seccion">
-                <h3>👤 Artistas Destacados</h3>
-                <p>Conoce biografías, obras principales y exposiciones.</p>
-            </a>
-
-            <a href="/noticias" class="tarjeta-seccion">
-                <h3>📰 Noticias y Eventos</h3>
-                <p>Mantente al día con lo último del mundo del arte.</p>
-            </a>
-
-            <a href="/tienda" class="tarjeta-seccion">
-                <h3>🛍️ Tienda de Arte</h3>
-                <p>Adquiere impresiones y artículos exclusivos.</p>
-            </a>
-
-            <a href="/recursos" class="tarjeta-seccion">
-                <h3>📚 Recursos y Educación</h3>
-                <p>Aprende sobre historia y técnica artística.</p>
-            </a>
+        <section class="art-grid">
+            <div class="text-separator">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, minima. Perspiciatis minus nisi
+                consequatur. Sapiente nesciunt sit nemo ea deserunt tempore eos modi, consectetur, numquam eum
+                exercitationem error consequatur asperiores.
+            </div>
 
 
-        </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+            <a href="#" class="art-item-single">
+                <div class="art-image-container">
+                    <img src="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">NOMBRE ARTISTA</p>
+                    <h2 class="art-title">TITULO DEL CUADRO</h2>
+                    <p class="art-year">AÑO</p>
+                </div>
+            </a>
+            <div class="text-separator">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eum magni? Ratione aliquid tempora, aut
+                    impedit porro animi consequatur nihil officiis provident optio, quibusdam excepturi reprehenderit
+                    quod nobis minus at.
+                </p>
+
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Virtual Gallery. Todos los derechos reservados. | Diseño por Estudio de Arte</p>
-    </footer>
-
-    <script>
-        // 🚨 IMPORTANTE: Asegúrate de tener imágenes llamadas 'arte1.jpg' y 'arte2.jpg' 
-        // en la misma carpeta que este archivo HTML para que el canvas funcione correctamente.
-
-        const canvas = document.getElementById('lienzoArte');
-        const ctx = canvas.getContext('2d');
-
-        // Array de imágenes para la galería dinámica
-        const obrasDeArte = [
-            // Obras originales:
-            { src: 'https://miro.medium.com/v2/resize:fit:1400/0*Q8RVZoVlEAPQ2PSQ', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Las_Meninas_01.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ5KsP3iiXAmDWaSmJ-V5vPSyeJ8jQRmEN4w&s', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/43/El_grito.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Michelangelo_Buonarroti_-_The_Creation_of_Adam_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg/800px-Jan_van_Eyck_-_The_Arnolfini_Portrait_-_Google_Art_Project.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Retrato de Giovanni Arnolfini y su esposa - Van Eyck
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/La_libertad_guiando_al_pueblo.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 },
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Frida_Kahlo_Self_Portrait.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Autorretrato con Collar de Espinas - Frida Kahlo
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Impression%2C_soleil_levant.jpg', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Impresión, sol naciente - Monet
-            { src: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Whistler%27s_Mother_by_James_McNeill_Whistler.JPG', xOffset: 0, yOffset: 0, scale: 1.0, speed: 0.0005 }, // Arreglo en gris y negro nº 1 (Madre de Whistler) - Whistler
-        ];
-
-        let imagenActualIndex = 0;
-        let imagenActual = new Image();
-
-        // Asegurar que la primera imagen se carga y luego inicia la animación
-        imagenActual.onload = iniciarAnimacion;
-        imagenActual.src = obrasDeArte[imagenActualIndex].src;
-
-        // Redimensionar el canvas para que siempre ocupe el contenedor completo
-        function redimensionarCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', redimensionarCanvas);
-        redimensionarCanvas();
-
-        // Función de transición de imágenes
-        function cambiarImagen() {
-            imagenActualIndex = (imagenActualIndex + 1) % obrasDeArte.length;
-            imagenActual.src = obrasDeArte[imagenActualIndex].src;
-        }
-
-        // Intervalo para cambiar la imagen base (cada 8 segundos)
-        setInterval(cambiarImagen, 8000);
-
-        // Función principal de animación (bucle)
-        function animar() {
-            requestAnimationFrame(animar);
-
-            const data = obrasDeArte[imagenActualIndex];
-
-            // 1. Limpiar el canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 2. Calcular el movimiento (Pan sutil)
-            data.xOffset = Math.sin(Date.now() * data.speed) * 20; // Movimiento horizontal de +/- 20px
-            data.yOffset = Math.cos(Date.now() * data.speed * 0.8) * 15; // Movimiento vertical de +/- 15px
-            data.scale = 1.05 + Math.sin(Date.now() * data.speed * 0.5) * 0.02; // Zoom sutil entre 1.03 y 1.07
-
-            // 3. Calcular las dimensiones de dibujo
-            const imgW = imagenActual.naturalWidth;
-            const imgH = imagenActual.naturalHeight;
-
-            // Para asegurar que la imagen cubra todo el canvas (aspect-ratio cover)
-            let ratio = Math.max(canvas.width / imgW, canvas.height / imgH);
-            let drawW = imgW * ratio * data.scale;
-            let drawH = imgH * ratio * data.scale;
-            let x = (canvas.width - drawW) / 2 + data.xOffset;
-            let y = (canvas.height - drawH) / 2 + data.yOffset;
-
-            // 4. Dibujar la imagen en el canvas
-            ctx.drawImage(imagenActual, x, y, drawW, drawH);
-        }
-
-        function iniciarAnimacion() {
-            animar();
-        }
-
-        function hacerScrollASecciones() {
-            const targetSection = document.getElementById('secciones-navegacion');
-
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        }
-    </script>
 </body>
 
 </html>

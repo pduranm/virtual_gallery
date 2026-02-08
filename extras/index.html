@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSFW | Filthy Tees Empire</title>
+    <title>NSFW | Filthy Tees Empire (Gelato Edition)</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <!-- Lucide Icons (CDN) -->
@@ -13,7 +13,7 @@
         :root {
             --neon-pink: #ff007f;
             --neon-red: #ff0000;
-            --neon-purple: #9d00ff; /* Color morado para el hover */
+            --neon-purple: #9d00ff; 
             --bg-dark: #000000;
             --card-bg: #1a1a1a;
             --text-gray: #a1a1aa;
@@ -33,21 +33,6 @@
             overflow-x: hidden;
             line-height: 1.5;
             scroll-behavior: smooth;
-        }
-
-        .script-font {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        /* --- UTILIDADES NEÓN --- */
-        .neon-text-pink {
-            color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-
-        .neon-text-red {
-            color: var(--neon-red);
-            text-shadow: 0 0 10px var(--neon-red);
         }
 
         /* --- AGE GATE --- */
@@ -100,9 +85,7 @@
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--neon-pink);
-        }
+        .nav-links a:hover { color: var(--neon-pink); }
 
         .cart-icon {
             position: relative;
@@ -137,9 +120,7 @@
             background: radial-gradient(circle at 20% 50%, #ff007f15, transparent);
         }
 
-        .hero-content {
-            flex: 1;
-        }
+        .hero-content { flex: 1; }
 
         .hero-content h1 {
             font-size: clamp(3rem, 8vw, 6rem);
@@ -196,9 +177,7 @@
             animation: fadeIn 0.6s ease;
         }
 
-        .view.active {
-            display: block;
-        }
+        .view.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -229,10 +208,10 @@
             position: relative;
         }
 
-        /* Hover sin desplazamiento y con borde morado */
+        /* Hover morado solicitado */
         .product-card:hover {
             border-color: var(--neon-purple);
-            transform: none;
+            transform: none; 
         }
 
         .product-image {
@@ -282,7 +261,7 @@
             color: black;
         }
 
-        /* --- DETALLE DE PRODUCTO --- */
+        /* --- PRODUCT DETAIL --- */
         #product-content {
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -291,18 +270,13 @@
             margin: 0 auto;
         }
 
-        /* La imagen no es sticky para que desaparezca con el scroll */
-        .detail-image-container {
-            width: 100%;
-        }
-
         .detail-image-container img {
             width: 100%;
             border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- CARRITO --- */
+        /* --- CART --- */
         .cart-item {
             display: flex;
             gap: 20px;
@@ -331,10 +305,8 @@
             letter-spacing: 2px;
         }
 
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
             .hero { flex-direction: column; height: auto; padding-top: 60px; text-align: center; }
-            .hero-image-container { justify-content: center; margin-top: 40px; }
             .hero-content h1 { font-size: 4rem; }
             .nav-links { display: none; }
         }
@@ -345,7 +317,7 @@
     <!-- Age Gate -->
     <div id="age-gate">
         <div class="age-gate-content">
-            <h1 class="neon-text-pink" style="font-family: 'Outfit'; font-weight: 900; font-style: italic;">FILTHY TEES</h1>
+            <h1 class="neon-text-pink" style="font-weight: 900; font-style: italic;">FILTHY TEES</h1>
             <p style="font-weight: 400; letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase;">18+ SOLAMENTE. ENTRA SI TE ATREVES.</p>
             <button class="cta-button" onclick="verifyAge()">Verificar Edad</button>
         </div>
@@ -364,13 +336,13 @@
         </div>
     </nav>
 
-    <main>
+    <main id="main-content">
         <!-- Home View -->
         <section id="home" class="view active">
             <header class="hero">
                 <div class="hero-content">
                     <h1>NO SUITABLE <br> FOR WORK</h1>
-                    <p>Ropa para quienes no siguen las reglas. Humor ácido, estética cruda.</p>
+                    <p>Ropa para quienes no siguen las reglas. Estilo crudo integrado con Gelato.</p>
                     <a href="javascript:void(0)" onclick="showView('shop')" class="cta-button">Ver Colección</a>
                 </div>
                 <div class="hero-image-container">
@@ -380,71 +352,66 @@
             
             <div style="padding: 100px 0 40px 0;">
                 <h2 class="section-title">Nuevos Lanzamientos</h2>
-                <div class="product-grid" id="featured-products">
-                    <!-- Dinámico -->
-                </div>
+                <div id="loading-spinner" style="display:none; text-align: center; padding: 50px;">Cargando catálogo...</div>
+                <div class="product-grid" id="featured-products"></div>
             </div>
         </section>
 
         <!-- Shop View -->
         <section id="shop" class="view">
-            <h2 class="section-title">Colección Completa</h2>
-            <div class="product-grid" id="all-products">
-                <!-- Dinámico -->
-            </div>
+            <h2 class="section-title">Catálogo Gelato</h2>
+            <div class="product-grid" id="all-products"></div>
         </section>
 
         <!-- Product Detail View -->
         <section id="product-detail" class="view">
-            <div id="product-content">
-                <!-- Dinámico -->
-            </div>
+            <div id="product-content"></div>
         </section>
 
         <!-- Cart View -->
         <section id="cart" class="view">
             <h2 class="section-title">Tu Botín</h2>
-            <div id="cart-items-list" style="max-width: 800px; margin: 0 auto;">
-                <!-- Dinámico -->
-            </div>
-            <div id="cart-summary" style="max-width: 800px; margin: 40px auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <!-- Dinámico -->
-            </div>
+            <div id="cart-items-list" style="max-width: 800px; margin: 0 auto;"></div>
+            <div id="cart-summary" style="max-width: 800px; margin: 40px auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);"></div>
         </section>
 
         <!-- About View -->
         <section id="about" class="view">
             <div style="max-width: 800px; margin: 0 auto; text-align: center; padding-top: 60px;">
                 <h2 class="neon-text-pink" style="font-size: 4rem; font-weight: 900; font-style: italic; margin-bottom: 40px;">MANIFIESTO</h2>
-                <p style="font-size: 1.4rem; color: var(--text-gray); font-weight: 300; line-height: 1.8;">
-                    Filthy Tees Empire no es moda para todos. Es una bofetada visual. Es para los que entienden que lo "políticamente correcto" es el nuevo aburrimiento. Fabricamos camisetas con actitud, sarcasmo y una estética que grita NSFW.
+                <p style="font-size: 1.4rem; color: var(--text-gray); font-weight: 300;">
+                    Filthy Tees Empire + Gelato. Calidad premium impresa bajo demanda para los que entienden que lo "políticamente correcto" es el nuevo aburrimiento.
                 </p>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 Filthy Tees Empire. All rights ignored.</p>
+        <p>&copy; 2026 Filthy Tees Empire. Powered by Gelato.</p>
     </footer>
 
     <script>
-        // --- DATOS ---
-        const PRODUCTS = [
-            { id: 1, name: 'Camiseta Chaos', price: 29.99, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800', desc: 'Desorden visual absoluto. 100% algodón hilado en anillo.' },
-            { id: 2, name: 'Sudadera Void', price: 59.99, img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800', desc: 'Minimalismo oscuro. Tejido premium de alta densidad.' },
-            { id: 3, name: 'Gorra Glitch', price: 24.99, img: 'https://images.unsplash.com/photo-1588850567047-1845a9ee0280?q=80&w=800', desc: 'Error en la matriz. Ajustable y de perfil bajo.' },
-            { id: 4, name: 'Pantalón Cargo X', price: 69.99, img: 'https://images.unsplash.com/photo-1565084888279-aff99672046d?q=80&w=800', desc: 'Utilidad máxima para el explorador urbano.' }
+        // --- CONFIGURACIÓN GELATO ---
+        // Línea 218: Clave de API de prueba integrada
+        const GELATO_API_KEY = "f97b5ed7-3ce5-4b42-8bc5-543ce18a424d-538fd480-f61e-4d5a-aa66-c124aa87b524:b00760cf-1744-4f13-b39a-8681cc2af938"; 
+        
+        const MOCK_PRODUCTS = [
+            { id: 'g1', name: 'Camiseta Chaos (Gelato)', price: 29.99, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800', desc: 'Edición limitada Gelato. 100% algodón.' },
+            { id: 'g2', name: 'Sudadera Void (Gelato)', price: 59.99, img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800', desc: 'Comodidad absoluta impresa por Gelato.' },
+            { id: 'g3', name: 'Gorra Glitch (Gelato)', price: 24.99, img: 'https://images.unsplash.com/photo-1588850567047-1845a9ee0280?q=80&w=800', desc: 'Ajuste perfecto.' },
+            { id: 'g4', name: 'Cargo Pants X', price: 69.99, img: 'https://images.unsplash.com/photo-1565084888279-aff99672046d?q=80&w=800', desc: 'Resistencia extrema.' }
         ];
 
+        let products = [];
         let cart = [];
 
         // --- INICIALIZACIÓN ---
         window.onload = () => {
             lucide.createIcons();
-            renderProducts();
             if(localStorage.getItem('age_verified')) {
                 document.getElementById('age-gate').style.display = 'none';
             }
+            syncProducts();
         };
 
         function verifyAge() {
@@ -452,37 +419,87 @@
             document.getElementById('age-gate').style.display = 'none';
         }
 
-        // --- SISTEMA DE NAVEGACIÓN ---
+        // --- API SYNC (GELATO) ---
+        // Línea 247: Función mejorada para evitar errores en consola por CORS o fallos de API
+        async function syncProducts() {
+            if (!GELATO_API_KEY) {
+                console.log("Modo Demo: Usando productos Mock.");
+                products = MOCK_PRODUCTS;
+                renderProducts();
+                return;
+            }
+
+            const spinner = document.getElementById('loading-spinner');
+            if(spinner) spinner.style.display = 'block';
+
+            try {
+                // Nota: Las llamadas a APIs externas desde el navegador pueden dar errores de CORS
+                // si el servidor de la API no permite peticiones desde tu dominio actual.
+                const response = await fetch('https://api.gelato.com/v1/catalog/products', {
+                    headers: { 'X-API-KEY': GELATO_API_KEY }
+                });
+                
+                if (!response.ok) throw new Error('API Response Error');
+                
+                const data = await response.json();
+                
+                if (data.products && data.products.length > 0) {
+                    products = data.products.map(p => ({
+                        id: p.productUid,
+                        name: p.title,
+                        price: 35.00,
+                        img: p.previewUrl || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800',
+                        desc: p.description || 'Producto oficial impreso por Gelato.'
+                    }));
+                } else {
+                    products = MOCK_PRODUCTS;
+                }
+            } catch (err) {
+                // Si hay error de red o CORS, cargamos los MOCK sin romper la web
+                console.warn("API Gelato no accesible (posible error de CORS). Usando catálogo de respaldo.");
+                products = MOCK_PRODUCTS;
+            } finally {
+                if(spinner) spinner.style.display = 'none';
+                renderProducts();
+            }
+        }
+
         function showView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // --- RENDER ---
+        // Línea 290: Renderizado que refresca los iconos de Lucide
         function renderProducts() {
-            const featuredContainer = document.getElementById('featured-products');
-            const shopContainer = document.getElementById('all-products');
+            const featured = document.getElementById('featured-products');
+            const shop = document.getElementById('all-products');
             
-            const html = PRODUCTS.map(p => `
+            const html = products.map(p => `
                 <div class="product-card">
-                    <div class="product-image" onclick="viewDetail(${p.id})">
+                    <div class="product-image" onclick="viewDetail('${p.id}')">
                         <img src="${p.img}" alt="${p.name}">
                     </div>
                     <h3>${p.name}</h3>
                     <p class="price">€${p.price}</p>
-                    <button class="add-to-cart" onclick="addToCart(${p.id})">Añadir al carrito</button>
+                    <button class="add-to-cart" onclick="addToCart('${p.id}')">Añadir</button>
                 </div>
             `).join('');
 
-            featuredContainer.innerHTML = html;
-            shopContainer.innerHTML = html;
+            if(featured) featured.innerHTML = html;
+            if(shop) shop.innerHTML = html;
+            
+            // Refrescar iconos Lucide después de inyectar HTML
+            if (window.lucide) window.lucide.createIcons();
         }
 
-        // Función corregida para mostrar el detalle del producto
+        // Línea 310: Función de detalle protegida contra errores
         function viewDetail(id) {
-            const p = PRODUCTS.find(prod => prod.id === id);
+            const p = products.find(prod => prod.id === id);
+            if(!p) return;
+            
             const container = document.getElementById('product-content');
+            if(!container) return;
             
             container.innerHTML = `
                 <div class="detail-image-container">
@@ -493,17 +510,18 @@
                     <p style="font-size: 2rem; font-weight: 900;">€${p.price}</p>
                     <p style="color: var(--text-gray); font-size: 1.2rem; font-weight: 300;">${p.desc}</p>
                     <div style="display: flex; gap: 20px;">
-                        <button class="cta-button" onclick="addToCart(${p.id})">Añadir al Botín</button>
+                        <button class="cta-button" onclick="addToCart('${p.id}')">Lo Quiero</button>
                         <button class="add-to-cart" style="width: auto; padding: 0 30px;" onclick="showView('shop')">Volver</button>
                     </div>
                 </div>
             `;
             showView('product-detail');
+            if (window.lucide) window.lucide.createIcons();
         }
 
-        // --- CARRITO ---
         function addToCart(id) {
-            const p = PRODUCTS.find(prod => prod.id === id);
+            const p = products.find(prod => prod.id === id);
+            if(!p) return;
             cart.push({ ...p, cartId: Date.now() });
             updateUI();
             showView('cart');
@@ -515,38 +533,41 @@
         }
 
         function updateUI() {
-            // Contador en la navegación
-            document.getElementById('cart-count').innerText = cart.length;
+            const countElem = document.getElementById('cart-count');
+            if(countElem) countElem.innerText = cart.length;
             
-            // Lista de items en la vista de carrito
             const list = document.getElementById('cart-items-list');
             const summary = document.getElementById('cart-summary');
             
             if (cart.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: var(--text-gray); margin-top: 40px;">Tu carrito está vacío. Ve a buscar algo de caos.</p>`;
-                summary.innerHTML = "";
+                if(list) list.innerHTML = `<p style="text-align: center; color: var(--text-gray); margin-top: 40px;">Tu carrito está vacío.</p>`;
+                if(summary) summary.innerHTML = "";
                 return;
             }
 
-            list.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <img src="${item.img}">
-                    <div style="flex: 1;">
-                        <h4 style="font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">${item.name}</h4>
-                        <p style="font-weight: 400; color: var(--text-gray);">€${item.price}</p>
+            if(list) {
+                list.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.img}">
+                        <div style="flex: 1;">
+                            <h4 style="font-weight: 700; text-transform: uppercase;">${item.name}</h4>
+                            <p style="font-weight: 400; color: var(--text-gray);">€${item.price}</p>
+                        </div>
+                        <button style="background: none; border: none; color: var(--neon-red); cursor: pointer; font-weight: 900;" onclick="removeFromCart(${item.cartId})">QUITAR</button>
                     </div>
-                    <button style="background: none; border: none; color: var(--neon-red); cursor: pointer; font-weight: 900; font-size: 0.7rem;" onclick="removeFromCart(${item.cartId})">QUITAR</button>
-                </div>
-            `).join('');
+                `).join('');
+            }
 
             const total = cart.reduce((acc, item) => acc + item.price, 0);
-            summary.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">Total</span>
-                    <span class="neon-text-pink" style="font-size: 3rem; font-weight: 900;">€${total.toFixed(2)}</span>
-                </div>
-                <button class="cta-button" style="width: 100%; margin-top: 30px; border: none; cursor: pointer;" onclick="alert('Pedido simulado enviado a Printful')">Proceder al pago</button>
-            `;
+            if(summary) {
+                summary.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 900; font-size: 1.5rem;">TOTAL</span>
+                        <span class="neon-text-pink" style="font-size: 3rem; font-weight: 900;">€${total.toFixed(2)}</span>
+                    </div>
+                    <button class="cta-button" style="width: 100%; margin-top: 30px;" onclick="alert('Pedido simulado enviado a Gelato.')">Tramitar Pedido</button>
+                `;
+            }
         }
     </script>
 </body>

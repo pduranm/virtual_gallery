@@ -1,87 +1,430 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artista</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thomas Cole | Virtual Gallery</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #b58d53;
+      --color-background: #fdfdfd;
+      --color-light: #e6e6e6;
+      --font-serif-display: 'Cinzel', serif;
+      --font-serif-body: 'Lora', serif;
+      --header-height: 80px;
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-serif-body);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER STYLES --- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
+    .logo a {
+      font-family: var(--font-serif-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .nav-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-secondary);
+    }
+
+    /* Mobile Sidebar */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .main-content {
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .detail-portrait {
+      width: 100%;
+      border: 10px solid #fff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      object-fit: cover;
+    }
+
+    .detail-metadata {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border: 1px solid #eee;
+    }
+
+    .detail-metadata h4 {
+      font-family: var(--font-serif-display);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: #888;
+    }
+
+    .detail-main {
+      padding-top: 10px;
+    }
+
+    .detail-name {
+      font-family: var(--font-serif-display);
+      font-size: 3.5rem;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .detail-subtitle {
+      font-family: var(--font-serif-display);
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .detail-text {
+      column-count: 2;
+      column-gap: 40px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 60px;
+      text-align: justify;
+    }
+
+    .drop-cap {
+      float: left;
+      font-family: var(--font-serif-display);
+      font-size: 4rem;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--color-secondary);
+    }
+
+    .works-section-title {
+      font-family: var(--font-serif-display);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--color-secondary);
+      padding-left: 20px;
+    }
+
+    .works-grid-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .work-mini-item {
+      aspect-ratio: 1;
+      background-color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .work-mini-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .work-mini-item:hover {
+      opacity: 0.9;
+    }
+
+    .work-mini-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .btn-back-detail {
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #888;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .btn-back-detail:hover {
+      color: var(--color-primary);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main-header {
+        padding: 0 20px;
+      }
+
+      .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+      }
+
+      .detail-text {
+        column-count: 1;
+      }
+
+      .works-grid-mini {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .detail-name {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header class="romanticismo">  
-        <h1> Thomas Cole</h1>
-        <h2>(1801-1848)</h2>
-    </header>
-    
-    <main class="grid-container">
-      <p class="text-full"> 
-        Con una notable influencia de los paisajistas europeos como <strong>Turner y Martin</strong>,
-        Thomas Cole se destacó por sus paisajes alegóricos y románticos que combinaban naturaleza, 
-        arte y religión en un conjunto simbólico.
-      </p>
-        
-        <div class="image-full romanticismo">
-            <img width="100%" height="300" src="https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNjMzZjQ4ODgwYWYyNi5qcGciLCJyZXNpemUsMjAwMCwyMDAwIl19.7Eo_k40y4QYEsFYRmIdW_BLkT4_n_VcnHSTlWK5bfZU.jpg" >
-            <p style="text-align: center;">La consumación del imperio <br> <i> 1836 </i>  </p>
-          </div>
-        <p class="text-full">
-            Thomas Cole (1801-1848) fue un pintor estadounidense de origen británico y fundador de la Escuela del Río Hudson. 
-            Establecido en Nueva York en 1825.
-        </p>
-        
-        <div class="image-full romanticismo">
-            <img width="100%" height="450" class="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Expulsion_-_Moon_and_Firelight_c1828_Thomas_Cole.jpg/800px-Expulsion_-_Moon_and_Firelight_c1828_Thomas_Cole.jpg"  />
-            <p style="text-align: center;"> Expulsión. Luna y luz de fuego<br> <i>1828</i> </p>
-        </div>
-        <p class="text-full">
-            Cole se especializó en paisajes de la región del <strong>río Hudson</strong>, buscando lograr un <i>"estilo elevado de paisaje" </i> con un mensaje moral equivalente 
-            al de la pintura histórica.
-        </p>
 
-        <div class="image-full romanticismo">
-            <img width="100%" height="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cole_Thomas_Aqueduct_near_Rome_1832.jpg/800px-Cole_Thomas_Aqueduct_near_Rome_1832.jpg" />
-          <p style="text-align: center;"> Acueducto cerca de Roma<br><i>1832</i></p>
-        </div>
-        
-        <p class="text-full">
-            Comenzó su carrera como grabador y estudió en la <strong>Academia de Bellas Artes de Pensilvania</strong> antes de ganar fama por 
-            sus paisajes alegóricos y románticos, que se vendieron rápidamente en varias ciudades importantes.
-        </p>
-        <div class="image-full romanticismo">
-            <img width="100%" height="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Thomas_Cole_001.jpg/515px-Thomas_Cole_001.jpg" />
-          <p style="text-align: center;"> El cáliz del titán  <br> <i> 1833  </i> </p>
-        </div>
-       <p class="text-full">
-        Viajó a Europa entre 1829-1832 y 1841-1842, donde fue influenciado por Turner y Martin entre otros.
-        Cole atrajo a otros paisajistas, formando la primera 
-        escuela artística nacional en <strong>Estados Unidos</strong>, que exaltaba el paisaje americano como el nuevo Edén, influyendo también en el <i>luminismo 
-        americano</i>. 
-       </p>
-        <div class="image-full romanticismo">
-            <img width="100%" height="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/The_Woodchopper%2C_Lake_Featherstonhaugh.jpg/375px-The_Woodchopper%2C_Lake_Featherstonhaugh.jpg" />
-          <p style="text-align: center;"> El leñador  <br> <i> 1826  </i> </p>
-        </div>
-        
-        <div id="fullscreen-view" class="hidden">
-          <img id="fullscreen-image" />
-        </div>
-        <!-- <button class="btn-catalogo text-full">Obras</button> -->
-    </main>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-      <div class="text-full" style="background-color: #000000; color: white;" >
-        <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-      </div>
-    </a>
-    <div>
-      <br>
+  <!-- Header -->
+  <header class="main-header">
+    <button class="menu-toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">
+      <a href="../../main.html">VIRTUAL GALLERY</a>
     </div>
-    <footer class="main-footer">
-      <p>&copy; Virtual Gallery 2024</p>
-    </footer>
-</body>
-</html>
-<!-- 
+    <nav class="nav-container">
+      <div class="nav-item">
+        <a href="../../artistList.html" class="nav-link">Artistas</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../main.html" class="nav-link">Colección</a>
+      </div>
+      <div class="nav-item">
+        <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+      </div>
+    </nav>
+  </header>
 
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="detail-layout">
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar">
+        <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+        <!-- Using a known portrait of Thomas Cole -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Thomas_Cole_MET_DP234739.jpg/360px-Thomas_Cole_MET_DP234739.jpg"
+          alt="Thomas Cole" class="detail-portrait">
+
+        <div class="detail-metadata">
+          <h4>FICHA TÉCNICA</h4>
+          <div class="meta-row"><span class="meta-label">Origen:</span> <span>Reino Unido / EE.UU.</span></div>
+          <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1801 - 1848</span></div>
+          <div class="meta-row"><span class="meta-label">Movimiento:</span> <span>Escuela del Río Hudson</span></div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="detail-main">
+        <span class="detail-subtitle">ESCUELA DEL RÍO HUDSON</span>
+        <h2 class="detail-name">Thomas Cole</h2>
+
+        <div class="detail-text">
+          <p><span class="drop-cap">T</span>homas Cole (1801-1848) fue un pintor estadounidense de origen británico,
+            considerado el fundador de la <strong>Escuela del Río Hudson</strong>. Establecido en Nueva York en 1825,
+            comenzó su carrera como grabador y estudió en la Academia de Bellas Artes de Pensilvania antes de ganar fama
+            por sus paisajes alegóricos.</p>
+
+          <p>Cole se especializó en paisajes de la región del río Hudson, en las montañas de Catskill, buscando lograr
+            un <i>"estilo elevado de paisaje"</i> que combinara la belleza natural con un mensaje moral y espiritual.
+            Con una notable influencia de los paisajistas europeos como <strong>Turner y John Martin</strong>, a quienes
+            conoció durante sus viajes a Europa (1829-1832 y 1841-1842), Cole desarrolló un estilo romántico único.</p>
+
+          <p>Sus obras más famosas incluyen series alegóricas como <i>"El curso del imperio"</i> y <i>"El viaje de la
+              vida"</i>, donde la naturaleza sirve como escenario para dramas históricos y espirituales. Al atraer a
+            otros artistas a pintar el paisaje americano, Cole sentó las bases de la primera escuela artística nacional
+            en Estados Unidos, exaltando la naturaleza virgen del Nuevo Mundo como un "nuevo Edén".</p>
+
+          <p>Su legado perdura en la visión monumental y trascendental del paisaje americano que definió el arte del
+            siglo XIX en Estados Unidos, influyendo decisivamente en el luminismo y en generaciones posteriores de
+            paisajistas.</p>
+        </div>
+
+        <h4 class="works-section-title">Catálogo Razonado</h4>
+        <div class="works-grid-mini">
+          <div class="work-mini-item">
+            <img
+              src="https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNjMzZjQ4ODgwYWYyNi5qcGciLCJyZXNpemUsMjAwMCwyMDAwIl19.7Eo_k40y4QYEsFYRmIdW_BLkT4_n_VcnHSTlWK5bfZU.jpg"
+              alt="La consumación del imperio">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/The_Course_of_Empire_Destruction_1836.jpg/1200px-The_Course_of_Empire_Destruction_1836.jpg"
+              alt="El curso del imperio: Destrucción">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cole_Thomas_Aqueduct_near_Rome_1832.jpg/800px-Cole_Thomas_Aqueduct_near_Rome_1832.jpg"
+              alt="Acueducto cerca de Roma">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Thomas_Cole_001.jpg/515px-Thomas_Cole_001.jpg"
+              alt="El cáliz del titán">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/The_Woodchopper%2C_Lake_Featherstonhaugh.jpg/375px-The_Woodchopper%2C_Lake_Featherstonhaugh.jpg"
+              alt="El leñador">
+          </div>
+          <div class="work-mini-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Expulsion_-_Moon_and_Firelight_c1828_Thomas_Cole.jpg/800px-Expulsion_-_Moon_and_Firelight_c1828_Thomas_Cole.jpg"
+              alt="Expulsión. Luna y luz de fuego">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
+  </footer>
+
+</body>
+
+</html>

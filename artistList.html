@@ -4,107 +4,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista General</title>
-    <link rel="stylesheet" href="/css/movimiento_style.css">
+    <title>Impresionismo | Virtual Gallery</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-background: #ffffff;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.4s ease;
+        }
+
+        /* --- RESET Y BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER (Igual que antes) --- */
+        .main-header {
+            position: fixed; top: 0; width: 100%; height: var(--header-height);
+            background: #fff; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 50px; border-bottom: 1px solid #eee; z-index: 2000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display); font-size: 1.4rem; font-weight: 700; letter-spacing: 4px;
+        }
+
+        .nav-container { display: flex; height: 100%; }
+        .nav-item { display: flex; align-items: center; padding: 0 25px; height: 100%; }
+        .nav-link {
+            font-family: var(--font-serif-display); font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 700;
+        }
+
+        /* --- MENÚ MÓVIL --- */
+        .menu-toggle {
+            display: none; flex-direction: column; justify-content: space-between;
+            width: 30px; height: 20px; background: transparent; border: none; cursor: pointer; z-index: 2100;
+        }
+        .menu-toggle span { width: 100%; height: 2px; background-color: var(--color-primary); transition: 0.3s; }
+
+        .mobile-sidebar {
+            position: fixed; top: 0; left: 0; width: 85%; max-width: 350px; height: 100vh;
+            background: #fff; z-index: 2200; transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            padding: 80px 30px; box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column;
+        }
+        .mobile-sidebar.active { transform: translateX(0); }
+        
+        .close-menu {
+            position: absolute; top: 25px; right: 25px; font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--color-primary);
+        }
+        .mobile-nav-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+        .mobile-nav-header { font-family: var(--font-serif-display); font-weight: 700; display: block; }
+        .site-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1500; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+        }
+
+        /* --- HERO --- */
+        .page-hero {
+            margin-top: var(--header-height); height: 40vh; min-height: 300px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            background-color: #f4f4f4; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1600'); 
+            background-size: cover; background-position: center; opacity: 0.8; filter: grayscale(30%);
+        }
+        .hero-content {
+            position: relative; z-index: 2; text-align: center; background: rgba(255, 255, 255, 0.85);
+            padding: 30px 50px; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.1);
+        }
+        .hero-content h1 { font-family: var(--font-serif-display); font-size: 2.5rem; margin-bottom: 5px; letter-spacing: 5px; }
+        .hero-content p { font-family: var(--font-serif-display); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #b58d53; }
+
+        /* --- GRID ARTISTAS (Solo Foto y Nombre) --- */
+        .content-wrapper { max-width: 1400px; margin: 0 auto; padding: 60px 30px; }
+        .intro-text { max-width: 700px; margin: 0 auto 60px auto; text-align: center; font-size: 1rem; color: #555; line-height: 1.7; }
+
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 Columnas pequeñas */
+            gap: 30px 20px;
+        }
+
+        .artist-card {
+            display: flex; flex-direction: column; cursor: pointer;
+            text-decoration: none; /* Asegura que no parezca un enlace subrayado */
+        }
+
+        .image-container {
+            width: 100%; aspect-ratio: 1 / 1; /* Cuadrado */
+            overflow: hidden; background: #eee; margin-bottom: 12px;
+        }
+
+        .image-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.5s;
+            filter: grayscale(100%);
+        }
+
+        .artist-card:hover .image-container img { transform: scale(1.05); filter: grayscale(0%); }
+
+        .artist-info { text-align: center; }
+        .artist-info h3 {
+            font-family: var(--font-serif-display); font-size: 0.9rem; /* Nombre discreto */
+            letter-spacing: 1px; color: var(--color-primary); font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid #eee; margin-top: 40px; }
+        footer p { font-size: 0.7rem; color: #999; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1300px) { .artists-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 950px) {
+            .artists-grid { grid-template-columns: repeat(3, 1fr); }
+            .main-header { padding: 0 20px; } .nav-container { display: none; } .menu-toggle { display: flex; }
+        }
+        @media (max-width: 650px) {
+            .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 15px; } /* 2 columnas en móvil */
+            .hero-content h1 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 
 <body>
-    <header style="background-color: #c9b2c7; color: black;">
-        <h2>Listado de Artistas</h2>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <header class="main-header">
+        <button class="menu-toggle" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        <div class="logo"><a href="main.html">VIRTUAL GALLERY</a></div>
+        <nav class="nav-container">
+            <div class="nav-item"><a href="#" class="nav-link">Artistas</a></div>
+            <div class="nav-item"><a href="#" class="nav-link">Movimientos</a></div>
+            <div class="nav-item"><a href="#" class="nav-link">Ensayos</a></div>
+        </nav>
     </header>
-    <br>
 
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Artistas</a></div>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Movimientos</a></div>
+        <div class="mobile-nav-item"><a href="#" class="mobile-nav-header">Ensayos</a></div>
+        <div class="mobile-nav-item"><a href="contacto.html" class="mobile-nav-header">Contacto</a></div>
+    </div>
 
-    <main class="grid-container">
-        <div class="image-full">
-            <a href="artistas/camille/camille.html">
-                <img width="100%" height="450"
-                    src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPgyZuVURtKpqcMWzFPdrXORIwx6srxgzKRKKrdeQiajhAYMwKhRHtDznae4tYnkmf2KIr3g">
-                <p style="text-align: center;">Camille Corot <br> <i>1796 - 1875</i></p>
-            </a>
+    <section class="page-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>IMPRESIONISMO</h1>
+            <p>1860 — 1890</p>
         </div>
+    </section>
 
-        <div class="image-full">
-            <a href="artistas/courbet/courbet.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg/220px-Gustave_Courbet%2C_photograph_Atelier_Nadar%2C_c._1860s.jpg">
-                <p style="text-align: center;">Gustave Courbet <br><i>1819 - 1877</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/goya/goya.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg/220px-Vicente_L%C3%B3pez_Porta%C3%B1a_-_el_pintor_Francisco_de_Goya.jpg">
-                <p style="text-align: center;"> Francisco de Goya <br> <i>1764 - 1828</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/millet/index.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jean-FrancoisMillet%28Nadar%29.jpg/250px-Jean-FrancoisMillet%28Nadar%29.jpg">
-                <p style="text-align: center;"> Jean François Millet <br> <i>1814 - 1875</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/daubigny/daubigny.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Charles_francois_daubigny.jpg/473px-Charles_francois_daubigny.jpg">
-                <p style="text-align: center;"> Charles F. Daubigny <br> <i>1814 - 1875</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/gerard/index.html">
-                <img width="100%" height="400"
-                    src="https://upload.wikimedia.org/wikipedia/commons/1/18/Thomas_Lawrence_-_Francois_Gerard.jpg"
-                    alt="">
-                <p style="text-align: center;"> François Gérard <br> <i>1770 - 1837</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/delacroix/delacroix.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Eugene_delacroix.jpg/220px-Eugene_delacroix.jpg">
-                <p style="text-align: center;"> Eugène Delacroix <br> <i>1798 - 1863</i></p>
-            </a>
-            <div class="image-full">
-                <a href="artistas/dupre/index.html">
-                    <img width="100%" height="450"
-                        src="https://uploads8.wikiart.org/temp/ae6fe7e9-d13e-43a2-998e-02e5b129231b.jpg!Portrait.jpg">
-                    <p style="text-align: center;"> Jules Dupré <br> <i>1812 - 1889</i></p>
-                </a>
+    <main class="content-wrapper">
+        <p class="intro-text">
+            Un movimiento que redefinió la percepción visual. Capturando el instante efímero, 
+            la luz cambiante y la vida moderna a través de pinceladas sueltas y colores puros.
+        </p>
+
+        <div class="artists-grid">
+            
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet">
+                </div>
+                <div class="artist-info">
+                    <h3>Claude Monet</h3>
+                </div>
             </div>
-        </div>
-        <div class="image-full">
-            <a href="artistas/theo-rousseau/theo-rousseau.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Theodore_Rousseau.jpg">
-                <p style="text-align: center;">Théodore Rousseau <br><i>1817 - 1867</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/scheffer/scheffer.html">
-                <img width="100%" height="450"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg/220px-Ary_Scheffer_Self-portrait_Rijksmuseum_SK_A_4748.jpg">
-                <p style="text-align: center;"> Ary Scheffer <br> <i>1795 - 1858</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/thomas_cole/thomas_cole.html">
-                <img width="100%" height="400"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Thomascole2.jpg/220px-Thomascole2.jpg">
-                <p style="text-align: center;"> Thomas Cole <br> <i>1801 - 1848</i></p>
-            </a>
-        </div>
-        <div class="image-full">
-            <a href="artistas/leonardo/leonardo.html">
-                <img width="100%" height="400"
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQgAgPpQ3XkIvdohs4895lMgXWc2otUhvFp07duEkuDxrPzZ84uos0qsCyF1PnCS6MY6D7glQrO_smPV5zb9ip5gA">
-                <p style="text-align: center;"> Leonardo Da Vinci <br> <i>1452 - 1519</i></p>
-            </a>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Pierre-Auguste_Renoir%2C_c._1910.jpg/800px-Pierre-Auguste_Renoir%2C_c._1910.jpg" alt="Auguste Renoir">
+                </div>
+                <div class="artist-info">
+                    <h3>Auguste Renoir</h3>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Camille_Pissarro_01.jpg" alt="Camille Pissarro">
+                </div>
+                <div class="artist-info">
+                    <h3>Camille Pissarro</h3>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Edgar_Degas_self_portrait_1855.jpeg" alt="Edgar Degas">
+                </div>
+                <div class="artist-info">
+                    <h3>Edgar Degas</h3>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Berthe_Morisot_with_a_Bouquet_of_Violets_%28Edouard_Manet%29.jpg" alt="Berthe Morisot">
+                </div>
+                <div class="artist-info">
+                    <h3>Berthe Morisot</h3>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Alfred_Sisley_photo.jpg" alt="Alfred Sisley">
+                </div>
+                <div class="artist-info">
+                    <h3>Alfred Sisley</h3>
+                </div>
+            </div>
+            
+            <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Mary_Cassatt_Self-Portrait_c._1880.jpg" alt="Mary Cassatt">
+                </div>
+                <div class="artist-info">
+                    <h3>Mary Cassatt</h3>
+                </div>
+            </div>
+
+             <div class="artist-card">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Edouard_Manet.jpg" alt="Édouard Manet">
+                </div>
+                <div class="artist-info">
+                    <h3>Édouard Manet</h3>
+                </div>
+            </div>
+
         </div>
     </main>
 
-</body>
+    <footer>
+        <p>&copy; 2025 VIRTUAL GALLERY</p>
+    </footer>
 
+    <script>
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('siteOverlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            if (sidebar.classList.contains('active')) {
+                overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
+            } else {
+                overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+            }
+        }
+
+        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+        if(overlay) overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+        });
+    </script>
+</body>
 </html>

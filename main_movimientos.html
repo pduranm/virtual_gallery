@@ -1,333 +1,713 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Principal - Revista de Arte</title>
-    <!-- Carga de las fuentes Lora y Cinzel -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <title>Movimientos | Virtual Gallery</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* ============================================== */
-        /* CSS PROPORCIONADO POR EL USUARIO (INTEGRADO) */
-        /* ============================================== */
-        body {
-            font-family: 'Lora', serif;
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Reset */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #e8f6f7;
-            color: #333;
-            /* body ya no tiene display: flex para evitar conflictos con el menú fijo */
-            overflow-x: hidden; /* Evita el scroll horizontal del menú off-canvas */
+            box-sizing: border-box;
         }
 
-        header.main-header {
-            background-color: #000000;
-            color: white;
-            width: 100%;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER STYLES --- */
+        .main-header {
+            position: fixed;
             top: 0;
-            z-index: 20;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .header-content {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0px;
-            font-size: 2.5em;
-        }
-        header h2 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        
-        /* Layout de Galería (Grid Container) */
-        main.grid-container {
-            display: grid;
-            /* La rejilla usa auto-fill para ser responsive y colocar tarjetas de min. 150px */
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; /* Aumentado a 25px para mejor separación visual */
-            padding: 20px;
-            width: 95%;
-            max-width: 1200px;
-            margin: 20px auto;
-        }
-
-        /* Se mantienen las clases del CSS original para los elementos internos del grid */
-        .grid-item {
-            break-inside: avoid;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .grid-item:hover {
-            transform: scale(1.03); /* Ligero aumento al pasar el ratón */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .grid-item img {
             width: 100%;
-            height: 200px; /* Altura fija para miniaturas de artículos */
-            display: block;
-            object-fit: cover;
-        }
-        
-        .item-content {
-            padding: 15px;
-        }
-
-        .item-content h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 5px;
-            color: #ec8c8c; /* Color del borde inferior del h1_main */
-        }
-        
-        .item-content p {
-            font-size: 0.9em;
-            color: #555;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
         }
 
-        /* Título de la sección principal */
-        .h1_main {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 30px auto 20px;
-            padding: 15px 0;
-            border-top: 2px solid #776b5e;
-            border-bottom: 3px solid #ec8c8c;
-            color: #000000;
-            max-width: 900px;
-            width: 90%;
-        }
-        
-        a {
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
             text-decoration: none;
+            color: var(--color-primary);
         }
 
-        /* ============================================== */
-        /* NAVEGACIÓN LATERAL Y HAMBURGUESA (Movilidad) */
-        /* ============================================== */
-        .hamburger-button {
-            display: block;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            padding: 0 15px;
-            z-index: 30;
-        }
-        /* Ocultar el botón en PC */
-        @media (min-width: 901px) {
-            .hamburger-button {
-                display: none;
-            }
-            .main-nav {
-                display: flex !important;
-                justify-content: center;
-                gap: 25px;
-                border-bottom: 1px solid #ddd;
-                padding: 10px 0;
-            }
+        .nav-container {
+            display: flex;
+            height: 100%;
         }
 
-        /* Contenedor del Menú Lateral */
-        #off-canvas-menu {
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Mega Menu (Desktop) */
+        .mega-menu {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: #fff;
+            visibility: hidden;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: var(--transition-smooth);
+            transform: translateY(-10px);
+        }
+
+        .nav-item:hover .mega-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-content {
+            width: 90%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .menu-column h3 {
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            color: var(--color-secondary);
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .menu-column ul {
+            list-style: none;
+        }
+
+        .menu-column li {
+            margin-bottom: 12px;
+        }
+
+        .menu-column a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .menu-column a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Overlay general */
+        .site-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 250px;
+            width: 100%;
             height: 100%;
-            background-color: #ffffff; 
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-out;
-            z-index: 1000;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        #off-canvas-menu.open {
+        body.menu-open .site-overlay {
+            opacity: 1;
+        }
+
+        /* --- MOBILE MENU --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2200;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            padding: 80px 30px;
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .mobile-sidebar.active {
             transform: translateX(0);
         }
 
-        #off-canvas-menu a {
-            display: block;
-            padding: 10px 20px;
-            color: #000;
-            font-weight: bold;
-            border-bottom: 1px solid #eee;
-        }
-        #off-canvas-menu a:hover {
-            background-color: #e8f6f7;
-            color: #000;
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-primary);
         }
 
-        /* Overlay (Fondo oscuro) */
-        #menu-overlay {
-            position: fixed;
+        .mobile-nav-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            cursor: pointer;
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-item.open .toggle-icon {
+            transform: rotate(45deg);
+            color: var(--color-secondary);
+        }
+
+        .mobile-sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            padding: 0 10px;
+        }
+
+        .mobile-sub-menu a {
+            display: block;
+            font-family: var(--font-serif-body);
+            font-size: 0.95rem;
+            color: #555;
+            padding: 12px 0;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-sub-menu strong {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            font-family: var(--font-serif-display);
+            letter-spacing: 1px;
+        }
+
+        /* ============================================== */
+        /* NEW MOVEMENTS GRID                             */
+        /* ============================================== */
+        .main-content {
+            margin-top: var(--header-height);
+            padding: 60px 40px;
+            min-height: calc(100vh - var(--header-height));
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+
+        /* GRID CARD NEW DESIGN */
+        .grid-card {
+            position: relative;
+            height: 600px;
+            background-color: #111;
+            text-decoration: none;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .card-bg {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-out;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s;
         }
 
-        #menu-overlay.open {
+        .grid-card:hover .card-bg {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+            z-index: 2;
+        }
+
+        .card-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--color-secondary);
+            z-index: 3;
+            transition: border-color 0.4s;
+        }
+
+        .card-info {
+            position: relative;
+            z-index: 4;
+            padding: 50px;
+            width: 100%;
+            transform: translateY(0);
+            transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .card-period {
+            font-family: var(--font-serif-display);
+            font-size: 0.75rem;
+            color: var(--color-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
             opacity: 1;
-            visibility: visible;
+            transform: translateY(0);
+            transition: all 0.5s 0.1s;
+        }
+
+        .card-title {
+            font-family: var(--font-serif-display);
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .card-desc {
+            font-size: 1rem;
+            color: #ccc;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s 0.2s;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: var(--color-secondary);
+            color: #000;
+            font-family: var(--font-serif-display);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            letter-spacing: 1px;
+            z-index: 5;
+            text-transform: uppercase;
+        }
+
+        .status-pill.coming-soon {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-card {
+                height: 500px;
+            }
+
+            .card-title {
+                font-size: 2.2rem;
+            }
+
+            .card-info {
+                transform: translateY(0);
+                padding: 30px;
+            }
+
+            .card-period,
+            .card-desc {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body>
-    
-    <!-- NAVEGACIÓN LATERAL (Off-Canvas - SOLO MÓVIL) -->
-    <nav id="off-canvas-menu">
-        <div style="padding: 0 20px 20px;">
-            <h3 style="margin-top: 0; color: #333; font-family: 'Cinzel', serif;">Menú Principal</h3>
-            <!-- Botón de Cierre -->
-             <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #555;">
-                &times;
-            </button>
-        </div>
-        
-        <a href="#">Inicio</a>
-        <a href="#">Actualidad</a>
-        <a href="#">Especiales</a>
-        <a href="#">Directorio</a>
-        <a href="#">Convocatorias</a>
-    </nav>
-    <div id="menu-overlay" onclick="toggleMenu()"></div>
 
-    <!-- CABECERA PRINCIPAL (Con Logo/Título) -->
+<body>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
     <header class="main-header">
-        <button class="hamburger-button" onclick="toggleMenu()">☰</button>
-        <div class="header-content">
-            <h1>REVISTA DE ARTE</h1>
-            <h2>Menú Principal</h2>
+        <button class="menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="logo">
+            <a href="./main.html">VIRTUAL GALLERY</a>
         </div>
-        <!-- Placeholder para mantener la alineación en PC -->
-        <div class="hamburger-button" style="visibility: hidden;">☰</div> 
+
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="artistList.html" class="nav-link">Artistas</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="menu-column">
+                            <h3>CRONOLOGÍA</h3>
+                            <ul>
+                                <li><a href="#">Renacimiento</a></li>
+                                <li><a href="#">Barroco</a></li>
+                                <li><a href="movimientos/impresionismo.html">Impresionismo</a></li>
+                                <li><a href="#">Vanguardias</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>DESTACADOS</h3>
+                            <ul>
+                                <li><a href="artistas/monet/monet.html">Claude Monet</a></li>
+                                <li><a href="artistas/rembrandt/rembrandt.html">Rembrandt</a></li>
+                                <li><a href="artistas/goya/goya.html">Francisco Goya</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link active">Movimientos</a>
+            </div>
+            <div class="nav-item">
+                <a href="main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- NAVEGACIÓN PRINCIPAL (SOLO PC) -->
-    <nav class="wrapper" style="text-align: center;">
-        <div class="main-nav" style="display: none;">
-            <a href="#" style="font-weight: bold; color: #000;">Inicio</a>
-            <a href="#" style="font-weight: bold; color: #000;">Actualidad</a>
-            <a href="#" style="font-weight: bold; color: #000;">Especiales</a>
-            <a href="#" style="font-weight: bold; color: #000;">Directorio</a>
+    <main class="main-content">
+
+        <div class="section-header">
+            <h1>CORRIENTES ARTÍSTICAS</h1>
+            <p>Explore la evolución del arte a través de los siglos, desde el rigor académico hasta la revolución de la
+                luz.</p>
         </div>
-    </nav>
-    
-    <!-- TÍTULO DE LA SECCIÓN -->
-    <h1 class="h1_main">Lo más Reciente en Arte</h1>
 
-    <!-- CONTENIDO PRINCIPAL: GALERÍA DE ARTÍCULOS -->
-    <main class="grid-container">
+        <section class="hero-grid">
 
-        <!-- TARJETA 1 -->
-        <a href="estructura_web_personalizada.html" class="grid-item">
-            <img src="https://placehold.co/400x200/5d54a4/ffffff?text=Mary+Cassatt" alt="Miniatura del artículo Mary Cassatt">
-            <div class="item-content">
-                <h3>Mary Cassatt y el Público Femenino</h3>
-                <p>Análisis de las obras impresionistas de Cassatt, enfocadas en la vida de las mujeres en París.</p>
-            </div>
-        </a>
+            <!-- IMPRESIONISMO -->
+            <a href="movimientos/impresionismo.html" class="grid-card">
+                <div class="card-bg"
+                    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/1280px-Monet_-_Impression%2C_Sunrise.jpg')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-border"></div>
+                <div class="status-pill">Colección</div>
 
-        <!-- TARJETA 2 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/776b5e/ffffff?text=Monet+Giverny" alt="Miniatura del artículo Monet Giverny">
-            <div class="item-content">
-                <h3>La luz de Giverny: Monet</h3>
-                <p>Un recorrido por la casa y jardines de Claude Monet y su impacto en su serie de Nenúfares.</p>
-            </div>
-        </a>
+                <div class="card-info">
+                    <span class="card-period">1860 — 1890</span>
+                    <h2 class="card-title">Impresionismo</h2>
+                    <p class="card-desc">La captura del instante fugaz y la vibración de la luz al aire libre.</p>
+                </div>
+            </a>
 
-        <!-- TARJETA 3 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/ec8c8c/000000?text=Arte+Contemporaneo" alt="Miniatura del artículo Arte Contemporáneo">
-            <div class="item-content">
-                <h3>Tendencias del Arte Digital</h3>
-                <p>Exploramos las nuevas fronteras del arte contemporáneo y la realidad virtual en museos.</p>
-            </div>
-        </a>
+            <!-- REALISMO -->
+            <a href="movimientos/realismo.html" class="grid-card">
+                <div class="card-bg"
+                    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg/1280px-Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-border"></div>
+                <div class="status-pill">Colección</div>
 
-        <!-- TARJETA 4 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/000000/ffffff?text=Edgar+Degas" alt="Miniatura del artículo Edgar Degas">
-            <div class="item-content">
-                <h3>El Realismo de Degas</h3>
-                <p>Las bailarinas y la vida cotidiana plasmadas con la técnica singular de Edgar Degas.</p>
-            </div>
-        </a>
-        
-        <!-- TARJETA 5 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/333333/ffffff?text=Arquitectura" alt="Miniatura del artículo Arquitectura">
-            <div class="item-content">
-                <h3>La Nueva Bauhaus</h3>
-                <p>Revisión de los principios arquitectónicos de la Bauhaus aplicados a la sostenibilidad moderna.</p>
-            </div>
-        </a>
+                <div class="card-info">
+                    <span class="card-period">1830 — 1870</span>
+                    <h2 class="card-title">Realismo</h2>
+                    <p class="card-desc">Verdad objetiva y compromiso social, retratando la vida sin idealización.</p>
+                </div>
+            </a>
 
-        <!-- TARJETA 6 -->
-        <a href="#" class="grid-item">
-            <img src="https://placehold.co/400x200/5d54a4/ffffff?text=Renacimiento" alt="Miniatura del artículo Renacimiento">
-            <div class="item-content">
-                <h3>Secretos de Miguel Ángel</h3>
-                <p>Análisis de los bocetos y estudios preliminares del artista antes de la Capilla Sixtina.</p>
-            </div>
-        </a>
+            <!-- ROMANTICISMO -->
+            <a href="movimientos/romanticismo.html" class="grid-card">
+                <div class="card-bg"
+                    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Caspar_David_Friedrich_032.jpg/1280px-Caspar_David_Friedrich_032.jpg')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-border"></div>
+                <div class="status-pill coming-soon">Próximamente</div>
 
+                <div class="card-info">
+                    <span class="card-period">1800 — 1850</span>
+                    <h2 class="card-title">Romanticismo</h2>
+                    <p class="card-desc">La exaltación de la emción, la naturaleza sublime y la libertad individual.</p>
+                </div>
+            </a>
+
+            <!-- NEOCLASICISMO -->
+            <a href="movimientos/neoclasicismo.html" class="grid-card">
+                <div class="card-bg"
+                    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Mus%C3%A9e_du_Louvre_Peintures_INV_3692_%3B_MR_1432.jpg/1280px-Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Mus%C3%A9e_du_Louvre_Peintures_INV_3692_%3B_MR_1432.jpg')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-border"></div>
+                <div class="status-pill coming-soon">Próximamente</div>
+
+                <div class="card-info">
+                    <span class="card-period">1750 — 1830</span>
+                    <h2 class="card-title">Neoclasicismo</h2>
+                    <p class="card-desc">El retorno a la razón, el orden y los cánones de la belleza grecolatina.</p>
+                </div>
+            </a>
+
+            <!-- BARROCO -->
+            <a href="#" class="grid-card">
+                <div class="card-bg"
+                    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg/1280px-The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg')">
+                </div>
+                <div class="card-overlay"></div>
+                <div class="card-border"></div>
+                <div class="status-pill coming-soon">Próximamente</div>
+
+                <div class="card-info">
+                    <span class="card-period">1600 — 1750</span>
+                    <h2 class="card-title">Barroco</h2>
+                    <p class="card-desc">Dramatismo, contraste y la búsqueda de la emoción a través del claroscuro.</p>
+                </div>
+            </a>
+
+        </section>
     </main>
-    
-    <script>
-        // Lógica del menú lateral (Off-Canvas)
-        const sidebar = document.getElementById('off-canvas-menu');
-        const overlay = document.getElementById('menu-overlay');
-        const navMain = document.querySelector('.main-nav');
-        
-        // Función para abrir/cerrar el menú
-        function toggleMenu() {
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
-            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-        }
-        
-        // Lógica de visualización del menú principal en PC
-        const checkWindowSize = () => {
-             if (window.innerWidth > 900) {
-                 // Ocultar el menú lateral de móvil y mostrar el de PC
-                 sidebar.classList.remove('open');
-                 overlay.classList.remove('open');
-                 document.body.style.overflow = 'auto';
-                 if (navMain) navMain.style.display = 'flex';
-             } else {
-                 // Ocultar el menú de PC en móvil
-                 if (navMain) navMain.style.display = 'none';
-             }
-        };
 
-        // Ejecutar al cargar y redimensionar
-        window.onload = checkWindowSize;
-        window.addEventListener('resize', checkWindowSize);
+    <!-- MOBILE SIDEBAR -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+        <nav class="mobile-nav-links">
+
+            <div class="mobile-nav-item">
+                <div class="mobile-nav-header">
+                    <span>Artistas</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="mobile-sub-menu">
+                    <strong>Destacados</strong>
+                    <a href="artistas/monet/monet.html">Claude Monet</a>
+                    <a href="artistas/rembrandt/rembrandt.html">Rembrandt</a>
+                    <a href="artistas/goya/goya.html">Francisco Goya</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <div class="mobile-nav-header">
+                    <span>Movimientos</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="mobile-sub-menu">
+                    <a href="movimientos/impresionismo.html">Impresionismo</a>
+                    <a href="movimientos/realismo.html">Realismo</a>
+                    <a href="movimientos/romanticismo.html">Romanticismo</a>
+                    <a href="movimientos/neoclasicismo.html">Neoclasicismo</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <a href="contacto.html" class="mobile-nav-header" style="text-decoration: none;">
+                    <span>Sobre Nosotros</span>
+                </a>
+            </div>
+
+        </nav>
+    </div>
+
+    <script>
+        // LÓGICA DESKTOP
+        const navItems = document.querySelectorAll('.nav-item');
+        const overlay = document.getElementById('siteOverlay');
+
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const hasMenu = item.querySelector('.mega-menu');
+                if (hasMenu) {
+                    document.body.classList.add('menu-open');
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // LÓGICA MENU LATERAL MÓVIL
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const sidebar = document.getElementById('mobileSidebar');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+
+            if (sidebar.classList.contains('active')) {
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }
+
+        if (mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+        // Cerrar al hacer click fuera
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+        });
+
+        // LÓGICA ACORDEÓN (DESPLIEGUE SUBMENÚS)
+        const accordionHeaders = document.querySelectorAll('.mobile-nav-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', (e) => {
+                if (header.tagName === 'A') return;
+
+                const parent = header.parentElement;
+                const content = parent.querySelector('.mobile-sub-menu');
+
+                parent.classList.toggle('open');
+
+                if (parent.classList.contains('open')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0";
+                }
+            });
+        });
     </script>
+
 </body>
+
 </html>

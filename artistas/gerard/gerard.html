@@ -4,85 +4,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artista</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+    <title>François Gérard | Virtual Gallery</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER STYLES --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-secondary);
+        }
+
+        /* Mobile Sidebar */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* --- DETAIL VIEW STYLES (ISOLATED) --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .detail-portrait {
+            width: 100%;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
+        }
+
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
+
+        .detail-main {
+            padding-top: 10px;
+        }
+
+        .detail-name {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .detail-text {
+            column-count: 2;
+            column-gap: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 60px;
+            text-align: justify;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 15px;
+            color: var(--color-secondary);
+        }
+
+        .works-section-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+        }
+
+        .works-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .work-mini-item {
+            aspect-ratio: 1;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .work-mini-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-mini-item:hover {
+            opacity: 0.9;
+        }
+
+        .work-mini-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn-back-detail {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .btn-back-detail:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .detail-text {
+                column-count: 1;
+            }
+
+            .works-grid-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-name {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header class="neoclasicismo">
-        <h1 style="font-size: 30px;"> François Gérard</h1>
-        <h2>(1770-1837)</h2>
+
+    <!-- Header -->
+    <header class="main-header">
+        <button class="menu-toggle">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="../../main.html">VIRTUAL GALLERY</a>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="../../artistList.html" class="nav-link">Artistas</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
+        </nav>
     </header>
 
-    <main class="grid-container">
-        <p class="text-full">
-            François Pascal Simon, barón Gérard, fue un destacado pintor <strong>neoclásico</strong> francés, nacido el
-            4 de mayo de 1770 en Roma y
-            fallecido el 11 de enero de 1837 en París.
-        </p>
+    <!-- Main Content -->
+    <main class="main-content">
 
-        <div class="image-full neoclasicismo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fran%C3%A7ois_G%C3%A9rard_-_Napoleon_I_001.JPG/383px-Fran%C3%A7ois_G%C3%A9rard_-_Napoleon_I_001.JPG"
-                width="100%" height="480" />
-            <p style="text-align: center;"> Napoleón I<br> <i>1805 - 1815</i> </p>
+        <div class="detail-layout">
+
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+                <!-- Using a painting as placeholder if specific portrait not found, or generic -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Baron_Fran%C3%A7ois_G%C3%A9rard_-_Self-Portrait_-_WGA08605.jpg/360px-Baron_Fran%C3%A7ois_G%C3%A9rard_-_Self-Portrait_-_WGA08605.jpg"
+                    alt="François Gérard" class="detail-portrait">
+
+                <div class="detail-metadata">
+                    <h4>FICHA TÉCNICA</h4>
+                    <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
+                    <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1770 - 1837</span></div>
+                    <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Neoclasicismo</span></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="detail-main">
+                <span class="detail-subtitle">NEOCLASICISMO - IMPERIO</span>
+                <h2 class="detail-name">François Gérard</h2>
+
+                <div class="detail-text">
+                    <p><span class="drop-cap">F</span>rançois Pascal Simon, barón Gérard, fue un destacado pintor
+                        <strong>neoclásico</strong> francés, nacido el 4 de mayo de 1770 en Roma y fallecido el 11 de
+                        enero de 1837 en París.</p>
+
+                    <p>Gérard fue uno de los pintores más célebres y prolíficos del Imperio y la época de la
+                        <strong>Restauración en Francia</strong>. Su habilidad para entablar conversaciones amenas y su
+                        encantador estilo le permitieron retratar a figuras prominentes de la época, incluyendo a
+                        Napoleón Bonaparte, las emperatrices Josefina y María Luisa, Desirée Bernadotte, Madame de
+                        Staël, Talleyrand y el Duque de Wellington, entre otros.</p>
+
+                    <p>Desde <strong>1786</strong>, Gérard fue uno de los discípulos más destacados del renombrado
+                        pintor <strong>Jacques-Louis David</strong>, trabajando como grabador para sostenerse
+                        económicamente mientras asistía al taller de David. Durante la Revolución francesa, David logró
+                        evitar que Gérard fuera llamado al servicio militar al conseguirle un puesto como juez en el
+                        Tribunal Militar. En <strong>1795</strong>, Gérard emergió como el principal rival de David como
+                        retratista, lo que generó un conflicto con <strong>Antoine-Jean Gros</strong>.</p>
+
+                    <p>Gérard experimentó un rápido cambio político al aceptar la restauración de los Borbones en
+                        Francia, lo que le otorgó gran fama como pintor oficial de <strong>Luis XVIII</strong>. Abrió un
+                        exitoso taller de retratos ostentosos y superficiales, recibiendo títulos honoríficos como el de
+                        barón (1819). Su obra más conocida es el retrato de Napoleón I como emperador.</p>
+                </div>
+
+                <h4 class="works-section-title">Catálogo Razonado</h4>
+                <div class="works-grid-mini">
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fran%C3%A7ois_G%C3%A9rard_-_Napoleon_I_001.JPG/383px-Fran%C3%A7ois_G%C3%A9rard_-_Napoleon_I_001.JPG"
+                            alt="Napoleón I">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Fran%C3%A7ois_G%C3%A9rard_-_Portrait_de_Juliette_R%C3%A9camier%2C_n%C3%A9e_Bernard_%281777-1849%29_-_mus%C3%A9e_Carnavalet.jpg/411px-Fran%C3%A7ois_G%C3%A9rard_-_Portrait_de_Juliette_R%C3%A9camier%2C_n%C3%A9e_Bernard_%281777-1849%29_-_mus%C3%A9e_Carnavalet.jpg"
+                            alt="Juliette Récamier">
+                    </div>
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Fran%C3%A7ois_G%C3%A9rard_-_St_Theresa_%28detail%29.jpg/490px-Fran%C3%A7ois_G%C3%A9rard_-_St_Theresa_%28detail%29.jpg"
+                            alt="Teresa de Ávila">
+                    </div>
+                    <!-- Reusing available images to fill grid since original file had only 3 -->
+                    <div class="work-mini-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Fran%C3%A7ois_G%C3%A9rard_-_Cupid_and_Psyche_-_WGA08603.jpg/800px-Fran%C3%A7ois_G%C3%A9rard_-_Cupid_and_Psyche_-_WGA08603.jpg"
+                            alt="Cupido y Psique">
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <p class="text-full">
-            Gérard fue uno de los pintores más célebres y prolíficos del Imperio y la época de la <strong>Restauración
-                en Francia</strong>.
-            Su habilidad para entablar conversaciones amenas y su encantador estilo le permitieron retratar a figuras
-            prominentes de la época,
-            incluyendo a Napoleón Bonaparte, las emperatrices Josefina y María Luisa, Desirée
-            Bernadotte, Madame de Staël, Talleyrand
-            y el Duque de Wellington, entre otros.
-        </p>
 
-        <div class="image-full neoclasicismo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Fran%C3%A7ois_G%C3%A9rard_-_Portrait_de_Juliette_R%C3%A9camier%2C_n%C3%A9e_Bernard_%281777-1849%29_-_mus%C3%A9e_Carnavalet.jpg/411px-Fran%C3%A7ois_G%C3%A9rard_-_Portrait_de_Juliette_R%C3%A9camier%2C_n%C3%A9e_Bernard_%281777-1849%29_-_mus%C3%A9e_Carnavalet.jpg"
-                width="100%" height="420" />
-            <p style="text-align: center;">Julitte Récamier (Retrato)<br> <i>1802 - 1805</i> </p>
-        </div>
-
-        <p class="text-full">
-            <br>Desde <strong>1786</strong>, Gérard fue uno de los discípulos más destacados del renombrado pintor
-            <strong>Jacques-Louis David</strong>, trabajando como grabador
-            para sostenerse económicamente mientras asistía al taller de David. Durante la Revolución francesa, David
-            logró evitar que Gérard fuera
-            llamado al servicio militar al conseguirle un puesto como juez en el Tribunal Militar. En
-            <strong>1795</strong>, Gérard emergió como el principal rival de
-            David como retratista, lo que generó un conflicto con <strong>Antoine-Jean Gros</strong>.
-        </p>
-
-        <div class="image-full neoclasicismo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Fran%C3%A7ois_G%C3%A9rard_-_St_Theresa_%28detail%29.jpg/490px-Fran%C3%A7ois_G%C3%A9rard_-_St_Theresa_%28detail%29.jpg"
-                width="100%" height="400" />
-            <p style="text-align: center;">Teresa de Ávila <br> <i>1827</i> </p>
-        </div>
-        <p class="text-full">
-            <br>Gérard experimentó un rápido cambio político al aceptar la restauración de los Borbones en Francia, lo
-            que le otorgó gran fama como pintor
-            oficial de <strong>Luis XVIII</strong>. Abrió un exitoso taller de retratos ostentosos y superficiales,
-            recibiendo títulos honoríficos como el de barón (1819).
-
-            Su obra más conocida es el retrato de Napoleón I como emperador.
-        </p>
     </main>
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-        <div class="text-full" style="background-color: #000000; color: white;">
-            <p style="text-align: center; padding-right: 100px; padding-left: 100px; text-decoration: none;">Inicio</p>
-        </div>
-    </a>
-    <div>
-        <br>
-    </div>
-    <footer class="main-footer">
-        <p>&copy; Virtual Gallery 2025</p>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 VIRTUAL GALLERY | Todos los derechos reservados</p>
     </footer>
+
 </body>
 
 </html>
-<!-- 
-
-<div class="grid-img">
-    <img src="  " width="auto" height="auto">
-    <p style="text-align: center;">     </p>
-</div> -->
