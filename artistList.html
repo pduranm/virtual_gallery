@@ -12,6 +12,7 @@
     <style>
         :root {
             --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
             --color-background: #ffffff;
             --font-serif-display: 'Cinzel', serif;
             --font-serif-body: 'Lora', serif;
@@ -20,7 +21,11 @@
         }
 
         /* --- RESET Y BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font-serif-body);
@@ -29,116 +34,192 @@
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-        /* --- HEADER (Igual que antes) --- */
+        /* --- HEADER --- */
         .main-header {
-            position: fixed; top: 0; width: 100%; height: var(--header-height);
-            background: #fff; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 50px; border-bottom: 1px solid #eee; z-index: 2000;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
         }
 
         .logo a {
-            font-family: var(--font-serif-display); font-size: 1.4rem; font-weight: 700; letter-spacing: 4px;
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
         }
 
-        .nav-container { display: flex; height: 100%; }
-        .nav-item { display: flex; align-items: center; padding: 0 25px; height: 100%; }
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+        }
+
         .nav-link {
-            font-family: var(--font-serif-display); font-size: 0.8rem; text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700;
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
 
         /* --- MENÚ MÓVIL --- */
         .menu-toggle {
-            display: none; flex-direction: column; justify-content: space-between;
-            width: 30px; height: 20px; background: transparent; border: none; cursor: pointer; z-index: 2100;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
         }
-        .menu-toggle span { width: 100%; height: 2px; background-color: var(--color-primary); transition: 0.3s; }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
 
         .mobile-sidebar {
-            position: fixed; top: 0; left: 0; width: 85%; max-width: 350px; height: 100vh;
-            background: #fff; z-index: 2200; transform: translateX(-100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2200;
+            transform: translateX(-100%);
             transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            padding: 80px 30px; box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-            display: flex; flex-direction: column;
+            padding: 80px 30px;
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
-        .mobile-sidebar.active { transform: translateX(0); }
-        
+
+        .mobile-sidebar.active {
+            transform: translateX(0);
+        }
+
         .close-menu {
-            position: absolute; top: 25px; right: 25px; font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--color-primary);
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-primary);
         }
-        .mobile-nav-item { border-bottom: 1px solid #eee; padding: 20px 0; }
-        .mobile-nav-header { font-family: var(--font-serif-display); font-weight: 700; display: block; }
+
+        .mobile-nav-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+
+        .mobile-nav-header {
+            font-family: var(--font-serif-display);
+            font-weight: 700;
+            display: block;
+        }
+
         .site-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1500; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
         }
 
-        /* --- HERO --- */
-        .page-hero {
-            margin-top: var(--header-height); height: 40vh; min-height: 300px;
-            position: relative; display: flex; align-items: center; justify-content: center;
-            background-color: #f4f4f4; overflow: hidden;
+        /* --- GRID ARTISTAS (SOLO TEXTO) --- */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: var(--header-height) auto 0;
+            padding: 80px 30px;
         }
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1600'); 
-            background-size: cover; background-position: center; opacity: 0.8; filter: grayscale(30%);
-        }
-        .hero-content {
-            position: relative; z-index: 2; text-align: center; background: rgba(255, 255, 255, 0.85);
-            padding: 30px 50px; backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.1);
-        }
-        .hero-content h1 { font-family: var(--font-serif-display); font-size: 2.5rem; margin-bottom: 5px; letter-spacing: 5px; }
-        .hero-content p { font-family: var(--font-serif-display); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #b58d53; }
-
-        /* --- GRID ARTISTAS (Solo Foto y Nombre) --- */
-        .content-wrapper { max-width: 1400px; margin: 0 auto; padding: 60px 30px; }
-        .intro-text { max-width: 700px; margin: 0 auto 60px auto; text-align: center; font-size: 1rem; color: #555; line-height: 1.7; }
 
         .artists-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 Columnas pequeñas */
-            gap: 30px 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px 20px;
         }
 
         .artist-card {
-            display: flex; flex-direction: column; cursor: pointer;
-            text-decoration: none; /* Asegura que no parezca un enlace subrayado */
+            display: flex;
+            flex-direction: column;
+            padding: 20px 10px;
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+            text-align: center;
         }
 
-        .image-container {
-            width: 100%; aspect-ratio: 1 / 1; /* Cuadrado */
-            overflow: hidden; background: #eee; margin-bottom: 12px;
+        .artist-card:hover {
+            border-color: var(--color-secondary);
+            background-color: #fafafa;
         }
 
-        .image-container img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.5s;
-            filter: grayscale(100%);
-        }
-
-        .artist-card:hover .image-container img { transform: scale(1.05); filter: grayscale(0%); }
-
-        .artist-info { text-align: center; }
         .artist-info h3 {
-            font-family: var(--font-serif-display); font-size: 0.9rem; /* Nombre discreto */
-            letter-spacing: 1px; color: var(--color-primary); font-weight: 700;
+            font-family: var(--font-serif-display);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         /* --- FOOTER --- */
-        footer { padding: 40px 0; text-align: center; border-top: 1px solid #eee; margin-top: 40px; }
-        footer p { font-size: 0.7rem; color: #999; }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 0.7rem;
+            color: #999;
+        }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 1300px) { .artists-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 1200px) {
+            .artists-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
         @media (max-width: 950px) {
             .artists-grid { grid-template-columns: repeat(3, 1fr); }
-            .main-header { padding: 0 20px; } .nav-container { display: none; } .menu-toggle { display: flex; }
+            .nav-container { display: none; }
+            .menu-toggle { display: flex; }
+            .main-header { padding: 0 20px; }
         }
+
         @media (max-width: 650px) {
-            .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 15px; } /* 2 columnas en móvil */
-            .hero-content h1 { font-size: 1.8rem; }
+            .artists-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -165,99 +246,77 @@
         <div class="mobile-nav-item"><a href="contacto.html" class="mobile-nav-header">Contacto</a></div>
     </div>
 
-    <section class="page-hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>IMPRESIONISMO</h1>
-            <p>1860 — 1890</p>
-        </div>
-    </section>
-
     <main class="content-wrapper">
-        <p class="intro-text">
-            Un movimiento que redefinió la percepción visual. Capturando el instante efímero, 
-            la luz cambiante y la vida moderna a través de pinceladas sueltas y colores puros.
-        </p>
-
         <div class="artists-grid">
-            
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet">
-                </div>
+
+            <a href="artistas/monet/monet.html" class="artist-card">
                 <div class="artist-info">
                     <h3>Claude Monet</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Pierre-Auguste_Renoir%2C_c._1910.jpg/800px-Pierre-Auguste_Renoir%2C_c._1910.jpg" alt="Auguste Renoir">
-                </div>
+            <a href="artistas/camille/camille.html" class="artist-card">
                 <div class="artist-info">
-                    <h3>Auguste Renoir</h3>
+                    <h3>Camille Corot</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Camille_Pissarro_01.jpg" alt="Camille Pissarro">
-                </div>
+            <a href="artistas/courbet/courbet.html" class="artist-card">
                 <div class="artist-info">
-                    <h3>Camille Pissarro</h3>
+                    <h3>Gustave Courbet</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Edgar_Degas_self_portrait_1855.jpeg" alt="Edgar Degas">
-                </div>
+            <a href="artistas/delacroix/delacroix.html" class="artist-card">
                 <div class="artist-info">
-                    <h3>Edgar Degas</h3>
+                    <h3>Eugène Delacroix</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Berthe_Morisot_with_a_Bouquet_of_Violets_%28Edouard_Manet%29.jpg" alt="Berthe Morisot">
-                </div>
+            <a href="artistas/daugbigny/daugbigny.html" class="artist-card">
                 <div class="artist-info">
-                    <h3>Berthe Morisot</h3>
+                    <h3>Charles F. Daugbigny</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Alfred_Sisley_photo.jpg" alt="Alfred Sisley">
-                </div>
+            <a href="artistas/gericault/gericault.html" class="artist-card">
                 <div class="artist-info">
-                    <h3>Alfred Sisley</h3>
+                    <h3>Thédore Géricault</h3>
                 </div>
-            </div>
-            
-            <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Mary_Cassatt_Self-Portrait_c._1880.jpg" alt="Mary Cassatt">
-                </div>
-                <div class="artist-info">
-                    <h3>Mary Cassatt</h3>
-                </div>
-            </div>
+            </a>
 
-             <div class="artist-card">
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Edouard_Manet.jpg" alt="Édouard Manet">
+            <a href="artistas/dupre/dupre.html" class="artist-card">
+                <div class="artist-info">
+                    <h3>Jules Dupré</h3>
                 </div>
+            </a>
+
+            <a href="artistas/leonardo/leonardo.html" class="artist-card">
+                <div class="artist-info">
+                    <h3>Leonardo Da Vinci</h3>
+                </div>
+            </a>
+            <a href="artistas/millet/millet.html" class="artist-card">
+                <div class="artist-info">
+                    <h3>Jean F. Millet</h3>
+                </div>
+            </a>
+            <a href="artistas/rousseau/rousseau.html" class="artist-card">
+                <div class="artist-info">
+                    <h3>Theodore Rousseau</h3>
+                </div>
+            </a>
+            <a href="#" class="artist-card">
                 <div class="artist-info">
                     <h3>Édouard Manet</h3>
                 </div>
-            </div>
+            </a>
 
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 VIRTUAL GALLERY</p>
+        <p>&copy; 2026 VIRTUAL GALLERY</p>
     </footer>
 
     <script>
@@ -275,12 +334,13 @@
             }
         }
 
-        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
-        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
-        if(overlay) overlay.addEventListener('click', () => {
+        if (mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+        if (overlay) overlay.addEventListener('click', () => {
             sidebar.classList.remove('active');
             overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
         });
     </script>
 </body>
+
 </html>
