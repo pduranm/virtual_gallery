@@ -4,51 +4,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eugène Delacroix</title>
-    <link rel="stylesheet" href="/css/artista_style.css">
+    <title>La Libertad guiando al pueblo | Virtual Gallery</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER SIMPLIFICADO --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Centrado para que sea responsive y limpio */
+            padding: 0 20px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-decoration: none;
+            color: var(--color-primary);
+            white-space: nowrap;
+            /* Evita que se rompa en dos líneas */
+        }
+
+        /* --- CONTENEDOR DE IMAGEN --- */
+        .work-display {
+            margin-top: calc(var(--header-height) + 50px);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .work-display img {
+            max-width: 100%;
+            max-height: 75vh;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+        }
+
+        .work-title-area {
+            margin: 40px auto 20px;
+            max-width: 800px;
+        }
+
+        .work-title-area h1 {
+            font-family: var(--font-serif-display);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+
+        .work-title-area h2 {
+            font-family: var(--font-serif-display);
+            font-size: clamp(1.3rem, 5vw, 2rem);
+            color: var(--color-primary);
+            line-height: 1.2;
+
+        }
+
+        /* --- LAYOUT DETALLE --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 80px;
+        }
+
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-left: 3px solid var(--color-secondary);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
+
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .detail-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+
+        .detail-text p {
+            margin-bottom: 20px;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: var(--color-secondary);
+        }
+
+        /* --- CURIOSIDADES --- */
+        .curiosities-section {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 60px 40px;
+            margin-top: 40px;
+        }
+
+        .curiosities-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .curiosities-content h3 {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .curiosities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .curiosity-item {
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            padding: 20px;
+        }
+
+        .curiosity-item strong {
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 900px) {
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px;
+            }
+
+            .detail-metadata {
+                position: static;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header style="height: 50px;">
-        <h2 style="margin-bottom: -20px;">Libertad guiando al pueblo</h2> 
-        <h3>(1830)</h3>
+
+    <header class="main-header">
+        <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
     </header>
 
-    <main class="grid-container" id="content"></main> 
-    <br>
-    <div class="grid-container">
-        <article style=" margin-left: 3px; border-radius: 8px; padding: 10px; margin-top: -15px;">
-            <h2 style="text-decoration: underline;">Curiosidades</h2>
-            <p>
-                1. La mujer que simboliza a la Libertad es una alegoría de <strong>Marianne</strong>, el emblema de la República Francesa. 
-                Aparece como una mezcla de idealismo y realidad, mostrando los pechos desnudo, símbolo de la maternidad y la 
-                protección, y una gorra frigia, que representa la libertad.
-            </p>
-            <p>
-                2. Los orígenes de <strong>Marianne</strong>, aunque son inciertos, parecen estar en las representaciones del artista Honoré Daumier, en 1848, como una madre que cuida a dos niños, Rómulo y Remo, o por el escultor François Rude.
-                <br> Si quieres saber más sobre el concepto de Marianne haz click <a href="/obras/marianne.html" style="color: rgb(43, 10, 232);">aquí</a>.
-            </p>
-            <p>
-                3. Se dice que el niño con pistolas pudo haber inspirado al personaje Gavroche en <i>Les Misèrables</i> de <strong>Victor Hugo</strong>.
-            </p>
-            <p>
-                4. El pintor usó pinceladas sueltas y colores intensos, técnicas que influyeron en periodos posteriores como el <strong>impresionismo</strong>.
-            </p>
-            <p>
-                Saber más:<br>
-                <a href="/artistas/rude/rude.html" style="color: rgb(43, 10, 232);">- François Rude</a> <br>
-                <a href="/artistas/daumier/daumier.html" style="color: rgb(43, 10, 232);">- Honoré Daumier</a>
-            </p>
-        </article>
-    </div>
+    <main>
+        <section class="work-display">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/1280px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg"
+                alt="La Libertad guiando al pueblo - Delacroix">
+            <div class="work-title-area">
+                <h1>La Libertad guiando al pueblo</h1>
+            </div>
+        </section>
 
-    <a href="javascript:void(0);" onclick="history.back();" style="text-decoration: none;">
-        <div class="text-full" style="background-color: #000000; color: white; margin-bottom: 12px; margin-top: 40px;">
-            <p style="text-align: center; padding: 5px 100px;">Inicio</p>
+        <div class="detail-layout">
+            <aside class="detail-sidebar">
+                <div class="detail-metadata">
+                    <h4>FICHA DE LA OBRA</h4>
+                    <div class="meta-row"><span class="meta-label">Artista:</span> <span>Eugène Delacroix</span></div>
+                    <div class="meta-row"><span class="meta-label">Año:</span> <span>1830</span></div>
+                    <div class="meta-row"><span class="meta-label">Técnica:</span> <span>Óleo sobre lienzo</span></div>
+                    <div class="meta-row"><span class="meta-label">Dimensiones:</span> <span>260 cm × 325 cm</span>
+                    </div>
+                    <div class="meta-row"><span class="meta-label">Ubicación:</span> <span>Museo del Louvre</span></div>
+                </div>
+            </aside>
+
+            <article class="detail-main">
+                <span class="detail-subtitle">Análisis Histórico y Artístico</span>
+                <div class="detail-text">
+                    <p><span class="drop-cap">E</span>sta es una obra maestra de Eugène Delacroix, un referente del
+                        romanticismo francés. El cuadro, lleno de pasión y simbolismo, fue inspirado por las Tres
+                        Jornadas Gloriosas de julio de 1830 en Francia, un levantamiento popular que derrocó al rey
+                        Carlos X y marcó el inicio del reinado de Luis Felipe I.</p>
+
+                    <p>Delacroix no participó directamente en las barricadas de París, pero se sintió profundamente
+                        conmovido por los ideales de libertad y la efervescencia revolucionaria. Al pintar esta obra,
+                        buscó inmortalizar el espíritu del pueblo francés y capturar el heroísmo colectivo. Como
+                        escribió en una carta a su hermano: <em>'Si no he luchado por mi país, al menos pintaré por
+                            él.'</em></p>
+
+                    <p>Para el artista, este cuadro no era solo una representación histórica, sino también una
+                        declaración personal de sus ideales románticos: libertad, humanidad y lucha. La composición
+                        piramidal eleva a la Libertad sobre los caídos, guiando a ciudadanos de todas las clases
+                        sociales hacia un futuro incierto pero esperanzador.</p>
+                </div>
+            </article>
         </div>
-    </a>
 
-    <script src="js/libertad_1830.js"></script>
+        <section class="curiosities-section">
+            <div class="curiosities-content">
+                <h3>CURIOSIDADES</h3>
+                <div class="curiosities-grid">
+                    <div class="curiosity-item">
+                        <strong>La Alegoría de Marianne</strong>
+                        La mujer que simboliza a la Libertad es Marianne, emblema de la República. Su pecho desnudo
+                        simboliza la maternidad y protección, mientras que el gorro frigio representa la emancipación de
+                        los esclavos en la antigüedad.
+                    </div>
+                    <div class="curiosity-item">
+                        <strong>Inspiración Literaria</strong>
+                        El niño que empuña las pistolas a la derecha de la Libertad se cree que fue la inspiración
+                        directa para el personaje de Gavroche en la novela "Los Miserables" de Victor Hugo.
+                    </div>
+                    <div class="curiosity-item">
+                        <strong>Técnica Revolucionaria</strong>
+                        El uso de pinceladas sueltas y colores vibrantes (especialmente el uso del rojo, blanco y azul
+                        de la bandera) influyó enormemente en el desarrollo posterior del Impresionismo.
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; font-size: 0.8rem;">
+                    <p>Saber más sobre:
+                        <a href="#" style="color:var(--color-secondary);">Marianne</a> |
+                        <a href="#" style="color:var(--color-secondary);">François Rude</a> |
+                        <a href="#" style="color:var(--color-secondary);">Honoré Daumier</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VIRTUAL GALLERY</p>
+    </footer>
+
 </body>
 
 </html>

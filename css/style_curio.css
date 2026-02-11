@@ -1,0 +1,71 @@
+/* --- SECCIÓN DE CURIOSIDADES --- */
+.curiosities-section {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 60px 40px;
+    margin-top: 40px;
+}
+
+.curiosities-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.curiosities-content h3 {
+    font-family: var(--font-serif-display);
+    color: var(--color-secondary);
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.curiosities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.curiosity-item {
+    font-size: 0.9rem;
+    border: 1px solid #333;
+    padding: 20px;
+    line-height: 1.6;
+    transition: border-color 0.3s ease;
+}
+
+.curiosity-item:hover {
+    border-color: var(--color-secondary);
+}
+
+.curiosity-item strong {
+    color: var(--color-secondary);
+    display: block;
+    margin-bottom: 10px;
+    font-family: var(--font-serif-display);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* Enlaces dentro de la sección oscura */
+.curiosities-section a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.curiosities-section a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+/* Responsive para la sección */
+@media (max-width: 600px) {
+    .curiosities-section {
+        padding: 40px 20px;
+    }
+    
+    .curiosities-grid {
+        grid-template-columns: 1fr;
+    }
+}

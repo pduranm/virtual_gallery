@@ -13,30 +13,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const info = [
         {
-            text:"<strong>Delacroix</strong> no participó directamente en las barricadas de París, pero se sintió profundamente conmovido por los ideales de libertad y la efervescencia <strong>revolucionaria</strong>. Al pintar esta obra, buscó inmortalizar el espíritu del pueblo francés y capturar el <strong>heroísmo colectivo</strong>."
+            text: "<strong>Delacroix</strong> no participó directamente en las barricadas de París, pero se sintió profundamente conmovido por los ideales de libertad y la efervescencia <strong>revolucionaria</strong>. Al pintar esta obra, buscó inmortalizar el espíritu del pueblo francés y capturar el <strong>heroísmo colectivo</strong>."
         },
         {
-            text:"Delacroix escribió en una carta a su hermano: <i>'Si no he luchado por mi país, al menos pintaré por él.'</i> <br> Para Delacroix, este cuadro no era solo una representación histórica, sino también una declaración personal de sus <strong>ideales románticos</strong>: <i>libertad, humanidad y lucha</i>."
+            text: "Delacroix escribió en una carta a su hermano: <i>'Si no he luchado por mi país, al menos pintaré por él.'</i> <br> Para Delacroix, este cuadro no era solo una representación histórica, sino también una declaración personal de sus <strong>ideales románticos</strong>: <i>libertad, humanidad y lucha</i>."
         },
         {
-            text:" "
+            text: " "
         },
         {
-            text:" "
+            text: " "
         },
         {
-            text:" "
+            text: " "
         },
     ];
 
     const image = [
         {
-            image:""
+            image: ""
         },
         {
-            image:""
+            image: ""
         },
-        
+
 
 
 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         paragraph.className = "text-full";
         paragraph.innerHTML = item.text;
         content.appendChild(paragraph);
-        
+
         // Agregar imagen con título y año
         const divImage = document.createElement("div");
         divImage.className = "image-full";
@@ -60,19 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         content.appendChild(divImage);
 
-    info.forEach((item, index) => {
-        // Agregar párrafo de texto
-        const paragraph = document.createElement("p");
-        paragraph.className = "text-full";
-        paragraph.style = "margin-bottom: -20px;"
-        paragraph.innerHTML = item.text;
-        content.appendChild(paragraph);
+        info.forEach((item, index) => {
+            // Agregar párrafo de texto
+            const paragraph = document.createElement("p");
+            paragraph.className = "text-full";
+            paragraph.style = "margin-bottom: -20px;"
+            paragraph.innerHTML = item.text;
+            content.appendChild(paragraph);
         });
-    
-    image.forEach((item, index) => {
-        const divImage = document.createElement("div");
-        divImage.className = "image-full";
-        divImage.innerHTML = `
+
+        image.forEach((item, index) => {
+            const divImage = document.createElement("div");
+            divImage.className = "image-full";
+            divImage.innerHTML = `
             <a href="#">
                 <img width="350" height="auto" src="${item.image}">
             </a>

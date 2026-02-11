@@ -9,7 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="">
     <style>
         :root {
             --color-primary: #1a1a1a;
@@ -20,7 +20,11 @@
             --header-height: 80px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font-serif-body);
@@ -56,12 +60,14 @@
         /* --- SECCIÓN HERO --- */
         .hero-work {
             width: 100%;
-            height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+            height: 80vh;
+            /* Ocupa el 80% de la altura de la pantalla */
             margin-top: var(--header-height);
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/La_Barque_de_Dante_%28Delacroix_3820%29.jpg/1280px-La_Barque_de_Dante_%28Delacroix_3820%29.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efecto Parallax opcional */
+            background-attachment: fixed;
+            /* Efecto Parallax opcional */
             position: relative;
             display: flex;
             align-items: flex-end;
@@ -71,8 +77,11 @@
         .hero-work::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
         }
 
         .hero-title-overlay {
@@ -122,7 +131,10 @@
             font-size: 0.85rem;
         }
 
-        .meta-label { font-weight: 700; color: #888; }
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
 
         .detail-subtitle {
             font-family: var(--font-serif-display);
@@ -159,9 +171,19 @@
         }
 
         @media (max-width: 900px) {
-            .detail-layout { grid-template-columns: 1fr; gap: 40px; }
-            .hero-work { height: 50vh; padding: 20px; }
-            .hero-title-overlay h1 { font-size: 2rem; }
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-work {
+                height: 50vh;
+                padding: 20px;
+            }
+
+            .hero-title-overlay h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -171,8 +193,10 @@
     <header class="main-header">
         <div class="logo"><a href="../../main.html">VIRTUAL GALLERY</a></div>
         <nav style="display: flex; gap: 30px;">
-            <a href="../../artistList.html" style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">ARTISTAS</a>
-            <a href="../../main.html" style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">COLECCIÓN</a>
+            <a href="../../artistList.html"
+                style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">ARTISTAS</a>
+            <a href="../../main.html"
+                style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">COLECCIÓN</a>
         </nav>
     </header>
 
@@ -197,14 +221,239 @@
             <article class="detail-main">
                 <span class="detail-subtitle">Análisis de la Obra</span>
                 <div class="detail-text">
-                    <p><span class="drop-cap">L</span>a barca de Dante (1822) marcó el debut triunfal de un joven Eugène Delacroix en el Salón de París. La obra representa el octavo canto del *Infierno* de la Divina Comedia, donde Dante Alighieri, guiado por el poeta Virgilio, cruza el pantano del Estigia mientras las almas de los condenados intentan abordar su precaria embarcación.</p>
-                    
-                    <p>Esta pintura es considerada una piedra angular en la transición del neoclasicismo al romanticismo. Delacroix rompe con la serenidad académica para abrazar una paleta de colores sombría pero vibrante, donde los destellos de luz enfatizan la anatomía torturada de las figuras que emergen de las aguas lúgubres.</p>
+                    <p><span class="drop-cap"></span>
+                    <p>
+                        Delacroix era un artista ambicioso que buscaba consolidar su
+                        posición en el panorama artístico francés.
 
-                    <p>La influencia de Miguel Ángel es evidente en el modelado musculoso y expresivo de los condenados, mientras que la atmósfera general rinde homenaje a la tradición veneciana del color y a la fuerza dramática de Rubens. Los personajes principales contrastan profundamente: la agitación aterrorizada de Dante frente a la calma estatuaria de Virgilio.</p>
+                        En aquel entonces, el camino hacia el reconocimiento hacía pasar por las exposiciones anuales
+                        que
+                        dictaban el gusto y consagraban a los
+                        talentos emergentes y Delacroix, consciente de esta realidad, concibió la obra como su gran
+                        oportunidad
+                        para causar
+                        impacto y forjar un prestigio duradero.
+                    </p>
+                    <p>
+                        Su presentación en el <b>Salón de París de 1822</b>
+                        no solo catapultó a Delacroix a la fama, sino que también estableció un nuevo lenguaje visual
+                        caracterizado por una
+                        intensidad emocional sin precedentes y una notable fusión de la estructura clásica con el drama
+                        y el
+                        periodo.
+                    </p>
+                    <h3>Composición y Estructura</h3>
+                    <p>
+                        La composición de La barca de Dante se articula en torno a una estructura piramidal que domina
+                        el centro
+                        del
+                        lienzo. Esta forma, con Dante y Virgilio en la cima, confiere una estabilidad visual al grupo
+                        central,
+                        actuando como un faro de orden en medio del caos infernal. La barca en sí misma se convierte en
+                        el eje
+                        central de la narrativa, un punto de equilibrio sobre el cual los personajes se contorsionan en
+                        periodos
+                        "inverosímiles" y "dinámicos". La tensión dramática se genera a través del contraste entre la
+                        relativa
+                        serenidad de los poetas y la agitación desesperada de los cuerpos que emergen de las aguas. A
+                        pesar de
+                        esta
+                        energía desbordante, la composición mantiene una estructura que, si bien se aleja del rígido
+                        academicismo,
+                        aún conserva una solidez subyacente que le otorga fuerza y coherencia.
+                    </p>
+                    <h3>Técnica, Pincelada y el Lenguaje del Color y la Luz</h3>
+                    <p>
+                        La paleta de colores de Delacroix en La barca de Dante es una de sus características más
+                        distintivas y
+                        un
+                        claro precursor del Romanticismo. Predominan las "tonalidades oscuras" que sumergen al
+                        espectador en la
+                        sombría atmósfera del inframundo. Sin embargo, el artista utiliza de manera estratégica tonos
+                        cálidos y
+                        vibrantes para acentuar el dramatismo de la escena. Los rojos y naranjas encendidos de las
+                        llamas de la
+                        ciudad de Dite en el fondo contrastan con el agua lodosa, mientras que el color de la piel de
+                        los
+                        condenados, la capucha de Dante y el manto de Virgilio añaden focos de atención y vitalidad al
+                        lienzo.
+                    </p>
+                    <p>
+                        El uso del claroscuro es otra herramienta fundamental en la creación del ambiente infernal. Un
+                        "potente
+                        foco
+                        de luz" ilumina a las almas condenadas, haciendo que sus figuras contorsionadas sobresalgan del
+                        agua,
+                        mientras que los literatos permanecen en una penumbra que resalta la solemnidad de su travesía.
+                        La luz
+                        de la
+                        ciudad en llamas en la distancia proyecta un "resplandor misterioso" sobre las figuras ,
+                        intensificando
+                        la
+                        sensación de agitación y desesperación que impregna la obra.
+                    </p>
+                    <p>
+                        Aunque las fuentes no describen explícitamente la pincelada de Delacroix en esta pieza, se puede
+                        inferir
+                        su
+                        naturaleza a través del análisis de las copias posteriores, especialmente las de Édouard Manet.
+                        La
+                        pincelada
+                        de Manet, que fue descrita como "más suelta y menos detallada" , sugiere que la técnica de
+                        Delacroix, si
+                        bien ya era excepcionalmente libre para su época, mantenía un grado de detalle que aún lo
+                        vinculaba a
+                        las
+                        tradiciones pictóricas. La técnica de Delacroix, sin embargo, era lo suficientemente expresiva
+                        para
+                        transmitir una "energía intensa" y una "fuerza arrolladora" que desafiaba el estilo académico
+                        dominante.
+                    </p>
+                    <h3>Dramatismo y Expresión Emocional</h3>
+                    <p>
+                        El verdadero corazón de La barca de Dante reside en su poderosa dramatización de las emociones
+                        humanas.
+                        El
+                        lienzo captura un abanico de sentimientos: el "miedo de Dante" ante lo desconocido, la
+                        "preocupación de
+                        Virgilio" por su protegido, y la "angustia de los condenados". Los cuerpos desnudos y
+                        "retorciéndose
+                        enloquecidos" en el agua, con sus "periodos dinámicos" , transmiten una sensación de
+                        desesperación
+                        humana
+                        que no tiene parangón en la pintura narrativa de su tiempo. Este enfoque en el "drama" y la
+                        "expresión"
+                        diferencia radicalmente la obra del Neoclasicismo, que priorizaba la calma y la razón. La
+                        capacidad de
+                        Delacroix para plasmar esta cruda emoción con tanta vividez lo consolidó como un maestro del
+                        incipiente
+                        periodo romántico
+                    </p>
+                    <h3>Homenaje a clásicos y maestros</h3>
+                    <p>
+                        Lejos de rechazar por completo la tradición, Delacroix se sirvió de las lecciones de los grandes
+                        maestros
+                        para crear algo radicalmente nuevo. La influencia de Miguel Ángel es evidente en la
+                        representación de
+                        los
+                        cuerpos de los condenados. Las "musculaturas robustas y escorzadas" de las figuras desnudas son
+                        un claro
+                        eco
+                        de la grandiosidad y la fuerza de las figuras renacentistas del Juicio Final. De esta manera,
+                        Delacroix
+                        aplicó la idealización de la figura humana a un contexto de tormento, creando una poderosa
+                        yuxtaposición.
+
+                        Del mismo modo, la influencia del maestro barroco Rubens es palpable. El "periodo y la
+                        gestualidad"
+                        de
+                        los personajes y los "gruesos paños ondeados al viento" reflejan la energía y el colorido
+                        característicos de
+                        la escuela flamenca. Delacroix no solo admiraba la composición de Rubens, sino que se inspiró en
+                        detalles
+                        específicos, como las gotas de agua sobre los cuerpos de las Nereidas en el lienzo.
+
+                        El desembarco de <b>María de Médici</b> en Marsella para representar las gotas que se deslizan
+                        por la
+                        piel de
+                        los
+                        condenados en su propia obra. Esta atención a un detalle físico tan minucioso subraya la
+                        dedicación de
+                        Delacroix a la expresividad romántica y su profundo estudio del arte del pasado.
+                    </p>
+                    <h3>El diálogo con Géricault <br>Un Precedente Crucial</h3>
+                    <p>
+                        El verdadero catalizador de La barca de Dante fue, sin embargo, la obra de su contemporáneo
+                        Théodore
+                        Géricault, La balsa de la Medusa (1819). Delacroix no solo era amigo de Géricault, sino que
+                        incluso posó
+                        para su monumental obra, lo que le permitió seguir de cerca su proceso creativo, incluyendo el
+                        estudio
+                        de
+                        cadáveres para lograr una representación realista del sufrimiento humano.
+
+                        La balsa de la Medusa había demostrado cómo un evento real y políticamente controvertido podía
+                        ser
+                        representado con una escala épica y un pathos inmenso.
+
+                        La barca de Dante puede ser entendida como la respuesta de <strong>Delacroix</strong> a la obra
+                        de
+                        <b>Géricault</b>.
+                        Delacroix
+                        trasladó el tema del sufrimiento y la desesperación de la historia contemporánea al reino de lo
+                        <b>mítico y
+                            literario</b>. Ambas obras comparten una composición caótica de cuerpos en un entorno
+                        acuático para
+                        transmitir
+                        un sentido de desesperación absoluta. La obra de Géricault había abierto un camino, y Delacroix
+                        lo
+                        siguió,
+                        validando la literatura como una fuente tan poderosa como la historia para el nuevo periodo
+                        romántico.
+                        Este diálogo entre ambos artistas fue fundamental para el desarrollo del Romanticismo francés.
+                    </p>
+                    <h3>La barca de Dante <br> Obra Transicional</h3>
+                    <p>
+                        La pintura es a menudo descrita como una obra de transición, un "cóctel muy puntual de intelecto
+                        y
+                        emoción".
+                        Si bien se resiste a "abandonar por completo el clasicismo" , su "intensa corriente emocional" y
+                        el uso
+                        dramático del color y la luz señalan claramente la llegada de una nueva era. La obra sintetiza
+                        la
+                        estructura
+                        compositiva del Neoclasicismo con el ímpetu y la subjetividad del Romanticismo, convirtiéndola
+                        en un
+                        documento crucial para entender la evolución del arte del siglo XIX.
+                    </p>
+                    <h3>Crítica en el Salón de 1822</h3>
+                    <p>
+                        La exhibición de La barca de Dante en el <b>Salón de París de 1822</b> fue un evento definitorio
+                        para la
+                        carrera de
+                        Delacroix y para el periodo romántico. Aunque la obra "causó asombro", la recepción fue variada.
+                        Algunos
+                        críticos odiaron el estilo de Delacroix, mientras que otros lo admiraron, comparando su
+                        pincelada con la
+                        de
+                        <b>Rubens</b>. El crítico Adolphe Loève-Veimars, por ejemplo, comentó que el contraste de
+                        colores dejaba
+                        una
+                        "funesta impresión". <br> A pesar de la controversia, el éxito en el Salón consolidó la
+                        reputación de
+                        Delacroix,
+                        estableciéndolo como uno de los pintores más prometedores de Francia.
+                    </p>
                 </div>
+
             </article>
         </div>
+        <section class="curiosities-section">
+            <div class="curiosities-content">
+                <h3>CURIOSIDADES</h3>
+                <div class="curiosities-grid">
+                    <div class="curiosity-item">
+                        <strong>La Alegoría de Marianne</strong>
+
+                    </div>
+                    <div class="curiosity-item">
+                        <strong>Inspiración Literaria</strong>
+
+                    </div>
+                    <div class="curiosity-item">
+                        <strong>Técnica Revolucionaria</strong>
+
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; font-size: 0.8rem;">
+                    <p>Saber más sobre:
+                        <a href="#" style="color:var(--color-secondary);"></a> |
+                        <a href="#" style="color:var(--color-secondary);"></a> |
+                        <a href="#" style="color:var(--color-secondary);"></a>
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -213,4 +462,4 @@
 
 </body>
 
-</html> 
+</html>

@@ -2,176 +2,348 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joven en el cementerio 1824</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joven huérfana en el cementerio | Virtual Gallery</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Lora', serif;
-    }
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 70px;
+        }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #000000;
-      color: #ffffff;
-      text-align: justify;
-      justify-content: justify;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      text-align: center;
-    }
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            line-height: 1.6;
+        }
 
-    header.hero {
-      display: flex;
-      height: 100vh;
-    }
+        a {
+            color: #b58d53;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-    .hero-text {
-      flex: 1;
-      background: #ffffff;
-      color: #000000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px;
-    }
+        /* --- HEADER SIMPLIFICADO --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
 
-    .hero-text h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-    }
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-decoration: none;
+            color: var(--color-primary);
+            white-space: nowrap;
+        }
 
-    .hero-text p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
+        /* --- CONTENEDOR DE IMAGEN --- */
+        .work-display {
+            margin-top: calc(var(--header-height) + 50px);
+            text-align: center;
+            padding: 0 20px;
+        }
 
-    .hero-text a {
-      background: #fff;
-      color: #000;
-      text-decoration: none;
-      padding: 12px 25px;
-      border: 2px solid #fff;
-      transition: 0.3s;
-    }
+        .work-display img {
+            max-width: 100%;
+            max-height: 75vh;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+        }
 
-    .hero-text a:hover {
-      background: #ffffff;
-      color: #000000;
-    }
+        .work-title-area {
+            margin: 40px auto 20px;
+            max-width: 800px;
+        }
 
-    .hero-img {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-    }
+        .work-title-area h1 {
+            font-family: var(--font-serif-display);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
 
-    .hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
+        .work-title-area h2 {
+            font-family: var(--font-serif-display);
+            font-size: clamp(1.3rem, 5vw, 2rem);
+            color: var(--color-primary);
+            line-height: 1.2;
 
-    .hero-img img.active {
-      opacity: 1;
-    }
+        }
 
+        /* --- LAYOUT DETALLE --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 80px;
+        }
 
-    /* --- Mobile --- */
-    @media (max-width: 768px) {
-      header.hero {
-        flex-direction: column;
-        height: auto;
-      }
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-left: 3px solid var(--color-secondary);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
 
-      .hero-img {
-        order: -1;
-        height: 40vh;
-      }
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
 
-      .hero-img img {
-        position: relative;
-        height: 100%;
-      }
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
 
-      .hero-text {
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-        text-align: justify;
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
 
-      }
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
 
-      .text-full {
-        grid-column: span 2;
-        background-color: rgb(255, 255, 255);
-        border-radius: 10px;
-        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-        overflow: hidden;
-        color: black;
-      }
-    }
-  </style>
+        .detail-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+
+        .detail-text p {
+            margin-bottom: 20px;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: var(--color-secondary);
+        }
+
+        /* --- CURIOSIDADES --- */
+        .curiosities-section {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 60px 40px;
+            margin-top: 40px;
+        }
+
+        .curiosities-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .curiosities-content h3 {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .curiosities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .curiosity-item {
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            padding: 20px;
+        }
+
+        .curiosity-item strong {
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 900px) {
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px;
+            }
+
+            .detail-metadata {
+                position: static;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header class="hero">
-    <div class="hero-text">
-      <h1>Joven en el cementerio</h1>
-      <h2>Eugène Delacroix - <i>1824</i></h2><br>
-      <p>El cuadro "Joven en el cementerio", pintado por Eugène Delacroix en 1824, es una obra emblemática del
-        periodo romántico francés que evoca una profunda sensación de <b>melancolía y dolor</b>. A diferencia de las
-        representaciones neoclásicas que idealizaban la tragedia, Delacroix se centra en la emoción pura y la
-        subjetividad.
-      </p>
-      <h3>Descripción</h3>
-      <p>
-        La obra muestra a una joven sentada entre las lápidas de un cementerio. Su <b>rostro</b>, marcado por la
-        tristeza, está
-        apoyado en su mano, una pose clásica que simboliza la meditación o la aflicción. Su vestimenta, un simple
-        vestido blanco con un chal, no distrae de la expresión de su rostro. Alrededor de ella, se aprecian lápidas y un
-        paisaje desolado que intensifica la atmósfera de duelo.
-      </p>
-      <p>
-        La composición es sencilla pero efectiva. La figura de la joven ocupa el primer plano, <b>dominando la escena</b>. La
-        mirada del espectador es atraída directamente a ella y a su gesto de desesperación. El fondo, con cielos grises
-        y una vegetación marchita, complementa la emoción central de la pieza.
-      </p>
-      <h3>Análisis de color</h3>
-      <p>
-        El uso del color es fundamental en la obra. Predominan los tonos oscuros y apagados, como grises, marrones y
-        verdes oliva, que reflejan la sombría atmósfera del lugar. El vestido blanco de la joven destaca como un punto
-        de luz, simbolizando la pureza. Delacroix utiliza una pincelada <b>suelta y enérgica</b>,
-        característica de su estilo romántico, que le da a la superficie del cuadro una textura vibrante, intensificando
-        la sensación de agitación emocional.
-      </p>
-      <p>
-        A través de este cuadro, <b>Delacroix</b> no solo pintó a una persona triste, sino que también exploró el
-        concepto de
-        la <b>melancolía romántica</b>, un tema recurrente en la literatura y el arte de la época.
-      </p>
-    </div>
-    <div class="hero-img">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG/492px-Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG"
-        alt="Joven en el cementerio 1824" class="active">
-    </div>
-  </header>
+
+    <header class="main-header">
+        <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
+    </header>
+
+    <main>
+        <section class="work-display">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG/500px-Eug%C3%A8ne_Delacroix_-_Jeune_orpheline_au_cimeti%C3%A8re_%28vers_1824%29.JPG"
+                alt="Joven huérfana en el cementerio - Delacroix">
+            <div class="work-title-area">
+                <h2>Joven huérfana en el cementerio</h2>
+            </div>
+        </section>
+
+        <div class="detail-layout">
+            <aside class="detail-sidebar">
+                <div class="detail-metadata">
+                    <h4>FICHA DE LA OBRA</h4>
+                    <div class="meta-row"><span class="meta-label">Artista:</span> <span>Eugène Delacroix</span></div>
+                    <div class="meta-row"><span class="meta-label">Año:</span> <span>c. 1824</span></div>
+                    <div class="meta-row"><span class="meta-label">Técnica:</span> <span>Óleo sobre lienzo</span></div>
+                    <div class="meta-row"><span class="meta-label">Dimensiones:</span> <span>66 cm × 54 cm</span></div>
+                    <div class="meta-row"><span class="meta-label">Ubicación:</span> <span>Museo del Louvre</span></div>
+                </div>
+            </aside>
+
+            <article class="detail-main">
+                <span class="detail-subtitle">Melancolía y Romanticismo</span>
+                <div class="detail-text">
+                    <p><span class="drop-cap">E</span>sta obra, pintada por un joven Eugène Delacroix hacia 1824, es una
+                        de las representaciones más potentes de la desolación humana en el arte romántico. Aunque
+                        inicialmente fue concebida como un estudio para su gran lienzo <strong>La matanza de
+                            Quíos</strong>, (que presenta el gesto de la joven en el personaje más a la izquierda
+                        de la obra), la fuerza
+                        psicológica del retrato le permitió ser reconocida como una obra independiente de inmenso valor.
+                        La matanza de Quíos, sirvió para que se le concediera la medalla de segunda clase en el
+                        <a href="/escuelas/bellas_paris/salon1824.html" ">Salón de París en 1824</a>
+                        le catapultase a ser un claro líder del movimiento romántico de aquel momento.
+                    </p>
+
+                    <p>La pintura nos presenta a una joven, en un paraje rural, una situación no tan noble como el resto
+                        de obras, pero cargada de un profundo sentimiento político.
+                        El fondo desenfocado hace que nos centremos en la joven, un paisaje desolador que conecta
+                        directamente con el interior de la persona, que resignada, mira hacia el cielo buscando una
+                        respuesta divina que la guíe entre tanto dolor.
+                        Ese dolor es el que hizo a esta obra, ganarse el respeto para representar al Romanticismo en la
+                        lucha por la supremacía del estilo de 1824, que
+                        no sólo trata la vida o el amor, sino también expresar la intensidad de la existencia humana a
+                        través del <strong>dolor y la pasión</strong>.
+                    </p>
+                    <p>
+                        Esta obra ayuda al movimiento romántico de una manera nunca antes vista, sitúa una obra
+                        escasamente noble en el ojo del huracán que se estaba fraguando en aquella época.
+                        La chica es una figura más del alcance de la guerra de Grecia contra el Imperio otomano, que
+                        mantenía en vilo a la Europa del siglo XIX.
+                    </p>
+                    <p>
+                        El uso de la pincelada suelta y el uso íntimo del color que usa Delacroix en esta obra, haría
+                        que más tarde llevase a la <strong>liberación del color</strong> y sirve de precedente para los
+                        neoimpresionistas,
+                        tal y como Paul Signac puntualizó, allá por 1899.
+                    </p>
+                    <p>
+                        Esta obra pasó a Fréderic Leblond, regalada por el mismo Delacroix. Más tarde llegó a la
+                        Colección Gebauer y después se hizo con ella el coleccionista e historiador Etiénne Moreau.
+                        Desde 1934 se expone en el Louvre, con la prohibición de cederse.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <section class=" curiosities-section">
+                            <div class="curiosities-content">
+                                <h3>CURIOSIDADES</h3>
+                                <div class="curiosities-grid">
+                                    <div class="curiosity-item">
+                                        <strong>Estudio Preparatorio</strong>
+                                        La obra de la huérfana se usó como estudio para la posterior obra de La matanza
+                                        de Quíos, la
+                                        cuál puedes ver <a href="./matanza_quios.html" style="color: #b58d53;">aquí</a>.
+                                        La cuál fue comprada por el Estado y ofrecieron una medalla a Delacroix,
+                                        consolidando así su
+                                        puesto de romático.
+                                    </div>
+                                    <div class="curiosity-item">
+                                        <strong>El Cielo Romántico</strong>
+                                        El tratamiento del cielo y las nubes en el fondo es un ejemplo temprano del uso
+                                        del paisaje como
+                                        espejo del alma, una característica central del movimiento romántico y que
+                                        después sirvió para
+                                        el impresionismo y su parte de pintar lo que ves, con los ojos de cada uno.
+                                    </div>
+                                    <div class="curiosity-item">
+                                        <strong>Acogida por la crítica</strong>
+                                        Los críticos de la época Stendhal y Adolphe Thiers elogiaron la capacidad de
+                                        Delacroix capturar
+                                        la verdad emocional y su ejecución audaz.
+                                    </div>
+                                </div>
+                                <div style="margin-top: 40px; text-align: center; font-size: 0.8rem;">
+                                    <p>Saber más sobre:
+                                        <a href="#" style="color:var(--color-secondary);">Romanticismo</a> |
+                                        <a href="#" style="color:var(--color-secondary);">Salón de París - 1824</a> |
+                                        <a href="#" style="color:var(--color-secondary);">Técnicas de Delacroix</a>
+                                    </p>
+                                </div>
+                            </div>
+                            </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VIRTUAL GALLERY</p>
+    </footer>
 
 </body>
 
