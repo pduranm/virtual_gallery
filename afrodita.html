@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor</title>
+    <style>
+        :root {
+            --pink-love: #ff4d6d;
+            --soft-pink: rgba(255, 77, 109, 0.4);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a0a;
+            font-family: sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid var(--pink-love);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: white;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .main-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .foreground-card {
+            position: relative;
+            z-index: 100;
+            width: 85%;
+            max-width: 350px;
+            padding: 25px;
+            text-align: center;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--pink-love);
+            border-radius: 25px;
+            color: white;
+            box-shadow: 0 0 25px rgba(255, 77, 109, 0.5);
+        }
+
+        .gif-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px auto;
+            display: block;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .floating-phrase {
+            position: absolute;
+            bottom: -50px;
+            color: var(--soft-pink);
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+            animation: moveUp 6s linear forwards, blink 1.5s infinite;
+        }
+
+        @keyframes moveUp {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        .heart {
+            font-size: 1.5rem;
+            color: var(--pink-love);
+            margin-bottom: 5px;
+        }
+
+        h1 { font-size: 1.5rem; margin: 5px 0; }
+        
+        p { 
+            font-size: 1.1rem; 
+            line-height: 1.4; 
+            color: #eee; 
+            transition: opacity 0.3s;
+            min-height: 2.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            background: var(--pink-love);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            font-size: 1rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">PREPARANDO ALGO ESPECIAL...</div>
+    </div>
+
+    <div class="main-container" id="container">
+        <div class="foreground-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NzFzaHc3dThiajU3dGlxMnVyMzVhbDk0b2V4MTJ5d2plam5mYXB2ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Yle9Yz9izeVRyiwavn/giphy.gif" id="dynamic-gif" alt="Amor" class="gif-placeholder">
+            <div class="heart">❤️</div>
+            <h1 id="main-title">Para ti</h1>
+            <p id="dynamic-text">Toca el botón para una sorpresa...</p>
+            <button onclick="changeContent()">Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        const backgroundPhrases = [
+            "Eres lo mejor que me ha pasado.",
+            "Gracias por hacerme tan feliz.",
+            "No me imagino un mundo sin ti.",
+            "Mi osita, te quiero.",
+            "Tu sonrisa es mi parte favorita del día.",
+            "Eres mi persona favorita en el universo.",
+            "Te volvería a elegir una y mil veces.",
+            "Te quiero mucho mucho",
+            "mucho mucho",
+            "mucho mucho",
+            "mucho mucho",
+            "mucho mucho"
+        ];
+
+        const content = [
+            { text: "Eres lo mejor que me ha pasado.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExejlveXAxa3FweTQxcHljNWdyZWV6YWp5ajN5NWFlZjQ0OHR4b2N2dCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/f8tvNoMFhVijEMQEE7/giphy.gif" },
+            { text: "Gracias por hacerme tan feliz cada día.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXJrajlrMTJmNDY2dTZ4a240Nm5tcGQxbmxlc2lpbzl3Mzh0NnZ5MSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/W0c3xcZ3F1d0EYYb0f/giphy.gif" },
+            { text: "No me imagino un mundo sin tu risa.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXo3dTF1YnA2dDVxNTBrbGN4cG5kZXpiMWhvYmhwN2x6NDV4cTExNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/XRB1uf2F9bGOA/giphy.gif" },
+            { text: "No hay mito en la historia tan especial como el que creamos tú y yo.", gif: "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZTltbmIycG0wMHFwc2ZvY3hmMzhmOWVmNmE5bm1wOHdveWtyMXY4OSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/WN7Afd6t6KMSCkvXTj/giphy.gif" },
+            { text: "Eres mi persona favorita en el universo.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTl0aXExbGdvdG1qdGh2YmcwOWo3YzR6eHFiOWM2emZxYWlxNm1vcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/SYo1DFS8NLhhqzzjMU/giphy.gif" },
+            { text: "Te quiero mucho mucho.", gif: "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YjFjMGY5dm9nY3l5aW9raHlud2lqbGd3cWJsYzRsZHRzcWl2bDA4YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/D9j761FH8SYJLyW9WO/giphy.gif"},
+            { text: "Para el anillo tampoco queda tanto.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3BjeGhwdGx6a2YxMmp0YTBhdzRxaHNnamI4bGxlNTd0ZTY3ODRyeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WS5aDAJFqktO4QkuUY/giphy.gif"},
+            { text: "Te quiero mucho mucho.", gif: "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZXB2eDFuZG8xbDF4NjY4Z3FheWVhNjd4M28xdTBhd2Nha2JvMWNuaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12bAo3BfU2y6eQ/giphy.gif"},
+            { text: "Siempre te elegiré porque eres la más chu-chu-chuli.", gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG5ud2RxdHRoNDB1eTdidXpiYzhsbmRkZzBnajVibThuNWV6MXpuZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/L3hzQik8uUfAfkUReJ/giphy.gif"},
+
+        ];
+
+        let index = 0;
+
+        function preloadImages() {
+            const images = content.map(item => item.gif);
+            images.push("");
+            
+            let loadedCount = 0;
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === images.length) {
+                        hideLoader();
+                    }
+                };
+                img.onerror = () => {
+                    loadedCount++;
+                    if (loadedCount === images.length) hideLoader();
+                };
+            });
+        }
+
+        function hideLoader() {
+            const loader = document.getElementById('loader');
+            const mainContent = document.getElementById('container');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                mainContent.style.opacity = '1';
+                setInterval(createPhrase, 600);
+            }, 500);
+        }
+
+        function changeContent() {
+            const textElement = document.getElementById('dynamic-text');
+            const gifElement = document.getElementById('dynamic-gif');
+            textElement.style.opacity = 0;
+            gifElement.style.opacity = 0;
+            setTimeout(() => {
+                textElement.innerText = content[index].text;
+                gifElement.src = content[index].gif;
+                textElement.style.opacity = 1;
+                gifElement.style.opacity = 1;
+                index = (index + 1) % content.length;
+            }, 300);
+        }
+
+        function createPhrase() {
+            const container = document.getElementById('container');
+            const phraseSpan = document.createElement('span');
+            phraseSpan.innerText = backgroundPhrases[Math.floor(Math.random() * backgroundPhrases.length)];
+            phraseSpan.className = 'floating-phrase';
+            const side = Math.random() > 0.5 ? 'left' : 'right';
+            let randomPos = side === 'left' ? Math.random() * 25 : 75 + (Math.random() * 20);
+            phraseSpan.style.left = randomPos + '%';
+            phraseSpan.style.fontSize = (Math.random() * (1.1 - 0.7) + 0.7) + 'rem';
+            const duration = Math.random() * (8 - 4) + 4;
+            phraseSpan.style.animationDuration = duration + 's, 1.5s';
+            container.appendChild(phraseSpan);
+            setTimeout(() => phraseSpan.remove(), duration * 1000);
+        }
+
+        window.onload = preloadImages;
+    </script>
+</body>
+</html>
