@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Barca de Dante | Virtual Gallery</title>
+    <title>Barca de Dante | Virtual Gallery</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="">
+
     <style>
         :root {
             --color-primary: #1a1a1a;
@@ -17,7 +17,7 @@
             --color-background: #fdfdfd;
             --font-serif-display: 'Cinzel', serif;
             --font-serif-body: 'Lora', serif;
-            --header-height: 80px;
+            --header-height: 70px;
         }
 
         * {
@@ -33,77 +33,79 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER --- */
+        a {
+            color: #b58d53;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- HEADER SIMPLIFICADO --- */
         .main-header {
             position: fixed;
             top: 0;
             width: 100%;
             height: var(--header-height);
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
+            justify-content: center;
+            padding: 0 20px;
             border-bottom: 1px solid #eee;
             z-index: 2000;
         }
 
         .logo a {
             font-family: var(--font-serif-display);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-decoration: none;
             color: var(--color-primary);
+            white-space: nowrap;
         }
 
-        /* --- SECCIÓN HERO --- */
-        .hero-work {
-            width: 100%;
-            height: 80vh;
-            /* Ocupa el 80% de la altura de la pantalla */
-            margin-top: var(--header-height);
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/La_Barque_de_Dante_%28Delacroix_3820%29.jpg/1280px-La_Barque_de_Dante_%28Delacroix_3820%29.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            /* Efecto Parallax opcional */
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 60px;
+        /* --- CONTENEDOR DE IMAGEN --- */
+        .work-display {
+            margin-top: calc(var(--header-height) + 50px);
+            text-align: center;
+            padding: 0 20px;
         }
 
-        .hero-work::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+        .work-display img {
+            max-width: 100%;
+            max-height: 75vh;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
         }
 
-        .hero-title-overlay {
-            position: relative;
-            z-index: 2;
-            color: #fff;
+        .work-title-area {
+            margin: 40px auto 20px;
+            max-width: 800px;
         }
 
-        .hero-title-overlay h1 {
+        .work-title-area h1 {
             font-family: var(--font-serif-display);
-            font-size: 3.5rem;
-            letter-spacing: 2px;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+
+        .work-title-area h2 {
+            font-family: var(--font-serif-display);
+            font-size: clamp(1.3rem, 5vw, 2rem);
+            color: var(--color-primary);
+            line-height: 1.2;
+
         }
 
         /* --- LAYOUT DETALLE --- */
         .detail-layout {
             display: grid;
             grid-template-columns: 350px 1fr;
-            gap: 80px;
-            max-width: 1300px;
+            gap: 60px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 40px 40px 80px;
         }
 
         .detail-metadata {
@@ -111,13 +113,13 @@
             padding: 30px;
             border-left: 3px solid var(--color-secondary);
             position: sticky;
-            top: 120px;
+            top: 100px;
             height: fit-content;
         }
 
         .detail-metadata h4 {
             font-family: var(--font-serif-display);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 15px;
             letter-spacing: 1px;
             border-bottom: 1px solid #ddd;
@@ -127,7 +129,7 @@
         .meta-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 0.85rem;
         }
 
@@ -138,33 +140,77 @@
 
         .detail-subtitle {
             font-family: var(--font-serif-display);
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--color-secondary);
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
         .detail-text {
-            font-size: 1.1rem;
-            line-height: 1.9;
+            font-size: 1.05rem;
+            line-height: 1.8;
             color: #333;
             text-align: justify;
+        }
+
+        .detail-text p {
+            margin-bottom: 20px;
         }
 
         .drop-cap {
             float: left;
             font-family: var(--font-serif-display);
-            font-size: 4.5rem;
+            font-size: 4rem;
             line-height: 0.8;
-            margin-right: 15px;
+            margin-right: 12px;
             color: var(--color-secondary);
+        }
+
+        /* --- CURIOSIDADES --- */
+        .curiosities-section {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 60px 40px;
+            margin-top: 40px;
+        }
+
+        .curiosities-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .curiosities-content h3 {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .curiosities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .curiosity-item {
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            padding: 20px;
+        }
+
+        .curiosity-item strong {
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 10px;
         }
 
         /* --- FOOTER --- */
         footer {
-            background-color: #f9f9f9;
+            background-color: #fff;
             padding: 40px;
             text-align: center;
             border-top: 1px solid #eee;
@@ -174,15 +220,11 @@
             .detail-layout {
                 grid-template-columns: 1fr;
                 gap: 40px;
-            }
-
-            .hero-work {
-                height: 50vh;
                 padding: 20px;
             }
 
-            .hero-title-overlay h1 {
-                font-size: 2rem;
+            .detail-metadata {
+                position: static;
             }
         }
     </style>
@@ -191,35 +233,30 @@
 <body>
 
     <header class="main-header">
-        <div class="logo"><a href="../../main.html">VIRTUAL GALLERY</a></div>
-        <nav style="display: flex; gap: 30px;">
-            <a href="../../artistList.html"
-                style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">ARTISTAS</a>
-            <a href="../../main.html"
-                style="text-decoration:none; font-family:var(--font-serif-display); font-size:0.8rem; color:var(--color-primary); font-weight:700;">COLECCIÓN</a>
-        </nav>
+        <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
     </header>
 
     <main>
-        <section class="hero-work">
-            <div class="hero-title-overlay">
-                <h1 id="obra-titulo">La Barca de Dante</h1>
-            </div>
+        <section class="work-display">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LZntt7kpatyfHoNes7iyw53XyTWOnEHAlkkfYnsS1DIV0dIsqZ16_goraN5JywA2CuU_IW78HKAAP4MBr0bTJ-dGBDc_Th6FbtJoaA&s=10"
+                alt="Barca de Dante - Delacroix">
         </section>
 
         <div class="detail-layout">
             <aside class="detail-sidebar">
                 <div class="detail-metadata">
-                    <h4>FICHA DE LA OBRA</h4>
+                    <h4>Barca de Dante</h4>
                     <div class="meta-row"><span class="meta-label">Artista:</span> <span>Eugène Delacroix</span></div>
-                    <div class="meta-row"><span class="meta-label">Año:</span> <span>1822</span></div>
+                    <div class="meta-row"><span class="meta-label">Año:</span> <span>c. 1822</span></div>
                     <div class="meta-row"><span class="meta-label">Técnica:</span> <span>Óleo sobre lienzo</span></div>
+                    <div class="meta-row"><span class="meta-label">Dimensiones:</span> <span>189 cm × 241 cm cm</span>
+                    </div>
                     <div class="meta-row"><span class="meta-label">Ubicación:</span> <span>Museo del Louvre</span></div>
                 </div>
             </aside>
 
             <article class="detail-main">
-                <span class="detail-subtitle">Análisis de la Obra</span>
+                <span class="detail-subtitle">¿O era Dante y Virgilio en los infiernos?</span>
                 <div class="detail-text">
                     <p><span class="drop-cap"></span>
                     <p>
@@ -230,9 +267,7 @@
                         que
                         dictaban el gusto y consagraban a los
                         talentos emergentes y Delacroix, consciente de esta realidad, concibió la obra como su gran
-                        oportunidad
-                        para causar
-                        impacto y forjar un prestigio duradero.
+                        oportunidad para causar impacto y forjar un prestigio duradero.
                     </p>
                     <p>
                         Su presentación en el <b>Salón de París de 1822</b>
@@ -244,41 +279,20 @@
                     </p>
                     <h3>Composición y Estructura</h3>
                     <p>
-                        La composición de La barca de Dante se articula en torno a una estructura piramidal que domina
-                        el centro
-                        del
-                        lienzo. Esta forma, con Dante y Virgilio en la cima, confiere una estabilidad visual al grupo
-                        central,
-                        actuando como un faro de orden en medio del caos infernal. La barca en sí misma se convierte en
-                        el eje
-                        central de la narrativa, un punto de equilibrio sobre el cual los personajes se contorsionan en
-                        periodos
-                        "inverosímiles" y "dinámicos". La tensión dramática se genera a través del contraste entre la
-                        relativa
-                        serenidad de los poetas y la agitación desesperada de los cuerpos que emergen de las aguas. A
-                        pesar de
-                        esta
-                        energía desbordante, la composición mantiene una estructura que, si bien se aleja del rígido
-                        academicismo,
-                        aún conserva una solidez subyacente que le otorga fuerza y coherencia.
-                    </p>
-                    <h3>Técnica, Pincelada y el Lenguaje del Color y la Luz</h3>
-                    <p>
-                        La paleta de colores de Delacroix en La barca de Dante es una de sus características más
-                        distintivas y
-                        un
-                        claro precursor del Romanticismo. Predominan las "tonalidades oscuras" que sumergen al
-                        espectador en la
-                        sombría atmósfera del inframundo. Sin embargo, el artista utiliza de manera estratégica tonos
-                        cálidos y
-                        vibrantes para acentuar el dramatismo de la escena. Los rojos y naranjas encendidos de las
-                        llamas de la
-                        ciudad de Dite en el fondo contrastan con el agua lodosa, mientras que el color de la piel de
-                        los
-                        condenados, la capucha de Dante y el manto de Virgilio añaden focos de atención y vitalidad al
-                        lienzo.
+                        La obra se inspira directamente en el Canto VIII del Infierno de Dante Alighieri, centrándose en
+                        el peligroso cruce del río Estigia —a veces descrito como una laguna o pantano— que rodea la
+                        ciudad infernal de Dite. Delacroix captura el momento en que Dante y su guía, el poeta latino
+                        Virgilio, son transportados por el barquero Flegias mientras las almas de los condenados
+                        intentan desesperadamente abordar la embarcación.
+                        <br>
+                        La composición se organiza mediante una estructura piramidal que otorga una estabilidad heroica
+                        en medio del caos circundante, centrando la atención en tres figuras clave que representan
+                        respuestas contrastantes ante el horror
                     </p>
                     <p>
+                        <b>La maestría técnica de Delacroix en La barca de Dante sentó las bases para el desarrollo de
+                            la pintura moderna. Su pincelada es suelta y enérgica, alejándose de la superficie pulida
+                            exigida por la Academia para crear una sensación de textura y movimiento incesante.</b> <br>
                         El uso del claroscuro es otra herramienta fundamental en la creación del ambiente infernal. Un
                         "potente
                         foco
@@ -292,6 +306,9 @@
                         la
                         sensación de agitación y desesperación que impregna la obra.
                     </p>
+                    <p><b>
+                        
+                    </b></p>
                     <p>
                         Aunque las fuentes no describen explícitamente la pincelada de Delacroix en esta pieza, se puede
                         inferir
@@ -361,7 +378,7 @@
                         dedicación de
                         Delacroix a la expresividad romántica y su profundo estudio del arte del pasado.
                     </p>
-                    <h3>El diálogo con Géricault <br>Un Precedente Crucial</h3>
+                    <h3>El diálogo con Géricault, un precedente crucial</h3>
                     <p>
                         El verdadero catalizador de La barca de Dante fue, sin embargo, la obra de su contemporáneo
                         Théodore
@@ -392,7 +409,7 @@
                         romántico.
                         Este diálogo entre ambos artistas fue fundamental para el desarrollo del Romanticismo francés.
                     </p>
-                    <h3>La barca de Dante <br> Obra Transicional</h3>
+                    <h3>Obra Transicional</h3>
                     <p>
                         La pintura es a menudo descrita como una obra de transición, un "cóctel muy puntual de intelecto
                         y
@@ -428,28 +445,40 @@
 
             </article>
         </div>
-        <section class="curiosities-section">
+
+        <section class=" curiosities-section">
             <div class="curiosities-content">
                 <h3>CURIOSIDADES</h3>
                 <div class="curiosities-grid">
                     <div class="curiosity-item">
-                        <strong>La Alegoría de Marianne</strong>
-
+                        <strong>Estudio Preparatorio</strong>
+                        La obra de la huérfana se usó como estudio para la posterior obra de La matanza
+                        de Quíos, la
+                        cuál puedes ver <a href="./matanza_quios.html" style="color: #b58d53;">aquí</a>.
+                        La cuál fue comprada por el Estado y ofrecieron una medalla a Delacroix,
+                        consolidando así su
+                        puesto de romático.
                     </div>
                     <div class="curiosity-item">
-                        <strong>Inspiración Literaria</strong>
-
+                        <strong>El Cielo Romántico</strong>
+                        El tratamiento del cielo y las nubes en el fondo es un ejemplo temprano del uso
+                        del paisaje como
+                        espejo del alma, una característica central del movimiento romántico y que
+                        después sirvió para
+                        el impresionismo y su parte de pintar lo que ves, con los ojos de cada uno.
                     </div>
                     <div class="curiosity-item">
-                        <strong>Técnica Revolucionaria</strong>
-
+                        <strong>Acogida por la crítica</strong>
+                        Los críticos de la época Stendhal y Adolphe Thiers elogiaron la capacidad de
+                        Delacroix capturar
+                        la verdad emocional y su ejecución audaz.
                     </div>
                 </div>
                 <div style="margin-top: 40px; text-align: center; font-size: 0.8rem;">
                     <p>Saber más sobre:
-                        <a href="#" style="color:var(--color-secondary);"></a> |
-                        <a href="#" style="color:var(--color-secondary);"></a> |
-                        <a href="#" style="color:var(--color-secondary);"></a>
+                        <a href="#" style="color:var(--color-secondary);">Romanticismo</a> |
+                        <a href="#" style="color:var(--color-secondary);">Salón de París - 1822</a> |
+                        <a href="/artistas/gericault/gericault.html" style="color:var(--color-secondary);">Géricault</a>
                     </p>
                 </div>
             </div>
