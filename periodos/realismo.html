@@ -52,6 +52,21 @@
       z-index: 2000;
     }
 
+    .main-header-simple {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Centrado para que sea responsive y limpio */
+      padding: 0 20px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
     .logo a {
       font-family: var(--font-serif-display);
       font-size: 1.4rem;
@@ -314,24 +329,8 @@
 <body>
 
   <!-- Header -->
-  <header class="main-header">
-    <button class="menu-toggle">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="logo">
-      <a href="../main.html">VIRTUAL GALLERY</a>
-    </div>
-    <nav class="nav-container">
-      <div class="nav-item">
-        <a href="../artistList.html" class="nav-link">Artistas</a>
-      </div>
-      <div class="nav-item">
-        <a href="../main.html" class="nav-link">Colección</a>
-      </div>
-      <div class="nav-item">
-        <a href="../contacto.html" class="nav-link">Sobre Nosotros</a>
-      </div>
-    </nav>
+  <header class="main-header-simple">
+    <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
   </header>
 
   <!-- Main Content -->
@@ -341,14 +340,14 @@
 
       <!-- Sidebar -->
       <div class="detail-sidebar">
-        <a href="../main.html" class="btn-back-detail">&larr; Volver al Inicio</a>
+        <a href="../main_periodos.html" class="btn-back-detail">&larr; Volver a periodos</a>
         <!-- Main Movement Image: Las Espigadoras - Millet -->
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg/220px-Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg"
           alt="Las espigadoras" class="detail-portrait">
 
         <div class="detail-metadata">
-          <h4>FICHA TÉCNICA</h4>
+          <h4>REALISMO</h4>
           <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
           <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1830 - 1870</span></div>
           <div class="meta-row"><span class="meta-label">Estilo:</span> <span>Verdad Objetiva</span></div>
@@ -357,8 +356,7 @@
 
       <!-- Main Content -->
       <div class="detail-main">
-        <span class="detail-subtitle">periodo ARTÍSTICO</span>
-        <h2 class="detail-name">Realismo</h2>
+        <span class="detail-subtitle">PERIODO ARTÍSTICO</span>
 
         <div class="detail-text">
           <p><span class="drop-cap">E</span>l Realismo fue un periodo pictórico surgido en Francia a mediados del

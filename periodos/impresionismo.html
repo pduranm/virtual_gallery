@@ -276,6 +276,21 @@
             color: #888;
         }
 
+        .main-header-simple {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Centrado para que sea responsive y limpio */
+            padding: 0 20px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .nav-container {
@@ -314,24 +329,8 @@
 <body>
 
     <!-- Header -->
-    <header class="main-header">
-        <button class="menu-toggle">
-            <span></span><span></span><span></span>
-        </button>
-        <div class="logo">
-            <a href="../main.html">VIRTUAL GALLERY</a>
-        </div>
-        <nav class="nav-container">
-            <div class="nav-item">
-                <a href="../artistList.html" class="nav-link">Artistas</a>
-            </div>
-            <div class="nav-item">
-                <a href="../main.html" class="nav-link">Colección</a>
-            </div>
-            <div class="nav-item">
-                <a href="../contacto.html" class="nav-link">Sobre Nosotros</a>
-            </div>
-        </nav>
+    <header class="main-header-simple">
+        <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
     </header>
 
     <!-- Main Content -->
