@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo | Monet y Renoir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: var(--font-serif-body);
+            background: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        a {
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HEADER */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 3000;
+        }
+
+        /* --- HEADER STYLES --- */
+        .main-header-simple {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
+
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* HERO SECCIÓN */
+        .collection-hero {
+            margin-top: var(--header-height);
+            padding: 80px 50px 40px;
+            text-align: center;
+        }
+
+        .collection-hero h1 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+        }
+
+        .collection-hero span {
+            font-family: var(--font-serif-display);
+            color: var(--color-secondary);
+            letter-spacing: 3px;
+        }
+
+        /* GRID PRINCIPAL */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 30px;
+            padding: 0 50px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* BLOQUES DE TEXTO (CENTRADOS Y JUSTIFICADOS) */
+        .text-separator {
+            grid-column: 1 / -1;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .text-separator p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* TARJETAS DE ARTE */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .art-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            text-align: center;
+            font-family: var(--font-serif-display);
+            font-size: 0.7rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover .quick-view {
+            transform: translateY(0);
+        }
+
+        .art-meta {
+            text-align: left;
+        }
+
+        .art-artist {
+            font-family: var(--font-serif-display);
+            font-size: 0.65rem;
+            color: var(--color-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .art-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* POSICIONAMIENTO EN HUECOS 2 Y 3 */
+        .art-item-col-2 {
+            grid-column: 2;
+        }
+
+        .art-item-col-3 {
+            grid-column: 3;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .art-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .art-item-col-2,
+            .art-item-col-3 {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .art-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .collection-hero h1 {
+                font-size: 2rem;
+            }
+
+            .art-item-col-2,
+            .art-item-col-3 {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header-simple">
+        <div class="logo"><a href="/main.html">VIRTUAL GALLERY</a></div>
+    </header>
+
+
+    <main>
+        <header class="collection-hero">
+            <h1>Monet y Renoir</h1>
+            <span style="color: #000; font-weight: 400;">Dos miradas para un mismo encuadre</span>
+        </header>
+
+        <section class="art-grid">
+            <div class="text-separator">
+                <p>
+                    A finales del verano de <b>1869</b>, <strong>Claude Monet</strong> y <strong>Pierre-Auguste
+                        Renoir</strong> se instalaron con sus caballetes
+                    uno al lado del otro en <i>La Grenouillère</i>, un balneario flotante con restaurante sobre el río
+                    Sena, cerca de <b>Bougival</b>.
+                    <br>
+                    Ese encuentro cara a cara con el mismo motivo se considera hoy el
+                    nacimiento práctico del Impresionismo.
+                </p>
+            </div>
+
+            <!-- MONET (HUECO 2) -->
+            <a href="artistas" class="art-item art-item-col-2">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Claude_Monet_La_Grenouill%C3%A9re.jpg/1280px-Claude_Monet_La_Grenouill%C3%A9re.jpg"
+                        alt="La Grenouillère - Claude Monet">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">La Grenouillère</h2>
+                    <p class="art-year">1869</p>
+                </div>
+            </a>
+
+            <!-- RENOIR (HUECO 3) -->
+            <a href="#" class="art-item art-item-col-3">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Auguste_Renoir_-_La_Grenouill%C3%A8re.jpg"
+                        alt="La Grenouillère - Pierre-Auguste Renoir">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Pierre-Auguste Renoir</p>
+                    <h2 class="art-title">La Grenouillère</h2>
+                    <p class="art-year">1869</p>
+                </div>
+            </a>
+
+            <div class="text-separator">
+                <p>
+                    Ambos artistas estaban en la ruina y compartían tubos de pintura y comida mientras buscaban capturar
+                    el movimiento del agua y los reflejos del sol (plenairismo):
+                    <br><br>
+                    <span>Monet se centró en la estructura del paisaje, la atmósfera y la descomposición de la luz en el
+                        agua mediante pinceladas rápidas y horizontales. Los bañistas y paseantes quedaron reducidos a
+                        siluetas casi abstractas.
+                        Su objetivo era captar y plasmar los efectos del agua y del entorno en el lienzo.
+                        La sociedad, era ya no secundaria, casi inexistente.
+                    </span>
+                    <span>
+                        Renoir, por el contrario mostró un trazo más delicado y luminoso, prestando mucha más atención a
+                        las figuras humanas, las texturas de los vestidos y la interacción social.
+                    </span>
+                    Existe una clara diferenciación en cuanto a la cantidad de personajes dentro de ambas obras,
+                    <b>Renoir</b>
+                    pinta de forma sutil, el volumen de las prendas hace que el centro del cuadro donde confluyen la
+                    mayoría de actores, se vuelva el
+                    protagonista.
+                    <span>
+                        Ambos nos regalaron dos preciosos instantes de una tarde más en Bougival
+                    </span>
+                </p>
+            </div>
+            <!-- MONET (HUECO 2) -->
+            <a href="#" class="art-item art-item-col-2">
+                <div class="art-image-container">
+                    <img src="https://media.posterlounge.com/img/products/480000/475499/475499_poster.jpg"
+                        alt="La Grenouillère - Claude Monet">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">Mujeres en el jardín</h2>
+                    <p class="art-year">1866</p>
+                </div>
+            </a>
+
+            <!-- RENOIR (HUECO 3) -->
+            <a href="#" class="art-item art-item-col-3">
+                <div class="art-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Pierre-Auguste_Renoir%2C_La_loge_%28The_Theater_Box%29.jpg?utm_source=es.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+                        alt="La Grenouillère - Pierre-Auguste Renoir">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Pierre A. Renoir</p>
+                    <h2 class="art-title">El palco</h2>
+                    <p class="art-year">1874</p>
+                </div>
+            </a>
+
+            <div class="text-separator">
+                <p>
+                    Aunque en 1869 la relación era de camaradería absoluta, con los años surgieron roces importantes que
+                    enfriaron su relación, derivados de dos cuestiones clave:
+                    La "traición" al grupo y el Salón Oficial:
+                    Hacia finales de la década de 1870, Monet lideraba la resistencia contra el <b>academicismo</b>
+                    oficial de París, defendiendo que los impresionistas debían exponer exclusivamente en sus propias
+                    exposiciones independientes. Renoir decidió romper filas y volver a enviar obras al Salón Oficial de
+                    París
+                    buscando encargos y estabilidad económica burguesa.
+                    Monet lo consideró una deslealtad al movimiento y a la causa colectiva.
+                    La traición de un amigo con el que has pasado por tanto, siempre duele más.
+                </p>
+            </div>
+            <!-- MONET (HUECO 2) -->
+            <a href="#" class="art-item art-item-col-2">
+                <div class="art-image-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTyXn4InIBWJCVH0biuFan_ZbpS3k0PmqXfXNZggRr6ziDUYs8w4s93VLI75SLYhdCu7iMTt0sIYaWlYHk"
+                        alt="">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Pierre A. Renoir</p>
+                    <h2 class="art-title">Baile en Moulin La Galette</h2>
+                    <p class="art-year">1876</p>
+                </div>
+            </a>
+
+            <!-- RENOIR (HUECO 3) -->
+            <a href="#" class="art-item art-item-col-3">
+                <div class="art-image-container">
+                    <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRygB78z-N2bBSaxe4SeLIXlLIc_reFbiD4mTlQ8shaG9Pq6JMf6iijqIiUFCEl3YnnfdX5Vwr3LPoihhk"
+                        alt="La Grenouillère - Pierre-Auguste Renoir">
+                    <div class="quick-view">DETALLES</div>
+                </div>
+                <div class="art-meta">
+                    <p class="art-artist">Claude Monet</p>
+                    <h2 class="art-title">Mujer con sombrilla</h2>
+                    <p class="art-year">1875</p>
+                </div>
+            </a>
+
+            <div class="text-separator">
+                <p>
+                    Tuvieron que pasar algo más de 10 años, para que trasviajar a Italia en 1881, Renoir declaró haber
+                    "llegado al final del impresionismo" y comenzó a
+                    rechazar la técnica de manchas espontáneas de luz para volver a una <b>línea clásica</b> y dibujo
+                    definido
+                    (<i>periodo ingresco</i>). Renoir criticaba en privado que Monet se obsesionara únicamente con
+                    efectos ópticos
+                    y la luz fugaz descuidando el dibujo, mientras que Monet veía el cambio de Renoir como un paso atrás
+                    hacia el <b>conservadurismo</b>.
+                    <br> <br>
+                    Si quieres saber más sobre el epicentro artístico de <b>Bougival</b>, pincha <a href="bougival.html"
+                        style="color: #b58d53;">aquí</a>.
+
+                </p>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
