@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        @layer base {
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main>:first-child {
+                margin-top: 0 !important;
+            }
+
+            main>:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e61",
+                        "surface-container-highest": "#e3e1ec",
+                        "surface-container-low": "#f4f2fd",
+                        "on-surface": "#1a1b22",
+                        "on-primary-fixed": "#410003",
+                        "background": "#fbf8ff",
+                        "surface-bright": "#fbf8ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#ffe5e2",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "on-tertiary-container": "#ffe6d5",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-fixed": "#ffdcc3",
+                        "primary-container": "#c92a2a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#656467",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-variant": "#e3e1ec",
+                        "outline-variant": "#e4beba",
+                        "on-surface-variant": "#5b403d",
+                        "tertiary-container": "#a15600",
+                        "inverse-surface": "#2f3038",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "outline": "#8f706c",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "primary": "#a50915",
+                        "surface-dim": "#dad9e3",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "inverse-on-surface": "#f1effa",
+                        "surface": "#fbf8ff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#b91d20",
+                        "on-primary-fixed-variant": "#93000f",
+                        "primary-fixed": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#7d4200",
+                        "surface-container": "#eeedf7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e4e1e6",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-background": "#1a1b22",
+                        "surface-container-high": "#e8e7f1",
+                        "secondary-container": "#e4e1e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "space-xl": "3rem",
+                        "space-md": "1rem",
+                        "space-sm": "0.5rem",
+                        "margin-tablet": "2.5rem",
+                        "margin-desktop": "4rem",
+                        "gutter-desktop": "2.5rem",
+                        "space-lg": "1.75rem",
+                        "space-xs": "0.25rem",
+                        "gutter": "1.5rem",
+                        "margin": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": [
+                            "Playfair Display"
+                        ],
+                        "headline-lg": [
+                            "Playfair Display"
+                        ],
+                        "label-md": [
+                            "Plus Jakarta Sans"
+                        ],
+                        "title-editorial": [
+                            "Playfair Display"
+                        ],
+                        "headline-sm": [
+                            "Playfair Display"
+                        ],
+                        "body-md": [
+                            "Plus Jakarta Sans"
+                        ],
+                        "headline-lg-mobile": [
+                            "Playfair Display"
+                        ],
+                        "headline-md": [
+                            "Playfair Display"
+                        ],
+                        "body-sm": [
+                            "Plus Jakarta Sans"
+                        ],
+                        "quote": [
+                            "Playfair Display"
+                        ],
+                        "body-lg": [
+                            "Plus Jakarta Sans"
+                        ],
+                        "headline-xl": [
+                            "Playfair Display"
+                        ],
+                        "label-caps": [
+                            "Plus Jakarta Sans"
+                        ]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": [
+                            "36px",
+                            {
+                                "lineHeight": "44px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-lg": [
+                            "40px",
+                            {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.015em",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "label-md": [
+                            "13px",
+                            {
+                                "lineHeight": "18px",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "title-editorial": [
+                            "18px",
+                            {
+                                "lineHeight": "26px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-sm": [
+                            "22px",
+                            {
+                                "lineHeight": "30px",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "body-md": [
+                            "15px",
+                            {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-lg-mobile": [
+                            "28px",
+                            {
+                                "lineHeight": "36px",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "headline-md": [
+                            "28px",
+                            {
+                                "lineHeight": "36px",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "body-sm": [
+                            "13px",
+                            {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "quote": [
+                            "24px",
+                            {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "body-lg": [
+                            "18px",
+                            {
+                                "lineHeight": "30px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-xl": [
+                            "56px",
+                            {
+                                "lineHeight": "64px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "label-caps": [
+                            "11px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "700"
+                            }
+                        ]
+                    }
+                },
+            },
+        }</script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+    <header
+        class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-container-lowest border-b border-surface-container-highest">
+        <div
+            class="h-20 max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-gutter">
+            <div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group"
+                    data-path="restaurantes" href="#">
+                    <div class="flex flex-col"><span
+                            class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Salt
+                            &amp; Pepper</span><span
+                            class="font-label-caps text-label-caps uppercase tracking-widest text-primary leading-none mt-space-xs">Crítica
+                            Gastronómica</span></div>
+                </a>
+            </div>
+            <nav class="hidden xl:flex items-center gap-space-lg h-full"
+                data-active-classes="text-primary font-semibold border-b-2 border-primary"><a aria-current="page"
+                    class="transition-colors py-space-sm text-primary font-semibold border-b-2 border-primary"
+                    data-path="restaurantes" href="#">Restaurantes</a><a
+                    class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-sm"
+                    data-path="mapa-de-visitas" href="#">Mapa</a><a
+                    class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-sm"
+                    data-path="criticas" href="#">Críticas</a><a
+                    class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-sm"
+                    data-path="el-veredicto" href="#">El Veredicto</a>
+            <div class="flex items-center gap-space-md shrink-0">
+                <div
+                    class="hidden md:flex items-center bg-surface-container-low border border-surface-container-highest rounded-lg px-space-md py-space-xs w-64 focus-within:bg-surface-container-lowest focus-within:border-on-surface transition-all">
+                    <span
+                        class="material-symbols-outlined text-secondary text-[20px] mr-space-xs select-none">search</span><input
+                        class="bg-transparent w-full border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-secondary"
+                        placeholder="Buscar mesa, chef o ciudad..." type="text" />
+                </div><a
+                    class="inline-flex items-center justify-center bg-primary-container text-on-primary font-label-md text-label-md h-[44px] px-space-lg rounded-lg hover:bg-primary transition-colors uppercase tracking-wider"
+                    data-path="proponer-restaurante" href="#">Proponer Restaurante</a>
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span
+                        class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+            </div>
+        </div>
+    </header>
+    <main class="w-full pt-20 bg-background min-h-screen">
+        <div class="flex flex-col w-full">
+            <!-- Top Subtle Brand Accent Ribbon -->
+            <div class="w-full bg-primary-container h-1"></div>
+            <!-- Hero Section -->
+            <section class="relative w-full overflow-hidden bg-surface-container-lowest py-space-xl lg:py-24">
+                <div class="max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop relative z-10">
+                    <!-- Overline Meta -->
+                    <div class="flex items-center gap-space-sm mb-space-md">
+                        <span
+                            class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Cuaderno de
+                            Inspección &amp; Canon Gastronómico</span>
+                        <span class="text-surface-container-highest">/</span>
+                        <span class="font-body-sm text-body-sm text-secondary">Edición 2024–2025</span>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-end">
+                        <!-- Main Pitch -->
+                        <div class="lg:col-span-8 flex flex-col gap-space-md">
+                            <h1
+                                class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-[1.08] max-w-4xl">
+                                Paladares honestos, juicios sin concesiones.
+                            </h1>
+                            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                                Crítica gastronómica independiente, notas de campo exhaustivas y el mapa definitivo de
+                                dónde merece la pena sentarse a la mesa. Sin compromisos comerciales ni mesas de
+                                cortesía.
+                            </p>
+                        </div>
+                        <!-- Quick Summary Badge Strip -->
+                        <div class="lg:col-span-4 flex flex-col gap-space-sm pb-1">
+                            <div
+                                class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between shadow-sm">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+                                    <span class="font-body-sm text-body-sm font-semibold text-on-surface">100% Cuentas
+                                        Pagadas</span>
+                                </div>
+                                <span
+                                    class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Protocolo
+                                    ISO</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-secondary text-[12px] px-space-xs">
+                                Cada bocado reflejado en esta gaceta ha sido sufragado anónimamente por nuestros
+                                inspectores.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Live Search & Editorial Filter Strip -->
+                    <div class="mt-space-xl bg-surface-container-low rounded-xl p-space-md shadow-sm">
+                        <div class="flex flex-col md:flex-row items-stretch md:items-center gap-space-md">
+                            <div
+                                class="relative flex-1 bg-surface-container-lowest rounded-lg shadow-inner flex items-center px-space-md py-space-sm">
+                                <span
+                                    class="material-symbols-outlined text-primary text-[22px] mr-space-sm select-none">search</span>
+                                <input
+                                    class="w-full bg-transparent outline-none font-body-md text-body-md text-on-surface placeholder:text-secondary"
+                                    id="searchInput"
+                                    placeholder="Buscar por plato, ciudad, sumiller o restaurante (ej. Fabada, DiverXO, Sevilla)..."
+                                    type="text" />
+                            </div>
+                            <div class="flex items-center gap-space-sm shrink-0">
+                                <button
+                                    class="w-full md:w-auto inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary font-label-md text-label-md px-space-lg h-[44px] rounded-lg shadow-sm hover:bg-primary-container transition-all"
+                                    id="searchBtn">
+                                    <span>Explorar Fichas</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Category Tag Chips -->
+                        <div class="flex flex-wrap items-center gap-space-xs mt-space-md pt-space-sm">
+                            <span class="font-label-caps text-label-caps uppercase text-secondary mr-space-xs">Filtros
+                                rápidos:</span>
+                            <button
+                                class="filter-chip active text-label-md font-label-md px-space-md py-1 rounded-full bg-on-surface text-on-primary transition-all hover:opacity-90"
+                                data-filter="all">Todos</button>
+                            <button
+                                class="filter-chip text-label-md font-label-md px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container transition-all"
+                                data-filter="stars">Estrellas &amp; Vanguardia</button>
+                            <button
+                                class="filter-chip text-label-md font-label-md px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container transition-all"
+                                data-filter="top">En su punto (9-10)</button>
+                            <button
+                                class="filter-chip text-label-md font-label-md px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container transition-all"
+                                data-filter="tascas">Tascas &amp; Casas de Comida</button>
+                            <button
+                                class="filter-chip text-label-md font-label-md px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container transition-all"
+                                data-filter="asadores">Asadores de Fuego</button>
+                            <button
+                                class="filter-chip text-label-md font-label-md px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container transition-all"
+                                data-filter="warning">Advertencias / Decepciones</button>
+                        </div>
+                    </div>
+                    <!-- Stats Strip -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mt-space-xl pt-space-lg">
+                        <div
+                            class="flex items-start gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-primary text-[26px]">restaurant</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span
+                                    class="font-headline-md text-headline-md text-on-surface leading-none font-semibold">148</span>
+                                <span class="font-label-md text-label-md text-on-surface font-medium mt-1">Restaurantes
+                                    Auditados</span>
+                                <span class="font-body-sm text-body-sm text-secondary">Registrados en 24
+                                    provincias</span>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-start gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-primary text-[26px]">star</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span
+                                    class="font-headline-md text-headline-md text-on-surface leading-none font-semibold">32</span>
+                                <span class="font-label-md text-label-md text-on-surface font-medium mt-1">Veredictos
+                                    Sobresalientes</span>
+                                <span class="font-body-sm text-body-sm text-secondary">Calificación igual o superior a
+                                    9.0</span>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-start gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-secondary text-[26px]">visibility</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span
+                                    class="font-headline-md text-headline-md text-on-surface leading-none font-semibold">89</span>
+                                <span class="font-label-md text-label-md text-on-surface font-medium mt-1">Visitas
+                                    Anónimas</span>
+                                <span class="font-body-sm text-body-sm text-secondary">Últimos doce meses en
+                                    curso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SECTION 2: Ratings Table & Notebook Entries -->
+            <section class="w-full py-space-xl bg-surface-container-low" id="calificaciones">
+                <div class="max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+                    <!-- Section Header -->
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+                        <div>
+                            <div class="flex items-center gap-space-xs text-primary mb-space-xs">
+                                <span class="material-symbols-outlined text-[18px]">edit_note</span>
+                                <span class="font-label-caps text-label-caps uppercase tracking-widest">Cuaderno de
+                                    Campo</span>
+                            </div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface">Tabla de Calificaciones &amp;
+                                Cuaderno de Notas</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                                Dictámenes técnicos desglosados en cocina, sala, carta de vinos y relación
+                                placer-precio.
+                            </p>
+                        </div>
+                        <!-- Grade Filter Tabs -->
+                        <div
+                            class="flex items-center bg-surface-container-lowest p-1 rounded-xl shadow-sm self-start md:self-auto overflow-x-auto max-w-full">
+                            <button
+                                class="grade-tab px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-primary text-on-primary transition-all whitespace-nowrap"
+                                data-grade="all">Todos (5)</button>
+                            <button
+                                class="grade-tab px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap"
+                                data-grade="9-10">Imprescindibles (9–10)</button>
+                            <button
+                                class="grade-tab px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap"
+                                data-grade="7-8">Recomendables (7–8)</button>
+                            <button
+                                class="grade-tab px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap"
+                                data-grade="5-6">En Duda (5–6)</button>
+                            <button
+                                class="grade-tab px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap"
+                                data-grade="low">Evitables (&lt;5)</button>
+                        </div>
+                    </div>
+                    <!-- Cards Grid -->
+                    <div class="flex flex-col gap-space-lg" id="restaurantCardsContainer">
+                        <!-- RESTAURANT 1: DiverXO -->
+                        <article
+                            class="restaurant-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300"
+                            data-grade-cat="9-10" data-tags="stars top">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                                <!-- Image Left Column -->
+                                <div class="lg:col-span-4 relative min-h-[260px] lg:min-h-full">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="Intense culinary haute cuisine dish featuring a delicate roasted pigeon dish with red chili emulsion, micro herbs, minimalist plating on dark artisan ceramic plate in high-end restaurant DiverXO Madrid, warm focused spot lighting, dark contrast"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl_Ye4aMDrlm-CvHhiw3JK0O3WKs0TKPKYPfW-AmpluWF0aBRXx-TqTyQPFeFtLbGNfpdZMzcKDS05qkxwvpe8he8Schey7pyianKqt-qEC8lUL6027uf06pvlvvRK0W6MtFiLeVLexYS-OlVkHgGO8UNR5SRvbMJwdJxSx1fa5-NANRwOHjhZIrXIVHAfILp4OgezflAF0h9OkxdTuxEQAcFH3Fugu2BBpPXLhkElXd0Utz-uJK25" />
+                                    <div
+                                        class="absolute top-3 left-3 flex items-center gap-1 bg-surface-container-lowest/95 backdrop-blur px-space-sm py-1 rounded shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-[16px]">pin_drop</span>
+                                        <span class="font-label-caps text-label-caps uppercase text-on-surface">Madrid ·
+                                            Chamartín</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-on-surface/90 text-on-primary px-space-sm py-1 rounded font-label-caps text-label-caps">
+                                        Visita: Octubre 2024
+                                    </div>
+                                </div>
+                                <!-- Content Middle Column -->
+                                <div class="lg:col-span-8 p-space-lg flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span
+                                                    class="inline-flex items-center gap-1 bg-primary text-on-primary px-space-sm py-1 rounded-full font-label-caps text-label-caps tracking-wider">
+                                                    <span class="material-symbols-outlined text-[14px]">stars</span>
+                                                    OBRA MAESTRA / IMPRESCINDIBLE
+                                                </span>
+                                                <span
+                                                    class="font-body-sm text-body-sm text-secondary font-medium">Ticket
+                                                    medio: 395€</span>
+                                            </div>
+                                            <!-- Score Pill -->
+                                            <div
+                                                class="flex items-baseline gap-1 bg-surface-container-low px-space-md py-1 rounded-lg">
+                                                <span
+                                                    class="font-headline-md text-headline-md text-primary font-bold">9.8</span>
+                                                <span class="font-body-sm text-body-sm text-secondary">/ 10</span>
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                                            DiverXO <span
+                                                class="text-secondary font-title-editorial text-title-editorial font-normal italic">—
+                                                Dabiz Muñoz</span>
+                                        </h3>
+                                        <p
+                                            class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                            «Técnica apabullante y servicio milimétrico sin el corsé de la vieja
+                                            escuela. El pase del pichón macerado y asado a la brasa es un hito de la
+                                            culinaria europea de la última década. Precio elevado pero plenamente
+                                            justificado hasta el último céntimo.»
+                                        </p>
+                                        <!-- Platos Destacados -->
+                                        <div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+                                            <span class="font-label-caps text-label-caps uppercase text-secondary">Pases
+                                                estelares:</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Cerdito
+                                                volador al vapor</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Pichón
+                                                a la brasa con emulsión de ají</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Lienzo
+                                                laksa Singapore</span>
+                                        </div>
+                                    </div>
+                                    <!-- Score Breakdown Bars & Expand Toggle -->
+                                    <div
+                                        class="mt-space-lg pt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-sm">
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Cocina</span>
+                                                    <span class="text-on-surface">10.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 100%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Servicio</span>
+                                                    <span class="text-on-surface">9.6</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 96%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Bodega</span>
+                                                    <span class="text-on-surface">9.8</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 98%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>RCP</span>
+                                                    <span class="text-on-surface">9.4</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 94%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-secondary italic">Inspector ID:
+                                                #04 • Tres visitas en el ciclo</span>
+                                            <a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:text-on-surface transition-colors"
+                                                href="#">
+                                                Leer crónica íntegra (8 págs.)
+                                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- RESTAURANT 2: Casa Gerardo -->
+                        <article
+                            class="restaurant-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300"
+                            data-grade-cat="9-10" data-tags="top tascas">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                                <div class="lg:col-span-4 relative min-h-[260px] lg:min-h-full">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="Traditional yet refined Asturian fabada bean stew served in a wide shallow bone china bowl, creamy broth with compango chorizo and blood sausage, rustic luxury dining table background with linen napkin at Casa Gerardo Asturias"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk5EtfJNb55ferVd6c9lYlkpiqzXzZqUF-whY1D_rGSlu4yMrEW-1jYXyDH_0EHpPw-jxi_oU_zrap6B9tRtz77bhmbrh-W6CQqQ9cFVRgbrxz85Kb1bX-8ZEa0W3juXaH3xN3MgYrjfhMSaD_JWWWzrrfhLfdHOHhOzKMKGXy-SBVU5KwlgKjENIpylMr5aRiRrfn-tdH4I29eqQZT1yinj-ADHxRFJkbFpbNQOgvLZ8bSs22nFqQ" />
+                                    <div
+                                        class="absolute top-3 left-3 flex items-center gap-1 bg-surface-container-lowest/95 backdrop-blur px-space-sm py-1 rounded shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-[16px]">pin_drop</span>
+                                        <span class="font-label-caps text-label-caps uppercase text-on-surface">Prendes
+                                            · Asturias</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-on-surface/90 text-on-primary px-space-sm py-1 rounded font-label-caps text-label-caps">
+                                        Visita: Septiembre 2024
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-8 p-space-lg flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span
+                                                    class="inline-flex items-center gap-1 bg-primary text-on-primary px-space-sm py-1 rounded-full font-label-caps text-label-caps tracking-wider">
+                                                    <span
+                                                        class="material-symbols-outlined text-[14px]">military_tech</span>
+                                                    EXCELENTE / CLÁSICO REINVENTADO
+                                                </span>
+                                                <span
+                                                    class="font-body-sm text-body-sm text-secondary font-medium">Ticket
+                                                    medio: 95€</span>
+                                            </div>
+                                            <div
+                                                class="flex items-baseline gap-1 bg-surface-container-low px-space-md py-1 rounded-lg">
+                                                <span
+                                                    class="font-headline-md text-headline-md text-primary font-bold">9.2</span>
+                                                <span class="font-body-sm text-body-sm text-secondary">/ 10</span>
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                                            Casa Gerardo <span
+                                                class="text-secondary font-title-editorial text-title-editorial font-normal italic">—
+                                                Marcos y Pedro Morán</span>
+                                        </h3>
+                                        <p
+                                            class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                            «La fabada más etérea de la península: pellejo invisible y caldo emulsionado
+                                            sin rastro de pesadez. El salmonete soasado con sus propias escamas
+                                            crujientes demuestra el dominio absoluto del fuego de orilla. Repetir
+                                            siempre que se pise el norte.»
+                                        </p>
+                                        <div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+                                            <span class="font-label-caps text-label-caps uppercase text-secondary">Pases
+                                                estelares:</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Fabada
+                                                desgrasada de Prendes</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Salmonete
+                                                con jugo de sus higadillos</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Crema
+                                                de arroz con leche requemada</span>
+                                        </div>
+                                    </div>
+                                    <!-- Score Breakdown -->
+                                    <div
+                                        class="mt-space-lg pt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-sm">
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Cocina</span>
+                                                    <span class="text-on-surface">9.5</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 95%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Servicio</span>
+                                                    <span class="text-on-surface">9.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 90%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Bodega</span>
+                                                    <span class="text-on-surface">8.9</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 89%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>RCP</span>
+                                                    <span class="text-on-surface">9.6</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 96%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-secondary italic">Inspector ID:
+                                                #01 • Visita doble cata</span>
+                                            <a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:text-on-surface transition-colors"
+                                                href="#">
+                                                Leer crónica íntegra
+                                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- RESTAURANT 4: Taberna El Chato -->
+                        <article
+                            class="restaurant-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300"
+                            data-grade-cat="7-8" data-tags="tascas">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                                <div class="lg:col-span-4 relative min-h-[260px] lg:min-h-full">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="Platter of creamy iberico ham croquettes golden fried with crisp crust and melting interior alongside braised bull tail stew in rich mahogany sauce inside a warm Andalusian tavern Taberna El Chato Sevilla"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQWvW4FLoVih7B_K42r75O8jpSIICMTXzObVSsoHxfKBduK1YiZYNe6FeDT3A06a3aObBqxC8TG8RDhc5yxHMYx_3YZPRRqcCDmvcxBq8pO1mfzRzF84k0mK-uaIy7iGmJls9XABjOsemr4kP6wubWcQwOaluOjQoY-rRli1sEpEW4UnDRQp0-kVVtFMYm9Ld3cEvi54PiYjm202D-puydpCeVIw8IvHjygXU6R7E5lnAnI8zWi61M" />
+                                    <div
+                                        class="absolute top-3 left-3 flex items-center gap-1 bg-surface-container-lowest/95 backdrop-blur px-space-sm py-1 rounded shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-[16px]">pin_drop</span>
+                                        <span class="font-label-caps text-label-caps uppercase text-on-surface">Sevilla
+                                            · Triana</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-on-surface/90 text-on-primary px-space-sm py-1 rounded font-label-caps text-label-caps">
+                                        Visita: Julio 2024
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-8 p-space-lg flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span
+                                                    class="inline-flex items-center gap-1 bg-on-surface text-on-primary px-space-sm py-1 rounded-full font-label-caps text-label-caps tracking-wider">
+                                                    <span class="material-symbols-outlined text-[14px]">thumb_up</span>
+                                                    NOTABLE ALTO / AUTÉNTICO
+                                                </span>
+                                                <span
+                                                    class="font-body-sm text-body-sm text-secondary font-medium">Ticket
+                                                    medio: 35€</span>
+                                            </div>
+                                            <div
+                                                class="flex items-baseline gap-1 bg-surface-container-low px-space-md py-1 rounded-lg">
+                                                <span
+                                                    class="font-headline-md text-headline-md text-on-surface font-bold">8.7</span>
+                                                <span class="font-body-sm text-body-sm text-secondary">/ 10</span>
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                                            Taberna El Chato <span
+                                                class="text-secondary font-title-editorial text-title-editorial font-normal italic">—
+                                                Casa de Guisos</span>
+                                        </h3>
+                                        <p
+                                            class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                            «Guisos de fondo portentosos donde la paciencia no se negocia. Rabo de toro
+                                            canónico, meloso y reducido sin atajos de espesantes. Croquetas de jamón
+                                            ibérico de bellota que marcan cátedra popular. Una relación calidad-precio
+                                            fuera de escala.»
+                                        </p>
+                                        <div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+                                            <span class="font-label-caps text-label-caps uppercase text-secondary">Pases
+                                                estelares:</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Rabo
+                                                de toro estofado al oloroso</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Croqueta
+                                                fluida de bellota</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Espinacas
+                                                con garbanzos</span>
+                                        </div>
+                                    </div>
+                                    <!-- Score Breakdown -->
+                                    <div
+                                        class="mt-space-lg pt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-sm">
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Cocina</span>
+                                                    <span class="text-on-surface">9.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-on-surface h-full rounded-full" style="width: 90%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Servicio</span>
+                                                    <span class="text-on-surface">8.2</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-on-surface h-full rounded-full" style="width: 82%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Bodega</span>
+                                                    <span class="text-on-surface">7.8</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-on-surface h-full rounded-full" style="width: 78%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>RCP</span>
+                                                    <span class="text-on-surface">10.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 100%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-secondary italic">Inspector ID:
+                                                #09 • Visita espontánea</span>
+                                            <a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:text-on-surface transition-colors"
+                                                href="#">
+                                                Leer crónica íntegra
+                                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- RESTAURANT 3: Bistró Lumière -->
+                        <article
+                            class="restaurant-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300"
+                            data-grade-cat="5-6" data-tags="warning">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                                <div class="lg:col-span-4 relative min-h-[260px] lg:min-h-full">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="A Parisian style modern bistro plate with tuna tartare lacking vibrant color and an overcooked white fish fillet served with wilted microgreens under harsh fluorescent restaurant lighting Bistró Lumière Barcelona"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd819a0TK7IVfN7KkR9rcgnGNEygU-RxCj5pPPVSqaVlYFsUVIvGuHs6mfvn0dLsFSmcodm5ynmlPu8WsKOPUk9m0uJwnDqXoVUkwStgB7vvv7s2JH0a3Q-v5N6MTCFNcMjYbzXPgmbw_aXZw_pXDazius4Xn3gGgSdcTskQ5F3nYPo2hkH4Q8P4rdEmkFZ5TtvQC-2fP8JxgwsvaacK3UV7mt7Y_MqCom7-4MyGLV4seM1FR80ITH" />
+                                    <div
+                                        class="absolute top-3 left-3 flex items-center gap-1 bg-surface-container-lowest/95 backdrop-blur px-space-sm py-1 rounded shadow-sm">
+                                        <span
+                                            class="material-symbols-outlined text-secondary text-[16px]">pin_drop</span>
+                                        <span
+                                            class="font-label-caps text-label-caps uppercase text-on-surface">Barcelona
+                                            · Eixample</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-on-surface/90 text-on-primary px-space-sm py-1 rounded font-label-caps text-label-caps">
+                                        Visita: Agosto 2024
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-8 p-space-lg flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span
+                                                    class="inline-flex items-center gap-1 bg-tertiary text-on-tertiary px-space-sm py-1 rounded-full font-label-caps text-label-caps tracking-wider">
+                                                    <span class="material-symbols-outlined text-[14px]">warning</span>
+                                                    IRREGULAR / DUDOSO
+                                                </span>
+                                                <span
+                                                    class="font-body-sm text-body-sm text-secondary font-medium">Ticket
+                                                    medio: 65€</span>
+                                            </div>
+                                            <div
+                                                class="flex items-baseline gap-1 bg-surface-container-low px-space-md py-1 rounded-lg">
+                                                <span
+                                                    class="font-headline-md text-headline-md text-tertiary font-bold">6.1</span>
+                                                <span class="font-body-sm text-body-sm text-secondary">/ 10</span>
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                                            Bistró Lumière <span
+                                                class="text-secondary font-title-editorial text-title-editorial font-normal italic">—
+                                                Cocina Neoafrancesada</span>
+                                        </h3>
+                                        <p
+                                            class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                            «Excelente selección de vinos naturales y ambiente vibrante, pero un
+                                            servicio desbordado y apresurado. El tartar de atún carecía del aliño
+                                            emulsionado prometido y el punto del rodaballo llegó irremediablemente
+                                            pasado de fuego. Promete más de lo que entrega en sala.»
+                                        </p>
+                                        <div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+                                            <span
+                                                class="font-label-caps text-label-caps uppercase text-secondary">Puntos
+                                                críticos:</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Tartar
+                                                plano en acidez</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded">Rodaballo
+                                                sobrecocido</span>
+                                            <span
+                                                class="bg-surface-container-low text-on-surface text-body-sm font-medium px-space-sm py-0.5 rounded text-tertiary">Excelente
+                                                carta de borgoñas</span>
+                                        </div>
+                                    </div>
+                                    <!-- Score Breakdown -->
+                                    <div
+                                        class="mt-space-lg pt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-sm">
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Cocina</span>
+                                                    <span class="text-on-surface">5.8</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-tertiary h-full rounded-full" style="width: 58%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Servicio</span>
+                                                    <span class="text-on-surface">5.5</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-tertiary h-full rounded-full" style="width: 55%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Bodega</span>
+                                                    <span class="text-on-surface">8.4</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-primary h-full rounded-full" style="width: 84%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>RCP</span>
+                                                    <span class="text-on-surface">5.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-tertiary h-full rounded-full" style="width: 50%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-secondary italic">Inspector ID:
+                                                #02 • Servicio de cena</span>
+                                            <a class="inline-flex items-center gap-1 font-label-md text-label-md text-on-surface font-bold hover:text-primary transition-colors"
+                                                href="#">
+                                                Ver acta de incidencias
+                                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- RESTAURANT 5: Neo-Trattoria Bella -->
+                        <article
+                            class="restaurant-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300"
+                            data-grade-cat="low" data-tags="warning">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                                <div class="lg:col-span-4 relative min-h-[260px] lg:min-h-full">
+                                    <img class="w-full h-full object-cover grayscale"
+                                        data-alt="Overly stylized pasta plate covered in synthetic truffle oil shine and heavy cream sauce served on an aggressively decorated trendy restaurant table with flashy neon signage in the background Neo-Trattoria Bella Valencia"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmgjgChXJlWcXysdZojCCPUQQw8nkU04PAo3zKf0gSUCgVzfb_Zhne58jpbIVW8cFfvPL9-PthpmPsJC9TH1sNAksz7Zh1Sa0gtFsziXyUm951fngh3s7vI9sTTgILOTQd1G9woWjoldX1wCnqBD_5Ik4Tw-UF9pDYRYDB2iAPFVeD6dUWbXRP4kOSX1b-i-Z9LfRj_kr56dWY7Lm2QJzUnd9QxIhcIFMRIF-NLNUDs392tLn9zC8s" />
+                                    <div
+                                        class="absolute top-3 left-3 flex items-center gap-1 bg-surface-container-lowest/95 backdrop-blur px-space-sm py-1 rounded shadow-sm">
+                                        <span
+                                            class="material-symbols-outlined text-secondary text-[16px]">pin_drop</span>
+                                        <span class="font-label-caps text-label-caps uppercase text-on-surface">Valencia
+                                            · Ruzafa</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-error text-on-error px-space-sm py-1 rounded font-label-caps text-label-caps">
+                                        Visita: Noviembre 2024
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-8 p-space-lg flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span
+                                                    class="inline-flex items-center gap-1 bg-error text-on-error px-space-sm py-1 rounded-full font-label-caps text-label-caps tracking-wider">
+                                                    <span class="material-symbols-outlined text-[14px]">cancel</span>
+                                                    DECEPCIONANTE / NO RECOMENDADO
+                                                </span>
+                                                <span
+                                                    class="font-body-sm text-body-sm text-secondary font-medium">Ticket
+                                                    medio: 50€</span>
+                                            </div>
+                                            <div
+                                                class="flex items-baseline gap-1 bg-error-container px-space-md py-1 rounded-lg">
+                                                <span
+                                                    class="font-headline-md text-headline-md text-error font-bold">4.2</span>
+                                                <span class="font-body-sm text-body-sm text-secondary">/ 10</span>
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                                            Neo-Trattoria Bella <span
+                                                class="text-secondary font-title-editorial text-title-editorial font-normal italic">—
+                                                Pretensión Efímera</span>
+                                        </h3>
+                                        <p
+                                            class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                            «Pasta fresca apelmazada con exceso de cocción y aceite de trufa sintética
+                                            de bote con aroma invasivo y químico. Mucha escenografía de cartón piedra
+                                            para redes sociales, cero poso técnico en los fuegos. El tipo de propuesta
+                                            que desvirtúa la gastronomía honesta.»
+                                        </p>
+                                        <div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+                                            <span
+                                                class="font-label-caps text-label-caps uppercase text-secondary">Anotaciones
+                                                de advertencia:</span>
+                                            <span
+                                                class="bg-error-container text-on-error-container text-body-sm font-medium px-space-sm py-0.5 rounded">Pasta
+                                                pasada de punto</span>
+                                            <span
+                                                class="bg-error-container text-on-error-container text-body-sm font-medium px-space-sm py-0.5 rounded">Química
+                                                sintética en salsas</span>
+                                            <span
+                                                class="bg-error-container text-on-error-container text-body-sm font-medium px-space-sm py-0.5 rounded">Acústica
+                                                insoportable</span>
+                                        </div>
+                                    </div>
+                                    <!-- Score Breakdown -->
+                                    <div
+                                        class="mt-space-lg pt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-sm">
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Cocina</span>
+                                                    <span class="text-error">3.5</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-error h-full rounded-full" style="width: 35%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Servicio</span>
+                                                    <span class="text-on-surface">5.0</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-secondary h-full rounded-full" style="width: 50%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>Bodega</span>
+                                                    <span class="text-on-surface">4.5</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-secondary h-full rounded-full" style="width: 45%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex justify-between text-[11px] font-semibold text-secondary uppercase mb-1">
+                                                    <span>RCP</span>
+                                                    <span class="text-error">3.8</span>
+                                                </div>
+                                                <div
+                                                    class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                                                    <div class="bg-error h-full rounded-full" style="width: 38%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-secondary italic">Inspector ID:
+                                                #06 • Comprobación de queja</span>
+                                            <a class="inline-flex items-center gap-1 font-label-md text-label-md text-error font-bold hover:text-on-surface transition-colors"
+                                                href="#">
+                                                Leer dictamen negativo completo
+                                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!-- SECTION 3: Cartografía del Paladar (Interactive Map Explorer) -->
+            <section class="w-full py-space-xl bg-surface-container-lowest" id="mapa">
+                <div class="max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+                    <!-- Section Title & Meta -->
+                    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-xl">
+                        <div>
+                            <div class="flex items-center gap-space-xs text-primary mb-space-xs">
+                                <span class="material-symbols-outlined text-[18px]">explore</span>
+                                <span class="font-label-caps text-label-caps uppercase tracking-widest">Geografía
+                                    Crítica</span>
+                            </div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface">Cartografía del Paladar: Dónde
+                                hemos estado</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+                                Mapeo interactivo de cada incursión. Filtre por veredicto o acote su búsqueda
+                                territorial antes de reservar su próxima comida.
+                            </p>
+                        </div>
+                        <!-- Filter Controls for Map -->
+                        <div class="flex flex-wrap items-center gap-space-xs">
+                            <button
+                                class="px-space-md py-1.5 rounded-lg text-label-md font-label-md bg-on-surface text-on-primary shadow-sm hover:opacity-90 transition-all"
+                                id="mapBtnAll">
+                                Todos los puntos (148)
+                            </button>
+                            <button
+                                class="px-space-md py-1.5 rounded-lg text-label-md font-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1"
+                                id="mapBtnRec">
+                                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                Recomendados (≥7.0)
+                            </button>
+                            <button
+                                class="px-space-md py-1.5 rounded-lg text-label-md font-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1"
+                                id="mapBtnWarn">
+                                <span class="w-2 h-2 rounded-full bg-error"></span>
+                                Advertencias (&lt;6.5)
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Main Map Grid (Visualizer + Detail Dossier) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+                        <!-- Left: Vector Cartography UI -->
+                        <div
+                            class="lg:col-span-8 bg-surface-container-low rounded-xl p-space-md relative overflow-hidden shadow-sm min-h-[560px] flex flex-col justify-between">
+                            <!-- Top map toolbar -->
+                            <div
+                                class="flex items-center justify-between z-20 bg-surface-container-lowest/90 backdrop-blur p-space-xs px-space-md rounded-lg shadow-sm">
+                                <div class="flex items-center gap-space-sm text-body-sm font-medium text-on-surface">
+                                    <span class="material-symbols-outlined text-primary text-[18px]">public</span>
+                                    <span>Península Ibérica • 148 Coordenadas Validadas</span>
+                                </div>
+                                <!-- City Quick Zoom Links -->
+                                <div class="hidden sm:flex items-center gap-space-xs text-[11px] font-bold">
+                                    <span class="text-secondary mr-1">Saltar a:</span>
+                                    <button
+                                        class="city-jump px-2 py-0.5 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+                                        data-city="Madrid">Madrid</button>
+                                    <button
+                                        class="city-jump px-2 py-0.5 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+                                        data-city="Barcelona">Barcelona</button>
+                                    <button
+                                        class="city-jump px-2 py-0.5 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+                                        data-city="Asturias">Asturias</button>
+                                    <button
+                                        class="city-jump px-2 py-0.5 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+                                        data-city="Sevilla">Sevilla</button>
+                                    <button
+                                        class="city-jump px-2 py-0.5 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+                                        data-city="Valencia">Valencia</button>
+                                </div>
+                            </div>
+                            <!-- Stylized Iberian Peninsula Vector Map Area -->
+                            <div class="relative w-full h-[460px] my-space-sm flex items-center justify-center">
+                                <!-- Atmospheric Grid Lines (SVG) -->
+                                <svg class="absolute inset-0 w-full h-full text-surface-container-highest opacity-40 pointer-events-none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+                                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor"
+                                                stroke-width="0.75"></path>
+                                        </pattern>
+                                    </defs>
+                                    <rect fill="url(#grid)" height="100%" width="100%"></rect>
+                                </svg>
+                                <!-- Stylized Topographic Silhouette of Spain & Portugal -->
+                                <svg class="w-full h-full max-h-[440px] text-surface-container-highest/80 filter drop-shadow-sm select-none"
+                                    fill="currentColor" viewbox="0 0 800 600">
+                                    <!-- Simplified stylized peninsula contour -->
+                                    <path class="text-surface-container-high opacity-70"
+                                        d="M 120 180 C 140 120, 260 110, 340 125 C 430 115, 540 100, 640 160 C 670 190, 710 240, 680 320 C 660 370, 640 440, 560 480 C 500 510, 420 530, 360 520 C 270 535, 180 500, 150 440 C 130 380, 100 320, 110 240 Z">
+                                    </path>
+                                    <!-- Inland subtle topography contour lines -->
+                                    <path class="text-surface-dim opacity-50"
+                                        d="M 220 220 Q 380 180 540 240 Q 600 330 480 430 Q 300 460 220 360 Z"
+                                        fill="none" stroke="currentColor" stroke-width="1"></path>
+                                    <!-- River routes subtle decorative line -->
+                                    <path class="text-secondary/30" d="M 640 200 Q 500 280 380 290 Q 220 300 130 350"
+                                        fill="none" stroke="currentColor" stroke-dasharray="3,3" stroke-width="1.2">
+                                    </path>
+                                </svg>
+                                <!-- Custom Pointers / Pins with Real Interactive Coordinates -->
+                                <!-- PIN 1: DiverXO (Madrid - Center) -->
+                                <div class="map-pin cursor-pointer absolute top-[44%] left-[48%] -translate-x-1/2 -translate-y-1/2 group z-30"
+                                    data-id="diverxo">
+                                    <div class="relative flex items-center justify-center">
+                                        <span class="absolute w-8 h-8 rounded-full bg-primary/20 animate-ping"></span>
+                                        <div
+                                            class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg transition-transform group-hover:scale-125 ring-2 ring-surface-container-lowest">
+                                            <span class="material-symbols-outlined text-[15px] font-bold">check</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-on-surface text-on-primary px-2 py-1 rounded shadow text-xs">
+                                        <span class="font-bold">DiverXO · Madrid (9.8)</span>
+                                        <span class="text-[10px] text-primary-fixed">Obra Maestra</span>
+                                    </div>
+                                </div>
+                                <!-- PIN 2: Casa Gerardo (Asturias - North) -->
+                                <div class="map-pin cursor-pointer absolute top-[22%] left-[34%] -translate-x-1/2 -translate-y-1/2 group z-30"
+                                    data-id="casagerardo">
+                                    <div class="relative flex items-center justify-center">
+                                        <div
+                                            class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg transition-transform group-hover:scale-125 ring-2 ring-surface-container-lowest">
+                                            <span class="material-symbols-outlined text-[15px] font-bold">star</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-on-surface text-on-primary px-2 py-1 rounded shadow text-xs">
+                                        <span class="font-bold">Casa Gerardo · Asturias (9.2)</span>
+                                        <span class="text-[10px] text-primary-fixed">Excelente</span>
+                                    </div>
+                                </div>
+                                <!-- PIN 3: Bistró Lumière (Barcelona - Northeast) -->
+                                <div class="map-pin cursor-pointer absolute top-[30%] left-[76%] -translate-x-1/2 -translate-y-1/2 group z-30"
+                                    data-id="lumiere">
+                                    <div class="relative flex items-center justify-center">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-lg transition-transform group-hover:scale-125 ring-2 ring-surface-container-lowest">
+                                            <span class="material-symbols-outlined text-[13px]">priority_high</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-on-surface text-on-primary px-2 py-1 rounded shadow text-xs">
+                                        <span class="font-bold">Bistró Lumière · Barcelona (6.1)</span>
+                                        <span class="text-[10px] text-tertiary-fixed">Irregular</span>
+                                    </div>
+                                </div>
+                                <!-- PIN 4: Taberna El Chato (Sevilla - South) -->
+                                <div class="map-pin cursor-pointer absolute top-[70%] left-[33%] -translate-x-1/2 -translate-y-1/2 group z-30"
+                                    data-id="elchato">
+                                    <div class="relative flex items-center justify-center">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-on-surface text-on-primary flex items-center justify-center shadow-lg transition-transform group-hover:scale-125 ring-2 ring-surface-container-lowest">
+                                            <span class="material-symbols-outlined text-[14px]">restaurant</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-on-surface text-on-primary px-2 py-1 rounded shadow text-xs">
+                                        <span class="font-bold">Taberna El Chato · Sevilla (8.7)</span>
+                                        <span class="text-[10px] text-secondary-fixed">Notable Alto</span>
+                                    </div>
+                                </div>
+                                <!-- PIN 5: Neo-Trattoria Bella (Valencia - East) -->
+                                <div class="map-pin cursor-pointer absolute top-[52%] left-[67%] -translate-x-1/2 -translate-y-1/2 group z-30"
+                                    data-id="neotrattoria">
+                                    <div class="relative flex items-center justify-center">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center shadow-lg transition-transform group-hover:scale-125 ring-2 ring-surface-container-lowest">
+                                            <span class="material-symbols-outlined text-[13px]">close</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-on-surface text-on-primary px-2 py-1 rounded shadow text-xs">
+                                        <span class="font-bold">Neo-Trattoria Bella · Valencia (4.2)</span>
+                                        <span class="text-[10px] text-error-container">No recomendado</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom Map Legend -->
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/95 backdrop-blur p-space-sm px-space-md rounded-lg z-20">
+                                <div class="flex items-center gap-space-md text-body-sm text-secondary">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+                                        <span class="text-[12px]">Obra Maestra (9.0–10)</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="w-3 h-3 rounded-full bg-on-surface inline-block"></span>
+                                        <span class="text-[12px]">Notable (7.5–8.9)</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="w-3 h-3 rounded-full bg-tertiary inline-block"></span>
+                                        <span class="text-[12px]">Dudoso (5.0–7.4)</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="w-3 h-3 rounded-full bg-error inline-block"></span>
+                                        <span class="text-[12px]">Evitable (&lt;5.0)</span>
+                                    </div>
+                                </div>
+                                <span class="text-[11px] font-semibold text-secondary uppercase tracking-wider">Haga
+                                    clic sobre un marcador para ver la ficha</span>
+                            </div>
+                        </div>
+                        <!-- Right: Floating Dossier Card -->
+                        <div class="lg:col-span-4 flex flex-col">
+                            <div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm flex flex-col justify-between h-full relative overflow-hidden"
+                                id="mapDossierCard">
+                                <!-- Sticky Inspection Badge Stamp -->
+                                <div
+                                    class="absolute top-4 right-4 bg-primary text-on-primary px-space-sm py-0.5 rounded font-label-caps text-label-caps uppercase tracking-wider shadow">
+                                    <span id="dossierStamp">VISITADO · 14 OCT 2024</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="font-label-caps text-label-caps uppercase text-primary tracking-widest block mb-space-xs">Ficha
+                                        de Campo Activa</span>
+                                    <!-- Thumbnail -->
+                                    <div class="relative w-full h-44 rounded-lg overflow-hidden my-space-sm shadow-sm">
+                                        <img class="w-full h-full object-cover"
+                                            data-alt="Close up photography of DiverXO Madrid fine dining dish showing precision culinary craft, delicate sauces and impeccable modern table setting"
+                                            id="dossierImage"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhXbplGtR31fTXuLs5W95pwYfkf8xsd31wZuwIYMgDbQx5GudkWLR1jYvdifl9DtxA-90HiZYTVoYw5_j0NwUMOLhryMtFlHK0j13WjBqih9_yDQWPfe1dpIJuYDJWv5UTXW7qhb9a79LK8QOtt-5_Oaece-mZtXcvtsZENiSdNdKVynHVZXbtQc5d6nlOraCsGlTRwgp5JDXzu4BE8Khqoi1xkRJYgeQ2C0O2nlbz0VptTbNUBTY" />
+                                        <div
+                                            class="absolute bottom-2 left-2 bg-on-surface/90 text-on-primary px-space-sm py-0.5 rounded text-[11px] font-semibold">
+                                            Fotografía de Inspector
+                                        </div>
+                                    </div>
+                                    <!-- Restaurant Header -->
+                                    <div class="flex items-baseline justify-between gap-space-xs mt-space-sm">
+                                        <h3 class="font-headline-md text-headline-md text-on-surface font-semibold"
+                                            id="dossierTitle">
+                                            DiverXO
+                                        </h3>
+                                        <span class="font-headline-md text-headline-md text-primary font-bold"
+                                            id="dossierScore">9.8</span>
+                                    </div>
+                                    <p class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-0.5"
+                                        id="dossierAddress">
+                                        <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                        Calle de Padre Damián 23, Madrid
+                                    </p>
+                                    <!-- Verdict Badge -->
+                                    <div class="my-space-md">
+                                        <div class="inline-flex items-center gap-1.5 bg-primary text-on-primary px-space-md py-1 rounded-full text-label-md font-label-md font-semibold tracking-wide"
+                                            id="dossierVerdictBadge">
+                                            <span class="material-symbols-outlined text-[16px]">verified</span>
+                                            <span id="dossierVerdictText">APROBADO CON HONORES • IMPRESCINDIBLE</span>
+                                        </div>
+                                    </div>
+                                    <!-- Audio / Dictaphone Note Excerpt -->
+                                    <div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm">
+                                        <div class="flex items-center justify-between text-secondary mb-space-xs">
+                                            <div
+                                                class="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                                                <span class="material-symbols-outlined text-[14px]">mic</span>
+                                                Grabación de Salida
+                                            </div>
+                                            <span class="text-[11px]">01:24 min</span>
+                                        </div>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant italic"
+                                            id="dossierQuote">
+                                            «El despliegue de caldos y fondos roza lo sobrehumano. El sumiller
+                                            interpretó nuestro ánimo desde el primer sorbo de jerez. Una de las tres
+                                            mejores mesas vivas del continente.»
+                                        </p>
+                                    </div>
+                                    <!-- Detailed Stats Mini Grid -->
+                                    <div class="grid grid-cols-2 gap-space-sm mt-space-md">
+                                        <div class="bg-surface-container-lowest p-space-sm rounded-lg">
+                                            <span class="block text-[11px] uppercase font-bold text-secondary">Tipo de
+                                                Menú</span>
+                                            <span class="font-body-sm text-body-sm font-semibold text-on-surface"
+                                                id="dossierMenu">La Cocina de los Cerdos Voladores</span>
+                                        </div>
+                                        <div class="bg-surface-container-lowest p-space-sm rounded-lg">
+                                            <span
+                                                class="block text-[11px] uppercase font-bold text-secondary">Bodega</span>
+                                            <span class="font-body-sm text-body-sm font-semibold text-on-surface"
+                                                id="dossierCellar">4.200 Referencias Vivas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Action Link -->
+                                <div class="mt-space-lg pt-space-sm">
+                                    <a class="w-full inline-flex items-center justify-center gap-space-xs bg-on-surface text-on-primary font-label-md text-label-md h-[44px] rounded-lg hover:bg-primary transition-colors"
+                                        href="#" id="dossierAction">
+                                        <span>Ver expediente íntegro en PDF</span>
+                                        <span class="material-symbols-outlined text-[16px]">description</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SECTION 4: Culinary Manifesto & Integrity Dispatch -->
+            <section class="w-full py-space-xl bg-surface-container-high relative overflow-hidden">
+                <div class="max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+                        <!-- Left: Editorial Manifesto -->
+                        <div class="lg:col-span-6 flex flex-col gap-space-md">
+                            <div class="flex items-center gap-space-xs text-primary">
+                                <span class="material-symbols-outlined text-[20px]">gavel</span>
+                                <span class="font-label-caps text-label-caps uppercase tracking-widest">Compromiso
+                                    Deontológico</span>
+                            </div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+                                Nuestro Código Editorial: El plato manda, el interés calla.
+                            </h2>
+                            <div
+                                class="space-y-space-md text-on-surface-variant font-body-md text-body-md leading-relaxed">
+                                <div class="flex items-start gap-space-sm">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">check_circle</span>
+                                    <p><strong>Cero mesas de cortesía:</strong> No aceptamos invitaciones de gabinetes
+                                        de comunicación, restauradores ni patrocinadores corporativos.</p>
+                                </div>
+                                <div class="flex items-start gap-space-sm">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">check_circle</span>
+                                    <p><strong>Identidad reservada:</strong> Las reservas se realizan bajo pseudónimo.
+                                        Los inspectores nunca revelan su filiación antes o durante el servicio.</p>
+                                </div>
+                                <div class="flex items-start gap-space-sm">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">check_circle</span>
+                                    <p><strong>Sal y pimienta:</strong> Si un plato carece de técnica, lo argumentamos;
+                                        si conmueve, lo celebramos. La crítica constructiva es el único homenaje real a
+                                        la gastronomía.</p>
+                                </div>
+                            </div>
+                            <div class="pt-space-sm flex items-center gap-space-lg">
+                                <div class="flex -space-x-2">
+                                    <div
+                                        class="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs ring-2 ring-surface-container-high">
+                                        J.R.</div>
+                                    <div
+                                        class="w-9 h-9 rounded-full bg-on-surface text-on-primary flex items-center justify-center font-bold text-xs ring-2 ring-surface-container-high">
+                                        M.V.</div>
+                                    <div
+                                        class="w-9 h-9 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-bold text-xs ring-2 ring-surface-container-high">
+                                        E.B.</div>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-secondary">Tribunal Inspector de Salt &amp;
+                                    Pepper</span>
+                            </div>
+                        </div>
+                        <!-- Right: Newsletter Dispatch Box -->
+                        <div class="lg:col-span-6">
+                            <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-md">
+                                <div class="flex items-center gap-space-xs text-primary mb-space-xs">
+                                    <span class="material-symbols-outlined text-[18px]">mark_email_read</span>
+                                    <span class="font-label-caps text-label-caps uppercase tracking-widest">Suscripción
+                                        Dominical</span>
+                                </div>
+                                <h3 class="font-headline-md text-headline-md text-on-surface font-semibold">
+                                    El Despacho de las Siete: Una sola mesa cada domingo.
+                                </h3>
+                                <p
+                                    class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                                    Reciba cada domingo a las 19:00 la crónica semanal desclasificada: el ticket de caja
+                                    escaneado, la fotografía de cada pase y la deliberación completa de la redacción.
+                                </p>
+                                <form class="mt-space-lg flex flex-col gap-space-sm" id="newsletterForm"
+                                    onsubmit="event.preventDefault(); document.getElementById('newsletterFeedback').classList.remove('hidden');">
+                                    <div class="flex flex-col sm:flex-row items-stretch gap-space-xs">
+                                        <input
+                                            class="flex-1 bg-surface-container-low px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface placeholder:text-secondary outline-none focus:bg-surface-container-lowest shadow-inner"
+                                            placeholder="ejemplo@gastronomia.com" required="" type="email" />
+                                        <button
+                                            class="bg-primary text-on-primary font-label-md text-label-md px-space-lg py-space-sm rounded-lg hover:bg-primary-container transition-all shrink-0"
+                                            type="submit">
+                                            Unirse al Tribunal
+                                        </button>
+                                    </div>
+                                    <span class="font-body-sm text-body-sm text-secondary text-[12px]">
+                                        Sin algoritmos ni patrocinios de marcas de ginebra. Baja inmediata con un clic.
+                                    </span>
+                                    <div class="hidden p-space-sm rounded-lg bg-surface-container-low text-primary font-body-sm text-body-sm"
+                                        id="newsletterFeedback">
+                                        ✓ Solicitud registrada. Recibirá la próxima circular confidencial el domingo a
+                                        las 19:00h.
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script>
+                (function () {
+                    // 1. Grade Tab Filter Logic
+                    const gradeTabs = document.querySelectorAll('.grade-tab');
+                    const restaurantCards = document.querySelectorAll('.restaurant-card');
+
+                    gradeTabs.forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            gradeTabs.forEach(t => {
+                                t.classList.remove('bg-primary', 'text-on-primary');
+                                t.classList.add('text-on-surface-variant');
+                            });
+                            tab.classList.add('bg-primary', 'text-on-primary');
+                            tab.classList.remove('text-on-surface-variant');
+
+                            const selectedGrade = tab.getAttribute('data-grade');
+
+                            restaurantCards.forEach(card => {
+                                const cardGrade = card.getAttribute('data-grade-cat');
+                                if (selectedGrade === 'all' || cardGrade === selectedGrade) {
+                                    card.style.display = 'block';
+                                } else {
+                                    card.style.display = 'none';
+                                }
+                            });
+                        });
+                    });
+
+                    // 2. Chip Filter Logic (Hero Quick Filter)
+                    const filterChips = document.querySelectorAll('.filter-chip');
+                    filterChips.forEach(chip => {
+                        chip.addEventListener('click', () => {
+                            filterChips.forEach(c => {
+                                c.classList.remove('bg-on-surface', 'text-on-primary');
+                                c.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+                            });
+                            chip.classList.add('bg-on-surface', 'text-on-primary');
+                            chip.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+
+                            const filter = chip.getAttribute('data-filter');
+                            restaurantCards.forEach(card => {
+                                const tags = card.getAttribute('data-tags') || '';
+                                if (filter === 'all' || tags.includes(filter)) {
+                                    card.style.display = 'block';
+                                } else {
+                                    card.style.display = 'none';
+                                }
+                            });
+                        });
+                    });
+
+                    // 3. Search Filter in Cards
+                    const searchInput = document.getElementById('searchInput');
+                    const searchBtn = document.getElementById('searchBtn');
+
+                    function executeSearch() {
+                        const term = searchInput.value.toLowerCase().trim();
+                        restaurantCards.forEach(card => {
+                            const text = card.textContent.toLowerCase();
+                            if (text.includes(term)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                        // Scroll to cards smoothly if query was entered
+                        if (term.length > 0) {
+                            document.getElementById('calificaciones').scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+
+                    if (searchBtn && searchInput) {
+                        searchBtn.addEventListener('click', executeSearch);
+                        searchInput.addEventListener('keyup', (e) => {
+                            if (e.key === 'Enter') executeSearch();
+                        });
+                    }
+
+                    // 4. Interactive Map Dossier Switching
+                    const mapData = {
+                        diverxo: {
+                            title: 'DiverXO',
+                            score: '9.8',
+                            address: 'Calle de Padre Damián 23, Madrid',
+                            stamp: 'VISITADO · 14 OCT 2024',
+                            verdict: 'OBRA MAESTRA · IMPRESCINDIBLE',
+                            badgeClass: 'bg-primary text-on-primary',
+                            quote: '«El despliegue de caldos y fondos roza lo sobrehumano. El sumiller interpretó nuestro ánimo desde el primer sorbo de jerez. Una de las tres mejores mesas vivas del continente.»',
+                            menu: 'La Cocina de los Cerdos Voladores',
+                            cellar: '4.200 Referencias Vivas',
+                            imageAlt: 'DiverXO Madrid avant-garde presentation of signature tasting dishes with dynamic lighting'
+                        },
+                        casagerardo: {
+                            title: 'Casa Gerardo',
+                            score: '9.2',
+                            address: 'Carretera AS-19, Km 8.5, Prendes, Asturias',
+                            stamp: 'VISITADO · 22 SEP 2024',
+                            verdict: 'EXCELENTE · CLÁSICO REINVENTADO',
+                            badgeClass: 'bg-primary text-on-primary',
+                            quote: '«El equilibrio de la faba fresca con el compango desgrasado es una proeza técnica que nadie debería perderse en una vida entera.»',
+                            menu: 'Menú Clásicos Contemporáneos',
+                            cellar: 'Sidras de Guarda y Gran Borgoña',
+                            imageAlt: 'Casa Gerardo Asturias refined fabada and fresh Cantabrian fish dish on pristine white table linen'
+                        },
+                        lumiere: {
+                            title: 'Bistró Lumière',
+                            score: '6.1',
+                            address: 'Carrer d’Enric Granados, Barcelona',
+                            stamp: 'VISITADO · 08 AGO 2024',
+                            verdict: 'IRREGULAR · DUDOSO',
+                            badgeClass: 'bg-tertiary text-on-tertiary',
+                            quote: '«Se diluye entre el murmullo de la moda y la desatención del pase caliente. Hay fondo en bodega pero apatía en la partida de carnes.»',
+                            menu: 'Carta Abierta & Pizarras del Día',
+                            cellar: 'Vinos Naturales del Rosellón',
+                            imageAlt: 'Bistro Lumiere Barcelona modern dining room table setting with wine glasses and slightly flawed seafood preparation'
+                        },
+                        elchato: {
+                            title: 'Taberna El Chato',
+                            score: '8.7',
+                            address: 'Calle San Jacinto 44, Triana, Sevilla',
+                            stamp: 'VISITADO · 19 JUL 2024',
+                            verdict: 'NOTABLE ALTO · AUTÉNTICO',
+                            badgeClass: 'bg-on-surface text-on-primary',
+                            quote: '«Guisos con densidad y memoria. Aquí se cocina con tiempo de reloj de arena y las croquetas justifican el viaje en AVE por sí solas.»',
+                            menu: 'Guisos de Temporada & Raciones',
+                            cellar: 'Manzanillas Pasadas y Amontillados',
+                            imageAlt: 'Taberna El Chato traditional Sevillian bar counter with stewed bull tail dish and glasses of dry sherry wine'
+                        },
+                        neotrattoria: {
+                            title: 'Neo-Trattoria Bella',
+                            score: '4.2',
+                            address: 'Calle Literato Azorín 18, Ruzafa, Valencia',
+                            stamp: 'VISITADO · 02 NOV 2024',
+                            verdict: 'DECEPCIONANTE · NO RECOMENDADO',
+                            badgeClass: 'bg-error text-on-error',
+                            quote: '«El abuso sistemático de esencias sintéticas de trufa y la pasta sobrecocida sitúan esta propuesta en el terreno de la pirotecnia para selfies.»',
+                            menu: 'Degustación "Bella Vita" (Pre-hecho)',
+                            cellar: 'Prosecco Industrial y Carta Escasa',
+                            imageAlt: 'Modernist flashy Italian trattoria pasta plate covered in oil and artificial garnishes in Valencia'
+                        }
+                    };
+
+                    const mapPins = document.querySelectorAll('.map-pin');
+                    const dossierTitle = document.getElementById('dossierTitle');
+                    const dossierScore = document.getElementById('dossierScore');
+                    const dossierAddress = document.getElementById('dossierAddress');
+                    const dossierStamp = document.getElementById('dossierStamp');
+                    const dossierVerdictBadge = document.getElementById('dossierVerdictBadge');
+                    const dossierVerdictText = document.getElementById('dossierVerdictText');
+                    const dossierQuote = document.getElementById('dossierQuote');
+                    const dossierMenu = document.getElementById('dossierMenu');
+                    const dossierCellar = document.getElementById('dossierCellar');
+                    const dossierImage = document.getElementById('dossierImage');
+
+                    mapPins.forEach(pin => {
+                        pin.addEventListener('click', () => {
+                            const id = pin.getAttribute('data-id');
+                            const data = mapData[id];
+                            if (!data) return;
+
+                            dossierTitle.textContent = data.title;
+                            dossierScore.textContent = data.score;
+                            dossierAddress.innerHTML = `<span class="material-symbols-outlined text-[16px]">location_on</span> ${data.address}`;
+                            dossierStamp.textContent = data.stamp;
+                            dossierVerdictText.textContent = data.verdict;
+                            dossierVerdictBadge.className = `inline-flex items-center gap-1.5 px-space-md py-1 rounded-full text-label-md font-label-md font-semibold tracking-wide ${data.badgeClass}`;
+                            dossierQuote.textContent = data.quote;
+                            dossierMenu.textContent = data.menu;
+                            dossierCellar.textContent = data.cellar;
+                            dossierImage.setAttribute('data-alt', data.imageAlt);
+
+                            // Visual feedback on selected pin
+                            mapPins.forEach(p => p.classList.remove('scale-125'));
+                            pin.classList.add('scale-125');
+                        });
+                    });
+
+                    // Map Quick Filters
+                    const mapBtnAll = document.getElementById('mapBtnAll');
+                    const mapBtnRec = document.getElementById('mapBtnRec');
+                    const mapBtnWarn = document.getElementById('mapBtnWarn');
+
+                    if (mapBtnAll && mapBtnRec && mapBtnWarn) {
+                        mapBtnAll.addEventListener('click', () => {
+                            mapPins.forEach(p => p.style.display = 'block');
+                        });
+
+                        mapBtnRec.addEventListener('click', () => {
+                            mapPins.forEach(p => {
+                                const id = p.getAttribute('data-id');
+                                if (id === 'diverxo' || id === 'casagerardo' || id === 'elchato') {
+                                    p.style.display = 'block';
+                                } else {
+                                    p.style.display = 'none';
+                                }
+                            });
+                        });
+
+                        mapBtnWarn.addEventListener('click', () => {
+                            mapPins.forEach(p => {
+                                const id = p.getAttribute('data-id');
+                                if (id === 'lumiere' || id === 'neotrattoria') {
+                                    p.style.display = 'block';
+                                } else {
+                                    p.style.display = 'none';
+                                }
+                            });
+                        });
+                    }
+
+                    // City Jumps (Trigger Dossier & Pin Focus)
+                    const cityJumps = document.querySelectorAll('.city-jump');
+                    cityJumps.forEach(jump => {
+                        jump.addEventListener('click', () => {
+                            const city = jump.getAttribute('data-city');
+                            let targetId = 'diverxo';
+                            if (city === 'Asturias') targetId = 'casagerardo';
+                            if (city === 'Barcelona') targetId = 'lumiere';
+                            if (city === 'Sevilla') targetId = 'elchato';
+                            if (city === 'Valencia') targetId = 'neotrattoria';
+
+                            const targetPin = document.querySelector(`.map-pin[data-id="${targetId}"]`);
+                            if (targetPin) {
+                                targetPin.click();
+                            }
+                        });
+                    });
+
+                })();
+        </script>
+    </main>
+    <footer class="w-full bg-surface-container-lowest border-t border-surface-container-highest mt-space-xl">
+        <div class="max-w-[1320px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop pb-space-xl border-b border-surface-container-high">
+                <div class="lg:col-span-5 flex flex-col gap-space-md">
+                    <div class="flex items-center gap-space-sm"><img alt="Salt &amp; Pepper Logo"
+                            class="h-8 w-auto object-contain"
+                            src="https://lh3.googleusercontent.com/aida/AEtjO1WCkZJIyo-PZe0W0GN0H6Cjs-n3JbbDgFekC8Qy33xLejqLjLk0OE18HKMl7WpC0o63jH5yBJQ7liQUP0cO2REbCpxHFP9WUhXG6Zschp2gEFnsJQEDmblFysbwKPwmfrr0PNmkI9kAHMckYPN2VLAsmf4rTgmMDzzec9TN1iK0p2k5KspNF-ziM3TvnLa-ishyxvNGhRDni1Loncyy6ROlivL0EERAc66MgFpEl1aDPaF5_bWEM3R729I" /><span
+                            class="font-headline-sm text-headline-sm text-on-surface">Salt &amp; Pepper</span></div>
+                    <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Publicación culinaria de
+                        evaluación independiente, crónica sensorial y canon contemporáneo. Inspecciones anónimas y
+                        veredictos sin compromisos comerciales.</p>
+                    <div class="flex items-center gap-space-md pt-space-xs"><a aria-label="Explorar Archivo"
+                            class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                            href="#"><span class="material-symbols-outlined text-[18px]">travel_explore</span></a><a
+                            aria-label="Canal Editorial"
+                            class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                            href="#"><span class="material-symbols-outlined text-[18px]">rss_feed</span></a><a
+                            aria-label="Correspondencia"
+                            class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                            href="#"><span class="material-symbols-outlined text-[18px]">mail</span></a><a
+                            aria-label="Bodega y Maridaje"
+                            class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                            href="#"><span class="material-symbols-outlined text-[18px]">wine_bar</span></a></div>
+                </div>
+                <div class="lg:col-span-2 flex flex-col gap-space-sm"><span
+                        class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Cuadernos</span><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="restaurantes" href="#">Alta Cocina</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="criticas" href="#">Casas de Comida</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="criticas" href="#">Barras y Vinos</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="criticas" href="#">Mesa del Chef</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="el-veredicto" href="#">El Gran Estandarte</a></div>
+                <div class="lg:col-span-2 flex flex-col gap-space-sm"><span
+                        class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Crítica &amp;
+                        Guía</span><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="mapa-de-visitas" href="#">Topografía Gastronómica</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="el-veredicto" href="#">Protocolo de Veredicto</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="sobre-nosotros" href="#">Tribunal Editorial</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="proponer-restaurante" href="#">Postulaciones</a><a
+                        class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                        data-path="sobre-nosotros" href="#">Código Deontológico</a></div>
+                <div class="lg:col-span-3 flex flex-col gap-space-sm"><span
+                        class="font-label-caps text-label-caps uppercase text-primary tracking-widest">La Carta
+                        Semanal</span>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Nuestra crónica dominical con una sola
+                        mesa examinada en profundidad, sin intermediarios ni patrocinios.</p>
+                    <div class="flex flex-col gap-space-xs mt-space-xs">
+                        <div
+                            class="flex items-center bg-surface-container-low border border-surface-container-highest rounded-lg px-space-sm py-space-xs focus-within:border-on-surface transition-all">
+                            <input
+                                class="bg-transparent w-full border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-secondary"
+                                placeholder="Su correo personal..." type="email" /><button
+                                class="bg-on-surface text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shrink-0"
+                                type="button">Suscribir</button>
+                        </div><span class="font-body-sm text-body-sm text-secondary text-[11px]">Edición sobria y libre
+                            de
+                            publicidad. Cancelable en un clic.</span>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-space-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md font-body-sm text-body-sm text-secondary">
+                <div class="flex flex-col md:flex-row md:items-center gap-space-sm md:gap-space-lg"><span>© 2025 Salt
+                        &amp; Pepper Editorial. Todos los derechos reservados.</span><span
+                        class="hidden md:inline">•</span><span>Aviso Culinario: Todas las cuentas son sufragadas
+                        íntegramente por los inspectores.</span></div>
+                <div class="flex items-center gap-space-md"><a class="hover:text-on-surface transition-colors"
+                        href="#">Privacidad</a><a class="hover:text-on-surface transition-colors"
+                        href="#">Términos</a><a class="hover:text-on-surface transition-colors" href="#">Metodología de
+                        Cata</a></div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
