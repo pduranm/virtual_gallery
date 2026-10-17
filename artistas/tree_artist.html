@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escuela del Río Hudson - Virtual Gallery</title>
+
+  <!-- Google Fonts requeridas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #b58d53;
+      --color-background: #fdfdfd;
+      --color-light: #e6e6e6;
+      --font-serif-display: 'Cinzel', serif;
+      --font-serif-body: 'Lora', serif;
+      --header-height: 80px;
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-serif-body);
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER STYLES --- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+    }
+
+    .logo a {
+      font-family: var(--font-serif-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .nav-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-secondary);
+    }
+
+    /* Mobile Sidebar */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    /* --- MAIN CONTENT & ENCABEZADO --- */
+    .main-content {
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+      padding: 60px 40px;
+      max-width: 1600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tree-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .tree-header h2 {
+      font-family: var(--font-serif-display);
+      font-size: 2.4rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--color-primary);
+    }
+
+    .tree-header p {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 750px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* --- ESTILOS DEL ÁRBOL GENEALÓGICO / FLUJOGRAMA --- */
+    .tree-scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding: 20px 0 60px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tree {
+      display: inline-block;
+      min-width: fit-content;
+    }
+
+    .tree ul {
+      padding-top: 30px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding-left: 0;
+    }
+
+    .tree li {
+      list-style-type: none;
+      position: relative;
+      padding: 30px 18px 0 18px;
+      text-align: center;
+    }
+
+    /* Conectores horizontales y verticales superiores */
+    .tree li::before, 
+    .tree li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 50%;
+      border-top: 2px solid var(--color-light);
+      width: 50%;
+      height: 30px;
+    }
+
+    .tree li::after {
+      right: auto;
+      left: 50%;
+      border-left: 2px solid var(--color-light);
+    }
+
+    .tree li:only-child::after, 
+    .tree li:only-child::before {
+      display: none;
+    }
+
+    .tree li:only-child {
+      padding-top: 0;
+    }
+
+    .tree li:first-child::before, 
+    .tree li:last-child::after {
+      border: 0 none;
+    }
+
+    .tree li:last-child::before {
+      border-right: 2px solid var(--color-light);
+      border-radius: 0 4px 0 0;
+    }
+
+    .tree li:first-child::after {
+      border-radius: 4px 0 0 0;
+    }
+
+    /* Conector vertical descendente hacia las ramas hijas */
+    .tree ul ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid var(--color-light);
+      width: 0;
+      height: 30px;
+    }
+
+    /* --- NODO ARTISTA (TARJETA) --- */
+    .tree .node {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background-color: #fff;
+      border: 1px solid #e2e2e2;
+      padding: 16px 24px;
+      min-width: 180px;
+      text-decoration: none;
+      color: var(--color-primary);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      transition: var(--transition-smooth);
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .tree .node .artist-name {
+      font-family: var(--font-serif-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .tree .node .artist-role {
+      font-family: var(--font-serif-body);
+      font-size: 0.8rem;
+      color: #888;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+    }
+
+    /* Hover interactivo */
+    .tree .node:hover {
+      border-color: var(--color-secondary);
+      box-shadow: 0 8px 25px rgba(181, 141, 83, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .tree .node:hover .artist-name {
+      color: var(--color-secondary);
+    }
+
+    /* ESTILO ACTIVADO (.active) */
+    .tree .node.active {
+      border: 1px solid var(--color-secondary);
+      background-color: #fffdf9;
+      box-shadow: 0 8px 25px rgba(181, 141, 83, 0.22);
+      transform: translateY(-3px);
+    }
+
+    .tree .node.active .artist-name {
+      color: var(--color-secondary);
+    }
+
+    .tree .node.active .artist-role {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    /* Línea conectora activa en ramas seleccionadas */
+    .tree li.active-branch > ::before,
+    .tree li.active-branch > ::after,
+    .tree ul.active-branch::before {
+      border-color: var(--color-secondary) !important;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-family: var(--font-serif-display);
+      font-size: 0.8rem;
+      color: #888;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main-header {
+        padding: 0 20px;
+      }
+
+      .main-content {
+        padding: 40px 15px;
+      }
+
+      .tree-header h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera -->
+  <header class="main-header">
+    <div class="logo">
+      <a href="/">Virtual Gallery</a>
+    </div>
+    <nav class="nav-container">
+      <div class="nav-item"><a href="/" class="nav-link">Inicio</a></div>
+      <div class="nav-item"><a href="/escuelas" class="nav-link active">Escuelas</a></div>
+      <div class="nav-item"><a href="/obras" class="nav-link">Colección</a></div>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-content">
+    
+    <div class="tree-header">
+      <h2>Escuela del Río Hudson</h2>
+      <p>Genealogía artística: del romanticismo fundacional al paisajismo monumental y el luminismo americano</p>
+    </div>
+
+    <div class="tree-scroll-wrapper">
+      <div class="tree">
+        <ul>
+          <!-- NIVEL 1: Raíz / Fundador -->
+          <li class="active-branch">
+            <a href="/artistas/thomas-cole" class="node active">
+              <span class="artist-name">Thomas Cole</span>
+              <span class="artist-role">Fundador (1ª Generación)</span>
+            </a>
+
+            <!-- NIVEL 2: Discípulo directo y contemporáneos clave -->
+            <ul class="active-branch">
+
+              <!-- Rama 1: Frederic Edwin Church (Único alumno directo de Cole) -->
+              <li class="active-branch">
+                <a href="/artistas/frederic-edwin-church" class="node active">
+                  <span class="artist-name">Frederic Edwin Church</span>
+                  <span class="artist-role">Discípulo Directo / Cúspide</span>
+                </a>
+                <ul class="active-branch">
+                  <li class="active-branch">
+                    <a href="/artistas/thomas-moran" class="node active">
+                      <span class="artist-name">Thomas Moran</span>
+                      <span class="artist-role">3ª Generación / Yellowstone</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Rama 2: Asher Brown Durand (Co-fundador y mentor de la 2ª generación) -->
+              <li>
+                <a href="/artistas/asher-brown-durand" class="node">
+                  <span class="artist-name">Asher Brown Durand</span>
+                  <span class="artist-role">Co-fundador / Grabador</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="/artistas/john-frederick-kensett" class="node">
+                      <span class="artist-name">John F. Kensett</span>
+                      <span class="artist-role">Luminismo Americano</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/artistas/sanford-robinson-gifford" class="node">
+                      <span class="artist-name">Sanford R. Gifford</span>
+                      <span class="artist-role">2ª Gen. / Luminismo</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Rama 3: Paisajismo Monumental del Oeste -->
+              <li>
+                <a href="/artistas/albert-bierstadt" class="node">
+                  <span class="artist-name">Albert Bierstadt</span>
+                  <span class="artist-role">2ª Gen. / Montañas Rocosas</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="/artistas/martin-johnson-heade" class="node">
+                      <span class="artist-name">Martin Johnson Heade</span>
+                      <span class="artist-role">Luminismo Costero / Flora</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Virtual Gallery. Escuela del Río Hudson.</p>
+  </footer>
+
+</body>
+</html>

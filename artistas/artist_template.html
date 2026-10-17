@@ -2,393 +2,562 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elena Vlasova | Virtual Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edgar Degas | Virtual Gallery</title>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
-    rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
 
-  <style>
-    :root {
-      --color-primary: #1a1a1a;
-      --color-secondary: #b58d53;
-      --color-background: #fdfdfd;
-      --color-light: #e6e6e6;
-      --font-serif-display: 'Cinzel', serif;
-      --font-serif-body: 'Lora', serif;
-      --header-height: 80px;
-      --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-    }
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #b58d53;
+            --color-background: #fdfdfd;
+            --color-light: #e6e6e6;
+            --font-serif-display: 'Cinzel', serif;
+            --font-serif-body: 'Lora', serif;
+            --header-height: 80px;
+            --transition-smooth: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
 
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: var(--font-serif-body);
-      background-color: var(--color-background);
-      color: var(--color-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
+        body {
+            font-family: var(--font-serif-body);
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    /* --- HEADER STYLES --- */
-    .main-header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: var(--header-height);
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 50px;
-      border-bottom: 1px solid #eee;
-      z-index: 2000;
-    }
+        /* --- HEADER STYLES --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #eee;
+            z-index: 2000;
+        }
 
-    .logo a {
-      font-family: var(--font-serif-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-decoration: none;
-      color: var(--color-primary);
-      cursor: pointer;
-    }
+        .logo a {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
 
-    .nav-container {
-      display: flex;
-      height: 100%;
-    }
+        .nav-container {
+            display: flex;
+            height: 100%;
+        }
 
-    .nav-item {
-      display: flex;
-      align-items: center;
-      padding: 0 25px;
-      height: 100%;
-      cursor: pointer;
-    }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 100%;
+            cursor: pointer;
+        }
 
-    .nav-link {
-      font-family: var(--font-serif-display);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-decoration: none;
-      color: var(--color-primary);
-      font-weight: 700;
-      position: relative;
-    }
+        .nav-link {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 700;
+            position: relative;
+        }
 
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--color-secondary);
-    }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-secondary);
+        }
 
-    /* Mobile Sidebar */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 20px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 2100;
-    }
+        /* Mobile Sidebar */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2100;
+        }
 
-    .menu-toggle span {
-      width: 100%;
-      height: 2px;
-      background-color: var(--color-primary);
-      transition: 0.3s;
-    }
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: 0.3s;
+        }
 
-    /* --- MAIN CONTENT --- */
-    .main-content {
-      margin-top: var(--header-height);
-      min-height: calc(100vh - var(--header-height));
-    }
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
 
-    /* --- DETAIL VIEW STYLES (ISOLATED) --- */
-    .detail-layout {
-      display: grid;
-      grid-template-columns: 350px 1fr;
-      gap: 60px;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 60px 40px;
-    }
+        /* --- DETAIL VIEW STYLES --- */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
 
-    .detail-portrait {
-      width: 100%;
-      border: 10px solid #fff;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      margin-bottom: 30px;
-    }
+        .detail-portrait {
+            width: 100%;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
 
-    .detail-metadata {
-      background-color: #f9f9f9;
-      padding: 30px;
-      border: 1px solid #eee;
-    }
+        .detail-metadata {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
+        }
 
-    .detail-metadata h4 {
-      font-family: var(--font-serif-display);
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
+        .detail-metadata h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
 
-    .meta-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-    }
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
 
-    .meta-label {
-      font-weight: 700;
-      color: #888;
-    }
+        .meta-label {
+            font-weight: 700;
+            color: #888;
+        }
 
-    .detail-main {
-      padding-top: 10px;
-    }
+        .detail-main {
+            padding-top: 10px;
+        }
 
-    .detail-name {
-      font-family: var(--font-serif-display);
-      font-size: 3.5rem;
-      color: var(--color-primary);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
+        .detail-name {
+            font-family: var(--font-serif-display);
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
 
-    .detail-subtitle {
-      font-family: var(--font-serif-display);
-      font-size: 1.1rem;
-      color: var(--color-secondary);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
-      display: block;
-    }
+        .detail-subtitle {
+            font-family: var(--font-serif-display);
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            display: block;
+        }
 
-    .detail-text {
-      column-count: 2;
-      column-gap: 40px;
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #444;
-      margin-bottom: 60px;
-      text-align: justify;
-    }
+        .detail-text {
+            column-count: 2;
+            column-gap: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
 
-    .drop-cap {
-      float: left;
-      font-family: var(--font-serif-display);
-      font-size: 4rem;
-      line-height: 0.8;
-      margin-right: 15px;
-      color: var(--color-secondary);
-    }
+        .drop-cap {
+            float: left;
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            margin-right: 15px;
+            color: var(--color-secondary);
+        }
 
-    .works-section-title {
-      font-family: var(--font-serif-display);
-      font-size: 1.5rem;
-      margin-bottom: 30px;
-      border-left: 4px solid var(--color-secondary);
-      padding-left: 20px;
-    }
+        /* --- SECCIONES EXTRA (INFLUENCIAS, MENTORES, CURIOSIDADES) --- */
+        .section-block {
+            margin-bottom: 50px;
+        }
 
-    .works-grid-mini {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+        .section-block-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+            color: var(--color-primary);
+        }
 
-    .work-mini-item {
-      aspect-ratio: 1;
-      background-color: #f0f0f0;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
+        .cards-grid-two {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
 
-    .work-mini-item:hover {
-      opacity: 0.8;
-    }
+        .info-card {
+            background-color: #fafafa;
+            border: 1px solid #eee;
+            padding: 24px;
+            border-radius: 2px;
+        }
 
-    .btn-back-detail {
-      margin-bottom: 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #888;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
+        .info-card h5 {
+            font-family: var(--font-serif-display);
+            font-size: 1rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
 
-    .btn-back-detail:hover {
-      color: var(--color-primary);
-    }
+        .info-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
 
-    /* Footer */
-    footer {
-      background-color: #f9f9f9;
-      padding: 60px;
-      text-align: center;
-      border-top: 1px solid #eee;
-      margin-top: 60px;
-    }
+        .curiosities-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    footer p {
-      font-family: var(--font-serif-display);
-      font-size: 0.8rem;
-      color: #888;
-    }
+        .curiosities-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.7;
+        }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .nav-container {
-        display: none;
-      }
+        .curiosities-list li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            color: var(--color-secondary);
+            font-size: 0.85rem;
+        }
 
-      .menu-toggle {
-        display: flex;
-      }
+        .curiosities-list strong {
+            color: var(--color-primary);
+        }
 
-      .main-header {
-        padding: 0 20px;
-      }
+        .works-section-title {
+            font-family: var(--font-serif-display);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 20px;
+        }
 
-      .detail-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 20px;
-      }
+        .works-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
 
-      .detail-text {
-        column-count: 1;
-      }
+        .work-mini-item {
+            aspect-ratio: 1;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
 
-      .works-grid-mini {
-        grid-template-columns: repeat(2, 1fr);
-      }
+        .work-mini-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-      .detail-name {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
+        .work-mini-item:hover {
+            opacity: 0.9;
+        }
+
+        .work-mini-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn-back-detail {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: border-box;
+            border: none;
+            background: none;
+        }
+
+        .btn-back-detail:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-family: var(--font-serif-display);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-header {
+                padding: 0 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .detail-text {
+                column-count: 1;
+            }
+
+            .cards-grid-two {
+                grid-template-columns: 1fr;
+            }
+
+            .works-grid-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-name {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header class="main-header">
-    <button class="menu-toggle">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="logo">
-      <a href="main.html">VIRTUAL GALLERY</a>
-    </div>
-    <nav class="nav-container">
-      <div class="nav-item">
-        <a href="artistList.html" class="nav-link">Artistas</a>
-      </div>
-      <div class="nav-item">
-        <a href="main.html" class="nav-link">Colección</a>
-      </div>
-      <div class="nav-item">
-        <a href="contacto.html" class="nav-link">Sobre Nosotros</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Main Content: DETAIL VIEW ONLY -->
-  <main class="main-content">
-
-    <div class="detail-layout">
-
-      <!-- Sidebar -->
-      <div class="detail-sidebar">
-        <a href="artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
-        <img
-          src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-          alt="Elena Vlasova" class="detail-portrait">
-
-        <div class="detail-metadata">
-          <h4>FICHA TÉCNICA</h4>
-          <div class="meta-row"><span class="meta-label">Origen:</span> <span>San Petersburgo, Rusia</span>
-          </div>
-          <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1985 - Presente</span></div>
-          <div class="meta-row"><span class="meta-label">Técnica:</span> <span>Oleo y Digital</span></div>
+    <!-- Header -->
+    <header class="main-header">
+        <button class="menu-toggle">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="../../main.html">VIRTUAL GALLERY</a>
         </div>
-      </div>
+        <nav class="nav-container">
+            <div class="nav-item">
+                <a href="../../artistList.html" class="nav-link">Artistas</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../main.html" class="nav-link">Colección</a>
+            </div>
+            <div class="nav-item">
+                <a href="../../contacto.html" class="nav-link">Sobre Nosotros</a>
+            </div>
+        </nav>
+    </header>
 
-      <!-- Main Content -->
-      <div class="detail-main">
-        <span class="detail-subtitle">ABSTRACCIÓN - MAESTRO DE LA FORMA</span>
-        <h2 class="detail-name">Elena Vlasova</h2>
+    <!-- Main Content -->
+    <main class="main-content">
 
-        <div class="detail-text">
-          <p><span class="drop-cap">E</span>lena Vlasova explora la relación entre la forma pura y la
-            percepción humana. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
-            provident. Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
-            dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
-            soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
-            possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-          <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
-            voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-            sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
-            doloribus asperiores repellat.</p>
+        <div class="detail-layout">
+
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <a href="../../artistList.html" class="btn-back-detail">&larr; Volver a la Lista</a>
+                <img src="https://placehold.co/440x550?text=Retrato+Edgar+Degas"
+                    alt="Edgar Degas" class="detail-portrait">
+
+                <div class="detail-metadata">
+                    <h4>Edgar Degas</h4>
+                    <div class="meta-row"><span class="meta-label">Origen:</span> <span>Francia</span></div>
+                    <div class="meta-row"><span class="meta-label">Periodo:</span> <span>1834 - 1917</span></div>
+                    <div class="meta-row"><span class="meta-label">Movimiento:</span> <span>Impresionismo / Realismo</span></div>
+                    <div class="meta-row"><span class="meta-label">Técnicas:</span> <span>Óleo, Pastel, Bronce</span></div>
+                    
+                    <h4 style="margin-top: 25px;">Mentores</h4>
+                    <div class="meta-row"><span class="meta-label">Maestro:</span> <span>Louis Lamothe</span></div>
+                    <div class="meta-row"><span class="meta-label">Consejero:</span> <span>J.A.D. Ingres</span></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="detail-main">
+                <span class="detail-subtitle">IMPRESIONISMO Y REALISMO</span>
+                <h2 class="detail-name">Edgar Degas</h2>
+
+                <div class="detail-text">
+                    <p><span class="drop-cap">H</span>ilaire-Germain-Edgar de Gas (1834–1917) fue una de las figuras más singulares del arte moderno parisino[cite: 1]. Aunque considerado fundador del impresionismo y participante en siete de sus ocho exposiciones colectivas, Degas prefería autodefinirse como un artista realista o independiente[cite: 1]. Rechazaba la pintura al aire libre en favor de composiciones calculadas y elaboradas en la intimidad del estudio[cite: 1].</p>
+
+                    <p>Su producción se distingue por la captación del movimiento fugaz en entornos cerrados bajo luz artificial: las clases y bambalinas del ballet de la Ópera, los hipódromos, las lavanderías y los cafés[cite: 1]. Su fascinación por la anatomía en tensión y los ángulos de visión cinematográficos revolucionaron el lenguaje visual de finales del siglo XIX[cite: 1].</p>
+                </div>
+
+                <!-- Sección: Profesores y Mentores -->
+                <div class="section-block">
+                    <h4 class="section-block-title">Profesores y Mentores</h4>
+                    <div class="cards-grid-two">
+                        <div class="info-card">
+                            <h5>Louis Lamothe (1822–1869)</h5>
+                            <p>Fue su tutor directo en el taller previo a la École des Beaux-Arts[cite: 1]. Alumno predilecto de Ingres, transmitió al joven Degas la veneración por el dibujo clásico, la disciplina anatómica y el rigor en el contorno[cite: 1].</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Jean-Auguste-Dominique Ingres (1780–1867)</h5>
+                            <p>Aunque no fue su alumno formal, Degas lo conoció en 1855[cite: 1]. El maestro le dio la máxima que marcaría su método de trabajo: <em>«Trace líneas, joven, muchas líneas, ya sea de memoria o del natural; así se convertirá en un buen artista»</em>[cite: 1].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Influencias -->
+                <div class="section-block">
+                    <h4 class="section-block-title">Influencias Artísticas</h4>
+                    <div class="cards-grid-two">
+                        <div class="info-card">
+                            <h5>El Renacimiento Italiano</h5>
+                            <p>Durante sus tres años en Italia (Florencia, Roma y Nápoles), copió y asimiló intensamente la técnica de Mantegna, Rafael, Tiziano y Botticelli, forjando su solidez estructural[cite: 1].</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Japonismo (Ukiyo-e)</h5>
+                            <p>Los grabados japoneses de Hokusai y Hiroshige inspiraron sus composiciones audaces: diagonales pronunciadas, perspectivas en picado y cortes asimétricos del plano[cite: 1].</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>La Cronofotografía</h5>
+                            <p>Los experimentos sobre el movimiento de Eadweard Muybridge influyeron directamente en su disección de las fases del galope de caballos y los pasos de danza[cite: 1].</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Édouard Manet y la Vida Moderna</h5>
+                            <p>Su amistad con Manet en la década de 1860 lo impulsó a dejar atrás los temas históricos para retratar la energía, fatiga y contradicciones de la metrópoli parisina[cite: 1].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Curiosidades -->
+                <div class="section-block">
+                    <h4 class="section-block-title">Curiosidades del Autor</h4>
+                    <ul class="curiosities-list">
+                        <li>
+                            <strong>Título:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quasi rem architecto corrupti minima, d
+                        </li>
+                        <li>
+                            <strong>Título:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quasi rem architecto corrupti minima, d
+                        </li>
+                        <li>
+                            <strong>Título:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quasi rem architecto corrupti minima, d
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- Catálogo de Obras -->
+                <h4 class="works-section-title">Catálogo de Obras</h4>
+                <div class="works-grid-mini">
+                    <a href="obras/clase_de_danza.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=La+clase+de+danza"
+                                alt="La clase de danza">
+                        </div>
+                    </a>
+                    <a href="obras/el_ajenjo.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=El+ajenjo"
+                                alt="El ajenjo">
+                        </div>
+                    </a>
+                    <a href="obras/pequena_bailarina.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=Pequena+bailarina"
+                                alt="Pequeña bailarina de catorce años">
+                        </div>
+                    </a>
+                    <a href="obras/la_tina.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=La+tina"
+                                alt="La tina">
+                        </div>
+                    </a>
+                    <a href="obras/la_familia_bellelli.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=La+familia+Bellelli"
+                                alt="La familia Bellelli">
+                        </div>
+                    </a>
+                    <a href="obras/oficina_algodon.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=Oficina+algodon"
+                                alt="La oficina de algodón en Nueva Orleans">
+                        </div>
+                    </a>
+                    <a href="obras/carreras_caballos.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=Carreras+caballos"
+                                alt="Carreras de caballos delante de las tribunas">
+                        </div>
+                    </a>
+                    <a href="obras/bailarina_estrella.html">
+                        <div class="work-mini-item">
+                            <img src="https://placehold.co/600x600?text=Bailarina+estrella"
+                                alt="Bailarina con ramo de flores (La estrella)">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-        <h4 class="works-section-title">Catálogo</h4>
-        <div class="works-grid-mini">
-          <div class="work-mini-item" style="background-color: #dcdcdc;"></div>
-          <div class="work-mini-item" style="background-color: #e0e0e0;"></div>
-          <div class="work-mini-item" style="background-color: #cfcfcf;"></div>
-          <div class="work-mini-item" style="background-color: #b0b0b0;"></div>
-          <div class="work-mini-item" style="background-color: #c0c0c0;"></div>
-          <div class="work-mini-item" style="background-color: #d3d3d3;"></div>
-          <div class="work-mini-item" style="background-color: #e8e8e8;"></div>
-          <div class="work-mini-item" style="background-color: #cccccc;"></div>
-        </div>
-      </div>
+    </main>
 
-    </div>
-
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 VIRTUAL GALLERY | Todos los derechos reservados</p>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 VIRTUAL GALLERY | Todos los derechos reservados</p>
+    </footer>
 
 </body>
 
